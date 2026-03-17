@@ -4,31 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Maestro de Ceremonias en Lima | Marco Iván Cabrera Hernández</title>
+<title>Maestro de Ceremonias | Marco Iván Cabrera Hernández</title>
 
-<meta name="description" content="Maestro de ceremonias profesional en Lima Perú. Eventos, matrimonios y ceremonias institucionales.">
+<meta name="description" content="Maestro de ceremonias profesional en Lima Perú. Eventos sociales e institucionales.">
 
 <meta name="google-site-verification" content="WSVLXvmTGY1x9wlfzEIz5xI7ZlYeQ1Avy_ztsH50Ydo" />
 
 <style>
+
 body {
 margin:0;
 font-family:'Segoe UI', sans-serif;
+background:#0a0a0a;
 color:white;
 }
 
-/* 🔴 HERO */
-.hero {
-height:100vh;
-background:url('evento1.jpg') center/cover no-repeat;
+/* HEADER */
+header {
+position:absolute;
+top:0;
+width:100%;
 display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-padding:20px;
+justify-content:space-between;
+padding:20px 40px;
+z-index:10;
 }
 
-/* 🔴 CAPA OSCURA ELEGANTE */
+nav a {
+color:white;
+margin-left:20px;
+text-decoration:none;
+font-size:14px;
+}
+
+/* HERO */
+.hero {
+height:100vh;
+background:url('20250816_223754.jpg') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:flex-start;
+padding:0 60px;
+position:relative;
+}
+
 .hero::before {
 content:"";
 position:absolute;
@@ -39,30 +58,28 @@ top:0;
 left:0;
 }
 
-/* 🔴 CONTENIDO */
 .hero-content {
 position:relative;
-text-align:left;
-max-width:800px;
+max-width:700px;
 }
 
-/* 🔴 NOMBRE (SIN BORDE NEGRO) */
+/* NOMBRE LIMPIO */
 .hero h1 {
-font-size:48px;
+font-size:46px;
 margin:0;
 color:white;
 }
 
-/* 🔴 RECTÁNGULO TRANSPARENTE */
+/* RECTÁNGULO TRANSPARENTE */
 .subbox {
 background:rgba(0,0,0,0.45);
-padding:12px 20px;
+padding:14px 20px;
 display:inline-block;
 border-radius:6px;
 margin-top:12px;
 }
 
-/* 🔴 BOTÓN */
+/* BOTÓN */
 .btn {
 background:#d4af37;
 color:black;
@@ -74,62 +91,54 @@ margin-top:20px;
 display:inline-block;
 }
 
-/* 🔴 HEADER */
-header {
-position:absolute;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px;
-z-index:10;
-}
-
-nav a {
-color:white;
-margin-left:20px;
-text-decoration:none;
-}
-
-/* 🔴 SECCIONES */
+/* SECCIONES */
 section {
-padding:60px 20px;
-background:#111;
+padding:60px 30px;
 text-align:center;
 }
 
-/* 🔴 GALERÍA */
-.grid {
+/* GALERÍA PROFESIONAL (SIN DEFORMACIÓN) */
+.galeria {
 display:flex;
-gap:20px;
 justify-content:center;
+gap:25px;
 flex-wrap:wrap;
+margin-top:30px;
 }
 
-.grid img {
-width:300px;
-border-radius:10px;
+.galeria img {
+width:240px;   /* 🔴 tamaño controlado */
+height:auto;   /* 🔴 respeta proporción */
+border-radius:12px;
 }
 
-/* 🔴 FOOTER */
+/* SOBRE */
+.sobre {
+max-width:800px;
+margin:auto;
+line-height:1.6;
+}
+
+/* FOOTER */
 footer {
 padding:40px;
 text-align:center;
 background:#000;
 }
 
-/* 🔴 WHATSAPP */
+/* WHATSAPP */
 .whatsapp {
 position:fixed;
 bottom:20px;
 right:20px;
 background:#25D366;
 color:white;
-padding:15px 20px;
+padding:14px 18px;
 border-radius:50px;
 text-decoration:none;
 font-weight:bold;
 }
+
 </style>
 </head>
 
@@ -144,7 +153,7 @@ font-weight:bold;
 </nav>
 </header>
 
-<!-- 🔴 HERO -->
+<!-- HERO -->
 <div class="hero">
 <div class="hero-content">
 
@@ -163,8 +172,10 @@ Solicitar Información
 </div>
 </div>
 
-<!-- 🔴 SOBRE TI -->
+<!-- SOBRE -->
 <section>
+<div class="sobre">
+
 <h2>Maestro Marco Iván Cabrera Hernández</h2>
 
 <p>
@@ -172,30 +183,46 @@ Licenciado en Arte y Magíster en Gestión Pública.
 </p>
 
 <p>
-Maestro de Ceremonias Profesional desde el año 2000,
-con experiencia en eventos Premium de Alta Gama en Lima.
+Maestro de Ceremonias Profesional desde el año 2000 (locutor profesional desde 1984),
+con amplia experiencia en ceremonias sociales, institucionales y académicas en Lima.
 </p>
 
+<p>
+Si desea garantía sobre el resultado de su ceremonia, cuidando cada detalle,
+nos está buscando.
+</p>
+
+</div>
 </section>
 
-<!-- 🔴 GALERÍA -->
+<!-- GALERÍA -->
 <section>
 <h2>Experiencia en eventos familiares y multitudinarios</h2>
 
 <div class="galeria">
+
+<img src="evento1.jpg">
 <img src="evento2.jpg">
-<img src="20250816_223754.jpg">
+<img src="20250828_201616.jpg">
+
 </div>
 
 </section>
 
-<!-- 🔴 LOGO -->
+<!-- LOGO -->
 <footer>
-<p>Miembro de AMACEP - Asociación de Maestros de Ceremonia del Perú. Presidente (2025-2027) </p>
-<img src="AMACEP.png" style="height:210px;">
+
+<p>Miembro de:</p>
+
+<img src="AMACEP.png" style="height:80px; margin-top:10px;">
+
+<p style="margin-top:20px;">
+Maestro de Ceremonias Lima Perú
+</p>
+
 </footer>
 
-<!-- 🔴 WHATSAPP -->
+<!-- WHATSAPP -->
 <a href="https://wa.me/51930046681" class="whatsapp" target="_blank">
 WhatsApp
 </a>
