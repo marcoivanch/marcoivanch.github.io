@@ -13,63 +13,60 @@
 <style>
 body {
 margin:0;
-font-family: 'Segoe UI', sans-serif;
+font-family:'Segoe UI', sans-serif;
 color:white;
 }
 
-/* 🔴 HERO CON FONDO PROFESIONAL */
+/* 🔴 HERO */
 .hero {
 height:100vh;
-position:relative;
 background:url('20250816_223754.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
-text-align:left;
-padding:40px;
+position:relative;
+padding:20px;
 }
 
 /* 🔴 CAPA OSCURA ELEGANTE */
 .hero::before {
 content:"";
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:linear-gradient(
-rgba(0,0,0,0.75),
-rgba(0,0,0,0.55),
-rgba(0,0,0,0.75)
-);
+background:rgba(0,0,0,0.55);
+top:0;
+left:0;
 }
 
-/* 🔴 CONTENIDO ENCIMA */
+/* 🔴 CONTENIDO */
 .hero-content {
 position:relative;
+text-align:left;
 max-width:800px;
 }
 
-/* 🔴 NOMBRE */
+/* 🔴 NOMBRE (SIN BORDE NEGRO) */
 .hero h1 {
-font-size:46px;
-margin-bottom:10px;
+font-size:48px;
+margin:0;
+color:white;
 }
 
-/* 🔴 RECTÁNGULO SUAVE (LO QUE PEDISTE) */
+/* 🔴 RECTÁNGULO TRANSPARENTE */
 .subbox {
 background:rgba(0,0,0,0.45);
 padding:12px 20px;
 display:inline-block;
 border-radius:6px;
-margin-top:10px;
+margin-top:12px;
 }
 
-/* 🔴 BOTONES */
+/* 🔴 BOTÓN */
 .btn {
 background:#d4af37;
 color:black;
-padding:14px 24px;
+padding:14px 25px;
 text-decoration:none;
 font-weight:bold;
 border-radius:4px;
@@ -101,6 +98,7 @@ background:#111;
 text-align:center;
 }
 
+/* 🔴 GALERÍA */
 .grid {
 display:flex;
 gap:20px;
@@ -108,7 +106,7 @@ justify-content:center;
 flex-wrap:wrap;
 }
 
-.card img {
+.grid img {
 width:300px;
 border-radius:10px;
 }
@@ -175,7 +173,7 @@ Licenciado en Arte y Magíster en Gestión Pública.
 
 <p>
 Maestro de Ceremonias Profesional desde el año 2000 (locutor desde 1984),
-con experiencia en eventos sociales, institucionales y académicos.
+con experiencia en eventos sociales e institucionales en Lima.
 </p>
 
 </section>
@@ -185,19 +183,9 @@ con experiencia en eventos sociales, institucionales y académicos.
 <h2>Experiencia en eventos</h2>
 
 <div class="grid">
-
-<div class="card">
 <img src="evento1.jpg">
-</div>
-
-<div class="card">
 <img src="evento2.jpg">
-</div>
-
-<div class="card">
 <img src="20250828_201616.jpg">
-</div>
-
 </div>
 
 </section>
