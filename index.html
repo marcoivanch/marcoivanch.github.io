@@ -6,7 +6,7 @@
 
 <title>Maestro de Ceremonias en Lima | Marco Iván Cabrera Hernández</title>
 
-<meta name="description" content="Maestro de ceremonias profesional en Lima Perú. Eventos, matrimonios y ceremonias institucionales.">
+<meta name="description" content="Maestro de ceremonias profesional en Lima Perú. Eventos, matrimonios y ceremonias institucionales. Marco Iván Cabrera Hernández.">
 
 <meta name="google-site-verification" content="WSVLXvmTGY1x9wlfzEIz5xI7ZlYeQ1Avy_ztsH50Ydo" />
 
@@ -32,6 +32,7 @@ nav a {
 color:white;
 margin-left:20px;
 text-decoration:none;
+font-weight:bold;
 }
 
 .hero {
@@ -42,10 +43,25 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:20px;
 }
 
+/* 🔴 TEXTO MEJORADO (OPCIÓN 1) */
 .hero h1 {
 font-size:48px;
+color:white;
+text-shadow:
+-2px -2px 0 #000,
+2px -2px 0 #000,
+-2px 2px 0 #000,
+2px 2px 0 #000,
+0px 4px 10px rgba(0,0,0,0.7);
+margin-bottom:10px;
+}
+
+.hero p {
+font-size:20px;
+text-shadow:0px 2px 6px rgba(0,0,0,0.7);
 }
 
 .btn {
@@ -56,6 +72,7 @@ text-decoration:none;
 font-weight:bold;
 margin-top:20px;
 display:inline-block;
+border-radius:5px;
 }
 
 section {
@@ -66,6 +83,7 @@ text-align:center;
 footer {
 padding:30px;
 text-align:center;
+background:#020617;
 }
 </style>
 </head>
@@ -84,33 +102,35 @@ text-align:center;
 <div class="hero">
 <h1>Marco Iván Cabrera Hernández</h1>
 <p>Maestro de Ceremonias Premium – Lima Perú</p>
-<a href="https://wa.me/51930046681" class="btn">Solicitar Información</a>
+<a href="https://wa.me/51930046681" target="_blank" class="btn">Solicitar Información</a>
 </div>
 
 <section>
 <h2>Experiencia Profesional</h2>
 <p>
-Más de 20 años conduciendo eventos sociales, institucionales y académicos en Lima.
+Más de 20 años conduciendo ceremonias sociales, institucionales y académicas en los principales salones de Lima.
 </p>
 </section>
 
 <section>
-<img src="evento2.jpg" style="width:90%;max-width:800px;">
+<img src="evento2.jpg" style="width:90%;max-width:800px;border-radius:10px;">
 </section>
 
 <section>
 <h2>¿Por qué elegirnos?</h2>
-<p>✔ Experiencia comprobada</p>
-<p>✔ Protocolo profesional</p>
+<p>✔ Más de 20 años de experiencia</p>
+<p>✔ Protocolo profesional y elegante</p>
 <p>✔ Garantía de cumplimiento</p>
+<p>✔ Alto nivel de conducción y entretenimiento</p>
 </section>
 
 <footer>
 <p>Miembro de:</p>
-<img src="AMACEP.png" style="height:80px;">
-<p>Maestro de Ceremonias Lima Perú</p>
+<img src="AMACEP.png" style="height:80px;margin-top:10px;">
+<p style="margin-top:20px;">Maestro de Ceremonias Lima Perú</p>
 </footer>
 
+<!-- BOTÓN WHATSAPP -->
 <a href="https://wa.me/51930046681" target="_blank" style="
 position:fixed;
 bottom:20px;
@@ -119,7 +139,10 @@ background:#25D366;
 color:white;
 padding:15px 20px;
 border-radius:50px;
-text-decoration:none;">
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:999;">
 WhatsApp
 </a>
 
