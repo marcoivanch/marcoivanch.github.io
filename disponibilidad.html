@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario de Gala | Marco Iván Cabrera</title>
+    <title>Disponibilidad de Gala | Marco Iván Cabrera</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
     <style>
         :root {
             --dorado: #c5a059;
-            --dorado-brillante: #e2c285;
             --oscuro-puro: #0a0a0a;
             --blanco-marfil: #fdfcfb;
             --whatsapp-verde: #25d366;
@@ -19,100 +18,88 @@
             --font-sans: 'Montserrat', sans-serif;
         }
 
-        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
 
+        /* --- FONDO DINÁMICO (EFECTO REVELADO RESTAURADO) --- */
         .main-container {
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.92)), 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
+            filter: grayscale(100%);
+            transition: filter 1.2s ease, background 1.2s ease;
             display: flex; flex-direction: column; align-items: center; padding: 40px 20px;
             box-sizing: border-box;
         }
 
+        .main-container:hover {
+            filter: grayscale(0%);
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
+        }
+
         /* --- NAVEGACIÓN --- */
         .month-nav {
-            display: flex; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; width: 100%; max-width: 900px;
+            display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding-bottom: 20px; width: 100%; max-width: 1000px;
         }
         .month-item {
-            color: var(--blanco-marfil);
-            text-decoration: none; font-size: 0.75rem; letter-spacing: 1px;
-            text-transform: uppercase; transition: all 0.3s ease; padding: 8px 12px; cursor: pointer;
-            font-weight: 400; opacity: 0.5; border: 1px solid transparent;
+            color: var(--blanco-marfil); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: 0.3s; padding: 10px 15px; cursor: pointer;
+            font-weight: 700; opacity: 0.6;
         }
-        .month-item.active { color: var(--dorado); border: 1px solid var(--dorado); opacity: 1; background: rgba(197, 160, 89, 0.05); }
-        .month-item:hover:not(.active) { opacity: 1; color: var(--dorado-brillante); }
+        .month-item.active { color: var(--dorado); border: 1px solid var(--dorado); background: rgba(197, 160, 89, 0.1); opacity: 1; }
+        .month-item:hover:not(.active) { color: var(--dorado); opacity: 1; }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        /* --- PANEL CALENDARIO --- */
         .calendar-box {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 40px; border-radius: 4px;
-            max-width: 850px; width: 100%;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            animation: fadeIn 0.8s ease-out;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            padding: 45px; border-radius: 2px;
+            max-width: 900px; width: 100%;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
 
-        h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 6px; text-align: center; }
-        .subtitle { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; }
+        h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.6rem; margin: 0; text-transform: uppercase; letter-spacing: 7px; text-align: center; }
+        .subtitle { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #aaa; text-align: center; margin-bottom: 45px; }
 
         .current-month-display { 
-            font-family: var(--font-serif); font-size: 1.5rem; color: var(--dorado); 
-            text-align: center; margin-bottom: 25px; letter-spacing: 3px;
+            font-family: var(--font-serif); font-size: 1.8rem; color: var(--dorado); 
+            text-align: center; margin-bottom: 30px; letter-spacing: 4px;
         }
 
-        /* --- GRID --- */
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-        .day-header { font-weight: 700; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; opacity: 0.8; padding-bottom: 10px; }
+        /* --- GRID DE FECHAS (TODAS DISPONIBLES) --- */
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+        .day-header { font-weight: 700; color: var(--dorado); text-align: center; font-size: 0.75rem; text-transform: uppercase; padding-bottom: 15px; }
         
         .day {
-            aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            font-size: 0.95rem; position: relative;
+            aspect-ratio: 1.3 / 1; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(197, 160, 89, 0.2); cursor: pointer; transition: 0.3s; font-size: 1rem;
+            color: var(--dorado); font-weight: 400;
         }
         .day.empty { border: none; cursor: default; }
-        
-        .day.available { color: var(--blanco-marfil); }
-        .day.available:hover { 
-            background: var(--dorado); color: var(--oscuro-puro); 
-            font-weight: 700; transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(197,160,89,0.3);
-        }
+        .day:hover { background: var(--dorado); color: var(--oscuro-puro); font-weight: 700; transform: scale(1.05); z-index: 10; }
 
-        .day.today { border: 2px solid var(--dorado); color: var(--dorado); font-weight: 700; }
-
-        .day.booked { 
-            opacity: 0.3; cursor: not-allowed; color: #444; 
-            background-image: linear-gradient(45deg, transparent 45%, #666 50%, transparent 55%);
-            background-size: 10px 10px;
-        }
-
-        /* --- BOTÓN RETORNO --- */
+        /* --- BOTÓN DE RETORNO --- */
         .btn-back { 
-            margin-top: 40px; text-decoration: none; color: #aaa; font-size: 0.7rem; 
-            text-transform: uppercase; letter-spacing: 3px; border: 1px solid rgba(255,255,255,0.1); 
-            padding: 10px 20px; transition: 0.3s;
+            margin-top: 50px; text-decoration: none; color: var(--blanco-marfil);
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px;
+            border: 1px solid rgba(255,255,255,0.2); padding: 12px 25px; transition: 0.3s; font-weight: 700;
         }
-        .btn-back:hover { color: var(--dorado); border-color: var(--dorado); background: rgba(197, 160, 89, 0.05); }
+        .btn-back:hover { color: var(--dorado); border-color: var(--dorado); background: rgba(197, 160, 89, 0.1); }
 
         .wsp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
             background-color: var(--whatsapp-verde); border-radius: 50px;
-            display: flex; align-items: center; justify-content: center; 
-            text-decoration: none; transition: 0.3s; z-index: 100;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            display: flex; align-items: center; justify-content: center; z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.3s;
         }
-        .wsp-float:hover { transform: scale(1.1) rotate(10deg); }
+        .wsp-float:hover { transform: scale(1.1); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 600px) {
-            .calendar-box { padding: 20px; }
-            h1 { font-size: 1.4rem; letter-spacing: 3px; }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .calendar-box { padding: 25px; }
             .day { aspect-ratio: 1/1; font-size: 0.8rem; }
-            .month-nav { gap: 4px; }
-            .month-item { font-size: 0.65rem; padding: 6px 8px; }
         }
     </style>
 </head>
@@ -123,17 +110,17 @@
 
         <div class="calendar-box">
             <h1>Calendario de Gala</h1>
-            <p class="subtitle">Disponibilidad Protocolar | Marco Iván Cabrera</p>
+            <p class="subtitle">Agenda Oficial | Marco Iván Cabrera</p>
 
             <div id="calendarTitle" class="current-month-display"></div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
 
-        <a href="index.html" class="btn-back">Regresar al Portal</a>
+        <a href="index.html" class="btn-back">VOLVER AL PORTAL</a>
     </div>
 
     <a href="https://wa.me/51930046681?text=Maestro%20Cabrera,%20solicito%20información%20sobre%20su%20disponibilidad" class="wsp-float" target="_blank">
-        <svg fill="#fff" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <svg fill="#fff" width="35px" height="35px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
 
     <script>
@@ -141,15 +128,6 @@
         const now = new Date();
         let currentMonth = now.getMonth(); 
         const currentYear = 2026;
-
-        // --- GESTIÓN DE FECHAS OCUPADAS (Formato: AAAA-MM-DD) ---
-        // Nota: El mes en JS va de 0 a 11 (0 = Enero, 3 = Abril)
-        const fechasOcupadas = [
-            "2026-03-25", // Ejemplo hoy ocupado
-            "2026-03-28",
-            "2026-04-18",
-            "2026-05-02"
-        ];
 
         function renderMonthNav() {
             const nav = document.getElementById('monthNav');
@@ -182,29 +160,23 @@
             });
 
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const startingPoint = firstDay === 0 ? 6 : firstDay - 1;
+            const startingPoint = (firstDay === 0) ? 6 : firstDay - 1;
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
             for (let i = 0; i < startingPoint; i++) {
-                grid.appendChild(Object.assign(document.createElement('div'), {className: 'day empty'}));
+                const empty = document.createElement('div');
+                empty.className = 'day empty';
+                grid.appendChild(empty);
             }
 
             for (let i = 1; i <= daysInMonth; i++) {
                 const day = document.createElement('div');
-                const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-                
-                const isBooked = fechasOcupadas.includes(dateString);
-                const isToday = now.getDate() === i && now.getMonth() === currentMonth && now.getFullYear() === currentYear;
-
-                day.className = `day ${isBooked ? 'booked' : 'available'} ${isToday ? 'today' : ''}`;
+                day.className = 'day'; // Todos los días son iguales y funcionales
                 day.innerText = i;
-                
-                if(!isBooked) {
-                    day.onclick = () => {
-                        const msg = `Maestro Cabrera, solicito información para el día ${i} de ${months[currentMonth]} de ${currentYear}`;
-                        window.open(`https://wa.me/51930046681?text=${encodeURIComponent(msg)}`, '_blank');
-                    };
-                }
+                day.onclick = () => {
+                    const msg = `Maestro Cabrera, solicito información para el día ${i} de ${months[currentMonth]} de ${currentYear}`;
+                    window.open(`https://wa.me/51930046681?text=${encodeURIComponent(msg)}`, '_blank');
+                };
                 grid.appendChild(day);
             }
         }
