@@ -66,17 +66,21 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 85%), 
                         url('Maestro 0 Foto inicial.png') center/cover no-repeat;
             display: flex;
-            align-items: flex-start; /* Alineación superior para el padding */
+            align-items: flex-start;
             padding: 0 10%;
         }
 
-        .hero-content { max-width: 850px; }
+        /* --- FORMATO ORIGINAL RECUPERADO --- */
+        .hero-content { 
+            max-width: 850px; 
+        }
 
         .hero-content h2 {
             font-family: var(--font-cursive);
             font-size: 4.2rem;
             color: var(--dorado);
             margin: 0 0 -15px 0;
+            font-weight: 400;
         }
 
         .hero-content h1 {
@@ -84,6 +88,7 @@
             font-size: 3.8rem;
             margin: 0;
             line-height: 1.1;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
@@ -113,8 +118,10 @@
         .btn-premium:hover {
             background: var(--dorado);
             color: var(--oscuro);
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
         }
 
+        /* --- SECCIONES SECUNDARIAS --- */
         .editorial-section {
             padding: 120px 10%;
             background: var(--blanco-marfil);
@@ -135,6 +142,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             padding: 15px;
+            background: var(--oscuro);
         }
 
         .galeria-grid img {
@@ -146,38 +154,59 @@
         }
 
         footer {
-            padding: 80px 10%;
+            padding: 100px 10%;
             text-align: center;
+            border-top: 1px solid #222;
         }
 
-        .amacep-logo { height: 140px; margin-bottom: 20px; }
+        .amacep-logo { height: 160px; margin-bottom: 30px; }
 
-        /* --- AJUSTE DE PRECISIÓN MÓVIL --- */
+        /* --- MEDIA QUERIES (AJUSTE DE POSICIÓN ÚNICAMENTE) --- */
         @media (max-width: 768px) {
-            header { padding: 15px; }
-            .logo { font-size: 0.8rem; }
-            nav a { margin-left: 8px; font-size: 0.5rem; }
+            header { padding: 15px 25px; }
+            .logo { font-size: 0.9rem; }
+            nav a { margin-left: 15px; font-size: 0.65rem; }
 
             .hero { 
-                background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.9) 100%), 
+                padding: 0 8%; 
+                justify-content: center;
+                background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 90%), 
                             url('Maestro 0 Foto inicial.png') center/cover no-repeat;
             }
 
             .hero-content {
-                /* AJUSTE SOLICITADO: Inicia en corbata, termina en gemelo */
-                padding-top: 430px; 
+                padding-top: 410px; /* BAJADO HASTA LA CORBATA */
                 text-align: center;
-                width: 100%;
+                max-width: 100%; /* Recuperamos el ancho completo */
             }
 
-            .hero-content h2 { font-size: 1.6rem; margin-bottom: 0; }
-            .hero-content h1 { font-size: 1.8rem; margin-top: 5px; }
-            .tagline { border-top: 1px solid var(--dorado); padding-top: 10px; font-size: 0.75rem; letter-spacing: 1px; }
-            .btn-premium { margin-top: 20px; padding: 12px 20px; font-size: 0.75rem; }
+            .hero-content h2 { 
+                font-size: 1.9rem; /* Tamaño original de la versión elegante */
+                margin-bottom: 10px; 
+            }
+            
+            .hero-content h1 { 
+                font-size: 2.1rem; /* Tamaño original de la versión elegante */
+                margin-top: 5px;
+            }
 
-            .editorial-section { padding: 40px 8%; grid-template-columns: 1fr; }
+            .tagline { 
+                border-left: none; 
+                border-top: 2px solid var(--dorado); 
+                padding: 15px 0 0 0; 
+                font-size: 0.9rem;
+                margin-top: 20px;
+            }
+
+            .btn-premium {
+                margin-top: 35px; /* Termina a la altura del gemelo */
+                padding: 18px 40px;
+                font-size: 0.9rem;
+            }
+
+            .editorial-section { grid-template-columns: 1fr; padding: 80px 8%; text-align: center; }
             .galeria-grid { grid-template-columns: 1fr; }
-            .galeria-grid img { height: 350px; filter: grayscale(0%); }
+            .galeria-grid img { height: 420px; filter: grayscale(0%); }
         }
     </style>
 </head>
@@ -196,35 +225,36 @@
         <div class="hero-content">
             <h2>Excelencia en cada palabra</h2>
             <h1>Marco Iván <br> Cabrera Hernández</h1>
-            <p class="tagline">Maestro de Ceremonias Premium</p>
+            <p class="tagline">Maestro de Ceremonias Premium | Alta Gama</p>
             <a href="https://wa.me/51930046681" class="btn-premium">SOLICITAR ENTREVISTA</a>
         </div>
     </section>
 
     <section class="editorial-section" id="sobre">
         <div class="editorial-img">
-            <img src="Maestro C3 B.png" alt="Trayectoria Profesional">
+            <img src="Maestro C3 B.png" alt="Marco Iván Cabrera">
         </div>
         <div class="editorial-text">
             <h3 style="font-family: var(--font-serif);">Garantía de Solemnidad</h3>
             <p><strong>Licenciado en Arte y Magíster en Gestión Pública.</strong></p>
-            <p>Especialista en Negociación y docente de Locución con más de 20 años de experiencia.</p>
-            <div style="font-family: var(--font-cursive); font-size: 2rem; color: var(--dorado); margin-top: 20px;">
+            <p>Con más de dos décadas de trayectoria, fusiono la precisión técnica con la elocuencia académica.</p>
+            <p>Especialista en Negociación y docente de Locución, aseguro la excelencia en cada protocolo.</p>
+            <div style="font-family: var(--font-cursive); font-size: 2.4rem; color: var(--dorado); margin-top: 40px;">
                 "El éxito reside en el detalle."
             </div>
         </div>
     </section>
 
     <section class="galeria-grid">
-        <img src="evento1.jpg" alt="Evento 1">
-        <img src="Maestro 5.png" alt="Evento 2">
-        <img src="Maestro 6 Club de Leones B.png" alt="Evento 3">
+        <img src="evento1.jpg" alt="Gala">
+        <img src="Maestro 5.png" alt="Ceremonia">
+        <img src="Maestro 6 Club de Leones B.png" alt="Protocolo">
     </section>
 
     <footer>
         <img src="AMACEP.png" alt="AMACEP" class="amacep-logo">
-        <p style="letter-spacing: 2px; color: var(--dorado); font-weight: 600;">PRESIDENTE AMACEP 2025-2027</p>
-        <p style="opacity: 0.5; font-size: 0.75rem; margin-top: 30px;">
+        <p style="letter-spacing: 4px; color: var(--dorado); font-weight: 600;">PRESIDENTE AMACEP 2025-2027</p>
+        <p style="opacity: 0.6; font-size: 0.85rem; margin-top: 50px;">
             © 2026 Marco Iván Cabrera Hernández. Lima, Perú.
         </p>
     </footer>
