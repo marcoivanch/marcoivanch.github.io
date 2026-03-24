@@ -63,7 +63,7 @@
         .subtitle { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #aaa; text-align: center; margin-bottom: 45px; }
         .current-month-display { font-family: var(--font-serif); font-size: 1.8rem; color: var(--dorado); text-align: center; margin-bottom: 30px; letter-spacing: 4px; }
 
-        /* --- GRID --- */
+        /* --- GRID DE FECHAS --- */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
         .day-header { font-weight: 700; color: var(--dorado); text-align: center; font-size: 0.75rem; text-transform: uppercase; padding-bottom: 15px; }
         .day {
@@ -85,11 +85,14 @@
             width: 90%; max-width: 550px; position: relative; box-shadow: 0 0 50px rgba(197,160,89,0.2);
         }
         .close-modal { position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer; }
-        #modalDateTitle { font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 3px; margin: 0; font-size: 1.5rem; }
+        #modalDateTitle { font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 3px; margin: 0; font-size: 1.5rem; text-transform: uppercase; }
         
         /* --- FORMULARIO --- */
         #galaForm { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
         .form-row { display: flex; gap: 15px; }
+        .form-group { flex: 1; display: flex; flex-direction: column; }
+        label { font-size: 0.6rem; color: var(--dorado); margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase; }
+        
         input, select {
             background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4);
             padding: 12px; color: var(--blanco-marfil); font-family: var(--font-sans); width: 100%;
@@ -97,6 +100,7 @@
         }
         input:focus, select:focus { border-bottom: 1px solid var(--dorado); background: rgba(197,160,89,0.05); }
         select option { background: #0a0a0a; color: var(--blanco-marfil); }
+
         .btn-submit {
             background: var(--dorado); color: var(--oscuro-puro); border: none;
             padding: 15px; font-family: var(--font-serif); font-weight: 700;
@@ -124,30 +128,26 @@
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
 
-        <a href="index.html" style="margin-top:40px; color:#aaa; text-decoration:none; font-size:0.7rem; letter-spacing:3px;">VOLVER AL PORTAL</a>
+        <a href="index.html" style="margin-top:40px; color:#aaa; text-decoration:none; font-size:0.7rem; letter-spacing:3px; text-transform: uppercase;">Volver al Portal</a>
     </div>
 
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2 id="modalDateTitle">SOLICITUD DE FECHA</h2>
-            <p style="text-align:center; font-size:0.6rem; letter-spacing:3px; color:#777; margin-bottom:20px;">MAESTRO DE CEREMONIAS</p>
+            <p style="text-align:center; font-size:0.6rem; letter-spacing:3px; color:#777; margin-bottom:20px;">DETALLES DEL PROTOCOLO</p>
             
-            <form id="galaForm" action="https://formsubmit.co/marcocabrera@maestrodeceremonias.org.pe" method="POST">
-                <input type="hidden" name="_subject" id="emailSubject" value="Nueva Solicitud de Protocolo">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-                
-                <input type="hidden" name="Fecha Solicitada" id="hiddenDate">
+            <form id="galaForm" onsubmit="enviarWhatsApp(event)">
+                <input type="hidden" id="hiddenDate">
 
                 <div class="form-row">
-                    <input type="text" name="Nombre" placeholder="NOMBRE COMPLETO" required>
-                    <input type="text" name="DNI" placeholder="DNI (8 DÍGITOS)" pattern="\d{8}" maxlength="8" required>
+                    <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
+                    <input type="text" id="f_dni" placeholder="DNI (8 DÍGITOS)" pattern="\d{8}" maxlength="8" required title="El DNI debe tener 8 dígitos">
                 </div>
 
                 <div class="form-row">
-                    <input type="tel" name="Celular" placeholder="CELULAR" required>
-                    <select name="Tipo de Evento" required>
+                    <input type="tel" id="f_celular" placeholder="CELULAR" required>
+                    <select id="f_evento" required>
                         <option value="" disabled selected>TIPO DE EVENTO</option>
                         <option value="Matrimonio">Matrimonio</option>
                         <option value="Quinceaños">Quinceaños</option>
@@ -163,12 +163,24 @@
                     </select>
                 </div>
 
-                <div class="form-row">
-                    <input type="time" name="Hora del Evento" required title="Seleccione la hora de inicio">
-                    <input type="text" name="Lugar" placeholder="DISTRITO O CIUDAD" required>
+                <div class="form-row" style="align-items: flex-end;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Indicar horario (Ej: 07:30)</label>
+                        <input type="text" id="f_hora" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}" maxlength="5" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <select id="f_ampm" required>
+                            <option value="AM">AM</option>
+                            <option value="PM" selected>PM</option>
+                        </select>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-submit">ENVIAR SOLICITUD DE GALA</button>
+                <div class="form-row">
+                    <input type="text" id="f_lugar" placeholder="LUGAR (DISTRITO O CIUDAD)" required>
+                </div>
+
+                <button type="submit" class="btn-submit">SOLICITAR DISPONIBILIDAD VÍA WHATSAPP</button>
             </form>
         </div>
     </div>
@@ -193,13 +205,15 @@
 
         function openModal(day, month, year) {
             const fullDate = `${day} de ${months[month]} de ${year}`;
-            document.getElementById('modalDateTitle').innerText = fullDate.toUpperCase();
+            document.getElementById('modalDateTitle').innerText = fullDate;
             document.getElementById('hiddenDate').value = fullDate;
-            document.getElementById('emailSubject').value = `Reserva: ${fullDate} - Maestro Cabrera`;
             document.getElementById('bookingModal').style.display = 'flex';
         }
 
-        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.getElementById('galaForm').reset();
+        }
 
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
@@ -232,7 +246,34 @@
             }
         }
 
-        // Cerrar modal si se hace clic fuera del contenido
+        function enviarWhatsApp(event) {
+            event.preventDefault();
+
+            const fecha = document.getElementById('hiddenDate').value;
+            const nombre = document.getElementById('f_nombre').value;
+            const dni = document.getElementById('f_dni').value;
+            const celular = document.getElementById('f_celular').value;
+            const evento = document.getElementById('f_evento').value;
+            const hora = document.getElementById('f_hora').value;
+            const ampm = document.getElementById('f_ampm').value;
+            const lugar = document.getElementById('f_lugar').value;
+
+            const mensaje = `*SOLICITUD DE PROTOCOLO*%0A` +
+                            `*Maestro Iván Cabrera*%0A%0A` +
+                            `*Fecha:* ${fecha}%0A` +
+                            `*Hora:* ${hora} ${ampm}%0A` +
+                            `*Evento:* ${evento}%0A` +
+                            `*Lugar:* ${lugar}%0A%0A` +
+                            `*DATOS DEL CLIENTE*%0A` +
+                            `*Nombre:* ${nombre}%0A` +
+                            `*DNI:* ${dni}%0A` +
+                            `*Contacto:* ${celular}`;
+
+            const wsp_url = `https://wa.me/51930046681?text=${mensaje}`;
+            window.open(wsp_url, '_blank');
+            closeModal();
+        }
+
         window.onclick = function(event) {
             if (event.target == document.getElementById('bookingModal')) closeModal();
         }
