@@ -43,41 +43,38 @@
             justify-content: center; text-decoration: none; transition: 0.3s; box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
         }
 
-        /* --- CONTENEDOR PRINCIPAL (CORREGIDO PARA COLOR REAL) --- */
+        /* --- CONTENEDOR PRINCIPAL --- */
         .main-container {
             min-height: 100vh; padding: 140px 20px 60px 20px;
-            /* Se ha eliminado el gradiente oscuro y el desenfoque */
-            background: url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
+            background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
             display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
         }
 
         .month-nav { display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; width: 100%; max-width: 1000px; }
-        .month-item { color: var(--oscuro); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.7; font-weight: 600; }
-        .month-item.active { color: var(--dorado); border-bottom: 2px solid var(--dorado); opacity: 1; }
+        .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.5; }
+        .month-item.active { color: var(--dorado); border-bottom: 1px solid var(--dorado); opacity: 1; }
         
-        /* CAJA DEL CALENDARIO (Ligeramente más opaca para legibilidad sobre foto real) */
-        .calendar-box { background: rgba(15, 15, 15, 0.85); border: 1px solid rgba(197, 160, 89, 0.3); padding: 40px; border-radius: 4px; max-width: 1000px; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.7); box-sizing: border-box; }
+        .calendar-box { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; border-radius: 4px; max-width: 1000px; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.5); box-sizing: border-box; }
 
         .title-cal { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
-        .subtitle { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #aaa; text-align: center; margin-bottom: 40px; }
+        .subtitle { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; }
         .current-month-display { font-family: var(--font-serif); font-size: 1.6rem; color: var(--dorado); text-align: center; margin-bottom: 30px; letter-spacing: 3px; }
 
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
         .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 15px; }
         
-        .day { aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.25); cursor: pointer; transition: 0.3s; color: var(--blanco-marfil); font-size: 1rem; position: relative; background: rgba(0,0,0,0.3); }
+        .day { aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; color: var(--dorado); font-size: 1rem; position: relative; }
         .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
-        .day.empty { border: none; cursor: default; background: transparent; }
+        .day.empty { border: none; cursor: default; }
 
-        /* Estilo para días con evento confirmado (Gala Resaltado) */
+        /* Estilo para días con evento confirmado */
         .day.has-event {
-            background: rgba(197, 160, 89, 0.4);
-            border: 2px solid var(--dorado);
-            color: var(--blanco-marfil);
+            background: rgba(197, 160, 89, 0.2);
+            border: 1px solid var(--dorado);
             font-weight: bold;
         }
         .day.has-event::after {
-            content: ''; position: absolute; bottom: 6px; width: 7px; height: 7px; background: var(--blanco-marfil); border-radius: 50%;
+            content: ''; position: absolute; bottom: 6px; width: 6px; height: 6px; background: var(--dorado); border-radius: 50%;
         }
 
         /* --- MODAL --- */
@@ -110,7 +107,6 @@
             .nav-menu.active { left: 0; }
             .calendar-box { padding: 20px 10px; }
             .calendar-grid { gap: 5px; }
-            .month-item { color: var(--dorado); } /* En móvil se ven mejor claros sobre el fondo */
         }
     </style>
 </head>
