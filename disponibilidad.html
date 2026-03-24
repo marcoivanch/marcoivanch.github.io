@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -27,17 +27,14 @@
         }
 
         .logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
-        .nav-menu { display: flex; gap: 40px; }
-        .nav-menu a { color: var(--blanco-marfil); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-menu a:hover { color: var(--dorado); }
-
+        
         .main-container {
             min-height: 100vh; padding: 140px 20px 60px 20px;
             background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
             display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
         }
 
-        .month-nav { display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; width: 100%; max-width: 1000px; }
+        .month-nav { display: flex; gap: 10px; margin-bottom: 35px; justify-content: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; width: 100%; max-width: 1000px; }
         .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.5; }
         .month-item.active { color: var(--dorado); border-bottom: 1px solid var(--dorado); opacity: 1; }
         
@@ -50,198 +47,147 @@
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
         .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 15px; }
         
-        .day { aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; color: var(--dorado); font-size: 1rem; position: relative; }
-        .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
-        .day.empty { border: none; cursor: default; }
+        .day { aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; color: var(--dorado); font-size: 1rem; }
+        .day:hover:not(.ocupado) { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
         
-        /* Ocupado: Color oscuro y candado */
-        .day.ocupado { background: rgba(0, 0, 0, 0.8); color: #444; cursor: not-allowed; border: 1px solid rgba(197, 160, 89, 0.05); }
+        /* ESTILO OCUPADO (28 MARZO) */
+        .day.ocupado { background: rgba(0, 0, 0, 0.85); color: #444; cursor: not-allowed; border: 1px solid rgba(197, 160, 89, 0.05); }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
-        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 90%; max-width: 500px; position: relative; }
         
-        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; font-family: var(--font-sans); outline: none; border-radius: 0; display: block; box-sizing: border-box; }
-        select option { background-color: #1a1a1a; color: var(--dorado); }
+        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; outline: none; }
+        .btn-submit { background: var(--dorado); color: var(--oscuro); border: none; padding: 18px; width: 100%; font-family: var(--font-serif); font-weight: 700; cursor: pointer; text-transform: uppercase; }
 
-        .time-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; justify-content: center; }
-        .time-box { text-align: center; width: 60px !important; margin-bottom: 0; }
-
-        .btn-submit { background: var(--dorado); color: var(--oscuro); border: none; padding: 18px; width: 100%; font-family: var(--font-serif); font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: 0.3s; text-transform: uppercase; margin-top: 10px; }
-
-        @media (max-width: 768px) {
-            header { padding: 20px 30px; }
-            .nav-menu { display: none; }
-        }
+        .time-row { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 15px; }
+        .time-input { width: 50px !important; text-align: center; margin-bottom: 0; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo">Marco Iván Cabrera</a>
-        <nav class="nav-menu">
-            <a href="index.html#servicios">Servicios</a>
-            <a href="disponibilidad.html">Disponibilidad</a>
-            <a href="https://wa.me/51930046681">Reservas</a>
-        </nav>
-    </header>
+    <header><a href="#" class="logo">Marco Iván Cabrera</a></header>
 
     <div class="main-container">
         <nav class="month-nav" id="monthNav"></nav>
-        <div id="calendarArea" class="calendar-box">
+        <div class="calendar-box">
             <h1 class="title-cal">Calendario de Gala</h1>
             <p class="subtitle">Agenda Protocolar | Marco Iván Cabrera</p>
             <div id="calendarTitle" class="current-month-display"></div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
-        
-        <div id="thanksSection" class="calendar-box" style="display:none; text-align:center;">
-            <h2 style="color: var(--dorado); font-family: var(--font-serif);">¡SOLICITUD ENVIADA!</h2>
-            <p>Se ha generado su mensaje de protocolo.</p>
-            <a href="disponibilidad.html" class="btn-submit" style="display:inline-block; text-decoration:none; margin-top:20px;">VOLVER</a>
-        </div>
     </div>
 
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-content">
-            <span onclick="closeModal()" style="position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer;">&times;</span>
-            <h2 id="modalDateTitle" style="font-family: var(--font-serif); color: var(--dorado); text-align: center; margin-bottom: 20px;">FECHA</h2>
+            <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; color:var(--dorado); cursor:pointer; font-size:24px;">&times;</span>
+            <h2 id="modalDateTitle" style="font-family:var(--font-serif); color:var(--dorado); text-align:center;">FECHA</h2>
+            <p style="font-size:0.6rem; color:var(--dorado); text-align:center; letter-spacing:1px;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
             
             <form id="galaForm">
-                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; margin-bottom: 20px;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
-                <input type="hidden" id="hiddenDate">
                 <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
-                <input type="text" id="f_dni" placeholder="DNI" required pattern="\d{8}" maxlength="8">
-                <input type="tel" id="f_celular" placeholder="CELULAR / WHATSAPP" required>
-
+                <input type="text" id="f_dni" placeholder="DNI" required maxlength="8">
+                <input type="text" id="f_celular" placeholder="CELULAR / WHATSAPP" required>
+                
                 <select id="f_evento" required>
                     <option value="" disabled selected>TIPO DE EVENTO</option>
-                    <option value="Matrimonio">Matrimonio</option>
                     <option value="Quinceaños">Quinceaños</option>
-                    <option value="Bautizo">Bautizo</option>
-                    <option value="Cumpleaños">Cumpleaños</option>
-                    <option value="Institucional">Institucional</option>
+                    <option value="Matrimonio">Matrimonio</option>
+                    <option value="Protocolo">Protocolo</option>
                 </select>
 
                 <div class="time-row">
-                    <span style="font-size: 0.7rem; color: var(--dorado);">HORA:</span>
-                    <input type="text" id="f_hh" class="time-box" placeholder="10" maxlength="2" required>
+                    <span style="font-size:0.7rem; color:var(--dorado);">HORA:</span>
+                    <input type="text" id="f_hh" class="time-input" placeholder="10">
                     <span>:</span>
-                    <input type="text" id="f_mm" class="time-box" placeholder="00" maxlength="2" required>
-                    <select id="f_ampm" style="width: 70px; margin-bottom: 0;"><option value="AM">AM</option><option value="PM" selected>PM</option></select>
+                    <input type="text" id="f_mm" class="time-input" placeholder="00">
+                    <select id="f_ampm" style="width:70px; margin-bottom:0;"><option>PM</option><option>AM</option></select>
                 </div>
 
-                <select id="f_lugar" required>
+                <select id="f_distrito" required>
                     <option value="" disabled selected>DISTRITO / CIUDAD</option>
-                    <optgroup label="LIMA TOP / CENTRO">
-                        <option value="Miraflores">Miraflores</option>
-                        <option value="San Isidro">San Isidro</option>
-                        <option value="San Borja">San Borja</option>
-                        <option value="Surco">Surco</option>
-                        <option value="Cercado">Cercado de Lima</option>
-                    </optgroup>
-                    <option value="PROVINCIA">FUERA DE LIMA</option>
+                    <option value="Lima">Lima</option>
+                    <option value="Callao">Callao</option>
                 </select>
 
-                <button type="button" class="btn-submit" onclick="enviarWhatsApp()">SOLICITAR PROTOCOLO</button>
+                <button type="button" class="btn-submit" onclick="enviarWhatsApp()">Solicitar Protocolo</button>
             </form>
         </div>
     </div>
 
     <script>
-        // TU NUEVO ENLACE CSV
         const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tk0M-tiHFRw-TNHTZhxuSrStliuttBixgihxOFj/pub?output=csv';
-        
-        const agendaConfirmada = {}; 
+        const agendaConfirmada = {};
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        let currentMonth = new Date().getMonth(); 
+        let currentMonth = 2; // Marzo
         const currentYear = 2026;
 
-        async function cargarAgenda() {
+        async function cargarDatos() {
             try {
-                const response = await fetch(SHEETS_CSV);
-                const data = await response.text();
-                const filas = data.split('\n').slice(1); 
-                filas.forEach(fila => {
-                    const cols = fila.split(',');
-                    if (cols[0]) {
-                        const p = cols[0].trim().split('-');
-                        if(p.length === 3) {
-                            const fechaKey = `${p[2].padStart(2,'0')}/${p[1].padStart(2,'0')}/${p[0]}`;
-                            agendaConfirmada[fechaKey] = true;
-                        }
+                const res = await fetch(SHEETS_CSV);
+                const text = await res.text();
+                const filas = text.split('\n').slice(1);
+                
+                filas.forEach(f => {
+                    const c = f.split(',');
+                    if(c[0]) {
+                        // Limpiamos la fecha que viene del Excel (ej: 28/03/2026)
+                        const limpia = c[0].trim();
+                        agendaConfirmada[limpia] = true;
                     }
                 });
-                renderCalendar(); 
-            } catch (e) { console.error("Error al leer Excel"); renderCalendar(); }
+                render();
+            } catch(e) { console.error(e); render(); }
         }
 
-        function renderCalendar() {
+        function render() {
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
             document.getElementById('calendarTitle').innerText = `${months[currentMonth].toUpperCase()} ${currentYear}`;
-            
-            ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].forEach(h => {
-                grid.appendChild(Object.assign(document.createElement('div'), {className: 'day-header', innerText: h}));
+
+            ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].forEach(d => {
+                grid.innerHTML += `<div class="day-header">${d}</div>`;
             });
 
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const startingPoint = (firstDay === 0) ? 6 : firstDay - 1;
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const startDay = new Date(currentYear, currentMonth, 1).getDay();
+            const adjStart = (startDay === 0) ? 6 : startDay - 1;
 
-            for (let i = 0; i < startingPoint; i++) grid.appendChild(Object.assign(document.createElement('div'), {className: 'day empty'}));
+            for(let i=0; i<adjStart; i++) grid.innerHTML += `<div class="day" style="border:none"></div>`;
 
-            for (let i = 1; i <= daysInMonth; i++) {
-                const day = document.createElement('div');
-                const fechaKey = `${i.toString().padStart(2, '0')}/${(currentMonth + 1).toString().padStart(2, '0')}/${currentYear}`;
+            for(let i=1; i<=daysInMonth; i++) {
+                const dStr = `${i.toString().padStart(2,'0')}/${(currentMonth+1).toString().padStart(2,'0')}/${currentYear}`;
+                const isOcupado = agendaConfirmada[dStr];
                 
-                day.className = agendaConfirmada[fechaKey] ? 'day ocupado' : 'day';
-                day.innerText = i;
-                
-                if (agendaConfirmada[fechaKey]) {
-                    day.innerText += ' 🔒';
-                    day.onclick = () => alert('Fecha reservada protocolarmente.');
-                } else {
-                    day.onclick = () => openModal(i, currentMonth, currentYear);
-                }
-                grid.appendChild(day);
+                const dayDiv = document.createElement('div');
+                dayDiv.className = `day ${isOcupado ? 'ocupado' : ''}`;
+                dayDiv.innerHTML = isOcupado ? `${i} 🔒` : i;
+                if(!isOcupado) dayDiv.onclick = () => openModal(i);
+                grid.appendChild(dayDiv);
             }
         }
 
-        function openModal(day, month, year) {
-            const fullDate = `${day} de ${months[month]} de ${year}`;
-            document.getElementById('modalDateTitle').innerText = fullDate.toUpperCase();
-            document.getElementById('hiddenDate').value = fullDate;
+        function openModal(d) {
+            document.getElementById('modalDateTitle').innerText = `${d} DE MARZO DE 2026`;
             document.getElementById('bookingModal').style.display = 'flex';
         }
 
         function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
 
         function enviarWhatsApp() {
-            const msg = `*SOLICITUD DE PROTOCOLO*%0A` +
-                        `*CLIENTE:* ${document.getElementById('f_nombre').value.toUpperCase()}%0A` +
-                        `*EVENTO:* ${document.getElementById('f_evento').value}%0A` +
-                        `*FECHA:* ${document.getElementById('hiddenDate').value}%0A` +
-                        `*HORA:* ${document.getElementById('f_hh').value}:${document.getElementById('f_mm').value} ${document.getElementById('f_ampm').value}%0A` +
-                        `*LUGAR:* ${document.getElementById('f_lugar').value}`;
-            window.open(`https://api.whatsapp.com/send?phone=51930046681&text=${msg}`, '_blank');
-            closeModal();
-            document.getElementById('calendarArea').style.display = 'none';
-            document.getElementById('thanksSection').style.display = 'block';
+            const tel = "51930046681";
+            const msg = `Hola Marco, solicito protocolo para el ${document.getElementById('modalDateTitle').innerText}`;
+            window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        function renderMonthNav() {
+        function renderNav() {
             const nav = document.getElementById('monthNav');
-            nav.innerHTML = '';
-            months.forEach((m, index) => {
-                const btn = document.createElement('a');
-                btn.className = `month-item ${index === currentMonth ? 'active' : ''}`;
-                btn.innerText = m.substring(0, 3);
-                btn.onclick = () => { currentMonth = index; renderCalendar(); renderMonthNav(); };
-                nav.appendChild(btn);
+            months.forEach((m, i) => {
+                nav.innerHTML += `<span class="month-item ${i===currentMonth?'active':''}" onclick="location.reload()">${m.substring(0,3)}</span>`;
             });
         }
 
-        renderMonthNav(); cargarAgenda();
+        renderNav();
+        cargarDatos();
     </script>
 </body>
 </html>
