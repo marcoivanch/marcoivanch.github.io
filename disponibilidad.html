@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disponibilidad | Marco Iván Cabrera</title>
+    <title>Calendario de Gala | Marco Iván Cabrera</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
@@ -17,116 +17,165 @@
             --font-sans: 'Montserrat', sans-serif;
         }
 
-        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); }
+        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
 
-        /* --- FONDO DINÁMICO (EFECTO REVELADO) --- */
+        /* --- FONDO CON EFECTO REVELADO --- */
         .main-container {
             min-height: 100vh;
-            position: relative;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
             filter: grayscale(100%);
-            transition: filter 1.2s ease, background 1.2s ease;
-            display: flex; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box;
+            transition: 1s ease;
+            display: flex; flex-direction: column; align-items: center; padding: 40px 20px;
         }
 
-        /* Al pasar el mouse, el fondo cobra vida */
         .main-container:hover {
             filter: grayscale(0%);
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
                         url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
         }
 
         /* --- NAVEGACIÓN DE MESES --- */
         .month-nav {
-            display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding-bottom: 15px;
+            display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 15px; width: 100%; max-width: 950px;
         }
         .month-item {
-            color: #777; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px;
-            text-transform: uppercase; transition: 0.3s; padding: 5px 10px;
+            color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer;
         }
-        .month-item.active { color: var(--dorado); border: 1px solid var(--dorado); font-weight: bold; }
-        .month-item:hover:not(.active) { color: var(--blanco-marfil); }
+        .month-item.active { color: var(--dorado); border: 1px solid var(--dorado); font-weight: bold; background: rgba(197, 160, 89, 0.05); }
+        .month-item:hover:not(.active) { color: var(--blanco-marfil); background: rgba(255,255,255,0.05); }
 
-        /* --- PANEL DE CRISTAL --- */
+        /* --- PANEL ULTRA TRANSPARENTE --- */
         .calendar-box {
-            background: rgba(10, 10, 10, 0.75); /* Transparencia equilibrada */
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(197, 160, 89, 0.4);
-            padding: 50px; border-radius: 2px;
+            background: rgba(0, 0, 0, 0.4); /* Casi invisible para lucir la foto */
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 40px; border-radius: 2px;
             max-width: 950px; width: 100%;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
         }
 
-        h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
-        .subtitle { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; margin-top: 10px; }
+        h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.8rem; margin: 0; text-transform: uppercase; letter-spacing: 8px; text-align: center; }
+        .subtitle { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #ccc; text-align: center; margin-bottom: 40px; }
 
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
-        .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 15px; opacity: 0.8; }
+        .current-month-display { 
+            font-family: var(--font-serif); font-size: 1.6rem; color: var(--dorado); 
+            text-align: center; margin-bottom: 25px; letter-spacing: 3px; 
+        }
+
+        /* --- GRID DINÁMICO --- */
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+        .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.65rem; text-transform: uppercase; padding-bottom: 15px; opacity: 0.7; }
         
         .day {
-            aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; transition: 0.4s; font-size: 0.9rem; position: relative;
+            aspect-ratio: 1.3 / 1; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; font-size: 0.9rem;
         }
-
+        .day.empty { border: none; cursor: default; }
         .day.available { color: var(--dorado); border-color: rgba(197, 160, 89, 0.4); }
-        .day.available:hover { background: var(--dorado); color: var(--oscuro-puro); font-weight: bold; box-shadow: 0 0 20px rgba(197, 160, 89, 0.5); border-color: var(--dorado); }
-        
-        .day.booked { opacity: 0.2; cursor: not-allowed; background: rgba(255,255,255,0.02); color: #444; }
+        .day.available:hover { background: var(--dorado); color: var(--oscuro-puro); font-weight: bold; transform: scale(1.05); z-index: 10; }
+        .day.booked { opacity: 0.15; cursor: not-allowed; background: rgba(255,255,255,0.02); }
 
-        .btn-back { margin-top: 40px; text-decoration: none; color: #666; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; transition: 0.3s; }
-        .btn-back:hover { color: var(--dorado); }
+        .btn-back { margin-top: 40px; text-decoration: none; color: #888; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .btn-back:hover { color: var(--dorado); border-bottom: 1px solid var(--dorado); }
 
         @media (max-width: 768px) {
-            .calendar-box { padding: 25px; }
-            .day { aspect-ratio: 1 / 1; font-size: 0.75rem; }
-            h1 { font-size: 1.5rem; }
+            h1 { font-size: 1.6rem; letter-spacing: 4px; }
+            .calendar-box { padding: 20px; }
+            .day { font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <nav class="month-nav">
-            <a href="#" class="month-item">Ene</a>
-            <a href="#" class="month-item">Feb</a>
-            <a href="#" class="month-item active">Mar</a>
-            <a href="#" class="month-item">Abr</a>
-            <a href="#" class="month-item">May</a>
-            <a href="#" class="month-item">Jun</a>
-            <a href="#" class="month-item">Jul</a>
-            <a href="#" class="month-item">Ago</a>
-            <a href="#" class="month-item">Sep</a>
-            <a href="#" class="month-item">Oct</a>
-            <a href="#" class="month-item">Nov</a>
-            <a href="#" class="month-item">Dic</a>
-        </nav>
+        <nav class="month-nav" id="monthNav">
+            </nav>
 
         <div class="calendar-box">
-            <h1>MARZO 2026</h1>
-            <p class="subtitle">Agenda Oficial | Gestión de Protocolo</p>
+            <h1>Calendario de Gala</h1>
+            <p class="subtitle">Gestión de Protocolo | Reservas Oficiales</p>
 
-            <div class="calendar-grid">
-                <div class="day-header">Lun</div><div class="day-header">Mar</div><div class="day-header">Mié</div><div class="day-header">Jue</div><div class="day-header">Vie</div><div class="day-header">Sáb</div><div class="day-header">Dom</div>
-                
-                <div class="day booked">--</div> <div class="day booked">--</div>
-                <div class="day booked">--</div>
-                <div class="day booked">--</div>
-                <div class="day booked">--</div>
-                <div class="day booked">--</div>
-                <div class="day available">1</div>
-                
-                <div class="day available">2</div><div class="day available">3</div><div class="day available">4</div><div class="day available">5</div><div class="day available">6</div><div class="day available">7</div><div class="day available">8</div>
-                <div class="day booked">9</div><div class="day available">10</div><div class="day available">11</div><div class="day available">12</div><div class="day available">13</div><div class="day available">14</div><div class="day available">15</div>
-                <div class="day available">16</div><div class="day available">17</div><div class="day available">18</div><div class="day available">19</div><div class="day available">20</div><div class="day booked">21</div><div class="day available">22</div>
-                <div class="day available">23</div><div class="day available">24</div><div class="day available">25</div><div class="day available">26</div><div class="day available">27</div><div class="day available">28</div><div class="day available">29</div>
-                <div class="day available">30</div><div class="day available">31</div>
-            </div>
+            <div id="calendarTitle" class="current-month-display"></div>
+
+            <div class="calendar-grid" id="calendarGrid">
+                </div>
         </div>
 
-        <a href="index.html" class="btn-back">← Regresar al Portal</a>
+        <a href="index.html" class="btn-back">← Regresar al Portal Principal</a>
     </div>
 
+    <script>
+        const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        let currentMonth = 2; // Marzo por defecto (índice 2)
+        const currentYear = 2026;
+
+        function renderMonthNav() {
+            const nav = document.getElementById('monthNav');
+            nav.innerHTML = '';
+            months.forEach((month, index) => {
+                const btn = document.createElement('a');
+                btn.className = `month-item ${index === currentMonth ? 'active' : ''}`;
+                btn.innerText = month.substring(0, 3);
+                btn.onclick = () => {
+                    currentMonth = index;
+                    renderCalendar();
+                    renderMonthNav();
+                };
+                nav.appendChild(btn);
+            });
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const title = document.getElementById('calendarTitle');
+            grid.innerHTML = '';
+
+            title.innerText = `${months[currentMonth].toUpperCase()} ${currentYear}`;
+
+            // Cabeceras de días
+            const headers = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+            headers.forEach(h => {
+                const div = document.createElement('div');
+                div.className = 'day-header';
+                div.innerText = h;
+                grid.appendChild(div);
+            });
+
+            // Lógica de fechas
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            // Ajustar porque getDay() considera Domingo=0, nosotros queremos Lunes=0
+            const startingPoint = firstDay === 0 ? 6 : firstDay - 1;
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // Espacios vacíos al inicio
+            for (let i = 0; i < startingPoint; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'day empty';
+                grid.appendChild(empty);
+            }
+
+            // Días del mes
+            for (let i = 1; i <= daysInMonth; i++) {
+                const day = document.createElement('div');
+                // Simulación de días ocupados (puedes editar esto luego)
+                const isBooked = (i % 9 === 0); 
+                day.className = `day ${isBooked ? 'booked' : 'available'}`;
+                day.innerText = i;
+                
+                if(!isBooked) {
+                    day.onclick = () => alert(`Iniciando reserva para el ${i} de ${months[currentMonth]}`);
+                }
+                
+                grid.appendChild(day);
+            }
+        }
+
+        // Inicialización
+        renderMonthNav();
+        renderCalendar();
+    </script>
 </body>
 </html>
