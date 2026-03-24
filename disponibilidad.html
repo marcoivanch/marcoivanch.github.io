@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad y Reservas | M. Iván Cabrera</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #0f0f0f;
+            --blanco-marfil: #fdfcfb;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--oscuro);
+            color: var(--blanco-marfil);
+            font-family: var(--font-sans);
+        }
+
+        /* --- HEADER DE NAVEGACIÓN --- */
+        header {
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            background: rgba(15, 15, 15, 0.95);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            color: var(--dorado);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- SECCIÓN PRINCIPAL CON IMAGEN EDITADA --- */
+        .disponibilidad-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .disponibilidad-hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--dorado);
+            margin-bottom: 10px;
+        }
+
+        /* --- CALENDARIO ESTILO CINE --- */
+        .calendar-section {
+            padding: 80px 10%;
+            background: #111;
+        }
+
+        .calendar-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 40px;
+            border: 1px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-family: var(--font-serif);
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 15px;
+        }
+
+        .grid-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+        }
+
+        .day-label {
+            text-align: center;
+            font-weight: 600;
+            color: var(--dorado);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+        }
+
+        .day {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        /* Estilos de disponibilidad (Butacas) */
+        .day.available { color: var(--blanco-marfil); }
+        .day.available:hover { background: var(--dorado); color: var(--oscuro); font-weight: bold; }
+        
+        .day.booked { background: #000; color: #444; cursor: not-allowed; border: none; }
+        .day.booked::after {
+            content: "OCUPADO";
+            position: absolute;
+            font-size: 0.5rem;
+            bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* --- MODAL DE RESERVA --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--blanco-marfil);
+            color: var(--oscuro);
+            padding: 50px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-content h2 { font-family: var(--font-serif); margin-top: 0; border-bottom: 2px solid var(--dorado); }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            font-family: var(--font-sans);
+        }
+
+        .btn-reserva {
+            background: var(--dorado);
+            color: white;
+            border: none;
+            padding: 20px;
+            width: 100%;
+            font-family: var(--font-serif);
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header { padding: 20px; }
+            .calendar-section { padding: 40px 5%; }
+            .grid-calendar { gap: 5px; }
+            .day { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">M. Iván Cabrera</a>
+        <nav>
+            <a href="index.html" style="color: white; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px;">VOLVER AL INICIO</a>
+        </nav>
+    </header>
+
+    <section class="disponibilidad-hero">
+        <h1>CALENDARIO ANUAL</h1>
+        <p style="letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem;">Gestión de Protocolo y Reservas Oficiales</p>
+    </section>
+
+    <section class="calendar-section">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button style="background:none; border:none; color:var(--dorado); cursor:pointer;">&lt; ANTERIOR</button>
+                <h2 style="margin:0;">MAYO 2026</h2>
+                <button style="background:none; border:none; color:var(--dorado); cursor:pointer;">SIGUIENTE &gt;</button>
+            </div>
+
+            <div class="grid-calendar">
+                <div class="day-label">Dom</div><div class="day-label">Lun</div><div class="day-label">Mar</div><div class="day-label">Mié</div><div class="day-label">Jue</div><div class="day-label">Vie</div><div class="day-label">Sáb</div>
+                
+                <div class="day booked">1</div><div class="day available" onclick="abrirReserva(2)">2</div>
+                <div class="day available" onclick="abrirReserva(3)">3</div><div class="day available" onclick="abrirReserva(4)">4</div>
+                <div class="day available" onclick="abrirReserva(5)">5</div><div class="day booked">6</div>
+                <div class="day booked">7</div><div class="day available" onclick="abrirReserva(8)">8</div>
+                <div class="day available" onclick="abrirReserva(9)">9</div><div class="day available" onclick="abrirReserva(10)">10</div>
+                <div class="day booked">11</div><div class="day available" onclick="abrirReserva(12)">12</div>
+                </div>
+            
+            <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center; font-size: 0.8rem;">
+                <div style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; border: 1px solid var(--dorado);"></span> DISPONIBLE</div>
+                <div style="display: flex; align-items: center; gap: 5px;"><span style="width: 12px; height: 12px; background: #000;"></span> COMPROMETIDO</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="reservaModal" class="modal">
+        <div class="modal-content">
+            <span onclick="cerrarReserva()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h2>RESERVAR FECHA</h2>
+            <p id="fechaSeleccionada" style="font-weight: 600; color: var(--dorado);"></p>
+            
+            <form onsubmit="validarReserva(event)">
+                <input type="text" placeholder="Nombre Completo / Razón Social" required>
+                <input type="text" id="dni" placeholder="DNI (8 dígitos)" maxlength="8" pattern="\d{8}" required>
+                <input type="text" id="tel" placeholder="Teléfono de Contacto" maxlength="9" pattern="\d{9}" required>
+                <p style="font-size: 0.75rem; color: #666; margin-top: 15px;">* Al continuar, la fecha quedará bloqueada por 60 minutos para confirmar el adelanto vía Yape/Plin.</p>
+                <button type="submit" class="btn-reserva">VERIFICAR DISPONIBILIDAD</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function abrirReserva(dia) {
+            document.getElementById('fechaSeleccionada').innerText = dia + " de Mayo, 2026";
+            document.getElementById('reservaModal').style.display = 'flex';
+        }
+
+        function cerrarReserva() {
+            document.getElementById('reservaModal').style.display = 'none';
+        }
+
+        function validarReserva(e) {
+            e.preventDefault();
+            alert("Validando datos con el sistema AMACEP... Redirigiendo a pasarela de pago temporal.");
+            // Aquí iría el flujo de pago
+        }
+    </script>
+
+</body>
+</html>
