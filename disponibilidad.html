@@ -15,11 +15,11 @@
             --blanco-marfil: #fdfcfb;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
+            --verde-wsp: #25d366;
         }
 
         body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
 
-        /* --- FONDO DINÁMICO (EFECTO REVELADO) --- */
         .main-container {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
@@ -30,92 +30,49 @@
             box-sizing: border-box;
         }
 
-        .main-container:hover {
-            filter: grayscale(0%);
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
-        }
+        .main-container:hover { filter: grayscale(0%); background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed; }
 
-        /* --- NAVEGACIÓN --- */
-        .month-nav {
-            display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding-bottom: 20px; width: 100%; max-width: 1000px;
-        }
-        .month-item {
-            color: var(--blanco-marfil); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px;
-            text-transform: uppercase; transition: 0.3s; padding: 10px 15px; cursor: pointer;
-            font-weight: 700; opacity: 0.6;
-        }
+        .month-nav { display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding-bottom: 20px; width: 100%; max-width: 1000px; }
+        .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 10px 15px; cursor: pointer; font-weight: 700; opacity: 0.6; }
         .month-item.active { color: var(--dorado); border: 1px solid var(--dorado); background: rgba(197, 160, 89, 0.1); opacity: 1; }
-        .month-item:hover:not(.active) { color: var(--dorado); opacity: 1; }
-
-        /* --- PANEL CALENDARIO --- */
-        .calendar-box {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(197, 160, 89, 0.25);
-            padding: 45px; border-radius: 2px;
-            max-width: 900px; width: 100%;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-        }
+        
+        .calendar-box { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(197, 160, 89, 0.25); padding: 45px; border-radius: 2px; max-width: 1000px; width: 100%; box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
 
         h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.6rem; margin: 0; text-transform: uppercase; letter-spacing: 7px; text-align: center; }
         .subtitle { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #aaa; text-align: center; margin-bottom: 45px; }
         .current-month-display { font-family: var(--font-serif); font-size: 1.8rem; color: var(--dorado); text-align: center; margin-bottom: 30px; letter-spacing: 4px; }
 
-        /* --- GRID --- */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
         .day-header { font-weight: 700; color: var(--dorado); text-align: center; font-size: 0.75rem; text-transform: uppercase; padding-bottom: 15px; }
-        .day {
-            aspect-ratio: 1.3 / 1; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(197, 160, 89, 0.2); cursor: pointer; transition: 0.3s; font-size: 1rem;
-            color: var(--dorado); font-weight: 400;
-        }
+        
+        /* DÍA NORMAL */
+        .day { aspect-ratio: 1.3 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.2); cursor: pointer; transition: 0.3s; color: var(--dorado); position: relative; padding: 5px; text-align: center; }
+        .day:hover:not(.occupied) { background: var(--dorado); color: var(--oscuro-puro); font-weight: 700; transform: scale(1.05); z-index: 10; }
+        
+        /* DÍA OCUPADO */
+        .day.occupied { background: rgba(197, 160, 89, 0.08); border: 1px solid var(--dorado); color: var(--blanco-marfil); cursor: default; }
+        .occupied-label { font-size: 0.55rem; color: var(--dorado); margin-top: 4px; line-height: 1.2; font-weight: 400; text-transform: uppercase; letter-spacing: 0.5px; }
+        
         .day.empty { border: none; cursor: default; }
-        .day:hover { background: var(--dorado); color: var(--oscuro-puro); font-weight: 700; transform: scale(1.05); z-index: 10; }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 3000;
-            align-items: center; justify-content: center;
-        }
-        .modal-content {
-            background: #0a0a0a; border: 1px solid var(--dorado); padding: 40px;
-            width: 95%; max-width: 550px; position: relative; box-shadow: 0 0 50px rgba(197,160,89,0.2);
-            box-sizing: border-box;
-        }
-        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer; }
-        #modalDateTitle { font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 3px; margin: 0; font-size: 1.4rem; text-transform: uppercase; }
+        /* MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 3000; align-items: center; justify-content: center; }
+        .modal-content { background: #0a0a0a; border: 1px solid var(--dorado); padding: 40px; width: 95%; max-width: 550px; position: relative; box-sizing: border-box; }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; }
+        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; font-size: 0.85rem; outline: none; border-radius: 0; }
         
-        /* --- FORMULARIO --- */
-        #galaForm { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        .form-row { display: flex; gap: 15px; }
-        .form-group { flex: 1; display: flex; flex-direction: column; }
-        label { font-size: 0.6rem; color: var(--dorado); margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase; }
-        
-        input, select {
-            background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-            padding: 12px; color: var(--blanco-marfil); font-family: var(--font-sans); width: 100%;
-            font-size: 0.85rem; outline: none; transition: 0.3s; border-radius: 0; -webkit-appearance: none;
-        }
-        input:focus, select:focus { border-bottom: 1px solid var(--dorado); background: rgba(197,160,89,0.05); }
-        select option { background: #0a0a0a; color: var(--blanco-marfil); }
+        /* RELOJ FIJO */
+        .time-input-container { display: flex; align-items: center; gap: 5px; color: var(--dorado); font-weight: 700; }
+        .time-box { width: 50px !important; text-align: center; padding: 10px 5px !important; }
 
-        .btn-submit {
-            background: var(--dorado); color: var(--oscuro-puro); border: none;
-            padding: 18px; font-family: var(--font-serif); font-weight: 700;
-            letter-spacing: 2px; cursor: pointer; margin-top: 15px; transition: 0.3s;
-            text-transform: uppercase;
-        }
-        .btn-submit:hover { background: var(--blanco-marfil); letter-spacing: 4px; }
+        /* SECCIÓN AGRADECIMIENTO */
+        #thanksSection { display: none; text-align: center; }
+        .sec-photo { width: 220px; height: 220px; border-radius: 50%; border: 2px solid var(--dorado); margin-bottom: 25px; object-fit: cover; }
 
         @media (max-width: 768px) {
             h1 { font-size: 1.6rem; }
-            .calendar-box { padding: 20px; }
-            .day { aspect-ratio: 1/1; font-size: 0.8rem; }
-            .form-row { flex-direction: column; gap: 15px; }
-            .modal-content { padding: 30px 20px; }
+            .day { aspect-ratio: 1/1.2; }
+            .occupied-label { font-size: 0.45rem; }
         }
     </style>
 </head>
@@ -124,30 +81,34 @@
     <div class="main-container">
         <nav class="month-nav" id="monthNav"></nav>
 
-        <div class="calendar-box">
+        <div id="calendarArea" class="calendar-box">
             <h1>Calendario de Gala</h1>
             <p class="subtitle">Agenda Protocolar | Marco Iván Cabrera</p>
             <div id="calendarTitle" class="current-month-display"></div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
 
-        <a href="index.html" style="margin-top:40px; color:#aaa; text-decoration:none; font-size:0.7rem; letter-spacing:3px; text-transform: uppercase;">Volver al Portal</a>
+        <div id="thanksSection" class="calendar-box">
+            <img src="secretaria.jpg" alt="Dominik" class="sec-photo">
+            <div style="color: var(--verde-wsp); font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 15px;">MENSAJE RECIBIDO</div>
+            <div style="font-size: 1rem; color: var(--blanco-marfil); margin-bottom: 25px;">El Maestro de Ceremonias Marco Cabrera le contactará.</div>
+            <p style="color: var(--dorado); font-family: var(--font-serif); font-size: 1.2rem; margin:0;">Dominik Chumbile Romero</p>
+            <p style="font-size: 0.7rem; letter-spacing: 4px; color: #888;">SECRETARIA</p>
+            <a href="index.html" style="color: var(--dorado); text-decoration: none; border: 1px solid var(--dorado); padding: 10px 20px; font-size: 0.7rem; display: inline-block; margin-top: 20px;">VOLVER AL INICIO</a>
+        </div>
     </div>
 
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalDateTitle">SOLICITUD DE FECHA</h2>
-            <p style="text-align:center; font-size:0.6rem; letter-spacing:3px; color:#777; margin-bottom:15px;">MAESTRO DE CEREMONIAS</p>
+            <span class="close-modal" onclick="closeModal()" style="position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer;">&times;</span>
+            <h2 id="modalDateTitle" style="font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 3px;">FECHA</h2>
             
             <form id="galaForm">
                 <input type="hidden" id="hiddenDate">
-
                 <div class="form-row">
                     <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
-                    <input type="text" id="f_dni" placeholder="DNI (8 DÍGITOS)" pattern="\d{8}" maxlength="8" required>
+                    <input type="text" id="f_dni" placeholder="DNI" required pattern="\d{8}" maxlength="8">
                 </div>
-
                 <div class="form-row">
                     <input type="tel" id="f_celular" placeholder="CELULAR" required>
                     <select id="f_evento" required>
@@ -156,31 +117,31 @@
                         <option value="Quinceaños">Quinceaños</option>
                         <option value="Bautizo">Bautizo</option>
                         <option value="Cumpleaños">Cumpleaños</option>
-                        <option value="Aniversario">Aniversario</option>
-                        <option value="Bodas">Bodas (Oro/Plata)</option>
-                        <option value="Inauguración">Inauguración</option>
+                        <option value="Bodas de Oro/Plata">Bodas de Oro/Plata</option>
                         <option value="Institucional">Institucional</option>
                         <option value="Académico">Académico</option>
-                        <option value="Promoción">Promoción</option>
                         <option value="Otro">Otro</option>
                     </select>
                 </div>
 
-                <div class="form-row" style="align-items: flex-end;">
-                    <div class="form-group" style="flex: 2;">
-                        <label>Indicar horario (Ej: 07:30)</label>
-                        <input type="text" id="f_hora" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}" maxlength="5" required>
+                <div class="form-row">
+                    <div style="flex: 1.5; display: flex; flex-direction: column;">
+                        <label style="font-size: 0.6rem; color: var(--dorado); margin-bottom: 5px;">HORARIO INICIO</label>
+                        <div class="time-input-container">
+                            <input type="text" id="f_hh" class="time-box" placeholder="10" maxlength="2" required pattern="[0-9]{1,2}">
+                            <span>:</span>
+                            <input type="text" id="f_mm" class="time-box" placeholder="00" maxlength="2" required pattern="[0-9]{2}">
+                            <select id="f_ampm" style="width: 70px !important;"><option value="AM">AM</option><option value="PM" selected>PM</option></select>
+                        </div>
                     </div>
-                    <div class="form-group" style="flex: 1;">
-                        <select id="f_ampm" required>
-                            <option value="AM">AM</option>
-                            <option value="PM" selected>PM</option>
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.6rem; color: var(--dorado); margin-bottom: 5px;">DISTRITO / CIUDAD</label>
+                        <select id="f_lugar" required>
+                            <option value="" disabled selected>SELECCIONE</option>
+                            <option value="Ancón">Ancón</option><option value="Ate">Ate</option><option value="Barranco">Barranco</option><option value="Breña">Breña</option><option value="Carabayllo">Carabayllo</option><option value="Chaclacayo">Chaclacayo</option><option value="Chorrillos">Chorrillos</option><option value="Cieneguilla">Cieneguilla</option><option value="Comas">Comas</option><option value="El Agustino">El Agustino</option><option value="Independencia">Independencia</option><option value="Jesús María">Jesús María</option><option value="La Molina">La Molina</option><option value="La Victoria">La Victoria</option><option value="Lima (Cercado)">Lima (Cercado)</option><option value="Lince">Lince</option><option value="Los Olivos">Los Olivos</option><option value="Lurigancho-Chosica">Lurigancho-Chosica</option><option value="Lurín">Lurín</option><option value="Magdalena del Mar">Magdalena del Mar</option><option value="Miraflores">Miraflores</option><option value="Pachacámac">Pachacámac</option><option value="Pucusana">Pucusana</option><option value="Pueblo Libre">Pueblo Libre</option><option value="Puente Piedra">Puente Piedra</option><option value="Punta Hermosa">Punta Hermosa</option><option value="Punta Negra">Punta Negra</option><option value="Rímac">Rímac</option><option value="San Bartolo">San Bartolo</option><option value="San Borja">San Borja</option><option value="San Isidro">San Isidro</option><option value="San Juan de Lurigancho">San Juan de Lurigancho</option><option value="San Juan de Miraflores">San Juan de Miraflores</option><option value="San Luis">San Luis</option><option value="San Martín de Porres">San Martín de Porres</option><option value="San Miguel">San Miguel</option><option value="Santa Anita">Santa Anita</option><option value="Santa María del Mar">Santa María del Mar</option><option value="Santa Rosa">Santa Rosa</option><option value="Santiago de Surco">Santiago de Surco</option><option value="Surquillo">Surquillo</option><option value="Villa El Salvador">Villa El Salvador</option><option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                            <option value="FUERA DE LIMA">FUERA DE LIMA / PROVINCIA</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <input type="text" id="f_lugar" placeholder="LUGAR (DISTRITO O CIUDAD)" required>
                 </div>
 
                 <button type="button" class="btn-submit" onclick="enviarWhatsApp()">SOLICITAR PROTOCOLO VÍA WHATSAPP</button>
@@ -189,97 +150,87 @@
     </div>
 
     <script>
+        // ==========================================
+        //  CONTROL DE RESERVAS (EDITA AQUÍ)
+        // ==========================================
+        const reservas = {
+            "2026-03-06": "Cumpleaños F. 10 pm / San Borja",
+            "2026-03-07": "Cumpleaños LN. 10 pm / Miraflores",
+            "2026-03-14": "Quinceaños 10 pm / La Molina",
+            "2026-03-21": "Quinto L. 10:30 pm / San Isidro",
+            "2026-05-23": "Bodas de Oro 8 pm / Surco"
+        };
+        // ==========================================
+
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        const now = new Date();
-        let currentMonth = now.getMonth(); 
+        let currentMonth = new Date().getMonth(); 
         const currentYear = 2026;
-
-        function renderMonthNav() {
-            const nav = document.getElementById('monthNav');
-            nav.innerHTML = '';
-            months.forEach((month, index) => {
-                const btn = document.createElement('a');
-                btn.className = `month-item ${index === currentMonth ? 'active' : ''}`;
-                btn.innerText = month.substring(0, 3);
-                btn.onclick = () => { currentMonth = index; renderCalendar(); renderMonthNav(); };
-                nav.appendChild(btn);
-            });
-        }
-
-        function openModal(day, month, year) {
-            const fullDate = `${day} de ${months[month]} de ${year}`;
-            document.getElementById('modalDateTitle').innerText = fullDate;
-            document.getElementById('hiddenDate').value = fullDate;
-            document.getElementById('bookingModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('bookingModal').style.display = 'none';
-            document.getElementById('galaForm').reset();
-        }
 
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
-            const title = document.getElementById('calendarTitle');
             grid.innerHTML = '';
-            title.innerText = `${months[currentMonth].toUpperCase()} ${currentYear}`;
-
-            const headers = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-            headers.forEach(h => {
-                const div = document.createElement('div');
-                div.className = 'day-header';
-                div.innerText = h;
-                grid.appendChild(div);
+            document.getElementById('calendarTitle').innerText = `${months[currentMonth].toUpperCase()} ${currentYear}`;
+            ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].forEach(h => {
+                grid.appendChild(Object.assign(document.createElement('div'), {className: 'day-header', innerText: h}));
             });
 
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
             const startingPoint = (firstDay === 0) ? 6 : firstDay - 1;
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-            for (let i = 0; i < startingPoint; i++) {
-                grid.appendChild(Object.assign(document.createElement('div'), {className: 'day empty'}));
-            }
+            for (let i = 0; i < startingPoint; i++) grid.appendChild(Object.assign(document.createElement('div'), {className: 'day empty'}));
 
             for (let i = 1; i <= daysInMonth; i++) {
                 const day = document.createElement('div');
                 day.className = 'day';
-                day.innerText = i;
-                day.onclick = () => openModal(i, currentMonth, currentYear);
+                day.innerHTML = `<span>${i}</span>`;
+                
+                const fechaID = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
+
+                if (reservas[fechaID]) {
+                    day.classList.add('occupied');
+                    day.innerHTML += `<div class="occupied-label">Separado<br>${reservas[fechaID]}</div>`;
+                } else {
+                    day.onclick = () => openModal(i, currentMonth, currentYear);
+                }
                 grid.appendChild(day);
             }
         }
 
-        function enviarWhatsApp() {
-            const form = document.getElementById('galaForm');
-            if(!form.reportValidity()) return; // Valida que los campos obligatorios estén llenos
-
-            const fecha = document.getElementById('hiddenDate').value;
-            const nombre = document.getElementById('f_nombre').value;
-            const dni = document.getElementById('f_dni').value;
-            const celular = document.getElementById('f_celular').value;
-            const evento = document.getElementById('f_evento').value;
-            const hora = document.getElementById('f_hora').value;
-            const ampm = document.getElementById('f_ampm').value;
-            const lugar = document.getElementById('f_lugar').value;
-
-            const mensaje = `*SOLICITUD DE PROTOCOLO*%0A` +
-                            `*Maestro Iván Cabrera*%0A%0A` +
-                            `*Fecha:* ${fecha}%0A` +
-                            `*Hora:* ${hora} ${ampm}%0A` +
-                            `*Evento:* ${evento}%0A` +
-                            `*Lugar:* ${lugar}%0A%0A` +
-                            `*CLIENTE:* ${nombre}%0A` +
-                            `*DNI:* ${dni}%0A` +
-                            `*Cel:* ${celular}`;
-
-            const wsp_url = `https://api.whatsapp.com/send?phone=51930046681&text=${mensaje}`;
-            
-            // Usar location.href para evitar bloqueos de pop-ups en celulares
-            window.location.href = wsp_url;
+        function openModal(day, month, year) {
+            const fullDate = `${day} de ${months[month]} de ${year}`;
+            document.getElementById('modalDateTitle').innerText = fullDate.toUpperCase();
+            document.getElementById('hiddenDate').value = fullDate;
+            document.getElementById('bookingModal').style.display = 'flex';
         }
 
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('bookingModal')) closeModal();
+        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
+
+        function enviarWhatsApp() {
+            const form = document.getElementById('galaForm');
+            if(!form.reportValidity()) return;
+
+            const horaFull = `${document.getElementById('f_hh').value}:${document.getElementById('f_mm').value} ${document.getElementById('f_ampm').value}`;
+            
+            const mensaje = `*SOLICITUD DE PROTOCOLO*%0A*Maestro:* Marco Iván Cabrera%0A*Fecha:* ${document.getElementById('hiddenDate').value}%0A*Hora:* ${horaFull}%0A*Evento:* ${document.getElementById('f_evento').value}%0A*Lugar:* ${document.getElementById('f_lugar').value}`;
+
+            window.open(`https://api.whatsapp.com/send?phone=51930046681&text=${mensaje}`, '_blank');
+            closeModal();
+            document.getElementById('calendarArea').style.display = 'none';
+            document.getElementById('monthNav').style.display = 'none';
+            document.getElementById('thanksSection').style.display = 'block';
+        }
+
+        function renderMonthNav() {
+            const nav = document.getElementById('monthNav');
+            nav.innerHTML = '';
+            months.forEach((m, index) => {
+                const btn = document.createElement('a');
+                btn.className = `month-item ${index === currentMonth ? 'active' : ''}`;
+                btn.innerText = m.substring(0, 3);
+                btn.onclick = () => { currentMonth = index; renderCalendar(); renderMonthNav(); };
+                nav.appendChild(btn);
+            });
         }
 
         renderMonthNav();
