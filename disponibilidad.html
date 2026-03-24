@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disponibilidad de Gala | Marco Iván Cabrera</title>
+    <title>Calendario de Gala | Marco Iván Cabrera</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
@@ -13,20 +13,19 @@
             --dorado: #c5a059;
             --oscuro-puro: #0a0a0a;
             --blanco-marfil: #fdfcfb;
-            --whatsapp-verde: #25d366;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
 
         body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
 
-        /* --- FONDO DINÁMICO (EFECTO REVELADO RESTAURADO) --- */
+        /* --- FONDO DINÁMICO (EFECTO REVELADO) --- */
         .main-container {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
             filter: grayscale(100%);
-            transition: filter 1.2s ease, background 1.2s ease;
+            transition: 1.2s ease;
             display: flex; flex-direction: column; align-items: center; padding: 40px 20px;
             box-sizing: border-box;
         }
@@ -62,16 +61,11 @@
 
         h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.6rem; margin: 0; text-transform: uppercase; letter-spacing: 7px; text-align: center; }
         .subtitle { font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; color: #aaa; text-align: center; margin-bottom: 45px; }
+        .current-month-display { font-family: var(--font-serif); font-size: 1.8rem; color: var(--dorado); text-align: center; margin-bottom: 30px; letter-spacing: 4px; }
 
-        .current-month-display { 
-            font-family: var(--font-serif); font-size: 1.8rem; color: var(--dorado); 
-            text-align: center; margin-bottom: 30px; letter-spacing: 4px;
-        }
-
-        /* --- GRID DE FECHAS (TODAS DISPONIBLES) --- */
+        /* --- GRID --- */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
         .day-header { font-weight: 700; color: var(--dorado); text-align: center; font-size: 0.75rem; text-transform: uppercase; padding-bottom: 15px; }
-        
         .day {
             aspect-ratio: 1.3 / 1; display: flex; align-items: center; justify-content: center;
             border: 1px solid rgba(197, 160, 89, 0.2); cursor: pointer; transition: 0.3s; font-size: 1rem;
@@ -80,26 +74,41 @@
         .day.empty { border: none; cursor: default; }
         .day:hover { background: var(--dorado); color: var(--oscuro-puro); font-weight: 700; transform: scale(1.05); z-index: 10; }
 
-        /* --- BOTÓN DE RETORNO --- */
-        .btn-back { 
-            margin-top: 50px; text-decoration: none; color: var(--blanco-marfil);
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px;
-            border: 1px solid rgba(255,255,255,0.2); padding: 12px 25px; transition: 0.3s; font-weight: 700;
+        /* --- MODAL DE GALA --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); z-index: 3000;
+            align-items: center; justify-content: center;
         }
-        .btn-back:hover { color: var(--dorado); border-color: var(--dorado); background: rgba(197, 160, 89, 0.1); }
-
-        .wsp-float {
-            position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
-            background-color: var(--whatsapp-verde); border-radius: 50px;
-            display: flex; align-items: center; justify-content: center; z-index: 1000;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.3s;
+        .modal-content {
+            background: #0a0a0a; border: 1px solid var(--dorado); padding: 40px;
+            width: 90%; max-width: 550px; position: relative; box-shadow: 0 0 50px rgba(197,160,89,0.2);
         }
-        .wsp-float:hover { transform: scale(1.1); }
+        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer; }
+        #modalDateTitle { font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 3px; margin: 0; font-size: 1.5rem; }
+        
+        /* --- FORMULARIO --- */
+        #galaForm { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .form-row { display: flex; gap: 15px; }
+        input, select {
+            background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 12px; color: var(--blanco-marfil); font-family: var(--font-sans); width: 100%;
+            font-size: 0.85rem; outline: none; transition: 0.3s;
+        }
+        input:focus, select:focus { border-bottom: 1px solid var(--dorado); background: rgba(197,160,89,0.05); }
+        select option { background: #0a0a0a; color: var(--blanco-marfil); }
+        .btn-submit {
+            background: var(--dorado); color: var(--oscuro-puro); border: none;
+            padding: 15px; font-family: var(--font-serif); font-weight: 700;
+            letter-spacing: 2px; cursor: pointer; margin-top: 15px; transition: 0.3s;
+        }
+        .btn-submit:hover { background: var(--blanco-marfil); letter-spacing: 4px; }
 
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .calendar-box { padding: 25px; }
             .day { aspect-ratio: 1/1; font-size: 0.8rem; }
+            .form-row { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -110,18 +119,59 @@
 
         <div class="calendar-box">
             <h1>Calendario de Gala</h1>
-            <p class="subtitle">Agenda Oficial | Marco Iván Cabrera</p>
-
+            <p class="subtitle">Agenda Protocolar | Marco Iván Cabrera</p>
             <div id="calendarTitle" class="current-month-display"></div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
 
-        <a href="index.html" class="btn-back">VOLVER AL PORTAL</a>
+        <a href="index.html" style="margin-top:40px; color:#aaa; text-decoration:none; font-size:0.7rem; letter-spacing:3px;">VOLVER AL PORTAL</a>
     </div>
 
-    <a href="https://wa.me/51930046681?text=Maestro%20Cabrera,%20solicito%20información%20sobre%20su%20disponibilidad" class="wsp-float" target="_blank">
-        <svg fill="#fff" width="35px" height="35px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalDateTitle">SOLICITUD DE FECHA</h2>
+            <p style="text-align:center; font-size:0.6rem; letter-spacing:3px; color:#777; margin-bottom:20px;">MAESTRO DE CEREMONIAS</p>
+            
+            <form id="galaForm" action="https://formsubmit.co/marcocabrera@maestrodeceremonias.org.pe" method="POST">
+                <input type="hidden" name="_subject" id="emailSubject" value="Nueva Solicitud de Protocolo">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <input type="hidden" name="Fecha Solicitada" id="hiddenDate">
+
+                <div class="form-row">
+                    <input type="text" name="Nombre" placeholder="NOMBRE COMPLETO" required>
+                    <input type="text" name="DNI" placeholder="DNI (8 DÍGITOS)" pattern="\d{8}" maxlength="8" required>
+                </div>
+
+                <div class="form-row">
+                    <input type="tel" name="Celular" placeholder="CELULAR" required>
+                    <select name="Tipo de Evento" required>
+                        <option value="" disabled selected>TIPO DE EVENTO</option>
+                        <option value="Matrimonio">Matrimonio</option>
+                        <option value="Quinceaños">Quinceaños</option>
+                        <option value="Bautizo">Bautizo</option>
+                        <option value="Cumpleaños">Cumpleaños</option>
+                        <option value="Aniversario">Aniversario</option>
+                        <option value="Bodas">Bodas (Oro/Plata)</option>
+                        <option value="Inauguración">Inauguración</option>
+                        <option value="Institucional">Institucional</option>
+                        <option value="Académico">Académico</option>
+                        <option value="Promoción">Promoción</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <input type="time" name="Hora del Evento" required title="Seleccione la hora de inicio">
+                    <input type="text" name="Lugar" placeholder="DISTRITO O CIUDAD" required>
+                </div>
+
+                <button type="submit" class="btn-submit">ENVIAR SOLICITUD DE GALA</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -136,14 +186,20 @@
                 const btn = document.createElement('a');
                 btn.className = `month-item ${index === currentMonth ? 'active' : ''}`;
                 btn.innerText = month.substring(0, 3);
-                btn.onclick = () => {
-                    currentMonth = index;
-                    renderCalendar();
-                    renderMonthNav();
-                };
+                btn.onclick = () => { currentMonth = index; renderCalendar(); renderMonthNav(); };
                 nav.appendChild(btn);
             });
         }
+
+        function openModal(day, month, year) {
+            const fullDate = `${day} de ${months[month]} de ${year}`;
+            document.getElementById('modalDateTitle').innerText = fullDate.toUpperCase();
+            document.getElementById('hiddenDate').value = fullDate;
+            document.getElementById('emailSubject').value = `Reserva: ${fullDate} - Maestro Cabrera`;
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
 
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
@@ -164,21 +220,21 @@
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
             for (let i = 0; i < startingPoint; i++) {
-                const empty = document.createElement('div');
-                empty.className = 'day empty';
-                grid.appendChild(empty);
+                grid.appendChild(Object.assign(document.createElement('div'), {className: 'day empty'}));
             }
 
             for (let i = 1; i <= daysInMonth; i++) {
                 const day = document.createElement('div');
-                day.className = 'day'; // Todos los días son iguales y funcionales
+                day.className = 'day';
                 day.innerText = i;
-                day.onclick = () => {
-                    const msg = `Maestro Cabrera, solicito información para el día ${i} de ${months[currentMonth]} de ${currentYear}`;
-                    window.open(`https://wa.me/51930046681?text=${encodeURIComponent(msg)}`, '_blank');
-                };
+                day.onclick = () => openModal(i, currentMonth, currentYear);
                 grid.appendChild(day);
             }
+        }
+
+        // Cerrar modal si se hace clic fuera del contenido
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('bookingModal')) closeModal();
         }
 
         renderMonthNav();
