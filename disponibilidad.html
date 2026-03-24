@@ -4,109 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disponibilidad | Marco Iván Cabrera Hernández</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --dorado: #c5a059;
-            --oscuro: #0f0f0f;
-            --blanco-marfil: #fdfcfb;
-            --font-serif: 'Cinzel', serif;
-            --font-sans: 'Montserrat', sans-serif;
-        }
-
+        :root { --dorado: #c5a059; --oscuro: #0f0f0f; --blanco-marfil: #fdfcfb; --font-serif: 'Cinzel', serif; --font-sans: 'Montserrat', sans-serif; }
         body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
-
-        header {
-            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.9);
-            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-        }
-
-        .logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
         
-        .main-container {
-            min-height: 100vh; padding: 140px 20px 60px 20px;
-            background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
-            display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
-        }
+        header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
 
-        .month-nav { display: flex; gap: 10px; margin-bottom: 35px; justify-content: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; width: 100%; max-width: 1000px; }
-        .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.5; }
-        .month-item.active { color: var(--dorado); border-bottom: 1px solid var(--dorado); opacity: 1; }
+        .main-container { min-height: 100vh; padding: 140px 20px 60px 20px; background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; }
         
         .calendar-box { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; border-radius: 4px; max-width: 1000px; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.5); box-sizing: border-box; }
-
         .title-cal { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
         .subtitle { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; }
-        .current-month-display { font-family: var(--font-serif); font-size: 1.6rem; color: var(--dorado); text-align: center; margin-bottom: 30px; letter-spacing: 3px; }
 
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
         .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 15px; }
         
-        .day { aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; color: var(--dorado); font-size: 1rem; }
-        .day:hover:not(.ocupado) { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
+        .day { aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; color: var(--dorado); font-size: 1.1rem; padding: 8px; position: relative; }
+        .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: bold; }
         
-        /* ESTILO OCUPADO (28 MARZO) */
-        .day.ocupado { background: rgba(0, 0, 0, 0.85); color: #444; cursor: not-allowed; border: 1px solid rgba(197, 160, 89, 0.05); }
+        /* ESTILO INFORMATIVO PARA DÍAS CON EVENTO */
+        .day.ocupado { background: rgba(197, 160, 89, 0.1); border: 1px solid var(--dorado); }
+        .event-info { font-size: 0.6rem; text-transform: uppercase; color: #fff; text-align: center; margin-top: 5px; line-height: 1.2; font-weight: 400; }
+        .event-time { color: var(--dorado); font-weight: bold; display: block; margin-bottom: 2px; }
 
+        /* MODAL */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; }
-        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 90%; max-width: 500px; position: relative; }
+        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 90%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto; }
         
-        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; outline: none; }
-        .btn-submit { background: var(--dorado); color: var(--oscuro); border: none; padding: 18px; width: 100%; font-family: var(--font-serif); font-weight: 700; cursor: pointer; text-transform: uppercase; }
-
-        .time-row { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 15px; }
-        .time-input { width: 50px !important; text-align: center; margin-bottom: 0; }
+        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; outline: none; font-family: var(--font-sans); }
+        select option { background: #1a1a1a; color: var(--dorado); }
+        
+        .time-row { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 15px; color: var(--dorado); }
+        .time-input { width: 55px !important; text-align: center; margin-bottom: 0; }
+        
+        .btn-submit { background: var(--dorado); color: var(--oscuro); border: none; padding: 18px; width: 100%; font-family: var(--font-serif); font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <header><a href="#" class="logo">Marco Iván Cabrera</a></header>
+    <header>
+        <a href="index.html" class="logo">Marco Iván Cabrera</a>
+    </header>
 
     <div class="main-container">
-        <nav class="month-nav" id="monthNav"></nav>
         <div class="calendar-box">
             <h1 class="title-cal">Calendario de Gala</h1>
-            <p class="subtitle">Agenda Protocolar | Marco Iván Cabrera</p>
-            <div id="calendarTitle" class="current-month-display"></div>
+            <p class="subtitle">Disponibilidad Protocolar en todo Lima y Provincias</p>
+            <div id="calendarTitle" style="text-align:center; color:var(--dorado); font-family:var(--font-serif); margin-bottom:25px; font-size:1.6rem; letter-spacing:3px;">MARZO 2026</div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
     </div>
 
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-content">
-            <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; color:var(--dorado); cursor:pointer; font-size:24px;">&times;</span>
-            <h2 id="modalDateTitle" style="font-family:var(--font-serif); color:var(--dorado); text-align:center;">FECHA</h2>
-            <p style="font-size:0.6rem; color:var(--dorado); text-align:center; letter-spacing:1px;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
+            <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; color:var(--dorado); cursor:pointer; font-size:28px;">&times;</span>
+            <h2 id="modalDateTitle" style="font-family:var(--font-serif); color:var(--dorado); text-align:center; margin-bottom:10px;">FECHA</h2>
+            <p style="font-size:0.65rem; color:var(--dorado); text-align:center; letter-spacing:1px; margin-bottom:25px;">PARA RESERVAR U OTROS HORARIOS, COMPLETE LOS DATOS:</p>
             
             <form id="galaForm">
                 <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
                 <input type="text" id="f_dni" placeholder="DNI" required maxlength="8">
-                <input type="text" id="f_celular" placeholder="CELULAR / WHATSAPP" required>
+                <input type="tel" id="f_celular" placeholder="CELULAR / WHATSAPP" required>
                 
                 <select id="f_evento" required>
                     <option value="" disabled selected>TIPO DE EVENTO</option>
                     <option value="Quinceaños">Quinceaños</option>
                     <option value="Matrimonio">Matrimonio</option>
-                    <option value="Protocolo">Protocolo</option>
+                    <option value="Protocolo / Institucional">Protocolo / Institucional</option>
+                    <option value="Maestría de Ceremonia">Maestría de Ceremonia</option>
                 </select>
 
                 <div class="time-row">
-                    <span style="font-size:0.7rem; color:var(--dorado);">HORA:</span>
-                    <input type="text" id="f_hh" class="time-input" placeholder="10">
+                    <span>HORA SUGERIDA:</span>
+                    <input type="text" id="f_hh" class="time-input" placeholder="09" maxlength="2">
                     <span>:</span>
-                    <input type="text" id="f_mm" class="time-input" placeholder="00">
-                    <select id="f_ampm" style="width:70px; margin-bottom:0;"><option>PM</option><option>AM</option></select>
+                    <input type="text" id="f_mm" class="time-input" placeholder="00" maxlength="2">
+                    <select id="f_ampm" style="width:75px; margin-bottom:0;"><option>PM</option><option>AM</option></select>
                 </div>
 
                 <select id="f_distrito" required>
-                    <option value="" disabled selected>DISTRITO / CIUDAD</option>
-                    <option value="Lima">Lima</option>
-                    <option value="Callao">Callao</option>
+                    <option value="" disabled selected>DISTRITO O CIUDAD</option>
+                    <optgroup label="LIMA TOP / MODERNA">
+                        <option value="Miraflores">Miraflores</option><option value="San Isidro">San Isidro</option><option value="San Borja">San Borja</option><option value="Santiago de Surco">Santiago de Surco</option><option value="La Molina">La Molina</option><option value="Barranco">Barranco</option><option value="San Miguel">San Miguel</option><option value="Magdalena del Mar">Magdalena del Mar</option><option value="Lince">Lince</option><option value="Jesús María">Jesús María</option><option value="Pueblo Libre">Pueblo Libre</option>
+                    </optgroup>
+                    <optgroup label="LIMA NORTE / SUR / ESTE">
+                        <option value="Los Olivos">Los Olivos</option><option value="San Martín de Porres">San Martín de Porres</option><option value="Comas">Comas</option><option value="Carabayllo">Carabayllo</option><option value="Chorrillos">Chorrillos</option><option value="San Juan de Lurigancho">San Juan de Lurigancho</option><option value="Ate / Santa Anita">Ate / Santa Anita</option><option value="Cercado de Lima">Cercado de Lima</option>
+                    </optgroup>
+                    <optgroup label="OTROS / PROVINCIAS">
+                        <option value="Callao">Callao</option><option value="Provincias">Otras Ciudades / Provincias</option>
+                    </optgroup>
                 </select>
 
                 <button type="button" class="btn-submit" onclick="enviarWhatsApp()">Solicitar Protocolo</button>
@@ -116,9 +107,8 @@
 
     <script>
         const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tk0M-tiHFRw-TNHTZhxuSrStliuttBixgihxOFj/pub?output=csv';
-        const agendaConfirmada = {};
-        const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        let currentMonth = 2; // Marzo
+        const agenda = {};
+        const currentMonth = 2; // Marzo
         const currentYear = 2026;
 
         async function cargarDatos() {
@@ -126,42 +116,46 @@
                 const res = await fetch(SHEETS_CSV);
                 const text = await res.text();
                 const filas = text.split('\n').slice(1);
-                
                 filas.forEach(f => {
                     const c = f.split(',');
                     if(c[0]) {
-                        // Limpiamos la fecha que viene del Excel (ej: 28/03/2026)
-                        const limpia = c[0].trim();
-                        agendaConfirmada[limpia] = true;
+                        const fRaw = c[0].trim(); // Acepta 28/03/2026 o 2026-03-28
+                        if(!agenda[fRaw]) agenda[fRaw] = [];
+                        agenda[fRaw].push({ hora: c[2], tipo: c[3] });
                     }
                 });
                 render();
-            } catch(e) { console.error(e); render(); }
+            } catch(e) { render(); }
         }
 
         function render() {
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
-            document.getElementById('calendarTitle').innerText = `${months[currentMonth].toUpperCase()} ${currentYear}`;
-
-            ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].forEach(d => {
-                grid.innerHTML += `<div class="day-header">${d}</div>`;
-            });
+            ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].forEach(d => { grid.innerHTML += `<div class="day-header">${d}</div>`; });
 
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const startDay = new Date(currentYear, currentMonth, 1).getDay();
-            const adjStart = (startDay === 0) ? 6 : startDay - 1;
+            const start = new Date(currentYear, currentMonth, 1).getDay();
+            const adjStart = (start === 0) ? 6 : start - 1;
 
-            for(let i=0; i<adjStart; i++) grid.innerHTML += `<div class="day" style="border:none"></div>`;
+            for(let i=0; i<adjStart; i++) grid.innerHTML += `<div class="day" style="border:none; cursor:default"></div>`;
 
             for(let i=1; i<=daysInMonth; i++) {
                 const dStr = `${i.toString().padStart(2,'0')}/${(currentMonth+1).toString().padStart(2,'0')}/${currentYear}`;
-                const isOcupado = agendaConfirmada[dStr];
+                const dIso = `${currentYear}-${(currentMonth+1).toString().padStart(2,'0')}-${i.toString().padStart(2,'0')}`;
+                const eventos = agenda[dStr] || agenda[dIso];
                 
                 const dayDiv = document.createElement('div');
-                dayDiv.className = `day ${isOcupado ? 'ocupado' : ''}`;
-                dayDiv.innerHTML = isOcupado ? `${i} 🔒` : i;
-                if(!isOcupado) dayDiv.onclick = () => openModal(i);
+                dayDiv.className = `day ${eventos ? 'ocupado' : ''}`;
+                let html = `<span>${i}</span>`;
+                
+                if(eventos) {
+                    eventos.forEach(ev => {
+                        html += `<div class="event-info"><span class="event-time">${ev.hora}</span>${ev.tipo}</div>`;
+                    });
+                }
+                
+                dayDiv.innerHTML = html;
+                dayDiv.onclick = () => openModal(i);
                 grid.appendChild(dayDiv);
             }
         }
@@ -174,19 +168,10 @@
         function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
 
         function enviarWhatsApp() {
-            const tel = "51930046681";
-            const msg = `Hola Marco, solicito protocolo para el ${document.getElementById('modalDateTitle').innerText}`;
-            window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, '_blank');
+            const msg = `*SOLICITUD DE PROTOCOLO*%0A*FECHA:* ${document.getElementById('modalDateTitle').innerText}%0A*CLIENTE:* ${document.getElementById('f_nombre').value.toUpperCase()}%0A*EVENTO:* ${document.getElementById('f_evento').value}%0A*HORA:* ${document.getElementById('f_hh').value}:${document.getElementById('f_mm').value} ${document.getElementById('f_ampm').value}%0A*UBICACIÓN:* ${document.getElementById('f_distrito').value}`;
+            window.open(`https://wa.me/51930046681?text=${msg}`, '_blank');
         }
 
-        function renderNav() {
-            const nav = document.getElementById('monthNav');
-            months.forEach((m, i) => {
-                nav.innerHTML += `<span class="month-item ${i===currentMonth?'active':''}" onclick="location.reload()">${m.substring(0,3)}</span>`;
-            });
-        }
-
-        renderNav();
         cargarDatos();
     </script>
 </body>
