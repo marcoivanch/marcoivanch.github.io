@@ -122,19 +122,17 @@
         .editorial-section { padding: 120px 10%; background: var(--blanco-marfil); color: var(--oscuro); display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
         .editorial-img img { width: 100%; box-shadow: 30px 30px 0px var(--dorado); }
         
-        /* --- GALERÍA CON EFECTO RESTAURADO --- */
+        /* --- GALERÍA CON EFECTO --- */
         .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 15px; }
         
         .galeria-grid img { 
             width: 100%; 
             height: 550px; 
             object-fit: cover; 
-            /* EFECTO INICIAL: Blanco y Negro al 100% */
             filter: grayscale(100%); 
-            transition: 0.8s ease-in-out; /* Transición suave */
+            transition: 0.8s ease-in-out; 
         }
 
-        /* EFECTO HOVER (PC): Recupera el color */
         .galeria-grid img:hover { 
             filter: grayscale(0%); 
         }
@@ -162,17 +160,15 @@
             .hero-content h2 { font-size: 2rem; }
             .hero-content h1 { font-size: 2.2rem; }
             
-            /* OCULTAR BOTÓN EN MÓVIL */
             .btn-premium { display: none; }
 
             .wsp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; }
             .editorial-section { grid-template-columns: 1fr; padding: 60px 8%; }
             .galeria-grid { grid-template-columns: 1fr; }
             
-            /* EFECTO EN MÓVIL: Directamente a color (ya que no hay hover) */
             .galeria-grid img { 
                 filter: grayscale(0%); 
-                height: 400px; /* Ajuste de altura para móvil */
+                height: 400px; 
             }
         }
     </style>
@@ -186,7 +182,7 @@
         </div>
         <nav class="nav-menu" id="navMenu">
             <a href="#servicios" onclick="toggleMenu()">Servicios</a>
-            <a href="#disponibilidad" onclick="toggleMenu()">Disponibilidad</a>
+            <a href="disponibilidad.html">Disponibilidad</a>
             <a href="https://wa.me/51930046681?text=Deseo%20información%20sobre%20sus%20servicios" onclick="toggleMenu()">Reservas</a>
         </nav>
     </header>
