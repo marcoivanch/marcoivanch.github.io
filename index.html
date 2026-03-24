@@ -11,7 +11,7 @@
 
     <style>
         :root {
-            --dorado: #c5a059; /* Dorado champaña refinado */
+            --dorado: #c5a059;
             --oscuro: #0f0f0f;
             --blanco-marfil: #fdfcfb;
             --font-serif: 'Cinzel', serif;
@@ -28,7 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -63,11 +62,8 @@
             font-weight: 300;
         }
 
-        nav a:hover {
-            color: var(--dorado);
-        }
+        nav a:hover { color: var(--dorado); }
 
-        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)), 
@@ -77,9 +73,7 @@
             padding: 0 10%;
         }
 
-        .hero-content {
-            max-width: 850px;
-        }
+        .hero-content { max-width: 850px; }
 
         .hero-content h2 {
             font-family: var(--font-cursive);
@@ -127,7 +121,6 @@
             box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
         }
 
-        /* --- SECCIÓN EDITORIAL --- */
         .editorial-section {
             padding: 120px 10%;
             background: var(--blanco-marfil);
@@ -163,7 +156,6 @@
             margin-top: 40px;
         }
 
-        /* --- GALERÍA --- */
         .galeria-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -186,7 +178,6 @@
             transform: scale(0.99);
         }
 
-        /* --- FOOTER --- */
         footer {
             padding: 100px 10%;
             text-align: center;
@@ -201,56 +192,55 @@
 
         /* --- MEDIA QUERIES (PARA MÓVILES) --- */
         @media (max-width: 768px) {
-            header { padding: 15px 25px; }
+            header { padding: 15px 20px; }
             .logo { font-size: 0.9rem; }
-            nav a { margin-left: 15px; font-size: 0.65rem; }
+            nav a { margin-left: 10px; font-size: 0.6rem; }
 
             .hero { 
                 padding: 0 8%; 
                 text-align: center; 
                 justify-content: center; 
-                align-items: flex-start; /* Permite controlar el descenso desde arriba */
+                align-items: flex-start; /* Alinea al inicio superior */
             }
 
-            /* AJUSTE SOLICITADO: El bloque baja para liberar el rostro */
+            /* CORRECCIÓN CRÍTICA: Bajamos el bloque para despejar la cara */
             .hero-content {
-                margin-top: 110px; /* Desciende el bloque completo aproximadamente dos renglones */
+                padding-top: 250px; /* Forzamos el descenso del texto */
             }
 
             .hero-content h2 { 
-                font-size: 1.9rem; 
-                margin-bottom: 10px; 
+                font-size: 1.8rem; 
+                margin-bottom: 5px; 
                 letter-spacing: 1px;
             }
             
             .hero-content h1 { 
-                font-size: 2.1rem; 
-                margin-top: 5px;
+                font-size: 2rem; 
+                margin-top: 0;
             }
 
             .tagline { 
                 border-left: none; 
-                border-top: 2px solid var(--dorado); 
-                padding: 15px 0 0 0; 
-                font-size: 0.9rem;
+                border-top: 1px solid var(--dorado); 
+                padding: 10px 0 0 0; 
+                font-size: 0.85rem;
+            }
+
+            .btn-premium {
+                margin-top: 30px;
+                padding: 15px 30px;
             }
 
             .editorial-section { 
                 grid-template-columns: 1fr; 
-                padding: 80px 8%; 
+                padding: 60px 8%; 
                 text-align: center;
             }
 
             .editorial-img img { box-shadow: 15px 15px 0px var(--dorado); }
 
-            .galeria-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .galeria-grid img {
-                height: 420px;
-                filter: grayscale(0%);
-            }
+            .galeria-grid { grid-template-columns: 1fr; }
+            .galeria-grid img { height: 380px; filter: grayscale(0%); }
         }
     </style>
 </head>
@@ -287,17 +277,16 @@
     </section>
 
     <section class="galeria-grid">
-        <img src="evento1.jpg" alt="Evento de Gala">
-        <img src="Maestro 5.png" alt="Ceremonia con Damas de Honor">
-        <img src="Maestro 6 Club de Leones B.png" alt="Ponencia Magistral">
+        <img src="evento1.jpg" alt="Evento 1">
+        <img src="Maestro 5.png" alt="Evento 2">
+        <img src="Maestro 6 Club de Leones B.png" alt="Evento 3">
     </section>
 
     <footer>
-        <img src="AMACEP.png" alt="Logo AMACEP" class="amacep-logo">
-        <p style="letter-spacing: 4px; color: var(--dorado); font-weight: 600;">PRESIDENTE AMACEP 2025-2027</p>
-        <p style="opacity: 0.6; font-size: 0.85rem; margin-top: 50px; font-weight: 200;">
-            © 2026 Marco Iván Cabrera Hernández. Todos los derechos reservados.<br>
-            Servicios de Alta Gama. Lima, Perú.
+        <img src="AMACEP.png" alt="AMACEP" class="amacep-logo">
+        <p style="letter-spacing: 3px; color: var(--dorado); font-weight: 600;">PRESIDENTE AMACEP 2025-2027</p>
+        <p style="opacity: 0.6; font-size: 0.85rem; margin-top: 50px;">
+            © 2026 Marco Iván Cabrera Hernández. Lima, Perú.
         </p>
     </footer>
 
