@@ -43,9 +43,10 @@
             justify-content: center; text-decoration: none; transition: 0.3s; box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
+        /* --- CONTENEDOR PRINCIPAL (RESTAURADO EFECTO VIDRIO AHUMADO) --- */
         .main-container {
             min-height: 100vh; padding: 140px 20px 60px 20px;
+            /* Degradado oscuro + Imagen de fondo */
             background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
             display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
         }
@@ -54,6 +55,7 @@
         .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.5; }
         .month-item.active { color: var(--dorado); border-bottom: 1px solid var(--dorado); opacity: 1; }
         
+        /* CAJA DEL CALENDARIO CON EFECTO BLUR */
         .calendar-box { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; border-radius: 4px; max-width: 1000px; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.5); box-sizing: border-box; }
 
         .title-cal { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
@@ -67,7 +69,7 @@
         .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
         .day.empty { border: none; cursor: default; }
 
-        /* Estilo para días con evento confirmado */
+        /* Estilo para días con evento confirmado (Base de datos) */
         .day.has-event {
             background: rgba(197, 160, 89, 0.2);
             border: 1px solid var(--dorado);
@@ -149,7 +151,7 @@
             <div id="eventos-lista-container"></div>
 
             <form id="galaForm">
-                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; letter-spacing: 1px; margin-bottom: 20px;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
+                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; letter-spacing: 1px; margin-bottom: 20px;">COMPLETE LOS DATOS PARA SOLICITAR PROTOCOLO:</p>
                 <input type="hidden" id="hiddenDate">
                 <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
                 <input type="text" id="f_dni" placeholder="DNI" required pattern="\d{8}" maxlength="8">
@@ -176,7 +178,8 @@
 
                 <select id="f_lugar" required>
                     <option value="" disabled selected>DISTRITO / CIUDAD</option>
-                    <option value="Miraflores">Miraflores</option><option value="San Isidro">San Isidro</option><option value="San Borja">San Borja</option><option value="Surco">Surco</option><option value="La Molina">La Molina</option><option value="PROVINCIA">FUERA DE LIMA / PROVINCIA</option>
+                    <option value="Miraflores">Miraflores</option><option value="San Isidro">San Isidro</option><option value="Surco">Surco</option><option value="La Molina">La Molina</option><option value="San Borja">San Borja</option><option value="Lima">Lima</option>
+                    <option value="PROVINCIA">FUERA DE LIMA / PROVINCIA</option>
                 </select>
 
                 <button type="button" class="btn-submit" onclick="enviarWhatsApp()">SOLICITAR PROTOCOLO</button>
@@ -185,22 +188,8 @@
     </div>
 
     <script>
-        // ==========================================
-        // BASE DE DATOS DE EVENTOS (Marco, aquí editas)
-        // Formato: "YYYY-MM-DD"
-        // ==========================================
-        const agendaConfirmada = {
-            "2026-03-28": [
-                { hora: "09:00 PM", titulo: "Quinceañero Yariana" },
-                { hora: "10:30 PM", titulo: "Quinceañero Franccesca" }
-            ],
-            "2026-04-04": [
-                { hora: "8:00 PM", titulo: "Quinceaños (R2)" }
-            ],
-            "2026-05-23": [
-                { hora: "Pendiente", titulo: "Boda Protocolar" }
-            ]
-        };
+        // BASE DE DATOS VACÍA PARA TU PRUEBA
+        const agendaConfirmada = {};
 
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         let currentMonth = new Date().getMonth(); 
@@ -227,39 +216,15 @@
                 const day = document.createElement('div');
                 day.className = 'day';
                 day.innerText = i;
-                const dateKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-                
-                if (agendaConfirmada[dateKey]) {
-                    day.classList.add('has-event');
-                }
-
-                day.onclick = () => openModal(i, currentMonth, currentYear, dateKey);
+                day.onclick = () => openModal(i, currentMonth, currentYear);
                 grid.appendChild(day);
             }
         }
 
-        function openModal(day, month, year, dateKey) {
+        function openModal(day, month, year) {
             const fullDate = `${day} de ${months[month]} de ${year}`;
             document.getElementById('modalDateTitle').innerText = fullDate.toUpperCase();
             document.getElementById('hiddenDate').value = fullDate;
-            
-            const listContainer = document.getElementById('eventos-lista-container');
-            listContainer.innerHTML = '';
-
-            if (agendaConfirmada[dateKey]) {
-                const header = document.createElement('p');
-                header.style = "color:var(--dorado); font-size:0.75rem; letter-spacing:2px; text-align:center; margin-bottom:15px; font-weight:bold;";
-                header.innerText = "FECHA CON RESERVAS ACTUALES:";
-                listContainer.appendChild(header);
-
-                agendaConfirmada[dateKey].forEach(ev => {
-                    const item = document.createElement('div');
-                    item.className = 'event-item';
-                    item.innerHTML = `<span class="event-time">${ev.hora}</span> ${ev.titulo.toUpperCase()}`;
-                    listContainer.appendChild(item);
-                });
-            }
-
             document.getElementById('bookingModal').style.display = 'flex';
         }
 
