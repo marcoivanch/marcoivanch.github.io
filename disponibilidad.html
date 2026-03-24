@@ -22,7 +22,6 @@
 
         body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
 
-        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
             padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.9);
@@ -33,20 +32,16 @@
         .nav-menu { display: flex; gap: 40px; }
         .nav-menu a { color: var(--blanco-marfil); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-menu a:hover { color: var(--dorado); }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
-        .hamburger span { width: 30px; height: 2px; background-color: var(--dorado); transition: 0.4s; }
 
-        /* --- WHATSAPP --- */
         .wsp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: var(--whatsapp-verde);
             color: #FFF; border-radius: 50px; text-align: center; z-index: 2000; display: flex; align-items: center;
             justify-content: center; text-decoration: none; transition: 0.3s; box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
         }
 
-        /* --- CONTENEDOR PRINCIPAL (RESTAURADO EFECTO VIDRIO AHUMADO) --- */
+        /* --- EFECTO VIDRIO AHUMADO RESTAURADO --- */
         .main-container {
             min-height: 100vh; padding: 140px 20px 60px 20px;
-            /* Degradado oscuro + Imagen de fondo */
             background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
             display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
         }
@@ -55,7 +50,6 @@
         .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.5; }
         .month-item.active { color: var(--dorado); border-bottom: 1px solid var(--dorado); opacity: 1; }
         
-        /* CAJA DEL CALENDARIO CON EFECTO BLUR */
         .calendar-box { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; border-radius: 4px; max-width: 1000px; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.5); box-sizing: border-box; }
 
         .title-cal { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
@@ -69,31 +63,10 @@
         .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
         .day.empty { border: none; cursor: default; }
 
-        /* Estilo para días con evento confirmado (Base de datos) */
-        .day.has-event {
-            background: rgba(197, 160, 89, 0.2);
-            border: 1px solid var(--dorado);
-            font-weight: bold;
-        }
-        .day.has-event::after {
-            content: ''; position: absolute; bottom: 6px; width: 6px; height: 6px; background: var(--dorado); border-radius: 50%;
-        }
-
         /* --- MODAL --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
         .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto; }
         
-        .event-item {
-            background: rgba(197, 160, 89, 0.1);
-            border-left: 3px solid var(--dorado);
-            padding: 12px;
-            margin-bottom: 10px;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            color: var(--blanco-marfil);
-        }
-        .event-time { color: var(--dorado); font-weight: bold; margin-right: 10px; }
-
         input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; font-family: var(--font-sans); outline: none; border-radius: 0; display: block; box-sizing: border-box; }
         select option { background-color: #1a1a1a !important; color: var(--dorado) !important; }
 
@@ -104,9 +77,7 @@
 
         @media (max-width: 768px) {
             header { padding: 20px 30px; }
-            .hamburger { display: flex; }
-            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: rgba(15, 15, 15, 0.95); width: 100%; text-align: center; transition: 0.3s; padding: 40px 0; gap: 30px; border-bottom: 1px solid var(--dorado); }
-            .nav-menu.active { left: 0; }
+            .nav-menu { display: none; } /* Simplificado para la prueba */
             .calendar-box { padding: 20px 10px; }
             .calendar-grid { gap: 5px; }
         }
@@ -116,17 +87,12 @@
 
     <header>
         <a href="index.html" class="logo">Marco Iván Cabrera</a>
-        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-        <nav class="nav-menu" id="navMenu">
-            <a href="index.html#servicios" onclick="toggleMenu()">Servicios</a>
-            <a href="disponibilidad.html" onclick="toggleMenu()">Disponibilidad</a>
+        <nav class="nav-menu">
+            <a href="index.html#servicios">Servicios</a>
+            <a href="disponibilidad.html">Disponibilidad</a>
             <a href="https://wa.me/51930046681">Reservas</a>
         </nav>
     </header>
-
-    <a href="https://wa.me/51930046681" class="wsp-float" target="_blank">
-        <svg fill="#fff" width="35px" height="35px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
 
     <div class="main-container">
         <nav class="month-nav" id="monthNav"></nav>
@@ -136,10 +102,11 @@
             <div id="calendarTitle" class="current-month-display"></div>
             <div class="calendar-grid" id="calendarGrid"></div>
         </div>
+        
         <div id="thanksSection" class="calendar-box" style="display:none; text-align:center;">
             <h2 style="color: var(--dorado); font-family: var(--font-serif);">¡MENSAJE LISTO!</h2>
             <p>Se ha generado su solicitud de protocolo.</p>
-            <a href="index.html" class="btn-submit" style="display:inline-block; text-decoration:none;">VOLVER</a>
+            <a href="disponibilidad.html" class="btn-submit" style="display:inline-block; text-decoration:none; margin-top:20px;">VOLVER</a>
         </div>
     </div>
 
@@ -148,10 +115,8 @@
             <span onclick="closeModal()" style="position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer;">&times;</span>
             <h2 id="modalDateTitle" style="font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 2px; margin-bottom: 20px;">FECHA</h2>
             
-            <div id="eventos-lista-container"></div>
-
             <form id="galaForm">
-                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; letter-spacing: 1px; margin-bottom: 20px;">COMPLETE LOS DATOS PARA SOLICITAR PROTOCOLO:</p>
+                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; letter-spacing: 1px; margin-bottom: 20px;">COMPLETE LOS DATOS PARA SU SOLICITUD:</p>
                 <input type="hidden" id="hiddenDate">
                 <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
                 <input type="text" id="f_dni" placeholder="DNI" required pattern="\d{8}" maxlength="8">
@@ -178,7 +143,45 @@
 
                 <select id="f_lugar" required>
                     <option value="" disabled selected>DISTRITO / CIUDAD</option>
-                    <option value="Miraflores">Miraflores</option><option value="San Isidro">San Isidro</option><option value="Surco">Surco</option><option value="La Molina">La Molina</option><option value="San Borja">San Borja</option><option value="Lima">Lima</option>
+                    <optgroup label="LIMA TOP / CENTRO">
+                        <option value="Miraflores">Miraflores</option>
+                        <option value="San Isidro">San Isidro</option>
+                        <option value="San Borja">San Borja</option>
+                        <option value="Santiago de Surco">Santiago de Surco</option>
+                        <option value="La Molina">La Molina</option>
+                        <option value="Barranco">Barranco</option>
+                        <option value="Jesús María">Jesús María</option>
+                        <option value="Lince">Lince</option>
+                        <option value="Magdalena del Mar">Magdalena del Mar</option>
+                        <option value="Pueblo Libre">Pueblo Libre</option>
+                        <option value="San Miguel">San Miguel</option>
+                        <option value="Cercado de Lima">Cercado de Lima</option>
+                    </optgroup>
+                    <optgroup label="LIMA NORTE / SUR / ESTE">
+                        <option value="Los Olivos">Los Olivos</option>
+                        <option value="San Martín de Porres">San Martín de Porres</option>
+                        <option value="Comas">Comas</option>
+                        <option value="Independencia">Independencia</option>
+                        <option value="Carabayllo">Carabayllo</option>
+                        <option value="Puente Piedra">Puente Piedra</option>
+                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                        <option value="Ate / Vitarte">Ate / Vitarte</option>
+                        <option value="Santa Anita">Santa Anita</option>
+                        <option value="Chorrillos">Chorrillos</option>
+                        <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                        <option value="Villa El Salvador">Villa El Salvador</option>
+                        <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                        <option value="Lurín">Lurín</option>
+                        <option value="Pachacámac">Pachacámac</option>
+                    </optgroup>
+                    <optgroup label="CALLAO">
+                        <option value="Callao Cercado">Callao Cercado</option>
+                        <option value="La Punta">La Punta</option>
+                        <option value="Bellavista">Bellavista</option>
+                        <option value="La Perla">La Perla</option>
+                        <option value="Carmen de la Legua">Carmen de la Legua</option>
+                        <option value="Ventanilla">Ventanilla</option>
+                    </optgroup>
                     <option value="PROVINCIA">FUERA DE LIMA / PROVINCIA</option>
                 </select>
 
@@ -188,14 +191,11 @@
     </div>
 
     <script>
-        // BASE DE DATOS VACÍA PARA TU PRUEBA
-        const agendaConfirmada = {};
+        const agendaConfirmada = {}; // Vacío para tu prueba
 
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         let currentMonth = new Date().getMonth(); 
         const currentYear = 2026;
-
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
 
         function renderCalendar() {
             const grid = document.getElementById('calendarGrid');
@@ -233,8 +233,17 @@
         function enviarWhatsApp() {
             const form = document.getElementById('galaForm');
             if(!form.reportValidity()) return;
-            const msg = `*SOLICITUD DE PROTOCOLO*%0A*CLIENTE:* ${document.getElementById('f_nombre').value.toUpperCase()}%0A*DNI:* ${document.getElementById('f_dni').value}%0A*EVENTO:* ${document.getElementById('f_evento').value}%0A*FECHA:* ${document.getElementById('hiddenDate').value}%0A*HORA:* ${document.getElementById('f_hh').value}:${document.getElementById('f_mm').value} ${document.getElementById('f_ampm').value}%0A*LUGAR:* ${document.getElementById('f_lugar').value}`;
+
+            const msg = `*SOLICITUD DE PROTOCOLO*%0A` +
+                        `*CLIENTE:* ${document.getElementById('f_nombre').value.toUpperCase()}%0A` +
+                        `*DNI:* ${document.getElementById('f_dni').value}%0A` +
+                        `*EVENTO:* ${document.getElementById('f_evento').value}%0A` +
+                        `*FECHA:* ${document.getElementById('hiddenDate').value}%0A` +
+                        `*HORA:* ${document.getElementById('f_hh').value}:${document.getElementById('f_mm').value} ${document.getElementById('f_ampm').value}%0A` +
+                        `*LUGAR:* ${document.getElementById('f_lugar').value}`;
+            
             window.open(`https://api.whatsapp.com/send?phone=51930046681&text=${msg}`, '_blank');
+            
             closeModal();
             document.getElementById('calendarArea').style.display = 'none';
             document.getElementById('thanksSection').style.display = 'block';
