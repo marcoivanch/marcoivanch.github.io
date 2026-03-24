@@ -14,9 +14,7 @@
             --dorado: #c5a059;
             --oscuro: #0f0f0f;
             --blanco-marfil: #fdfcfb;
-            --whatsapp-verde: #25d366;
             --font-serif: 'Cinzel', serif;
-            --font-cursive: 'Great Vibes', cursive;
             --font-sans: 'Montserrat', sans-serif;
         }
 
@@ -56,15 +54,14 @@
         .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
         .day.empty { border: none; cursor: default; }
         
-        /* Días Ocupados */
-        .day.ocupado { background: rgba(255, 0, 0, 0.1); color: #444; cursor: not-allowed; border: 1px solid rgba(197, 160, 89, 0.05); }
+        /* Ocupado: Color oscuro y candado */
+        .day.ocupado { background: rgba(0, 0, 0, 0.8); color: #444; cursor: not-allowed; border: 1px solid rgba(197, 160, 89, 0.05); }
 
-        /* MODAL RESTAURADO */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
         .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto; }
         
         input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; font-family: var(--font-sans); outline: none; border-radius: 0; display: block; box-sizing: border-box; }
-        select option { background-color: #1a1a1a !important; color: var(--dorado) !important; }
+        select option { background-color: #1a1a1a; color: var(--dorado); }
 
         .time-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; justify-content: center; }
         .time-box { text-align: center; width: 60px !important; margin-bottom: 0; }
@@ -74,7 +71,6 @@
         @media (max-width: 768px) {
             header { padding: 20px 30px; }
             .nav-menu { display: none; }
-            .calendar-box { padding: 20px 10px; }
         }
     </style>
 </head>
@@ -99,8 +95,8 @@
         </div>
         
         <div id="thanksSection" class="calendar-box" style="display:none; text-align:center;">
-            <h2 style="color: var(--dorado); font-family: var(--font-serif);">¡MENSAJE LISTO!</h2>
-            <p>Se ha generado su solicitud de protocolo.</p>
+            <h2 style="color: var(--dorado); font-family: var(--font-serif);">¡SOLICITUD ENVIADA!</h2>
+            <p>Se ha generado su mensaje de protocolo.</p>
             <a href="disponibilidad.html" class="btn-submit" style="display:inline-block; text-decoration:none; margin-top:20px;">VOLVER</a>
         </div>
     </div>
@@ -108,10 +104,10 @@
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-content">
             <span onclick="closeModal()" style="position: absolute; top: 15px; right: 20px; color: var(--dorado); font-size: 30px; cursor: pointer;">&times;</span>
-            <h2 id="modalDateTitle" style="font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 2px; margin-bottom: 20px;">FECHA</h2>
+            <h2 id="modalDateTitle" style="font-family: var(--font-serif); color: var(--dorado); text-align: center; margin-bottom: 20px;">FECHA</h2>
             
             <form id="galaForm">
-                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; letter-spacing: 1px; margin-bottom: 20px;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
+                <p style="font-size: 0.7rem; color: var(--dorado); text-align: center; margin-bottom: 20px;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
                 <input type="hidden" id="hiddenDate">
                 <input type="text" id="f_nombre" placeholder="NOMBRE COMPLETO" required>
                 <input type="text" id="f_dni" placeholder="DNI" required pattern="\d{8}" maxlength="8">
@@ -124,8 +120,6 @@
                     <option value="Bautizo">Bautizo</option>
                     <option value="Cumpleaños">Cumpleaños</option>
                     <option value="Institucional">Institucional</option>
-                    <option value="Académico">Académico</option>
-                    <option value="Otro">Otro</option>
                 </select>
 
                 <div class="time-row">
@@ -142,42 +136,10 @@
                         <option value="Miraflores">Miraflores</option>
                         <option value="San Isidro">San Isidro</option>
                         <option value="San Borja">San Borja</option>
-                        <option value="Santiago de Surco">Santiago de Surco</option>
-                        <option value="La Molina">La Molina</option>
-                        <option value="Barranco">Barranco</option>
-                        <option value="Jesús María">Jesús María</option>
-                        <option value="Lince">Lince</option>
-                        <option value="Magdalena del Mar">Magdalena del Mar</option>
-                        <option value="Pueblo Libre">Pueblo Libre</option>
-                        <option value="San Miguel">San Miguel</option>
-                        <option value="Cercado de Lima">Cercado de Lima</option>
+                        <option value="Surco">Surco</option>
+                        <option value="Cercado">Cercado de Lima</option>
                     </optgroup>
-                    <optgroup label="LIMA NORTE / SUR / ESTE">
-                        <option value="Los Olivos">Los Olivos</option>
-                        <option value="San Martín de Porres">San Martín de Porres</option>
-                        <option value="Comas">Comas</option>
-                        <option value="Independencia">Independencia</option>
-                        <option value="Carabayllo">Carabayllo</option>
-                        <option value="Puente Piedra">Puente Piedra</option>
-                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
-                        <option value="Ate / Vitarte">Ate / Vitarte</option>
-                        <option value="Santa Anita">Santa Anita</option>
-                        <option value="Chorrillos">Chorrillos</option>
-                        <option value="San Juan de Miraflores">San Juan de Miraflores</option>
-                        <option value="Villa El Salvador">Villa El Salvador</option>
-                        <option value="Villa María del Triunfo">Villa María del Triunfo</option>
-                        <option value="Lurín">Lurín</option>
-                        <option value="Pachacámac">Pachacámac</option>
-                    </optgroup>
-                    <optgroup label="CALLAO">
-                        <option value="Callao Cercado">Callao Cercado</option>
-                        <option value="La Punta">La Punta</option>
-                        <option value="Bellavista">Bellavista</option>
-                        <option value="La Perla">La Perla</option>
-                        <option value="Carmen de la Legua">Carmen de la Legua</option>
-                        <option value="Ventanilla">Ventanilla</option>
-                    </optgroup>
-                    <option value="PROVINCIA">FUERA DE LIMA / PROVINCIA</option>
+                    <option value="PROVINCIA">FUERA DE LIMA</option>
                 </select>
 
                 <button type="button" class="btn-submit" onclick="enviarWhatsApp()">SOLICITAR PROTOCOLO</button>
@@ -186,7 +148,8 @@
     </div>
 
     <script>
-        const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tkOM-tiHFRw-TNHTZhxuSrStliuttBixgihOFj/pub?output=csv';
+        // TU NUEVO ENLACE CSV
+        const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tk0M-tiHFRw-TNHTZhxuSrStliuttBixgihxOFj/pub?output=csv';
         
         const agendaConfirmada = {}; 
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
@@ -202,11 +165,14 @@
                     const cols = fila.split(',');
                     if (cols[0]) {
                         const p = cols[0].trim().split('-');
-                        if(p.length === 3) agendaConfirmada[`${p[2].padStart(2,'0')}/${p[1].padStart(2,'0')}/${p[0]}`] = true;
+                        if(p.length === 3) {
+                            const fechaKey = `${p[2].padStart(2,'0')}/${p[1].padStart(2,'0')}/${p[0]}`;
+                            agendaConfirmada[fechaKey] = true;
+                        }
                     }
                 });
                 renderCalendar(); 
-            } catch (e) { console.error("Error"); }
+            } catch (e) { console.error("Error al leer Excel"); renderCalendar(); }
         }
 
         function renderCalendar() {
@@ -233,7 +199,7 @@
                 
                 if (agendaConfirmada[fechaKey]) {
                     day.innerText += ' 🔒';
-                    day.onclick = () => alert('Fecha reservada.');
+                    day.onclick = () => alert('Fecha reservada protocolarmente.');
                 } else {
                     day.onclick = () => openModal(i, currentMonth, currentYear);
                 }
@@ -253,7 +219,6 @@
         function enviarWhatsApp() {
             const msg = `*SOLICITUD DE PROTOCOLO*%0A` +
                         `*CLIENTE:* ${document.getElementById('f_nombre').value.toUpperCase()}%0A` +
-                        `*DNI:* ${document.getElementById('f_dni').value}%0A` +
                         `*EVENTO:* ${document.getElementById('f_evento').value}%0A` +
                         `*FECHA:* ${document.getElementById('hiddenDate').value}%0A` +
                         `*HORA:* ${document.getElementById('f_hh').value}:${document.getElementById('f_mm').value} ${document.getElementById('f_ampm').value}%0A` +
