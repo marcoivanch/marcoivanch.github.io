@@ -11,96 +11,121 @@
     <style>
         :root {
             --dorado: #c5a059;
-            --oscuro: #0f0f0f;
+            --oscuro-puro: #0a0a0a;
             --blanco-marfil: #fdfcfb;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
 
-        body, html {
-            margin: 0; padding: 0; height: 100%;
-            background-color: var(--oscuro);
-            font-family: var(--font-sans);
-            color: var(--blanco-marfil);
-        }
+        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro-puro); font-family: var(--font-sans); color: var(--blanco-marfil); }
 
-        /* --- FONDO CON LA IMAGEN EDITADA --- */
+        /* --- FONDO DINÁMICO (EFECTO REVELADO) --- */
         .main-container {
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 40px 20px; box-sizing: border-box;
+            filter: grayscale(100%);
+            transition: filter 1.2s ease, background 1.2s ease;
+            display: flex; flex-direction: column; align-items: center; padding: 40px 20px; box-sizing: border-box;
         }
 
-        /* --- CONTENEDOR DEL CALENDARIO --- */
+        /* Al pasar el mouse, el fondo cobra vida */
+        .main-container:hover {
+            filter: grayscale(0%);
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
+        }
+
+        /* --- NAVEGACIÓN DE MESES --- */
+        .month-nav {
+            display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; justify-content: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3); padding-bottom: 15px;
+        }
+        .month-item {
+            color: #777; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: 0.3s; padding: 5px 10px;
+        }
+        .month-item.active { color: var(--dorado); border: 1px solid var(--dorado); font-weight: bold; }
+        .month-item:hover:not(.active) { color: var(--blanco-marfil); }
+
+        /* --- PANEL DE CRISTAL --- */
         .calendar-box {
-            background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--dorado);
-            padding: 40px; border-radius: 4px;
-            max-width: 900px; width: 100%;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            background: rgba(10, 10, 10, 0.75); /* Transparencia equilibrada */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 50px; border-radius: 2px;
+            max-width: 950px; width: 100%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
 
-        h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.5rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 3px; }
-        .subtitle { font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; color: #aaa; margin-bottom: 30px; border-left: 2px solid var(--dorado); padding-left: 15px; }
+        h1 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
+        .subtitle { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; margin-top: 10px; }
 
-        .month-label { font-family: var(--font-serif); font-size: 1.5rem; color: var(--dorado); margin-bottom: 20px; text-align: center; }
-
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-        .day-header { font-weight: bold; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 10px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+        .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 15px; opacity: 0.8; }
         
         .day {
-            aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(197, 160, 89, 0.3); cursor: pointer; transition: 0.4s; font-size: 1rem;
+            aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; transition: 0.4s; font-size: 0.9rem; position: relative;
         }
 
-        .day.available { color: var(--dorado); border-color: var(--dorado); }
-        .day.available:hover { background: var(--dorado); color: var(--oscuro); font-weight: bold; box-shadow: 0 0 15px var(--dorado); }
+        .day.available { color: var(--dorado); border-color: rgba(197, 160, 89, 0.4); }
+        .day.available:hover { background: var(--dorado); color: var(--oscuro-puro); font-weight: bold; box-shadow: 0 0 20px rgba(197, 160, 89, 0.5); border-color: var(--dorado); }
         
-        .day.booked { opacity: 0.2; cursor: not-allowed; background: rgba(255,255,255,0.05); color: #555; }
+        .day.booked { opacity: 0.2; cursor: not-allowed; background: rgba(255,255,255,0.02); color: #444; }
 
-        /* Botón Volver */
-        .btn-back {
-            margin-top: 30px; text-decoration: none; color: #aaa; font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid transparent; transition: 0.3s;
-        }
-        .btn-back:hover { color: var(--dorado); border-bottom: 1px solid var(--dorado); }
+        .btn-back { margin-top: 40px; text-decoration: none; color: #666; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; transition: 0.3s; }
+        .btn-back:hover { color: var(--dorado); }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .calendar-box { padding: 20px; }
-            .day { font-size: 0.8rem; }
+            .calendar-box { padding: 25px; }
+            .day { aspect-ratio: 1 / 1; font-size: 0.75rem; }
+            h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-container">
+        <nav class="month-nav">
+            <a href="#" class="month-item">Ene</a>
+            <a href="#" class="month-item">Feb</a>
+            <a href="#" class="month-item active">Mar</a>
+            <a href="#" class="month-item">Abr</a>
+            <a href="#" class="month-item">May</a>
+            <a href="#" class="month-item">Jun</a>
+            <a href="#" class="month-item">Jul</a>
+            <a href="#" class="month-item">Ago</a>
+            <a href="#" class="month-item">Sep</a>
+            <a href="#" class="month-item">Oct</a>
+            <a href="#" class="month-item">Nov</a>
+            <a href="#" class="month-item">Dic</a>
+        </nav>
+
         <div class="calendar-box">
-            <h1>Calendario de Gala</h1>
-            <p class="subtitle">Gestión de Protocolo | Reservas Oficiales</p>
-            
-            <div class="month-label">MARZO 2026</div>
+            <h1>MARZO 2026</h1>
+            <p class="subtitle">Agenda Oficial | Gestión de Protocolo</p>
 
             <div class="calendar-grid">
                 <div class="day-header">Lun</div><div class="day-header">Mar</div><div class="day-header">Mié</div><div class="day-header">Jue</div><div class="day-header">Vie</div><div class="day-header">Sáb</div><div class="day-header">Dom</div>
                 
-                <div class="day booked">1</div>
+                <div class="day booked">--</div> <div class="day booked">--</div>
+                <div class="day booked">--</div>
+                <div class="day booked">--</div>
+                <div class="day booked">--</div>
+                <div class="day booked">--</div>
+                <div class="day available">1</div>
+                
                 <div class="day available">2</div><div class="day available">3</div><div class="day available">4</div><div class="day available">5</div><div class="day available">6</div><div class="day available">7</div><div class="day available">8</div>
                 <div class="day booked">9</div><div class="day available">10</div><div class="day available">11</div><div class="day available">12</div><div class="day available">13</div><div class="day available">14</div><div class="day available">15</div>
                 <div class="day available">16</div><div class="day available">17</div><div class="day available">18</div><div class="day available">19</div><div class="day available">20</div><div class="day booked">21</div><div class="day available">22</div>
                 <div class="day available">23</div><div class="day available">24</div><div class="day available">25</div><div class="day available">26</div><div class="day available">27</div><div class="day available">28</div><div class="day available">29</div>
                 <div class="day available">30</div><div class="day available">31</div>
             </div>
-            
-            <div style="margin-top: 25px; text-align: center; font-size: 0.75rem; color: #888;">
-                * Seleccione una fecha en <span style="color: var(--dorado);">Dorado</span> para iniciar el proceso de reserva.
-            </div>
         </div>
 
-        <a href="index.html" class="btn-back">← Volver al Portal Principal</a>
+        <a href="index.html" class="btn-back">← Regresar al Portal</a>
     </div>
 
 </body>
