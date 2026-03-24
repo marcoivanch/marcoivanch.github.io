@@ -60,21 +60,17 @@
         .form-row { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; flex-wrap: wrap; }
         input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; font-size: 0.85rem; outline: none; border-radius: 0; box-sizing: border-box; }
         
-        /* CORRECCIÓN MENÚS ESCRITORIO */
         select option { background-color: #0a0a0a !important; color: var(--dorado) !important; }
 
-        /* RELOJ FIJO */
         .time-input-container { display: flex; align-items: center; gap: 5px; color: var(--dorado); font-weight: 700; background: rgba(197, 160, 89, 0.05); padding: 5px; }
         .time-box { width: 45px !important; text-align: center; padding: 8px 2px !important; border-bottom: 1px solid var(--dorado) !important; }
 
         .btn-submit { background: var(--dorado); color: var(--oscuro-puro); border: none; padding: 15px; width: 100%; font-family: var(--font-serif); font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: 0.3s; margin-top: 20px; text-transform: uppercase; }
         .btn-submit:hover { background: var(--blanco-marfil); transform: translateY(-3px); }
 
-        /* SECCIÓN AGRADECIMIENTO */
         #thanksSection { display: none; text-align: center; }
         .sec-photo { width: 180px; height: 180px; border-radius: 50%; border: 2px solid var(--dorado); margin-bottom: 25px; object-fit: cover; }
 
-        /* RESPONSIVE MÓVIL */
         @media (max-width: 768px) {
             .main-container { padding: 20px 10px; }
             h1 { font-size: 1.5rem; letter-spacing: 3px; }
@@ -162,14 +158,8 @@
     </div>
 
     <script>
-        const reservas = {
-            "2026-03-06": "Cumpleaños F. 10 pm / San Borja",
-            "2026-03-07": "Cumpleaños LN. 10 pm / Miraflores",
-            "2026-03-14": "Quinceaños 10 pm / La Molina",
-            "2026-03-21": "Quinto L. 10:30 pm / San Isidro",
-            "2026-03-28": "Quinto Y. 9:00 pm / (E). Protocolo",
-            "2026-05-23": "Bodas de Oro 8 pm / Surco"
-        };
+        // SECCIÓN LIMPIA: RESERVAS ELIMINADAS
+        const reservas = {}; 
 
         const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         let currentMonth = new Date().getMonth(); 
