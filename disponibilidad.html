@@ -7,242 +7,176 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --dorado: #c5a059;
             --oscuro: #0f0f0f;
-            --blanco-marfil: #fdfcfb;
-            --whatsapp-verde: #25d366;
+            --blanco: #fdfcfb;
             --font-serif: 'Cinzel', serif;
-            --font-cursive: 'Great Vibes', cursive;
             --font-sans: 'Montserrat', sans-serif;
         }
 
-        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco-marfil); overflow-x: hidden; }
+        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco); overflow-x: hidden; }
 
-        /* --- HEADER RESTAURADO --- */
         header {
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.9);
+            padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
 
-        .logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
+        .logo { font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
         .nav-menu { display: flex; gap: 40px; }
-        .nav-menu a { color: var(--blanco-marfil); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-menu a { color: var(--blanco); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-menu a:hover { color: var(--dorado); }
-        
+
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
-        .hamburger span { width: 30px; height: 2px; background-color: var(--dorado); transition: 0.4s; }
+        .hamburger span { width: 30px; height: 2px; background-color: var(--dorado); }
 
-        /* --- WHATSAPP FLOTANTE RESTAURADO --- */
-        .wsp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: var(--whatsapp-verde);
-            color: #FFF; border-radius: 50px; text-align: center; z-index: 2000; display: flex; align-items: center;
-            justify-content: center; text-decoration: none; transition: 0.3s; box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
-        }
-
-        /* --- CONTENEDOR VIDRIO AHUMADO --- */
         .main-container {
-            min-height: 100vh; padding: 140px 20px 60px 20px;
+            min-height: 100vh; padding: 140px 20px 60px;
             background: linear-gradient(rgba(15,15,15,0.85), rgba(15,15,15,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed;
-            display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .month-nav { display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 20px; width: 100%; max-width: 1000px; }
-        .month-item { color: var(--blanco-marfil); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; padding: 8px 12px; cursor: pointer; opacity: 0.5; }
-        .month-item.active { color: var(--dorado); border-bottom: 1px solid var(--dorado); opacity: 1; }
+        .calendar-box { background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.25); padding: 40px; border-radius: 4px; max-width: 900px; width: 100%; box-sizing: border-box; }
+
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-top: 20px; }
+        .day-header { text-align: center; color: var(--dorado); font-size: 0.75rem; font-weight: bold; padding-bottom: 15px; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
         
-        .calendar-box { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; border-radius: 4px; max-width: 1000px; width: 100%; box-shadow: 0 30px 60px rgba(0,0,0,0.5); box-sizing: border-box; }
+        .day { aspect-ratio: 1.2; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(197,160,89,0.1); cursor: pointer; color: var(--dorado); transition: 0.3s; font-size: 1rem; position: relative; }
+        .day.occupied { background: rgba(197, 160, 89, 0.25); border: 1px solid var(--dorado); font-weight: bold; }
+        .day.occupied::after { content: '•'; font-size: 1.5rem; position: absolute; bottom: 2px; }
+        .day:hover { background: var(--dorado); color: var(--oscuro); }
 
-        .title-cal { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin: 0; text-transform: uppercase; letter-spacing: 5px; text-align: center; }
-        .subtitle { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: #888; text-align: center; margin-bottom: 40px; }
-        .current-month-display { font-family: var(--font-serif); font-size: 1.6rem; color: var(--dorado); text-align: center; margin-bottom: 30px; letter-spacing: 3px; }
-
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-        .day-header { font-weight: 600; color: var(--dorado); text-align: center; font-size: 0.7rem; text-transform: uppercase; padding-bottom: 15px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 40px; width: 100%; max-width: 450px; position: relative; }
         
-        .day { aspect-ratio: 1.2 / 1; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197, 160, 89, 0.15); cursor: pointer; transition: 0.3s; color: var(--dorado); font-size: 1rem; position: relative; }
-        .day:hover { background: var(--dorado); color: var(--oscuro); font-weight: 600; }
-        .day.has-event { background: rgba(197, 160, 89, 0.3); border: 2px solid var(--dorado); font-weight: bold; }
-        .day.has-event::after { content: ''; position: absolute; bottom: 5px; width: 6px; height: 6px; background: var(--dorado); border-radius: 50%; }
-
-        /* --- MODALES --- */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
-        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 30px; width: 100%; max-width: 500px; position: relative; max-height: 90vh; overflow-y: auto; }
-        
-        .event-item { background: rgba(197, 160, 89, 0.1); border-left: 3px solid var(--dorado); padding: 12px; margin-bottom: 10px; font-size: 0.85rem; color: var(--blanco-marfil); }
-        
-        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.4); padding: 12px; color: var(--blanco-marfil); width: 100%; margin-bottom: 15px; font-family: var(--font-sans); outline: none; border-radius: 0; display: block; box-sizing: border-box; }
-        select option { background-color: #1a1a1a !important; color: var(--dorado) !important; }
-
-        .btn-submit { background: var(--dorado); color: var(--oscuro); border: none; padding: 18px; width: 100%; font-family: var(--font-serif); font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: 0.3s; text-transform: uppercase; margin-top: 10px; }
-
-        /* ACCESO OCULTO */
-        .admin-trigger { margin-top: 40px; opacity: 0.05; font-size: 0.6rem; cursor: pointer; color: var(--dorado); letter-spacing: 2px; }
+        input, select { background: transparent; border: none; border-bottom: 1px solid var(--dorado); padding: 12px; color: var(--blanco); width: 100%; margin-bottom: 20px; font-family: var(--font-sans); }
+        .btn-send { background: var(--dorado); color: var(--oscuro); border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
 
         @media (max-width: 768px) {
             header { padding: 20px 30px; }
+            .nav-menu { display: none; }
             .hamburger { display: flex; }
-            .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: rgba(15, 15, 15, 0.95); width: 100%; text-align: center; transition: 0.3s; padding: 40px 0; gap: 30px; border-bottom: 1px solid var(--dorado); }
-            .nav-menu.active { left: 0; }
-            .calendar-box { padding: 20px 10px; }
+            .nav-menu.active { display: flex; position: fixed; top: 70px; left: 0; width: 100%; flex-direction: column; background: rgba(15,15,15,0.98); padding: 40px 0; border-bottom: 1px solid var(--dorado); }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo">Marco Iván Cabrera</a>
-        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-        <nav class="nav-menu" id="navMenu">
-            <a href="index.html#servicios" onclick="toggleMenu()">Servicios</a>
-            <a href="disponibilidad.html" onclick="toggleMenu()">Disponibilidad</a>
-            <a href="https://wa.me/51930046681">Reservas</a>
-        </nav>
-    </header>
+<header>
+    <a href="index.html" class="logo">MARCO IVÁN CABRERA</a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav class="nav-menu" id="navMenu">
+        <a href="index.html">Servicios</a>
+        <a href="disponibilidad.html">Disponibilidad</a>
+        <a href="https://wa.me/51930046681">Reservas</a>
+    </nav>
+</header>
 
-    <a href="https://wa.me/51930046681" class="wsp-float" target="_blank">
-        <svg fill="#fff" width="35px" height="35px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
-
-    <div class="main-container">
-        <nav class="month-nav" id="monthNav"></nav>
-        <div id="calendarArea" class="calendar-box">
-            <h1 class="title-cal">Agenda de Gala</h1>
-            <p class="subtitle">Disponibilidad Protocolar | Marco Iván Cabrera</p>
-            <div id="calendarTitle" class="current-month-display"></div>
-            <div class="calendar-grid" id="calendarGrid"></div>
-        </div>
-        <div class="admin-trigger" onclick="activarModoMaestro()">[ ACCESO PRIVADO ]</div>
+<div class="main-container">
+    <div class="calendar-box">
+        <h2 id="mesTitulo" style="font-family: var(--font-serif); color: var(--dorado); text-align: center; letter-spacing: 4px; margin: 0 0 30px; text-transform: uppercase;"></h2>
+        <div class="calendar-grid" id="calendarGrid"></div>
     </div>
+</div>
 
-    <div id="bookingModal" class="modal-overlay">
-        <div class="modal-content">
-            <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:var(--dorado); cursor:pointer; font-size:30px;">&times;</span>
-            <h2 id="modalDateTitle" style="font-family:var(--font-serif); color:var(--dorado); text-align:center; letter-spacing:2px;">FECHA</h2>
-            
-            <div id="eventos-lista-container"></div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeModal()" style="position:absolute; top:15px; right:20px; color:var(--dorado); cursor:pointer; font-size:30px;">&times;</span>
+        <h3 id="modalDate" style="font-family:var(--font-serif); color:var(--dorado); letter-spacing:2px; text-align:center;"></h3>
+        
+        <div id="eventStatus" style="margin-bottom: 20px;"></div>
 
-            <form id="galaForm">
-                <input type="hidden" id="hiddenDate">
-                <input type="text" id="f_nombre" placeholder="SU NOMBRE COMPLETO" required>
-                <select id="f_lugar" required>
-                    <option value="" disabled selected>DISTRITO DEL EVENTO</option>
-                    <option value="Miraflores">Miraflores</option><option value="San Isidro">San Isidro</option>
-                    <option value="Surco">Surco</option><option value="San Borja">San Borja</option>
-                    <option value="PROVINCIA">PROVINCIA</option>
-                </select>
-                <button type="button" class="btn-submit" onclick="enviarWhatsApp()">SOLICITAR PROTOCOLO</button>
-            </form>
-
-            <div id="adminPanel" style="display:none; border-top:1px solid var(--dorado); margin-top:20px; padding-top:20px;">
-                <p style="color:var(--dorado); font-size:0.7rem; text-align:center;">REGISTRO DE CONTRATO CONFIRMADO:</p>
-                <input type="text" id="a_cliente" placeholder="Nombre del Cliente">
-                <input type="text" id="a_hora" placeholder="Hora (ej: 08:30 PM)">
-                <button class="btn-submit" onclick="guardarContrato()">CONFIRMAR EN AGENDA</button>
-                <button style="background:#600; color:white; margin-top:10px;" class="btn-submit" onclick="limpiarDia()">BORRAR EVENTOS DEL DÍA</button>
-            </div>
-        </div>
+        <form id="wspForm">
+            <input type="text" id="c_nombre" placeholder="SU NOMBRE" required>
+            <select id="c_evento" required>
+                <option value="" disabled selected>TIPO DE EVENTO</option>
+                <option value="Matrimonio">Matrimonio</option>
+                <option value="Quinceaños">Quinceaños</option>
+                <option value="Corporativo">Protocolo / Corporativo</option>
+            </select>
+            <button type="button" class="btn-send" onclick="enviarSolicitud()">SOLICITAR DISPONIBILIDAD</button>
+        </form>
     </div>
+</div>
 
-    <script>
-        let agenda = JSON.parse(localStorage.getItem('agendaMaestro')) || {};
-        let modoMaestro = false;
+<script>
+    // PASO 3: AQUÍ PEGARÁS TU ENLACE DE GOOGLE SHEETS DESPUÉS
+    const SHEETS_CSV = 'TU_URL_DE_GOOGLE_SHEETS_AQUÍ';
+    let agendaData = {};
 
-        const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        let currentMonth = new Date().getMonth();
-        let currentYear = 2026;
+    function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
 
-        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
-
-        function renderCalendar() {
-            const grid = document.getElementById('calendarGrid');
-            grid.innerHTML = '';
-            document.getElementById('calendarTitle').innerText = `${months[currentMonth].toUpperCase()} ${currentYear}`;
-            
-            ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].forEach(h => {
-                grid.appendChild(Object.assign(document.createElement('div'), {className: 'day-header', innerText: h}));
+    async function loadAgenda() {
+        try {
+            const res = await fetch(SHEETS_CSV);
+            const text = await res.text();
+            const rows = text.split('\n').slice(1);
+            rows.forEach(r => {
+                const cols = r.split(',');
+                if(cols[0]) agendaData[cols[0].trim()] = { hora: cols[2], tipo: cols[3] };
             });
+            render();
+        } catch(e) { render(); }
+    }
 
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const startingPoint = (firstDay === 0) ? 6 : firstDay - 1;
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    function render() {
+        const grid = document.getElementById('calendarGrid');
+        grid.innerHTML = '';
+        const d = new Date();
+        const m = d.getMonth(), y = d.getFullYear();
+        const months = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+        document.getElementById('mesTitulo').innerText = `${months[m]} ${y}`;
 
-            for (let i = 0; i < startingPoint; i++) grid.appendChild(Object.assign(document.createElement('div'), {className: 'day empty'}));
+        ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].forEach(h => {
+            grid.innerHTML += `<div class="day-header">${h}</div>`;
+        });
 
-            for (let i = 1; i <= daysInMonth; i++) {
-                const day = document.createElement('div');
-                day.className = 'day';
-                day.innerText = i;
-                const key = `${currentYear}-${currentMonth+1}-${i}`;
-                if(agenda[key]) day.classList.add('has-event');
-                day.onclick = () => openModal(i, currentMonth, currentYear);
-                grid.appendChild(day);
-            }
+        const first = (new Date(y, m, 1).getDay() || 7) - 1;
+        const total = new Date(y, m + 1, 0).getDate();
+
+        for(let i=0; i<first; i++) grid.innerHTML += `<div class="day" style="border:none; cursor:default"></div>`;
+
+        for(let i=1; i<=total; i++) {
+            const key = `${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
+            const isOcup = agendaData[key];
+            const div = document.createElement('div');
+            div.className = `day ${isOcup ? 'occupied' : ''}`;
+            div.innerText = i;
+            div.onclick = () => openModal(i, months[m], y, isOcup);
+            grid.appendChild(div);
         }
+    }
 
-        function openModal(day, month, year) {
-            const key = `${year}-${month+1}-${day}`;
-            document.getElementById('modalDateTitle').innerText = `${day} DE ${months[month].toUpperCase()}`;
-            document.getElementById('hiddenDate').value = key;
-            
-            const container = document.getElementById('eventos-lista-container');
-            container.innerHTML = '';
-            if(agenda[key]) {
-                agenda[key].forEach(ev => {
-                    container.innerHTML += `<div class="event-item"><span style="color:var(--dorado); font-weight:bold;">${ev.hora}</span> | ${ev.cliente} (RESERVADO)</div>`;
-                });
-            }
-
-            document.getElementById('adminPanel').style.display = modoMaestro ? 'block' : 'none';
-            document.getElementById('galaForm').style.display = modoMaestro ? 'none' : 'block';
-            document.getElementById('bookingModal').style.display = 'flex';
+    function openModal(day, month, year, data) {
+        const fechaTexto = `${day} ${month} ${year}`;
+        document.getElementById('modalDate').innerText = fechaTexto;
+        const status = document.getElementById('eventStatus');
+        
+        if(data) {
+            status.innerHTML = `<p style="color:var(--dorado); text-align:center; font-weight:bold;">ESTA FECHA YA TIENE UN EVENTO A LAS ${data.hora}.<br><small style="color:#888;">Aún puede consultar por otros horarios.</small></p>`;
+        } else {
+            status.innerHTML = `<p style="color:#25d366; text-align:center;">FECHA DISPONIBLE</p>`;
         }
+        document.getElementById('modal').style.display = 'flex';
+    }
 
-        function activarModoMaestro() {
-            if(prompt("Clave de Acceso:") === "1234") {
-                modoMaestro = true;
-                alert("Modo Maestro Activado. Seleccione un día para registrar contratos.");
-            }
-        }
+    function enviarSolicitud() {
+        const nombre = document.getElementById('c_nombre').value;
+        const evento = document.getElementById('c_evento').value;
+        const fecha = document.getElementById('modalDate').innerText;
+        
+        if(!nombre || !evento) { alert("Por favor complete su nombre y el tipo de evento."); return; }
 
-        function guardarContrato() {
-            const key = document.getElementById('hiddenDate').value;
-            const ev = { cliente: document.getElementById('a_cliente').value, hora: document.getElementById('a_hora').value };
-            if(!agenda[key]) agenda[key] = [];
-            agenda[key].push(ev);
-            localStorage.setItem('agendaMaestro', JSON.stringify(agenda));
-            renderCalendar(); closeModal();
-        }
+        const mensaje = `Hola Marco, mi nombre es ${nombre}. Deseo consultar disponibilidad para un ${evento} el día ${fecha}.`;
+        window.open(`https://wa.me/51930046681?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
 
-        function limpiarDia() {
-            delete agenda[document.getElementById('hiddenDate').value];
-            localStorage.setItem('agendaMaestro', JSON.stringify(agenda));
-            renderCalendar(); closeModal();
-        }
-
-        function enviarWhatsApp() {
-            const msg = `*SOLICITUD DE PROTOCOLO*%0A*CLIENTE:* ${document.getElementById('f_nombre').value.toUpperCase()}%0A*FECHA:* ${document.getElementById('modalDateTitle').innerText}`;
-            window.open(`https://api.whatsapp.com/send?phone=51930046681&text=${msg}`, '_blank');
-        }
-
-        function renderMonthNav() {
-            const nav = document.getElementById('monthNav');
-            nav.innerHTML = '';
-            months.forEach((m, i) => {
-                const btn = document.createElement('a');
-                btn.className = `month-item ${i === currentMonth ? 'active' : ''}`;
-                btn.innerText = m.substring(0, 3);
-                btn.onclick = () => { currentMonth = i; renderCalendar(); renderMonthNav(); };
-                nav.appendChild(btn);
-            });
-        }
-
-        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
-        renderMonthNav(); renderCalendar();
-    </script>
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+    loadAgenda();
+</script>
 </body>
 </html>
