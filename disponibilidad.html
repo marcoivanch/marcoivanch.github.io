@@ -74,12 +74,12 @@
         .ev-client { font-style: italic; color: #eee; display: block; margin: 2px 0; }
         .ev-type { text-transform: uppercase; font-weight: bold; color: #ccc; font-size: 0.6rem; }
 
-        /* MODAL DE RESERVA - AJUSTE PARA MÓVILES */
+        /* MODAL DE RESERVA */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { 
             background: var(--oscuro); border: 1px solid var(--dorado); padding: 40px; width: 90%; max-width: 550px; 
             position: relative; box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
-            max-height: 90vh; overflow-y: auto; /* Ajuste vital para scroll en celular */
+            max-height: 90vh; overflow-y: auto;
         }
         
         input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.5); padding: 12px 5px; color: #fff; width: 100%; margin-bottom: 20px; outline: none; font-size: 0.9rem; font-family: var(--font-sans); }
@@ -98,10 +98,15 @@
             header { padding: 20px; }
             .logo { font-size: 0.9rem; letter-spacing: 1px; }
             .calendar-grid { gap: 4px; }
-            .day { min-height: 80px; padding: 4px; }
-            .day span.day-number { font-size: 0.9rem; }
-            .event-item { font-size: 0.45rem; padding: 2px; }
-            .ev-time { font-size: 0.5rem; }
+            .day { min-height: 75px; padding: 4px; position: relative; }
+            .day span.day-number { font-size: 0.85rem; }
+            
+            /* Ajuste visual para no quebrar el calendario en móvil */
+            .ev-client, .ev-type { display: none; }
+            .event-item { background: transparent; border-left: none; padding: 0; text-align: center; box-shadow: none; }
+            .ev-time { font-size: 0.45rem; margin-top: 2px; }
+            .day.ocupado::after { content: "•"; color: var(--dorado); font-size: 1.2rem; position: absolute; bottom: 5px; }
+
             #monthDisplay { font-size: 1.1rem; letter-spacing: 2px; }
             .calendar-nav button { padding: 8px 12px; font-size: 0.7rem; }
             .modal-content { padding: 30px 20px; }
@@ -205,7 +210,6 @@
     </div>
 
     <script>
-        // Cambiado a dinámico para que no tengas que actualizarlo a mano cada mes
         let currentDate = new Date(); 
         const agenda = {};
         const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tk0M-tiHFRw-TNHTZhxuSrStliuttBixgihxOFj/pub?output=csv';
