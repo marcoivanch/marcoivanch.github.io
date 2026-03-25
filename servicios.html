@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Exclusivos | Marco Iván Cabrera Hernández</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root { 
+            --dorado: #c5a059; 
+            --oscuro: #0f0f0f; 
+            --blanco: #fdfcfb; 
+            --font-serif: 'Cinzel', serif; 
+            --font-sans: 'Montserrat', sans-serif; 
+        }
+
+        body, html { margin: 0; padding: 0; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco); overflow-x: hidden; }
+
+        /* HEADER & NAV (Igual al resto del sitio para consistencia) */
+        header { 
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
+            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
+        }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
+        
+        .hamburger { cursor: pointer; z-index: 1001; }
+        .hamburger div { width: 30px; height: 2px; background: var(--dorado); margin: 7px; transition: 0.4s; }
+
+        .nav-menu { 
+            position: fixed; top: 0; right: -100%; height: 100vh; width: 300px; background: var(--oscuro); 
+            display: flex; flex-direction: column; padding: 100px 40px; border-left: 1px solid var(--dorado); 
+            transition: 0.5s; z-index: 999; 
+        }
+        .nav-menu.active { right: 0; }
+        .nav-menu a { color: var(--blanco); text-decoration: none; margin: 20px 0; font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 2px; }
+
+        /* CONTENIDO DE SERVICIOS */
+        .hero-servicios {
+            height: 60vh;
+            background: linear-gradient(to bottom, rgba(15,15,15,0.4), var(--oscuro)), url('hero-servicios.jpg') center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px;
+        }
+        .hero-servicios h1 { font-family: var(--font-serif); font-size: 3.5rem; color: var(--dorado); letter-spacing: 10px; text-transform: uppercase; }
+
+        .servicios-container { max-width: 1200px; margin: -100px auto 100px; padding: 0 20px; position: relative; z-index: 2; }
+
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+
+        .card-servicio {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 50px 40px; transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .card-servicio:hover { border-color: var(--dorado); background: rgba(197, 160, 89, 0.05); transform: translateY(-10px); }
+        .card-servicio h2 { font-family: var(--font-serif); color: var(--dorado); font-size: 1.8rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .card-servicio p { line-height: 1.8; color: #ccc; font-weight: 200; }
+        .card-servicio ul { list-style: none; padding: 0; margin-top: 20px; }
+        .card-servicio ul li { padding: 8px 0; border-bottom: 1px solid rgba(197, 160, 89, 0.1); font-size: 0.9rem; color: var(--blanco); }
+        .card-servicio ul li::before { content: "• "; color: var(--dorado); }
+
+        /* SECCIÓN VALOR AGREGADO (EQUIPO) */
+        .equipo-section { background: #080808; padding: 100px 20px; text-align: center; border-top: 1px solid rgba(197, 160, 89, 0.2); }
+        .equipo-section h2 { font-family: var(--font-serif); color: var(--dorado); font-size: 2.2rem; margin-bottom: 40px; letter-spacing: 5px; }
+        .equipo-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .miembro { font-size: 0.8rem; letter-spacing: 2px; color: var(--dorado); text-transform: uppercase; border: 1px solid rgba(197, 160, 89, 0.3); padding: 20px; }
+
+        .cta-footer { text-align: center; padding: 100px 20px; }
+        .btn-dorado { 
+            display: inline-block; padding: 20px 50px; border: 1px solid var(--dorado); color: var(--dorado); 
+            text-decoration: none; font-family: var(--font-serif); letter-spacing: 3px; transition: 0.4s;
+        }
+        .btn-dorado:hover { background: var(--dorado); color: var(--oscuro); }
+
+        @media (max-width: 800px) {
+            header { padding: 20px; }
+            .hero-servicios h1 { font-size: 2rem; letter-spacing: 5px; }
+            .grid-servicios { grid-template-columns: 1fr; }
+            .card-servicio { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div><div></div><div></div>
+        </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+        <a href="index.html">INICIO</a>
+        <a href="servicios.html" style="color:var(--dorado)">SERVICIOS</a>
+        <a href="disponibilidad.html">DISPONIBILIDAD</a>
+        <a href="contacto.html">CONTACTO</a>
+    </nav>
+
+    <section class="hero-servicios">
+        <h1>Excelencia & Protocolo</h1>
+    </section>
+
+    <div class="servicios-container">
+        <div class="grid-servicios">
+            <div class="card-servicio">
+                <h2>Bautizos & Quinceaños</h2>
+                <p>La transición a una nueva etapa merece una narrativa elegante. Nos encargamos de que cada momento cumpla con la solemnidad y la alegría que la familia espera.</p>
+                <ul>
+                    <li>Protocolo de ingreso y brindis</li>
+                    <li>Guion personalizado</li>
+                    <li>Coordinación de tiempos musicales</li>
+                </ul>
+            </div>
+
+            <div class="card-servicio">
+                <h2>Matrimonios de Gala</h2>
+                <p>No solo animamos, dirigimos la ceremonia para que los novios solo se preocupen de disfrutar. Manejamos el protocolo civil y religioso con distinción.</p>
+                <ul>
+                    <li>Maestría de ceremonias bilingüe</li>
+                    <li>Recepción y protocolo de cena</li>
+                    <li>Gestión de momentos críticos</li>
+                </ul>
+            </div>
+
+            <div class="card-servicio">
+                <h2>Eventos Corporativos</h2>
+                <p>Lanzamientos, aniversarios institucionales y cenas de gala donde la imagen de su empresa es lo más importante. Rigor y profesionalismo absoluto.</p>
+                <ul>
+                    <li>Presentación de autoridades</li>
+                    <li>Manejo de programas oficiales</li>
+                    <li>Soporte en comunicación técnica</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="equipo-section">
+        <h2>Soporte Multidisciplinario</h2>
+        <p style="margin-bottom: 50px; color: #888; max-width: 700px; margin-left: auto; margin-right: auto;">
+            Detrás de cada evento, contamos con un equipo técnico que garantiza la perfección estética y operativa de su protocolo.
+        </p>
+        <div class="equipo-grid">
+            <div class="miembro">Conservador</div>
+            <div class="miembro">Ing. Industrial</div>
+            <div class="miembro">Historiador</div>
+            <div class="miembro">Audiovisuales</div>
+        </div>
+    </section>
+
+    <div class="cta-footer">
+        <a href="disponibilidad.html" class="btn-dorado">CONSULTAR AGENDA</a>
+    </div>
+
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+    </script>
+</body>
+</html>
