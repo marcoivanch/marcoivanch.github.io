@@ -74,18 +74,22 @@
         .ev-client { font-style: italic; color: #eee; display: block; margin: 2px 0; }
         .ev-type { text-transform: uppercase; font-weight: bold; color: #ccc; font-size: 0.6rem; }
 
-        /* MODAL DE RESERVA */
+        /* MODAL DE RESERVA - AJUSTE PARA MÓVILES */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 2000; align-items: center; justify-content: center; }
-        .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 40px; width: 90%; max-width: 550px; position: relative; box-shadow: 0 0 50px rgba(197, 160, 89, 0.3); }
+        .modal-content { 
+            background: var(--oscuro); border: 1px solid var(--dorado); padding: 40px; width: 90%; max-width: 550px; 
+            position: relative; box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
+            max-height: 90vh; overflow-y: auto; /* Ajuste vital para scroll en celular */
+        }
         
         input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.5); padding: 12px 5px; color: #fff; width: 100%; margin-bottom: 20px; outline: none; font-size: 0.9rem; font-family: var(--font-sans); }
         select option { background: #1a1a1a; color: var(--dorado); }
         
-        /* ESTILO PARA FILA DE HORA */
+        /* HORA: SELECTORES LIMPIOS */
         .time-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 25px; color: var(--dorado); font-family: var(--font-serif); }
         .time-row label { font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; margin-right: 5px; }
-        .time-row select { width: auto; min-width: 60px; margin-bottom: 0; text-align: center; border-bottom: 1px solid var(--dorado); cursor: pointer; padding: 5px; }
-        .time-separator { font-size: 1.2rem; font-weight: bold; }
+        .time-row select { width: auto; min-width: 65px; margin-bottom: 0; text-align: center; border-bottom: 1px solid var(--dorado); cursor: pointer; padding: 5px; }
+        .time-separator { font-size: 1.2rem; font-weight: bold; padding: 0 2px; }
 
         .btn-reserva { background: var(--dorado); color: var(--oscuro); border: none; padding: 20px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; font-family: var(--font-serif); letter-spacing: 3px; font-size: 1.1rem; transition: 0.3s; margin-top: 10px; }
         .btn-reserva:hover { background: var(--blanco); }
@@ -147,8 +151,8 @@
                     <option value="Quinceaños">Quinceaños</option>
                     <option value="Matrimonio">Matrimonio</option>
                     <option value="Promociones">Promociones</option>
-                    <option value="Institucional/empresas">Institucional/Corporativo</option>
-                    <option value="Evento Corporativo">Otro</option>
+                    <option value="Institucional/Corporativo">Institucional/Corporativo</option>
+                    <option value="Otro">Otro</option>
                 </select>
 
                 <div class="time-row">
@@ -201,7 +205,8 @@
     </div>
 
     <script>
-        let currentDate = new Date(2026, 2, 1); 
+        // Cambiado a dinámico para que no tengas que actualizarlo a mano cada mes
+        let currentDate = new Date(); 
         const agenda = {};
         const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tk0M-tiHFRw-TNHTZhxuSrStliuttBixgihxOFj/pub?output=csv';
 
@@ -236,7 +241,7 @@
             const startPad = (firstDay === 0) ? 6 : firstDay - 1;
             const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
-            for(let i=0; i<startPad; i++) grid.innerHTML += `<div class="day-empty"></div>`;
+            for(let i=0; i<startPad; i++) grid.innerHTML += `<div></div>`;
 
             for(let d=1; d<=daysInMonth; d++) {
                 const fDada = `${d.toString().padStart(2,'0')}/${(currentDate.getMonth()+1).toString().padStart(2,'0')}/${currentDate.getFullYear()}`;
