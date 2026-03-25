@@ -20,7 +20,6 @@
 
         body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco); overflow-x: hidden; }
 
-        /* HEADER PREMIUM CON MENÚ HAMBURGUESA */
         header { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
             padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
@@ -40,7 +39,6 @@
         .nav-menu a { color: var(--blanco); text-decoration: none; margin: 20px 0; font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; }
         .nav-menu a:hover { color: var(--dorado); padding-left: 10px; }
 
-        /* CONTENEDOR DE CALENDARIO */
         .main-container { 
             min-height: 100vh; padding: 140px 10px 60px; 
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed; 
@@ -56,7 +54,6 @@
         .calendar-nav button:hover { background: var(--dorado); color: var(--oscuro); }
         #monthDisplay { font-family: var(--font-serif); font-size: 1.8rem; color: var(--dorado); letter-spacing: 5px; text-transform: uppercase; }
 
-        /* GRID RESPONSIVO QUE MANTIENE LAS 7 COLUMNAS */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
         .day-header { text-align: center; color: var(--dorado); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; padding-bottom: 15px; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
         
@@ -77,15 +74,22 @@
         .ev-client { font-style: italic; color: #eee; display: block; margin: 2px 0; }
         .ev-type { text-transform: uppercase; font-weight: bold; color: #ccc; font-size: 0.6rem; }
 
-        /* MODAL DE RESERVA COMPLETO */
+        /* MODAL DE RESERVA */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 40px; width: 90%; max-width: 550px; position: relative; box-shadow: 0 0 50px rgba(197, 160, 89, 0.3); }
         
-        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.5); padding: 15px; color: #fff; width: 100%; margin-bottom: 25px; outline: none; font-size: 1rem; }
+        input, select { background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.5); padding: 12px 5px; color: #fff; width: 100%; margin-bottom: 20px; outline: none; font-size: 0.9rem; font-family: var(--font-sans); }
         select option { background: #1a1a1a; color: var(--dorado); }
-        .btn-reserva { background: var(--dorado); color: var(--oscuro); border: none; padding: 20px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; font-family: var(--font-serif); letter-spacing: 3px; font-size: 1.1rem; }
+        
+        /* ESTILO PARA FILA DE HORA */
+        .time-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 25px; color: var(--dorado); font-family: var(--font-serif); }
+        .time-row label { font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; margin-right: 5px; }
+        .time-row select { width: auto; min-width: 60px; margin-bottom: 0; text-align: center; border-bottom: 1px solid var(--dorado); cursor: pointer; padding: 5px; }
+        .time-separator { font-size: 1.2rem; font-weight: bold; }
 
-        /* ADAPTACIÓN MÓVIL SIN PERDER LAS 7 COLUMNAS */
+        .btn-reserva { background: var(--dorado); color: var(--oscuro); border: none; padding: 20px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; font-family: var(--font-serif); letter-spacing: 3px; font-size: 1.1rem; transition: 0.3s; margin-top: 10px; }
+        .btn-reserva:hover { background: var(--blanco); }
+
         @media (max-width: 800px) {
             header { padding: 20px; }
             .logo { font-size: 0.9rem; letter-spacing: 1px; }
@@ -96,6 +100,7 @@
             .ev-time { font-size: 0.5rem; }
             #monthDisplay { font-size: 1.1rem; letter-spacing: 2px; }
             .calendar-nav button { padding: 8px 12px; font-size: 0.7rem; }
+            .modal-content { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -129,34 +134,74 @@
     <div id="reservaModal" class="modal">
         <div class="modal-content">
             <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; cursor:pointer; color:var(--dorado); font-size:30px;">&times;</span>
-            <h2 id="modalDate" style="color:var(--dorado); text-align:center; font-family:var(--font-serif); margin-bottom:25px;"></h2>
+            <h2 id="modalDate" style="color:var(--dorado); text-align:center; font-family:var(--font-serif); margin-bottom:5px;"></h2>
+            <p style="text-align:center; color:var(--dorado); font-size:0.65rem; letter-spacing:1px; margin-bottom:25px; opacity: 0.8;">PARA RESERVAR OTRA HORA, COMPLETE LOS DATOS:</p>
+            
             <form id="formWsp">
-                <input type="text" id="m_nombre" placeholder="NOMBRE Y APELLIDO" required>
-                <input type="tel" id="m_telefono" placeholder="TELÉFONO / WHATSAPP" required>
+                <input type="text" id="m_nombre" placeholder="NOMBRE COMPLETO" required>
+                <input type="text" id="m_dni" placeholder="DNI / CARNET EXT." required>
+                <input type="tel" id="m_telefono" placeholder="CELULAR / WHATSAPP" required>
+                
                 <select id="m_evento" required>
                     <option value="" disabled selected>TIPO DE EVENTO</option>
                     <option value="Quinceaños">Quinceaños</option>
                     <option value="Matrimonio">Matrimonio</option>
                     <option value="Protocolo Institucional">Protocolo Institucional</option>
                     <option value="Maestro de Ceremonias">Maestro de Ceremonias</option>
+                    <option value="Evento Corporativo">Evento Corporativo</option>
                 </select>
+
+                <div class="time-row">
+                    <label>HORA:</label>
+                    <select id="m_h_hora">
+                        <option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option>
+                        <option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option>
+                        <option value="09">09</option><option value="10" selected>10</option><option value="11">11</option><option value="12">12</option>
+                    </select>
+                    <span class="time-separator">:</span>
+                    <select id="m_h_min">
+                        <option value="00" selected>00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option>
+                    </select>
+                    <select id="m_h_ampm">
+                        <option value="AM">AM</option><option value="PM" selected>PM</option>
+                    </select>
+                </div>
+
                 <select id="m_distrito" required>
-                    <option value="" disabled selected>UBICACIÓN</option>
-                    <option value="Miraflores">Miraflores</option>
-                    <option value="San Isidro">San Isidro</option>
-                    <option value="Surco">Santiago de Surco</option>
-                    <option value="San Borja">San Borja</option>
-                    <option value="La Molina">La Molina</option>
-                    <option value="Los Olivos">Los Olivos</option>
-                    <option value="PROVINCIA">OTRA CIUDAD / PROVINCIA</option>
+                    <option value="" disabled selected>DISTRITO / CIUDAD</option>
+                    <optgroup label="LIMA METROPOLITANA">
+                        <option value="Ancón">Ancón</option><option value="Ate">Ate</option><option value="Barranco">Barranco</option>
+                        <option value="Breña">Breña</option><option value="Carabayllo">Carabayllo</option><option value="Chaclacayo">Chaclacayo</option>
+                        <option value="Chorrillos">Chorrillos</option><option value="Cieneguilla">Cieneguilla</option><option value="Comas">Comas</option>
+                        <option value="El Agustino">El Agustino</option><option value="Independencia">Independencia</option><option value="Jesús María">Jesús María</option>
+                        <option value="La Molina">La Molina</option><option value="La Victoria">La Victoria</option><option value="Lince">Lince</option>
+                        <option value="Los Olivos">Los Olivos</option><option value="Lurigancho-Chosica">Lurigancho-Chosica</option><option value="Lurín">Lurín</option>
+                        <option value="Magdalena del Mar">Magdalena del Mar</option><option value="Miraflores">Miraflores</option><option value="Pachacámac">Pachacámac</option>
+                        <option value="Pucusana">Pucusana</option><option value="Pueblo Libre">Pueblo Libre</option><option value="Puente Piedra">Puente Piedra</option>
+                        <option value="Punta Hermosa">Punta Hermosa</option><option value="Punta Negra">Punta Negra</option><option value="Rímac">Rímac</option>
+                        <option value="San Bartolo">San Bartolo</option><option value="San Borja">San Borja</option><option value="San Isidro">San Isidro</option>
+                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option><option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                        <option value="San Luis">San Luis</option><option value="San Martín de Porres">San Martín de Porres</option><option value="San Miguel">San Miguel</option>
+                        <option value="Santa Anita">Santa Anita</option><option value="Santa María del Mar">Santa María del Mar</option><option value="Santa Rosa">Santa Rosa</option>
+                        <option value="Santiago de Surco">Santiago de Surco</option><option value="Surquillo">Surquillo</option><option value="Villa El Salvador">Villa El Salvador</option>
+                        <option value="Villa María del Triunfo">Villa María del Triunfo</option><option value="Cercado de Lima">Cercado de Lima</option>
+                    </optgroup>
+                    <optgroup label="CALLAO">
+                        <option value="Callao Cercado">Callao Cercado</option><option value="Bellavista">Bellavista</option>
+                        <option value="Carmen de la Legua">Carmen de la Legua</option><option value="La Perla">La Perla</option>
+                        <option value="La Punta">La Punta</option><option value="Ventanilla">Ventanilla</option>
+                        <option value="Mi Perú">Mi Perú</option>
+                    </optgroup>
+                    <option value="Fuera de Lima">FUERA DE LIMA / PROVINCIA</option>
                 </select>
+
                 <button type="button" class="btn-reserva" onclick="enviarWsp()">Solicitar Protocolo</button>
             </form>
         </div>
     </div>
 
     <script>
-        let currentDate = new Date(2026, 2, 1); // Iniciamos en Marzo 2026
+        let currentDate = new Date(2026, 2, 1); 
         const agenda = {};
         const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT44vHcadOnZWmsp81vJEI096ECp-RgC7DcP2UW1tk0M-tiHFRw-TNHTZhxuSrStliuttBixgihxOFj/pub?output=csv';
 
@@ -224,21 +269,26 @@
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
         function openModal(d) { 
             const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-            document.getElementById('modalDate').innerText = `${d} de ${meses[currentDate.getMonth()]} de ${currentDate.getFullYear()}`;
+            document.getElementById('modalDate').innerText = `${d} DE ${meses[currentDate.getMonth()].toUpperCase()} DE ${currentDate.getFullYear()}`;
             document.getElementById('reservaModal').style.display = 'flex'; 
         }
         function closeModal() { document.getElementById('reservaModal').style.display = 'none'; }
         
         function enviarWsp() {
             const nombre = document.getElementById('m_nombre').value;
+            const dni = document.getElementById('m_dni').value;
             const telf = document.getElementById('m_telefono').value;
             const evento = document.getElementById('m_evento').value;
+            const h = document.getElementById('m_h_hora').value;
+            const m = document.getElementById('m_h_min').value;
+            const ampm = document.getElementById('m_h_ampm').value;
             const distrito = document.getElementById('m_distrito').value;
             const fecha = document.getElementById('modalDate').innerText;
 
-            if(!nombre || !evento || !distrito) { alert("Por favor complete los campos obligatorios."); return; }
+            if(!nombre || !dni || !evento || !distrito) { alert("Por favor complete los campos obligatorios."); return; }
 
-            const msg = `*RESERVA DE PROTOCOLO*%0A*FECHA:* ${fecha}%0A*CLIENTE:* ${nombre.toUpperCase()}%0A*TEL:* ${telf}%0A*EVENTO:* ${evento}%0A*DISTRITO:* ${distrito}`;
+            const horaFull = `${h}:${m} ${ampm}`;
+            const msg = `*SOLICITUD DE PROTOCOLO*%0A*FECHA:* ${fecha}%0A*HORA:* ${horaFull}%0A*CLIENTE:* ${nombre.toUpperCase()}%0A*DNI:* ${dni}%0A*TEL:* ${telf}%0A*EVENTO:* ${evento}%0A*DISTRITO:* ${distrito}`;
             window.open(`https://wa.me/51930046681?text=${msg}`, '_blank');
         }
 
