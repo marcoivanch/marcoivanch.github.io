@@ -38,28 +38,52 @@
         .nav-menu.active { right: 0; }
         .nav-menu a { color: var(--blanco); text-decoration: none; margin: 20px 0; font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 2px; }
 
-        .hero-servicios {
-            height: 50vh;
-            background: linear-gradient(to bottom, rgba(15,15,15,0.6), var(--oscuro)), url('Maestro Fondo Servicios.png') center/cover;
-            display: flex; align-items: center; justify-content: center; text-align: center;
+        /* FONDO PRINCIPAL CON LA FOTO DEL MAESTRO */
+        .main-container {
+            min-height: 100vh;
+            background-image: url('image_9.png'); /* Usa la foto proporcionada */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            padding-top: 100px; /* Espacio para el header fijo */
         }
-        .hero-servicios h1 { font-family: var(--font-serif); font-size: 3rem; color: var(--dorado); letter-spacing: 8px; text-transform: uppercase; }
 
-        .servicios-container { max-width: 1100px; margin: -60px auto 100px; padding: 0 20px; position: relative; z-index: 2; }
+        /* Overlay ligero sobre toda la foto para mejorar legibilidad del header */
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); /* Oscurecimiento sutil general */
+            z-index: 1;
+        }
+
+        .servicios-container { max-width: 1100px; margin: 40px auto 100px; padding: 0 20px; position: relative; z-index: 2; }
+        
+        .hero-title { text-align: center; margin-bottom: 60px; position: relative; z-index: 2; }
+        .hero-title h1 { font-family: var(--font-serif); font-size: 3rem; color: var(--dorado); letter-spacing: 8px; text-transform: uppercase; margin: 0; }
+
         .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
+        /* EFECTO DE POLARIZADO TENUE EN LAS TARJETAS */
         .card-servicio {
-            background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(197, 160, 89, 0.3);
-            padding: 40px; transition: 0.3s;
+            /* Fondo oscuro semitransparente */
+            background: rgba(15, 15, 15, 0.7); /* Oscuro tenue tipo polarizado */
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 40px; 
+            transition: 0.3s;
+            /* Efecto de desenfoque de fondo para el polarizado */
+            backdrop-filter: blur(5px); /* Desenfoque sutil para el efecto polarizado */
         }
-        .card-servicio:hover { border-color: var(--dorado); background: rgba(197, 160, 89, 0.05); }
+        
+        .card-servicio:hover { border-color: var(--dorado); background: rgba(197, 160, 89, 0.1); }
         .card-servicio h2 { font-family: var(--font-serif); color: var(--dorado); font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
         .card-servicio p { line-height: 1.7; color: #bbb; font-size: 0.95rem; margin-bottom: 20px; }
         .card-servicio ul { list-style: none; padding: 0; }
         .card-servicio ul li { padding: 10px 0; border-bottom: 1px solid rgba(197, 160, 89, 0.1); font-size: 0.85rem; color: var(--blanco); text-transform: uppercase; letter-spacing: 1px; }
         .card-servicio ul li::before { content: "› "; color: var(--dorado); font-weight: bold; }
 
-        .cta-box { text-align: center; padding: 80px 20px; border-top: 1px solid rgba(197, 160, 89, 0.1); }
+        .cta-box { text-align: center; padding: 80px 20px; border-top: 1px solid rgba(197, 160, 89, 0.1); position: relative; z-index: 2; }
         .btn-agenda { 
             display: inline-block; padding: 22px 60px; border: 1px solid var(--dorado); color: var(--dorado); 
             text-decoration: none; font-family: var(--font-serif); letter-spacing: 3px; font-weight: bold; transition: 0.4s;
@@ -68,8 +92,9 @@
 
         @media (max-width: 800px) {
             header { padding: 20px; }
-            .hero-servicios h1 { font-size: 1.8rem; }
-            .servicios-container { margin-top: -30px; }
+            .hero-title h1 { font-size: 1.8rem; }
+            .main-container { padding-top: 80px; }
+            .grid-servicios { grid-template-columns: 1fr; }
             .card-servicio { padding: 30px 20px; }
         }
     </style>
@@ -90,40 +115,42 @@
         <a href="contacto.html">CONTACTO</a>
     </nav>
 
-    <section class="hero-servicios">
-        <h1>Servicios de Protocolo</h1>
-    </section>
+    <div class="main-container">
+        <div class="hero-title">
+            <h1>Servicios de Protocolo</h1>
+        </div>
 
-    <div class="servicios-container">
-        <div class="grid-servicios">
-            <div class="card-servicio">
-                <h2>Bautizos & Quinceaños</h2>
-                <p>Dirección experta para eventos familiares que requieren una transición impecable entre la solemnidad y la celebración.</p>
-                <ul>
-                    <li>Protocolo de entrada</li>
-                    <li>Guion personalizado</li>
-                    <li>Brindis de honor</li>
-                </ul>
-            </div>
+        <div class="servicios-container">
+            <div class="grid-servicios">
+                <div class="card-servicio">
+                    <h2>Bautizos & Quinceaños</h2>
+                    <p>Dirección experta para eventos familiares que requieren una transición impecable entre la solemnidad y la celebración.</p>
+                    <ul>
+                        <li>Protocolo de entrada</li>
+                        <li>Guion personalizado</li>
+                        <li>Brindis de honor</li>
+                    </ul>
+                </div>
 
-            <div class="card-servicio">
-                <h2>Matrimonios</h2>
-                <p>Maestría de ceremonias dedicada a estructurar la recepción y momentos clave para que la fluidez sea absoluta.</p>
-                <ul>
-                    <li>Protocolo de recepción</li>
-                    <li>Corte de pastel y primer baile</li>
-                    <li>Gestión de programa</li>
-                </ul>
-            </div>
+                <div class="card-servicio">
+                    <h2>Matrimonios</h2>
+                    <p>Maestría de ceremonias dedicada a estructurar la recepción y momentos clave para que la fluidez sea absoluta.</p>
+                    <ul>
+                        <li>Protocolo de recepción</li>
+                        <li>Corte de pastel y primer baile</li>
+                        <li>Gestión de programa</li>
+                    </ul>
+                </div>
 
-            <div class="card-servicio">
-                <h2>Corporativos</h2>
-                <p>Eventos institucionales, conferencias y cenas de gala donde la sobriedad y el rigor protocolar son fundamentales.</p>
-                <ul>
-                    <li>Presentación de autoridades</li>
-                    <li>Lanzamiento de productos</li>
-                    <li>Maestría de ceremonias institucional</li>
-                </ul>
+                <div class="card-servicio">
+                    <h2>Corporativos</h2>
+                    <p>Eventos institucionales, conferencias y cenas de gala donde la sobriedad y el rigor protocolar son fundamentales.</p>
+                    <ul>
+                        <li>Presentación de autoridades</li>
+                        <li>Lanzamiento de productos</li>
+                        <li>Maestría de ceremonias institucional</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
