@@ -8,12 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root { 
             --dorado: #c5a059; 
             --oscuro: #0f0f0f; 
             --blanco: #fdfcfb; 
+            --whatsapp: #25d366;
             --font-serif: 'Cinzel', serif; 
             --font-sans: 'Montserrat', sans-serif; 
         }
@@ -26,20 +28,23 @@
             overflow-x: hidden; 
         }
 
+        /* --- NAVEGACIÓN --- */
         header { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
+            padding: 20px 5%; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
             backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
         }
 
-        .logo { font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 2px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
-        
-        .main-container {
-            padding: 140px 20px 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .logo { font-family: var(--font-serif); font-size: 1rem; letter-spacing: 2px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
+
+        .nav-menu { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+        .nav-menu a { color: var(--blanco); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
+        .nav-menu a:hover { color: var(--dorado); }
+
+        .hamburger { display: none; cursor: pointer; background: none; border: none; color: var(--dorado); font-size: 1.5rem; }
+
+        /* --- CONTENIDO --- */
+        .main-container { padding: 140px 20px 60px; display: flex; flex-direction: column; align-items: center; }
 
         .title-section h1 { 
             font-family: var(--font-serif); font-size: 2.5rem; color: var(--dorado); 
@@ -47,60 +52,43 @@
         }
 
         .photo-frame {
-            width: 100%;
-            max-width: 850px;
-            border: 1px solid var(--dorado);
-            padding: 15px;
-            background: #050505;
-            margin-bottom: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 100%; max-width: 850px; border: 1px solid var(--dorado); padding: 15px;
+            background: #050505; margin-bottom: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        .photo-frame img { width: 100%; height: auto; display: block; }
 
-        .photo-frame img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1100px; width: 100%; }
 
-        .grid-servicios { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; 
-            max-width: 1100px;
-            width: 100%;
-        }
-
-        .card {
-            background: rgba(20, 20, 20, 0.6);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 35px;
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-        }
-
+        .card { background: rgba(20, 20, 20, 0.6); border: 1px solid rgba(197, 160, 89, 0.2); padding: 35px; backdrop-filter: blur(10px); transition: 0.4s; }
         .card:hover { border-color: var(--dorado); transform: translateY(-5px); }
         .card h2 { font-family: var(--font-serif); color: var(--dorado); font-size: 1.3rem; margin-bottom: 15px; letter-spacing: 1px; }
         .card p { font-size: 0.9rem; line-height: 1.6; color: #ccc; margin-bottom: 20px; font-weight: 300; }
         .card ul { list-style: none; padding: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .card li { margin: 8px 0; color: var(--blanco); }
+        .card li { margin: 10px 0; color: var(--blanco); }
         .card li::before { content: "› "; color: var(--dorado); margin-right: 5px; }
 
-        .btn-solicitar {
-            margin-top: 60px;
-            padding: 20px 50px;
-            border: 1px solid var(--dorado);
-            color: var(--dorado);
+        /* --- BOTÓN WHATSAPP --- */
+        .btn-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--whatsapp);
+            color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 2000; transition: 0.3s;
             text-decoration: none;
-            font-family: var(--font-serif);
-            letter-spacing: 3px;
-            transition: 0.4s;
         }
+        .btn-whatsapp:hover { transform: scale(1.1); background-color: #128c7e; }
 
-        .btn-solicitar:hover { background: var(--dorado); color: var(--oscuro); }
-
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            header { padding: 20px 30px; }
-            .title-section h1 { font-size: 1.8rem; }
+            header { padding: 15px 25px; }
+            .nav-menu { 
+                display: none; position: absolute; top: 100%; left: 0; width: 100%; 
+                background: rgba(15, 15, 15, 0.98); flex-direction: column; padding: 30px; 
+                text-align: center; border-bottom: 1px solid var(--dorado);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { margin: 15px 0; }
+            .hamburger { display: block; }
+            .title-section h1 { font-size: 1.8rem; letter-spacing: 3px; }
         }
     </style>
 </head>
@@ -108,6 +96,15 @@
 
     <header>
         <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html" style="color:var(--dorado)">Servicios</a></li>
+            <li><a href="agenda.html">Mi Agenda</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
     </header>
 
     <div class="main-container">
@@ -116,43 +113,55 @@
         </div>
 
         <div class="photo-frame">
-            <img src="quince 2.jpg" alt="Marco Iván Cabrera - Maestro de Ceremonias">
+            <img src="quince 2.jpg" alt="Maestro de Ceremonias Marco Iván Cabrera">
         </div>
 
         <div class="grid-servicios">
             <div class="card">
                 <h2>Quinceaños & Bautizos</h2>
-                <p>Momentos de transición familiar que exigen una dirección elegante y respetuosa.</p>
+                <p>Momentos de transición familiar que exigen una dirección elegante, respetuosa y una atmósfera de distinción única.</p>
                 <ul>
-                    <li>Protocolo de Ingreso</li>
-                    <li>Guion Personalizado</li>
-                    <li>Brindis y Ceremonia Central</li>
+                    <li>Protocolo de ingreso</li>
+                    <li>Guion personalizado</li>
+                    <li>Brindis y ceremonia central</li>
                 </ul>
             </div>
 
             <div class="card">
                 <h2>Matrimonios</h2>
-                <p>La máxima expresión del protocolo civil y religioso. Gestión integral del tiempo.</p>
+                <p>La máxima expresión del protocolo civil y religioso. Gestionamos cada tiempo para que la pareja solo se dedique a disfrutar.</p>
                 <ul>
-                    <li>Recepción de Invitados</li>
-                    <li>Corte de Pastel y Protocolo</li>
-                    <li>Maestría de Ceremonia de Gala</li>
+                    <li>Recepción de invitados</li>
+                    <li>Corte de pastel y protocolo</li>
+                    <li>Maestría de ceremonia de gala</li>
                 </ul>
             </div>
 
             <div class="card">
                 <h2>Eventos Corporativos</h2>
-                <p>Sobriedad y rigor para lanzamientos y cenas donde la imagen de marca es prioridad.</p>
+                <p>Sobriedad y rigor para lanzamientos, aniversarios y cenas institucionales donde la imagen de su marca es prioridad.</p>
                 <ul>
-                    <li>Manejo de Programa Oficial</li>
-                    <li>Presentación de Autoridades</li>
-                    <li>Eventos de Alta Gama</li>
+                    <li>Manejo de programa oficial</li>
+                    <li>Presentación de autoridades</li>
+                    <li>Eventos de alta gama</li>
                 </ul>
             </div>
         </div>
-
-        <a href="contacto.html" class="btn-solicitar">SOLICITAR PROTOCOLO</a>
     </div>
+
+    <a href="https://wa.me/51930046681?text=Deseo%20solicitar%20información%20sobre%20sus%20servicios%20de%20protocolo" 
+       class="btn-whatsapp" 
+       target="_blank" 
+       rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
