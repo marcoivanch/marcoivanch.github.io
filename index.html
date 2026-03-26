@@ -6,19 +6,8 @@
     
     <title>Maestro de Ceremonias en Lima | Marco Iván Cabrera Hernández</title>
     <meta name="description" content="Marco Iván Cabrera Hernández, el mejor Maestro de Ceremonias en Lima. Protocolo de alta gama, eventos corporativos y bodas de lujo. Presidente de AMACEP.">
-    <meta name="keywords" content="Maestro de ceremonias, Maestro de ceremonias Lima, Maestro de ceremonias Perú, Protocolo eventos Lima, AMACEP">
+    <meta name="keywords" content="Maestro de ceremonias, Maestro de ceremonias Lima, Marco Iván Cabrera Hernández, AMACEP">
     <link rel="canonical" href="https://maestrodeceremonias.org.pe/" />
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Marco Iván Cabrera Hernández",
-      "jobTitle": "Presidente de AMACEP",
-      "url": "https://maestrodeceremonias.org.pe/",
-      "address": { "@type": "PostalAddress", "addressLocality": "Lima", "addressCountry": "PE" }
-    }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +18,6 @@
             --dorado: #c5a059;
             --oscuro: #0f0f0f;
             --blanco-marfil: #fdfcfb;
-            --whatsapp-verde: #25d366;
             --font-serif: 'Cinzel', serif;
             --font-cursive: 'Great Vibes', cursive;
             --font-sans: 'Montserrat', sans-serif;
@@ -52,7 +40,7 @@
         }
 
         .logo {
-            font-family: var(--font-serif); font-size: 1.2rem;
+            font-family: var(--font-serif); font-size: 1.1rem;
             letter-spacing: 3px; color: var(--dorado);
             text-transform: uppercase; text-decoration: none;
         }
@@ -60,67 +48,79 @@
         .nav-menu { display: flex; gap: 40px; }
         .nav-menu a {
             color: var(--blanco-marfil); text-decoration: none;
-            font-size: 0.85rem; text-transform: uppercase;
+            font-size: 0.8rem; text-transform: uppercase;
             letter-spacing: 2px; transition: 0.3s;
         }
         .nav-menu a:hover { color: var(--dorado); }
 
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
-        .hamburger span { width: 30px; height: 2px; background-color: var(--dorado); transition: 0.4s; }
-
         .hero {
             height: 100vh;
-            background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)), 
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), 
                         url('Maestro 0 Foto inicial.png') center/cover no-repeat;
             display: flex; align-items: center; padding: 0 10%;
         }
 
-        .hero-content { max-width: 850px; }
-        .hero-content h2 { font-family: var(--font-cursive); font-size: 4.2rem; color: var(--dorado); margin: 0 0 -15px 0; font-weight: 400; }
-        .hero-content h1 { font-family: var(--font-serif); font-size: 3.5rem; margin: 0; line-height: 1.1; letter-spacing: 2px; text-transform: uppercase; }
-        .tagline { font-size: 1.1rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 25px; color: #aaa; border-left: 2px solid var(--dorado); padding-left: 20px; }
+        .hero-content { max-width: 900px; }
+        
+        /* Estética solicitada por Marco */
+        .excelencia { 
+            font-family: var(--font-cursive); 
+            font-size: 4.5rem; 
+            color: var(--dorado); 
+            margin: 0; 
+            font-weight: 400; 
+        }
+        
+        .nombre-principal { 
+            font-family: var(--font-serif); 
+            font-size: 3.5rem; 
+            color: #FFFFFF; 
+            margin: 10px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 4px;
+            line-height: 1.1;
+        }
 
-        .btn-premium {
-            margin-top: 45px; padding: 22px 55px;
+        .linea-fina { 
+            width: 100%; 
+            height: 1px; 
+            background: rgba(197, 160, 89, 0.5); 
+            margin: 20px 0; 
+        }
+
+        .subtitulo-premium { 
+            font-size: 1.1rem; 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            color: var(--blanco-marfil); 
+            font-weight: 200;
+        }
+
+        .btn-reservas {
+            margin-top: 45px; padding: 20px 60px;
             background: transparent; color: var(--dorado);
             border: 1px solid var(--dorado); text-decoration: none;
             display: inline-block; font-family: var(--font-serif);
-            letter-spacing: 3px; transition: 0.5s;
+            letter-spacing: 4px; transition: 0.5s;
+            text-transform: uppercase;
         }
-        .btn-premium:hover { background: var(--dorado); color: var(--oscuro); box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
+        .btn-reservas:hover { background: var(--dorado); color: var(--oscuro); }
 
-        .wsp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-            background-color: var(--whatsapp-verde); color: #FFF; border-radius: 50px;
-            text-align: center; z-index: 2000; display: flex;
-            align-items: center; justify-content: center; text-decoration: none;
-            transition: 0.3s; box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
-        }
-
-        .editorial-section { padding: 120px 10%; background: var(--blanco-marfil); color: var(--oscuro); display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-        .editorial-img img { width: 100%; box-shadow: 30px 30px 0px var(--dorado); }
-        
+        .editorial-section { padding: 100px 10%; background: var(--blanco-marfil); color: var(--oscuro); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .editorial-img img { width: 100%; box-shadow: 20px 20px 0px var(--dorado); }
         .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 15px; }
-        .galeria-grid img { width: 100%; height: 550px; object-fit: cover; filter: grayscale(100%); transition: 0.8s ease-in-out; }
+        .galeria-grid img { width: 100%; height: 500px; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
         .galeria-grid img:hover { filter: grayscale(0%); }
 
-        footer { padding: 100px 10%; text-align: center; border-top: 1px solid #222; }
+        footer { padding: 80px 10%; text-align: center; border-top: 1px solid #222; }
 
-        /* AJUSTES MÓVILES CRÍTICOS */
         @media (max-width: 768px) {
-            header { padding: 20px 30px; }
-            .hamburger { display: flex; }
-            .nav-menu {
-                position: fixed; left: -100%; top: 70px; flex-direction: column; background: rgba(15, 15, 15, 0.95);
-                width: 100%; text-align: center; transition: 0.3s; padding: 40px 0; gap: 30px; border-bottom: 1px solid var(--dorado);
-            }
-            .nav-menu.active { left: 0; }
-            .hero { padding: 0 5%; align-items: center; justify-content: center; }
-            .hero-content { text-align: center; width: 100%; }
-            .hero-content h2 { font-size: 2.5rem; margin-bottom: 5px; white-space: nowrap; } /* Evita el salto de línea feo */
-            .hero-content h1 { font-size: 2.1rem; }
-            .tagline { font-size: 0.8rem; letter-spacing: 2px; padding-left: 0; border-left: none; }
-            .editorial-section { grid-template-columns: 1fr; padding: 60px 8%; text-align: center; }
+            header { padding: 20px; }
+            .nav-menu { display: none; }
+            .excelencia { font-size: 2.8rem; }
+            .nombre-principal { font-size: 1.8rem; }
+            .subtitulo-premium { font-size: 0.75rem; letter-spacing: 3px; }
+            .editorial-section { grid-template-columns: 1fr; text-align: center; }
             .galeria-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -128,70 +128,46 @@
 <body>
 
     <header>
-        <a href="index.html" class="logo">Marco Iván Cabrera</a>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
-        <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
+        <nav class="nav-menu">
             <a href="servicios.html">Servicios</a>
             <a href="disponibilidad.html">Disponibilidad</a>
             <a href="contacto.html">Reservas Online</a>
         </nav>
     </header>
 
-    <a href="https://wa.me/51930046681?text=Deseo%20información%20sobre%20sus%20servicios" class="wsp-float" target="_blank" aria-label="WhatsApp">
-        <svg fill="#fff" width="35px" height="35px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
-
     <section class="hero">
         <div class="hero-content">
-            <h2>Excelencia en cada palabra</h2>
-            <h1>Maestro de Ceremonias <br> en Lima</h1>
-            <p class="tagline">Marco Iván Cabrera Hernández | Protocolo de Alta Gama</p>
-            <a href="contacto.html" class="btn-premium">RESERVAR FECHA</a>
+            <p class="excelencia">Excelencia en cada palabra</p>
+            <h1 class="nombre-principal">MARCO IVÁN CABRERA HERNÁNDEZ</h1>
+            <div class="linea-fina"></div>
+            <p class="subtitulo-premium">MAESTRO DE CEREMONIAS PREMIUM | ALTA GAMA</p>
+            <a href="contacto.html" class="btn-reservas">RESERVAS</a>
         </div>
     </section>
 
     <section class="editorial-section">
         <div class="editorial-img">
-            <img src="Maestro C3 B.png" alt="Marco Iván Cabrera Hernández Maestro de Ceremonias en Lima">
+            <img src="Maestro C3 B.png" alt="Marco Iván Cabrera Hernández">
         </div>
         <div class="editorial-text">
-            <h3 style="font-family: var(--font-serif);">Garantía de Solemnidad en Perú</h3>
+            <h2 style="font-family: var(--font-serif); text-transform: uppercase;">Garantía de Solemnidad</h2>
             <p><strong>Licenciado en Arte y Magíster en Gestión Pública.</strong></p>
-            <p>Maestría de ceremonia que fusiona precisión técnica y elocuencia académica para eventos de alto nivel en Lima.</p>
-            <div style="font-family: var(--font-cursive); font-size: 2.4rem; color: var(--dorado); margin-top: 40px;">
-                "El éxito reside en el detalle."
-            </div>
+            <p>Protocolo que fusiona precisión técnica y elocuencia académica para los eventos más exclusivos de Lima.</p>
         </div>
     </section>
 
-    <section>
-        <div style="text-align: center; padding: 80px 10%;">
-            <h2 style="font-family: var(--font-serif); color: var(--dorado);">Protocolo Oficial</h2>
-            <p>Consultar disponibilidad para galas privadas y eventos institucionales en Lima.</p>
-        </div>
-        <div class="galeria-grid">
-            <img src="evento1.jpg" alt="Evento de gala en Lima">
-            <img src="Maestro 5.png" alt="Ceremonia oficial">
-            <img src="Maestro 6 Club de Leones B.png" alt="Protocolo Institucional">
-        </div>
+    <section class="galeria-grid">
+        <img src="evento1.jpg" alt="Evento 1">
+        <img src="Maestro 5.png" alt="Evento 2">
+        <img src="Maestro 6 Club de Leones B.png" alt="Evento 3">
     </section>
 
     <footer>
-        <img src="AMACEP.png" alt="Presidente AMACEP" style="height: 120px; margin-bottom: 20px;">
-        <p style="letter-spacing: 4px; color: var(--dorado); font-weight: 600;">PRESIDENTE AMACEP 2025-2027</p>
-        <p style="opacity: 0.6; font-size: 0.85rem; margin-top: 30px;">
-            © 2026 Marco Iván Cabrera Hernández - Maestro de Ceremonias Premium. Lima, Perú.
-        </p>
+        <img src="AMACEP.png" alt="AMACEP" style="height: 100px; margin-bottom: 20px;">
+        <p style="letter-spacing: 3px; color: var(--dorado); text-transform: uppercase;">Presidente AMACEP 2025-2027</p>
+        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 20px;">© 2026 Marco Iván Cabrera Hernández.</p>
     </footer>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('navMenu');
-            menu.classList.toggle('active');
-        }
-    </script>
 
 </body>
 </html>
