@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Marco Iván Cabrera Hernández</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root { 
+            --dorado: #c5a059; 
+            --oscuro: #0f0f0f; 
+            --blanco: #fdfcfb; 
+            --font-serif: 'Cinzel', serif; 
+            --font-sans: 'Montserrat', sans-serif;
+            --font-gala: 'Playfair Display', serif;
+        }
+
+        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco); overflow-x: hidden; }
+
+        header { 
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 25px 80px; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
+            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
+        }
+        .logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
+        
+        .hamburger { cursor: pointer; z-index: 1001; display: block; }
+        .hamburger div { width: 30px; height: 2px; background: var(--dorado); margin: 7px; transition: 0.4s; }
+
+        .nav-menu { 
+            position: fixed; top: 0; right: -100%; height: 100vh; width: 300px; background: var(--oscuro); 
+            display: flex; flex-direction: column; padding: 100px 40px; border-left: 1px solid var(--dorado); 
+            transition: 0.5s; z-index: 999; 
+        }
+        .nav-menu.active { right: 0; }
+        .nav-menu a { color: var(--blanco); text-decoration: none; margin: 20px 0; font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 2px; transition: 0.3s; }
+        .nav-menu a:hover { color: var(--dorado); padding-left: 10px; }
+
+        .main-container { 
+            min-height: 100vh; padding: 140px 20px 60px; 
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed; 
+            display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
+        }
+
+        .seccion-contacto { max-width: 1000px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 30px; }
+
+        .info-despacho h1 { font-family: var(--font-gala); color: var(--dorado); font-size: 3rem; font-style: italic; margin-bottom: 20px; }
+        .info-despacho p { line-height: 1.8; font-weight: 200; color: #ccc; margin-bottom: 30px; }
+        .dato-contacto { margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        .dato-contacto label { color: var(--dorado); font-family: var(--font-serif); font-size: 0.8rem; letter-spacing: 2px; display: block; width: 100px; }
+        .dato-contacto span { font-weight: 400; letter-spacing: 1px; }
+
+        .formulario-contacto { background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.3); padding: 40px; backdrop-filter: blur(10px); }
+        .formulario-contacto input, .formulario-contacto textarea { 
+            background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.5); 
+            width: 100%; padding: 15px 5px; color: #fff; margin-bottom: 25px; outline: none; font-family: var(--font-sans);
+        }
+        .formulario-contacto textarea { min-height: 100px; resize: none; }
+        
+        .btn-enviar { 
+            background: var(--dorado); color: var(--oscuro); border: none; width: 100%; padding: 20px; 
+            font-family: var(--font-serif); letter-spacing: 3px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .btn-enviar:hover { background: var(--blanco); }
+
+        @media (max-width: 850px) {
+            header { padding: 20px; }
+            .seccion-contacto { grid-template-columns: 1fr; }
+            .info-despacho h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<Cuerpo>
+    <header>
+        <a HFE="index.html" Clase="logo">Marco Iván Cabrera Hernández</a>
+        <div Clase="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+    </header>
+
+    <nav Clase="nav-menu" id="navMenu">
+        <a HFE="index.html">INICIO</a>
+        <a HFE="servicios.html">SERVICIOS</a>
+        <a HFE="disponibilidad.html">DISPONIBILIDAD</a>
+        <a HFE="contacto.html" Estilo="color:var(--dorado)">CONTACTO</a>
+    </nav>
+
+    <div Clase="main-container">
+        <div Clase="seccion-contacto">
+            <div Clase="info-despacho">
+                <h1>Contacto Profesional</h1>
+                <div Estilo="width: 60px; height: 1px; background: var(--dorado); margin-bottom: 30px;"></div>
+                <p>Para consultas sobre tasaciones de arte, peritajes técnicos o la dirección de protocolos oficiales, por favor utilice los canales formales detallados a continuación.</p>
+                
+                <div Clase="dato-contacto">
+                    <label>TELÉFONO</label>
+                    <span>+51 930 046 681</span>
+                </div>
+                <div Clase="dato-contacto">
+                    <label>EMAIL</label>
+                    <span>contacto@maestrodeceremonias.org.pe</span>
+                </div>
+                <div Clase="dato-contacto">
+                    <label>UBICACIÓN</label>
+                    <span>Lima, Perú</span>
+                </div>
+                
+                <p Estilo="margin-top: 50px; font-size: 0.8rem; letter-spacing: 1px;">
+                    <span Estilo="color: var(--dorado);">AMACEP</span><br>
+                    Asociación de Maestros de Ceremonias del Perú
+                </p>
+            </div>
+
+            <div Clase="formulario-contacto">
+                <form id="formContacto">
+                    <input type="text" id="c_nombre" placeholder="NOMBRE COMPLETO" required>
+                    <input type="email" id="c_email" placeholder="CORREO ELECTRÓNICO" required>
+                    <input type="text" id="c_asunto" placeholder="MOTIVO DE CONSULTA">
+                    <textarea id="c_mensaje" placeholder="DETALLE SU REQUERIMIENTO TÉCNICO O PROTOCOLAR" required></textarea>
+                    <button type="button" Clase="btn-enviar" onclick="enviarMensaje()">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <Guion>
+        Función toggleMenu() { 
+            documento.getElementById('navMenu').ClaseLista.toggle('active'); 
+        }
+
+        Función enviarMensaje() {
+            const nombre = documento.getElementById('c_nombre').value;
+            const asunto = documento.getElementById('c_asunto').value;
+            const mensaje = documento.getElementById('c_mensaje').value;
+            
+            if(!nombre || !mensaje) { 
+                alert("Por favor, complete los campos obligatorios."); 
+                return; 
+            }
+            
+            const texto = `*CONSULTA DESDE WEB*%0A*NOMBRE:* ${nombre.toUpperCase()}%0A*ASUNTO:* ${asunto}%0A*MENSAJE:* ${mensaje}`;
+            ventana.open(`https://wa.me/51930046681?text=${texto}`, '_blank');
+        }
+    </Guion>
+</Cuerpo>
+</html>
