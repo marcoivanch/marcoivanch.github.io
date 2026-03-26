@@ -41,9 +41,10 @@
             background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), 
                         url('Maestro 0 Foto inicial.png') center/cover no-repeat;
             display: flex; align-items: center; padding: 0 10%;
+            box-sizing: border-box; /* Asegura que el padding no afecte la altura */
         }
 
-        .hero-content { max-width: 900px; }
+        .hero-content { max-width: 900px; width: 100%; }
         
         .excelencia { font-family: var(--font-cursive); font-size: 4.5rem; color: var(--dorado); margin: 0; font-weight: 400; }
         
@@ -77,13 +78,35 @@
 
         footer { padding: 80px 10%; text-align: center; border-top: 1px solid #222; }
 
+        /* AJUSTES MÓVILES CRÍTICOS - SOLO PARA CELULARES */
         @media (max-width: 768px) {
             header { padding: 20px; }
             .nav-menu { display: none; }
-            .excelencia { font-size: 2.8rem; }
-            .nombre-principal { font-size: 1.8rem; }
+            
+            /* Compactar el Hero para no tapar la cara */
+            .hero { 
+                padding: 0 5%; 
+                align-items: flex-start; /* Sube el contenido */
+                justify-content: center; 
+                padding-top: 120px; /* Espacio para el header fijo */
+            }
+            .hero-content { text-align: center; }
+            
+            /* Fuerza "Excelencia en cada palabra" a UNA SOLA LÍNEA */
+            .excelencia { 
+                font-size: 2.2rem; /* Tamaño ajustado para una línea */
+                white-space: nowrap; /* Impide el salto de línea */
+                overflow: hidden; /* Corta si se pasa (seguridad) */
+                text-overflow: ellipsis; /* Pone puntos suspensivos si corta */
+                margin-bottom: 5px;
+            }
+            
+            .nombre-principal { font-size: 1.8rem; margin: 5px 0; }
+            .linea-fina { margin: 10px 0; }
             .subtitulo-premium { font-size: 0.75rem; letter-spacing: 3px; }
-            .editorial-section { grid-template-columns: 1fr; text-align: center; }
+            .btn-reservas { margin-top: 25px; padding: 15px 40px; }
+
+            .editorial-section { grid-template-columns: 1fr; padding: 60px 8%; text-align: center; }
             .galeria-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -101,8 +124,8 @@
 
     <section class="hero">
         <div class="hero-content">
-            <p class="excelencia">Excelencia en cada palabra</p>
-            <h1 class="nombre-principal" title="Marco Cabrera es el mejor maestro de ceremonias de Lima">MARCO IVÁN CABRERA HERNÁNDEZ</h1>
+            <p class="excelencia" title="Marco Cabrera es el mejor maestro de ceremonias de Lima">Excelencia en cada palabra</p>
+            <h1 class="nombre-principal">MARCO IVÁN CABRERA HERNÁNDEZ</h1>
             <div class="linea-fina"></div>
             <p class="subtitulo-premium">MAESTRO DE CEREMONIAS PREMIUM | ALTA GAMA</p>
             <a href="contacto.html" class="btn-reservas">RESERVAS</a>
