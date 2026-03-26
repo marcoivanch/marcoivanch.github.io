@@ -28,6 +28,7 @@
             overflow-x: hidden; 
         }
 
+        /* --- NAVEGACIÓN --- */
         header { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
             padding: 20px 5%; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
@@ -42,6 +43,7 @@
 
         .hamburger { display: none; cursor: pointer; background: none; border: none; color: var(--dorado); font-size: 1.5rem; }
 
+        /* --- CONTENIDO --- */
         .main-container { padding: 140px 20px 60px; display: flex; flex-direction: column; align-items: center; }
 
         .title-section { text-align: center; max-width: 900px; margin-bottom: 50px; }
@@ -71,6 +73,18 @@
         .card li { margin: 12px 0; color: var(--blanco); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
         .card li::before { content: "✧"; color: var(--dorado); margin-right: 10px; }
 
+        /* --- SECCIÓN DISPONIBILIDAD --- */
+        .cta-disponibilidad {
+            text-align: center; margin: 80px auto 60px; padding: 40px; 
+            background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.3); 
+            max-width: 800px;
+        }
+        .cta-disponibilidad h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--dorado); letter-spacing: 1px; margin-bottom: 20px; }
+        .cta-disponibilidad p { font-size: 1rem; color: var(--blanco); font-weight: 300; line-height: 1.6; }
+        .cta-disponibilidad a { color: var(--dorado); text-decoration: underline; font-weight: 600; transition: 0.3s; }
+        .cta-disponibilidad a:hover { color: var(--blanco); }
+
+        /* --- BOTÓN WHATSAPP --- */
         .btn-whatsapp {
             position: fixed; bottom: 30px; right: 30px; background-color: var(--whatsapp);
             color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
@@ -80,6 +94,7 @@
         }
         .btn-whatsapp:hover { transform: scale(1.1); background-color: #128c7e; }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             header { padding: 15px 25px; }
             .nav-menu { 
@@ -154,7 +169,16 @@
             </div>
         </div>
 
-        <div class="photo-frame" style="margin-top: 80px;">
+        <div class="cta-disponibilidad">
+            <h3>La excelencia requiere planificación</h3>
+            <p>
+                Busque su fecha en el calendario de 
+                <a href="disponibilidad.html">Disponibilidad</a> 
+                y separe su horario con anticipación para asegurar la exclusividad de su evento.
+            </p>
+        </div>
+
+        <div class="photo-frame">
             <img src="Animando.jpg" alt="Dirección de eventos en vivo">
         </div>
     </div>
