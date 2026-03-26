@@ -98,20 +98,20 @@
     <div class="main-container">
         <div class="seccion-contacto">
             <div class="info-despacho">
-                <h1>Contacto Profesional</h1>
+                <h1>Contacto de Gala</h1>
                 <div class="linea-decorativa"></div>
-                <p>Para consultas sobre tasaciones de obras de arte, peritajes técnicos de antigüedades o la dirección protocolar de eventos de alta jerarquía, por favor utilice los canales oficiales.</p>
+                <p>Para la organización y dirección protocolar de sus eventos institucionales, corporativos o sociales de alta distinción, por favor utilice nuestros canales oficiales.</p>
                 
                 <div class="dato-contacto">
-                    <label>TELÉFONO</label>
+                    <label>CELULAR / WHATSAPP</label>
                     <span>+51 930 046 681</span>
                 </div>
                 <div class="dato-contacto">
-                    <label>EMAIL DIRECTO</label>
+                    <label>EMAIL PROFESIONAL</label>
                     <span>contacto@maestrodeceremonias.org.pe</span>
                 </div>
                 <div class="dato-contacto">
-                    <label>DESPACHO</label>
+                    <label>SEDE</label>
                     <span>Lima, Perú</span>
                 </div>
                 
@@ -125,9 +125,9 @@
                 <form id="formContacto">
                     <input type="text" id="c_nombre" placeholder="NOMBRE COMPLETO" required>
                     <input type="email" id="c_email" placeholder="CORREO ELECTRÓNICO" required>
-                    <input type="text" id="c_asunto" placeholder="MOTIVO DE CONSULTA (TASACIÓN / PROTOCOLO)">
-                    <textarea id="c_mensaje" placeholder="DETALLE SU REQUERIMIENTO TÉCNICO" required></textarea>
-                    <button type="button" class="btn-enviar" onclick="enviarMensaje()">Enviar Mensaje</button>
+                    <input type="text" id="c_asunto" placeholder="TIPO DE PROTOCOLO">
+                    <textarea id="c_mensaje" placeholder="DETALLES DE SU EVENTO" required></textarea>
+                    <button type="button" class="btn-enviar" onclick="enviarMensaje()">Solicitar Protocolo</button>
                 </form>
             </div>
         </div>
@@ -148,7 +148,7 @@
                 return; 
             }
             
-            const texto = `*CONSULTA PROFESIONAL WEB*%0A*NOMBRE:* ${nombre.toUpperCase()}%0A*ASUNTO:* ${asunto}%0A*MENSAJE:* ${mensaje}`;
+            const texto = `*CONSULTA PROTOCOLAR WEB*%0A*NOMBRE:* ${nombre.toUpperCase()}%0A*TIPO:* ${asunto}%0A*MENSAJE:* ${mensaje}`;
             window.open(`https://wa.me/51930046681?text=${texto}`, '_blank');
         }
     </script>
