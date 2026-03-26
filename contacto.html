@@ -54,7 +54,8 @@
         
         .dato-contacto { margin-bottom: 30px; }
         .dato-contacto label { color: var(--dorado); font-family: var(--font-serif); font-size: 0.75rem; letter-spacing: 3px; display: block; margin-bottom: 8px; opacity: 0.8; }
-        .dato-contacto span { font-weight: 400; font-size: 1.1rem; letter-spacing: 1px; }
+        .dato-contacto span, .dato-contacto a { font-weight: 400; font-size: 1.1rem; letter-spacing: 1px; color: var(--blanco); text-decoration: none; transition: 0.3s; }
+        .dato-contacto a:hover { color: var(--dorado); }
 
         .formulario-contacto { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.2); padding: 50px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .formulario-contacto input, .formulario-contacto textarea { 
@@ -100,18 +101,18 @@
             <div class="info-despacho">
                 <h1>Contacto de Gala</h1>
                 <div class="linea-decorativa"></div>
-                <p>Para la organización y dirección protocolar de sus eventos institucionales, corporativos o sociales de alta distinción, por favor utilice nuestros canales oficiales.</p>
+                <p>Para la dirección protocolar de eventos institucionales y sociales de alta jerarquía, utilice nuestros canales directos. La excelencia en el protocolo no admite esperas.</p>
                 
                 <div class="dato-contacto">
-                    <label>CELULAR / WHATSAPP</label>
-                    <span>+51 930 046 681</span>
+                    <label>COMUNICACIÓN DIRECTA</label>
+                    <a href="https://wa.me/51930046681" target="_blank">+51 930 046 681</a>
                 </div>
                 <div class="dato-contacto">
-                    <label>EMAIL PROFESIONAL</label>
-                    <span>contacto@maestrodeceremonias.org.pe</span>
+                    <label>EMAIL CORPORATIVO</label>
+                    <a href="mailto:marcoivanbitel@gmail.com?subject=SOLICITUD%20DE%20PROTOCOLO%20DE%20GALA">marcoivanbitel@gmail.com</a>
                 </div>
                 <div class="dato-contacto">
-                    <label>SEDE</label>
+                    <label>SEDE CENTRAL</label>
                     <span>Lima, Perú</span>
                 </div>
                 
@@ -125,8 +126,8 @@
                 <form id="formContacto">
                     <input type="text" id="c_nombre" placeholder="NOMBRE COMPLETO" required>
                     <input type="email" id="c_email" placeholder="CORREO ELECTRÓNICO" required>
-                    <input type="text" id="c_asunto" placeholder="TIPO DE PROTOCOLO">
-                    <textarea id="c_mensaje" placeholder="DETALLES DE SU EVENTO" required></textarea>
+                    <input type="text" id="c_asunto" placeholder="TIPO DE EVENTO">
+                    <textarea id="c_mensaje" placeholder="DETALLES PROTOCOLARES" required></textarea>
                     <button type="button" class="btn-enviar" onclick="enviarMensaje()">Solicitar Protocolo</button>
                 </form>
             </div>
