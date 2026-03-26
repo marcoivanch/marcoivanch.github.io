@@ -14,6 +14,7 @@
             --dorado: #c5a059; 
             --oscuro: #0f0f0f; 
             --blanco: #fdfcfb; 
+            --whatsapp: #25d366;
             --font-serif: 'Cinzel', serif; 
             --font-sans: 'Montserrat', sans-serif;
             --font-gala: 'Playfair Display', serif;
@@ -47,111 +48,32 @@
         }
 
         .seccion-contacto { max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-
         .info-despacho h1 { font-family: var(--font-gala); color: var(--dorado); font-size: 3.5rem; font-style: italic; margin: 0 0 20px 0; letter-spacing: -1px; }
         .linea-decorativa { width: 80px; height: 1px; background: var(--dorado); margin-bottom: 35px; opacity: 0.6; }
         .info-despacho p { line-height: 2; font-weight: 200; color: #eee; margin-bottom: 40px; letter-spacing: 1px; font-size: 0.95rem; }
         
         .dato-contacto { margin-bottom: 30px; }
         .dato-contacto label { color: var(--dorado); font-family: var(--font-serif); font-size: 0.75rem; letter-spacing: 3px; display: block; margin-bottom: 8px; opacity: 0.8; }
-        .dato-contacto span, .dato-contacto a { font-weight: 400; font-size: 1.1rem; letter-spacing: 1px; color: var(--blanco); text-decoration: none; transition: 0.3s; }
+        .dato-contacto a { font-weight: 400; font-size: 1.1rem; letter-spacing: 1px; color: var(--blanco); text-decoration: none; transition: 0.3s; }
         .dato-contacto a:hover { color: var(--dorado); }
 
-        .formulario-contacto { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.2); padding: 50px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .formulario-contacto { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.2); padding: 50px; backdrop-filter: blur(15px); }
         .formulario-contacto input, .formulario-contacto textarea { 
             background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
-            width: 100%; padding: 15px 5px; color: #fff; margin-bottom: 30px; outline: none; font-family: var(--font-sans); font-size: 0.9rem; transition: 0.3s;
+            width: 100%; padding: 15px 5px; color: #fff; margin-bottom: 30px; outline: none; font-family: var(--font-sans);
         }
-        .formulario-contacto input:focus, .formulario-contacto textarea:focus { border-bottom-color: var(--dorado); }
         .formulario-contacto textarea { min-height: 120px; resize: none; }
         
         .btn-enviar { 
             background: var(--dorado); color: var(--oscuro); border: none; width: 100%; padding: 22px; 
-            font-family: var(--font-serif); letter-spacing: 4px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 1rem;
+            font-family: var(--font-serif); letter-spacing: 4px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase;
         }
         .btn-enviar:hover { background: var(--blanco); transform: translateY(-2px); }
 
-        .footer-amacep { margin-top: 60px; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 30px; }
-        .amacep-title { color: var(--dorado); font-family: var(--font-serif); font-size: 0.9rem; letter-spacing: 3px; display: block; margin-bottom: 5px; }
-        .amacep-sub { font-size: 0.75rem; font-weight: 200; opacity: 0.7; letter-spacing: 1px; }
-
-        @media (max-width: 900px) {
-            header { padding: 20px; }
-            .seccion-contacto { grid-template-columns: 1fr; gap: 40px; }
-            .info-despacho h1 { font-size: 2.5rem; }
-            .formulario-contacto { padding: 30px; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
-        <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
-    </header>
-
-    <nav class="nav-menu" id="navMenu">
-        <a href="index.html">INICIO</a>
-        <a href="servicios.html">SERVICIOS</a>
-        <a href="disponibilidad.html">DISPONIBILIDAD</a>
-        <a href="contacto.html" style="color:var(--dorado)">CONTACTO</a>
-    </nav>
-
-    <div class="main-container">
-        <div class="seccion-contacto">
-            <div class="info-despacho">
-                <h1>Contacto de Gala</h1>
-                <div class="linea-decorativa"></div>
-                <p>Para la dirección protocolar de eventos institucionales y sociales de alta jerarquía, utilice nuestros canales directos. La excelencia en el protocolo no admite esperas.</p>
-                
-                <div class="dato-contacto">
-                    <label>COMUNICACIÓN DIRECTA</label>
-                    <a href="https://wa.me/51930046681" target="_blank">+51 930 046 681</a>
-                </div>
-                <div class="dato-contacto">
-                    <label>EMAIL CORPORATIVO</label>
-                    <a href="mailto:marcoivanbitel@gmail.com?subject=SOLICITUD%20DE%20PROTOCOLO%20DE%20GALA">marcoivanbitel@gmail.com</a>
-                </div>
-                <div class="dato-contacto">
-                    <label>SEDE CENTRAL</label>
-                    <span>Lima, Perú</span>
-                </div>
-                
-                <div class="footer-amacep">
-                    <span class="amacep-title">AMACEP</span>
-                    <span class="amacep-sub">Asociación de Maestros de Ceremonias del Perú</span>
-                </div>
-            </div>
-
-            <div class="formulario-contacto">
-                <form id="formContacto">
-                    <input type="text" id="c_nombre" placeholder="NOMBRE COMPLETO" required>
-                    <input type="email" id="c_email" placeholder="CORREO ELECTRÓNICO" required>
-                    <input type="text" id="c_asunto" placeholder="TIPO DE EVENTO">
-                    <textarea id="c_mensaje" placeholder="DETALLES PROTOCOLARES" required></textarea>
-                    <button type="button" class="btn-enviar" onclick="enviarMensaje()">Solicitar Protocolo</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() { 
-            document.getElementById('navMenu').classList.toggle('active'); 
-        }
-
-        function enviarMensaje() {
-            const nombre = document.getElementById('c_nombre').value;
-            const asunto = document.getElementById('c_asunto').value;
-            const mensaje = document.getElementById('c_mensaje').value;
-            
-            if(!nombre || !mensaje) { 
-                alert("Por favor, complete los campos obligatorios para procesar su solicitud."); 
-                return; 
-            }
-            
-            const texto = `*CONSULTA PROTOCOLAR WEB*%0A*NOMBRE:* ${nombre.toUpperCase()}%0A*TIPO:* ${asunto}%0A*MENSAJE:* ${mensaje}`;
-            window.open(`https://wa.me/51930046681?text=${texto}`, '_blank');
-        }
-    </script>
-</body>
-</html>
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .wsp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: var(--whatsapp); color: #FFF; border-radius: 50px; text-align: center;
+            font-size: 30px; box-shadow: 0px 10px 25px rgba(0,0,0,0.5); z-index: 1000;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+            transition: 0.3s; border: 2px solid rgba(255,255,255,0.2
