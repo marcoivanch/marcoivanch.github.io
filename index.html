@@ -41,7 +41,7 @@
             background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), 
                         url('Maestro 0 Foto inicial.png') center/cover no-repeat;
             display: flex; align-items: center; padding: 0 10%;
-            box-sizing: border-box; /* Asegura que el padding no afecte la altura */
+            box-sizing: border-box;
         }
 
         .hero-content { max-width: 900px; width: 100%; }
@@ -78,27 +78,22 @@
 
         footer { padding: 80px 10%; text-align: center; border-top: 1px solid #222; }
 
-        /* AJUSTES MÓVILES CRÍTICOS - SOLO PARA CELULARES */
+        /* AJUSTES MÓVILES - CORRECCIÓN DE POSICIÓN */
         @media (max-width: 768px) {
             header { padding: 20px; }
             .nav-menu { display: none; }
             
-            /* Compactar el Hero para no tapar la cara */
             .hero { 
                 padding: 0 5%; 
-                align-items: flex-start; /* Sube el contenido */
+                align-items: center; /* Vuelve al centro para no tapar la cara arriba */
                 justify-content: center; 
-                padding-top: 120px; /* Espacio para el header fijo */
             }
-            .hero-content { text-align: center; }
+            .hero-content { text-align: center; margin-top: 250px; /* Baja el texto para librar tu rostro */ }
             
-            /* Fuerza "Excelencia en cada palabra" a UNA SOLA LÍNEA */
             .excelencia { 
-                font-size: 2.2rem; /* Tamaño ajustado para una línea */
-                white-space: nowrap; /* Impide el salto de línea */
-                overflow: hidden; /* Corta si se pasa (seguridad) */
-                text-overflow: ellipsis; /* Pone puntos suspensivos si corta */
-                margin-bottom: 5px;
+                font-size: 2.2rem; 
+                white-space: nowrap; 
+                margin-bottom: 0;
             }
             
             .nombre-principal { font-size: 1.8rem; margin: 5px 0; }
