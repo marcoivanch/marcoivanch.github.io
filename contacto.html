@@ -19,7 +19,7 @@
             --font-gala: 'Playfair Display', serif;
         }
 
-        body, html { margin: 0; padding: 0; min-height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco); overflow-x: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; background-color: var(--oscuro); font-family: var(--font-sans); color: var(--blanco); overflow-x: hidden; }
 
         header { 
             position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
@@ -41,108 +41,116 @@
         .nav-menu a:hover { color: var(--dorado); padding-left: 10px; }
 
         .main-container { 
-            min-height: 100vh; padding: 140px 20px 60px; 
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed; 
+            min-height: 100vh; padding: 160px 20px 60px; 
+            background: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('Maestro 7 Disponibilidad.png') center/cover no-repeat fixed; 
             display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
         }
 
-        .seccion-contacto { max-width: 1000px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 30px; }
+        .seccion-contacto { max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
 
-        .info-despacho h1 { font-family: var(--font-gala); color: var(--dorado); font-size: 3rem; font-style: italic; margin-bottom: 20px; }
-        .info-despacho p { line-height: 1.8; font-weight: 200; color: #ccc; margin-bottom: 30px; }
-        .dato-contacto { margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
-        .dato-contacto label { color: var(--dorado); font-family: var(--font-serif); font-size: 0.8rem; letter-spacing: 2px; display: block; width: 100px; }
-        .dato-contacto span { font-weight: 400; letter-spacing: 1px; }
+        .info-despacho h1 { font-family: var(--font-gala); color: var(--dorado); font-size: 3.5rem; font-style: italic; margin: 0 0 20px 0; letter-spacing: -1px; }
+        .linea-decorativa { width: 80px; height: 1px; background: var(--dorado); margin-bottom: 35px; opacity: 0.6; }
+        .info-despacho p { line-height: 2; font-weight: 200; color: #eee; margin-bottom: 40px; letter-spacing: 1px; font-size: 0.95rem; }
+        
+        .dato-contacto { margin-bottom: 30px; }
+        .dato-contacto label { color: var(--dorado); font-family: var(--font-serif); font-size: 0.75rem; letter-spacing: 3px; display: block; margin-bottom: 8px; opacity: 0.8; }
+        .dato-contacto span { font-weight: 400; font-size: 1.1rem; letter-spacing: 1px; }
 
-        .formulario-contacto { background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.3); padding: 40px; backdrop-filter: blur(10px); }
+        .formulario-contacto { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.2); padding: 50px; backdrop-filter: blur(15px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .formulario-contacto input, .formulario-contacto textarea { 
-            background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.5); 
-            width: 100%; padding: 15px 5px; color: #fff; margin-bottom: 25px; outline: none; font-family: var(--font-sans);
+            background: transparent; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
+            width: 100%; padding: 15px 5px; color: #fff; margin-bottom: 30px; outline: none; font-family: var(--font-sans); font-size: 0.9rem; transition: 0.3s;
         }
-        .formulario-contacto textarea { min-height: 100px; resize: none; }
+        .formulario-contacto input:focus, .formulario-contacto textarea:focus { border-bottom-color: var(--dorado); }
+        .formulario-contacto textarea { min-height: 120px; resize: none; }
         
         .btn-enviar { 
-            background: var(--dorado); color: var(--oscuro); border: none; width: 100%; padding: 20px; 
-            font-family: var(--font-serif); letter-spacing: 3px; font-weight: bold; cursor: pointer; transition: 0.3s;
+            background: var(--dorado); color: var(--oscuro); border: none; width: 100%; padding: 22px; 
+            font-family: var(--font-serif); letter-spacing: 4px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 1rem;
         }
-        .btn-enviar:hover { background: var(--blanco); }
+        .btn-enviar:hover { background: var(--blanco); transform: translateY(-2px); }
 
-        @media (max-width: 850px) {
+        .footer-amacep { margin-top: 60px; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 30px; }
+        .amacep-title { color: var(--dorado); font-family: var(--font-serif); font-size: 0.9rem; letter-spacing: 3px; display: block; margin-bottom: 5px; }
+        .amacep-sub { font-size: 0.75rem; font-weight: 200; opacity: 0.7; letter-spacing: 1px; }
+
+        @media (max-width: 900px) {
             header { padding: 20px; }
-            .seccion-contacto { grid-template-columns: 1fr; }
-            .info-despacho h1 { font-size: 2.2rem; }
+            .seccion-contacto { grid-template-columns: 1fr; gap: 40px; }
+            .info-despacho h1 { font-size: 2.5rem; }
+            .formulario-contacto { padding: 30px; }
         }
     </style>
 </head>
-<Cuerpo>
+<body>
     <header>
-        <a HFE="index.html" Clase="logo">Marco Iván Cabrera Hernández</a>
-        <div Clase="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+        <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
+        <div class="hamburger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
     </header>
 
-    <nav Clase="nav-menu" id="navMenu">
-        <a HFE="index.html">INICIO</a>
-        <a HFE="servicios.html">SERVICIOS</a>
-        <a HFE="disponibilidad.html">DISPONIBILIDAD</a>
-        <a HFE="contacto.html" Estilo="color:var(--dorado)">CONTACTO</a>
+    <nav class="nav-menu" id="navMenu">
+        <a href="index.html">INICIO</a>
+        <a href="servicios.html">SERVICIOS</a>
+        <a href="disponibilidad.html">DISPONIBILIDAD</a>
+        <a href="contacto.html" style="color:var(--dorado)">CONTACTO</a>
     </nav>
 
-    <div Clase="main-container">
-        <div Clase="seccion-contacto">
-            <div Clase="info-despacho">
+    <div class="main-container">
+        <div class="seccion-contacto">
+            <div class="info-despacho">
                 <h1>Contacto Profesional</h1>
-                <div Estilo="width: 60px; height: 1px; background: var(--dorado); margin-bottom: 30px;"></div>
-                <p>Para consultas sobre tasaciones de arte, peritajes técnicos o la dirección de protocolos oficiales, por favor utilice los canales formales detallados a continuación.</p>
+                <div class="linea-decorativa"></div>
+                <p>Para consultas sobre tasaciones de obras de arte, peritajes técnicos de antigüedades o la dirección protocolar de eventos de alta jerarquía, por favor utilice los canales oficiales.</p>
                 
-                <div Clase="dato-contacto">
+                <div class="dato-contacto">
                     <label>TELÉFONO</label>
                     <span>+51 930 046 681</span>
                 </div>
-                <div Clase="dato-contacto">
-                    <label>EMAIL</label>
+                <div class="dato-contacto">
+                    <label>EMAIL DIRECTO</label>
                     <span>contacto@maestrodeceremonias.org.pe</span>
                 </div>
-                <div Clase="dato-contacto">
-                    <label>UBICACIÓN</label>
+                <div class="dato-contacto">
+                    <label>DESPACHO</label>
                     <span>Lima, Perú</span>
                 </div>
                 
-                <p Estilo="margin-top: 50px; font-size: 0.8rem; letter-spacing: 1px;">
-                    <span Estilo="color: var(--dorado);">AMACEP</span><br>
-                    Asociación de Maestros de Ceremonias del Perú
-                </p>
+                <div class="footer-amacep">
+                    <span class="amacep-title">AMACEP</span>
+                    <span class="amacep-sub">Asociación de Maestros de Ceremonias del Perú</span>
+                </div>
             </div>
 
-            <div Clase="formulario-contacto">
+            <div class="formulario-contacto">
                 <form id="formContacto">
                     <input type="text" id="c_nombre" placeholder="NOMBRE COMPLETO" required>
                     <input type="email" id="c_email" placeholder="CORREO ELECTRÓNICO" required>
-                    <input type="text" id="c_asunto" placeholder="MOTIVO DE CONSULTA">
-                    <textarea id="c_mensaje" placeholder="DETALLE SU REQUERIMIENTO TÉCNICO O PROTOCOLAR" required></textarea>
-                    <button type="button" Clase="btn-enviar" onclick="enviarMensaje()">Enviar Mensaje</button>
+                    <input type="text" id="c_asunto" placeholder="MOTIVO DE CONSULTA (TASACIÓN / PROTOCOLO)">
+                    <textarea id="c_mensaje" placeholder="DETALLE SU REQUERIMIENTO TÉCNICO" required></textarea>
+                    <button type="button" class="btn-enviar" onclick="enviarMensaje()">Enviar Mensaje</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <Guion>
-        Función toggleMenu() { 
-            documento.getElementById('navMenu').ClaseLista.toggle('active'); 
+    <script>
+        function toggleMenu() { 
+            document.getElementById('navMenu').classList.toggle('active'); 
         }
 
-        Función enviarMensaje() {
-            const nombre = documento.getElementById('c_nombre').value;
-            const asunto = documento.getElementById('c_asunto').value;
-            const mensaje = documento.getElementById('c_mensaje').value;
+        function enviarMensaje() {
+            const nombre = document.getElementById('c_nombre').value;
+            const asunto = document.getElementById('c_asunto').value;
+            const mensaje = document.getElementById('c_mensaje').value;
             
             if(!nombre || !mensaje) { 
-                alert("Por favor, complete los campos obligatorios."); 
+                alert("Por favor, complete los campos obligatorios para procesar su solicitud."); 
                 return; 
             }
             
-            const texto = `*CONSULTA DESDE WEB*%0A*NOMBRE:* ${nombre.toUpperCase()}%0A*ASUNTO:* ${asunto}%0A*MENSAJE:* ${mensaje}`;
-            ventana.open(`https://wa.me/51930046681?text=${texto}`, '_blank');
+            const texto = `*CONSULTA PROFESIONAL WEB*%0A*NOMBRE:* ${nombre.toUpperCase()}%0A*ASUNTO:* ${asunto}%0A*MENSAJE:* ${mensaje}`;
+            window.open(`https://wa.me/51930046681?text=${texto}`, '_blank');
         }
-    </Guion>
-</Cuerpo>
+    </script>
+</body>
 </html>
