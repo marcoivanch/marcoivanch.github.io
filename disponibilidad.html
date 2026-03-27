@@ -68,6 +68,7 @@
         .event-item { font-size: 0.65rem; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 2px; color: #fff; line-height: 1.3; border-left: 3px solid var(--dorado); box-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
         .ev-time { color: var(--dorado); font-weight: bold; display: block; font-size: 0.75rem; }
         .ev-type { text-transform: uppercase; font-weight: bold; color: #ccc; font-size: 0.6rem; }
+        .ev-cliente { display: block; color: var(--dorado); font-size: 0.6rem; font-weight: bold; border-top: 1px solid rgba(197, 160, 89, 0.2); margin-top: 2px; padding-top: 2px; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 2000; align-items: center; justify-content: center; }
         .modal-content { background: var(--oscuro); border: 1px solid var(--dorado); padding: 40px; width: 90%; max-width: 550px; position: relative; box-shadow: 0 0 50px rgba(197, 160, 89, 0.3); max-height: 90vh; overflow-y: auto; }
@@ -258,7 +259,9 @@
                 let inner = `<span class="day-number">${d}</span>`;
                 if(evs) {
                     inner += `<div class="event-list">`;
-                    evs.forEach(e => { inner += `<div class="event-item"><span class="ev-time">${e.hora}</span><span class="ev-type">${e.tipo}</span></div>`; });
+                    evs.forEach(e => { 
+                        inner += `<div class="event-item"><span class="ev-time">${e.hora}</span><span class="ev-type">${e.tipo}</span><span class="ev-cliente">${e.cliente}</span></div>`; 
+                    });
                     inner += `</div>`;
                 }
                 dayDiv.innerHTML = inner;
