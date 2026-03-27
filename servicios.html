@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Maestro de Ceremonias en Lima | Bodas, Quinceaños y Eventos Corporativos</title>
-    <meta name="description" content="Servicio profesional de maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos. Protocolo, conducción y elegancia en cada evento.">
+    <title>Maestro de Ceremonias en Lima | Servicios Premium para Bodas y Eventos</title>
+    <meta name="description" content="Maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos. Protocolo profesional, conducción elegante y coordinación integral.">
 
     <link rel="canonical" href="https://maestrodeceremonias.org.pe/servicios.html"/>
 
@@ -63,19 +63,19 @@
 
         .main-container { padding: 140px 20px 60px; display: flex; flex-direction: column; align-items: center; }
 
-        .title-section { text-align: center; max-width: 900px; margin-bottom: 40px; }
+        .title-section { text-align: center; max-width: 900px; margin-bottom: 50px; }
         .title-section h1 { 
             font-family: var(--font-serif); font-size: 2.2rem; color: var(--dorado); 
             letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px;
         }
         .title-section p { font-size: 1rem; color: #aaa; letter-spacing: 2px; text-transform: uppercase; font-weight: 200; }
 
-        /* BLOQUE SEO INVISIBLE VISUALMENTE ARMÓNICO */
+        /* BLOQUE SEO DISCRETO */
         .seo-text {
             max-width: 900px;
-            margin: 0 auto 50px;
-            font-size: 0.95rem;
-            line-height: 1.8;
+            margin: 0 auto 40px;
+            font-size: 0.9rem;
+            line-height: 1.7;
             color: #bbb;
             text-align: center;
         }
@@ -84,13 +84,21 @@
             width: 100%; max-width: 850px; border: 1px solid var(--dorado); padding: 15px;
             background: #050505; margin-bottom: 60px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
-
-        .photo-frame img { width: 100%; }
+        .photo-frame img { width: 100%; height: auto; display: block; filter: grayscale(20%); transition: 0.5s; }
+        .photo-frame:hover img { filter: grayscale(0%); }
 
         .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; width: 100%; }
 
-        .card { background: linear-gradient(145deg, #151515, #0a0a0a); border: 1px solid rgba(197, 160, 89, 0.15); padding: 45px; transition: 0.4s; }
-        .card h2 { font-family: var(--font-serif); color: var(--dorado); }
+        .card { background: linear-gradient(145deg, #151515, #0a0a0a); border: 1px solid rgba(197, 160, 89, 0.15); padding: 45px; transition: 0.4s; position: relative; overflow: hidden; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--dorado); transform: scaleX(0); transition: 0.4s; transform-origin: left; }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { border-color: var(--dorado); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        
+        .card h2 { font-family: var(--font-serif); color: var(--dorado); font-size: 1.4rem; margin-bottom: 20px; letter-spacing: 1px; }
+        .card p { font-size: 0.95rem; line-height: 1.8; color: #bbb; margin-bottom: 25px; font-weight: 300; }
+        .card ul { list-style: none; padding: 0; font-size: 0.85rem; letter-spacing: 1px; }
+        .card li { margin: 12px 0; color: var(--blanco); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .card li::before { content: "✧"; color: var(--dorado); margin-right: 10px; }
 
         .cta-disponibilidad {
             text-align: center; margin: 80px auto 60px; padding: 40px; 
@@ -102,9 +110,11 @@
             position: fixed; bottom: 30px; right: 30px; background-color: var(--whatsapp);
             color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
             align-items: center; justify-content: center; font-size: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         @media (max-width: 768px) {
+            header { padding: 15px 25px; }
             .nav-menu { display: none; }
             .hamburger { display: block; }
         }
@@ -123,42 +133,68 @@
 <div class="main-container">
 
     <div class="title-section">
-        <h1>Maestro de Ceremonias en Lima</h1>
-        <p>Elegancia • Protocolo • Distinción</p>
+        <h1>Propuesta Protocolar de Alta Gama</h1>
+        <p>Elegancia • Rigor • Distinción</p>
     </div>
 
-    <!-- TEXTO SEO CLAVE -->
+    <!-- TEXTO SEO AÑADIDO SIN ROMPER DISEÑO -->
     <div class="seo-text">
-        Servicio profesional de maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos.
-        Dirección protocolar, conducción elegante y coordinación integral para eventos de alto nivel.
+        Maestro de ceremonias en Lima especializado en bodas, quinceaños y eventos corporativos. 
+        Servicio profesional de conducción, protocolo y coordinación integral para eventos de alto nivel.
     </div>
 
     <div class="photo-frame">
-        <img src="quince-ceremonias-lima.jpg" alt="Maestro de ceremonias en Lima en quinceaños">
+        <img src="quince 2.jpg" alt="Maestro de ceremonias en Lima en evento de quinceaños">
     </div>
 
     <div class="grid-servicios">
 
         <div class="card">
-            <h2>Maestro de Ceremonias para Quinceaños en Lima</h2>
-            <p>Conducción profesional de ceremonias de quinceaños, incluyendo protocolo, guion y dirección del evento.</p>
+            <h2>Quinceaños y Corte de Honor en Lima</h2>
+            <p>Dirección magistral de ceremonias de quinceaños en Lima, asegurando protocolo, elegancia y ejecución impecable.</p>
+            <ul>
+                <li>Protocolo de Corte y Damas</li>
+                <li>Ceremonia de la Vela y el Zapato</li>
+                <li>Guion emotivo de alta narrativa</li>
+                <li>Conducción de Brindis de Honor</li>
+            </ul>
         </div>
 
         <div class="card">
             <h2>Maestro de Ceremonias para Bodas en Lima</h2>
-            <p>Servicio especializado en bodas con manejo de protocolo, tiempos y conducción de momentos clave.</p>
+            <p>Conducción profesional de bodas con control de tiempos, protocolo y coordinación de momentos clave.</p>
+            <ul>
+                <li>Recepción Protocolar de Invitados</li>
+                <li>Dirección de Ceremonia Civil/Simbólica</li>
+                <li>Coordinación de Momentos Estelares</li>
+                <li>Protocolo de Cena y Etiqueta</li>
+            </ul>
         </div>
 
         <div class="card">
             <h2>Eventos Corporativos e Institucionales</h2>
-            <p>Maestro de ceremonias para empresas en Lima. Manejo de autoridades, protocolo institucional y eventos de alto nivel.</p>
+            <p>Servicio de maestro de ceremonias en Lima para empresas, instituciones y eventos formales de alto nivel.</p>
+            <ul>
+                <li>Lanzamientos y Aniversarios</li>
+                <li>Maestro de Ceremonias Institucional</li>
+                <li>Manejo de Precedencias y Vocativos</li>
+                <li>Cenas y Galas de Negocios</li>
+            </ul>
         </div>
 
     </div>
 
     <div class="cta-disponibilidad">
-        <h3>Disponibilidad en Lima</h3>
-        <p>Consulte fechas disponibles y reserve su evento con anticipación.</p>
+        <h3>La excelencia requiere planificación</h3>
+        <p>
+            Busque su fecha en el calendario de 
+            <a href="disponibilidad.html">Disponibilidad</a> 
+            y separe su horario con anticipación.
+        </p>
+    </div>
+
+    <div class="photo-frame">
+        <img src="Animando.jpg" alt="Maestro de ceremonias conduciendo evento en Lima">
     </div>
 
 </div>
