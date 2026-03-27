@@ -3,16 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Maestro de Ceremonias en Lima | Servicios Premium para Bodas y Eventos</title>
+    
+    <title>Maestro de Ceremonias en Lima | Servicios Exclusivos - Marco Iván Cabrera Hernández</title>
     <meta name="description" content="Maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos. Protocolo profesional, conducción elegante y coordinación integral.">
-
-    <link rel="canonical" href="https://maestrodeceremonias.org.pe/servicios.html"/>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="canonical" href="https://maestrodeceremonias.org.pe/servicios.html" />
 
     <!-- SEO estructurado -->
     <script type="application/ld+json">
@@ -20,7 +14,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Marco Iván Cabrera Hernández",
-      "description": "Maestro de ceremonias en Lima para bodas, eventos corporativos y quinceaños.",
+      "description": "Maestro de ceremonias en Lima especializado en eventos de alto nivel.",
       "areaServed": {
         "@type": "Place",
         "name": "Lima, Perú"
@@ -28,6 +22,11 @@
       "url": "https://maestrodeceremonias.org.pe"
     }
     </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root { 
@@ -70,13 +69,12 @@
         }
         .title-section p { font-size: 1rem; color: #aaa; letter-spacing: 2px; text-transform: uppercase; font-weight: 200; }
 
-        /* BLOQUE SEO DISCRETO */
         .seo-text {
-            max-width: 900px;
-            margin: 0 auto 40px;
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #bbb;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
             text-align: center;
         }
 
@@ -111,11 +109,18 @@
             color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
             align-items: center; justify-content: center; font-size: 35px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
             header { padding: 15px 25px; }
-            .nav-menu { display: none; }
+            .nav-menu { 
+                display: none; position: absolute; top: 100%; left: 0; width: 100%; 
+                background: rgba(15, 15, 15, 0.98); flex-direction: column; padding: 30px; 
+                text-align: center; border-bottom: 1px solid var(--dorado);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { margin: 15px 0; }
             .hamburger { display: block; }
         }
     </style>
@@ -125,9 +130,15 @@
 
 <header>
     <a href="index.html" class="logo">Marco Iván Cabrera</a>
-    <button class="hamburger" onclick="toggleMenu()">
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
         <i class="fas fa-bars"></i>
     </button>
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html" style="color:var(--dorado)">Servicios</a></li>
+        <li><a href="disponibilidad.html">Disponibilidad</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+    </ul>
 </header>
 
 <div class="main-container">
@@ -137,10 +148,9 @@
         <p>Elegancia • Rigor • Distinción</p>
     </div>
 
-    <!-- TEXTO SEO AÑADIDO SIN ROMPER DISEÑO -->
     <div class="seo-text">
-        Maestro de ceremonias en Lima especializado en bodas, quinceaños y eventos corporativos. 
-        Servicio profesional de conducción, protocolo y coordinación integral para eventos de alto nivel.
+        Maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos. 
+        Servicio profesional de conducción y protocolo para eventos de alto nivel.
     </div>
 
     <div class="photo-frame">
@@ -148,10 +158,9 @@
     </div>
 
     <div class="grid-servicios">
-
         <div class="card">
-            <h2>Quinceaños y Corte de Honor en Lima</h2>
-            <p>Dirección magistral de ceremonias de quinceaños en Lima, asegurando protocolo, elegancia y ejecución impecable.</p>
+            <h2>Corte de Honor & Quinceaños</h2>
+            <p>Dirección magistral para el debut social, asegurando que cada rito de pasaje se ejecute con la solemnidad y el brillo que su familia merece.</p>
             <ul>
                 <li>Protocolo de Corte y Damas</li>
                 <li>Ceremonia de la Vela y el Zapato</li>
@@ -161,8 +170,8 @@
         </div>
 
         <div class="card">
-            <h2>Maestro de Ceremonias para Bodas en Lima</h2>
-            <p>Conducción profesional de bodas con control de tiempos, protocolo y coordinación de momentos clave.</p>
+            <h2>Enlaces Nupciales de Gala</h2>
+            <p>Maestría en el arte de la unión. Gestiono el tiempo y el protocolo para que la elegancia sea el hilo conductor de su celebración.</p>
             <ul>
                 <li>Recepción Protocolar de Invitados</li>
                 <li>Dirección de Ceremonia Civil/Simbólica</li>
@@ -173,7 +182,7 @@
 
         <div class="card">
             <h2>Eventos Corporativos e Institucionales</h2>
-            <p>Servicio de maestro de ceremonias en Lima para empresas, instituciones y eventos formales de alto nivel.</p>
+            <p>Representación impecable para su marca. Sobriedad y manejo de autoridades bajo los más estrictos estándares de cortesía internacional.</p>
             <ul>
                 <li>Lanzamientos y Aniversarios</li>
                 <li>Maestro de Ceremonias Institucional</li>
@@ -181,7 +190,6 @@
                 <li>Cenas y Galas de Negocios</li>
             </ul>
         </div>
-
     </div>
 
     <div class="cta-disponibilidad">
@@ -189,7 +197,7 @@
         <p>
             Busque su fecha en el calendario de 
             <a href="disponibilidad.html">Disponibilidad</a> 
-            y separe su horario con anticipación.
+            y separe su horario con anticipación para asegurar la exclusividad de su evento.
         </p>
     </div>
 
@@ -199,13 +207,15 @@
 
 </div>
 
-<a href="https://wa.me/51930046681" class="btn-whatsapp">
+<a href="https://wa.me/51930046681?text=Deseo%20reservar%20una%20asesoría%20para%20mi%20evento" 
+   class="btn-whatsapp" 
+   target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
 function toggleMenu() {
-    const menu = document.querySelector('.nav-menu');
+    const menu = document.getElementById('navMenu');
     menu.classList.toggle('active');
 }
 </script>
