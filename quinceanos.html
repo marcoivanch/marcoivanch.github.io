@@ -21,29 +21,29 @@
             overflow: hidden;
         }
 
-        /* --- ESTA ES LA RUTA RELATIVA QUE NO FALLA --- */
+        /* --- PORTAL DEL LIBRO (RUTA ABSOLUTA DE TU DOMINIO) --- */
         .portal-libro {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            /* Solo el nombre del archivo, así GitHub lo encuentra sí o sí */
-            background: url('libro-magico.jpg') center/cover no-repeat;
+            /* Usamos la URL que confirmamos que funciona en tu captura */
+            background: url('https://maestrodeceremonias.org.pe/libro-magico.jpg') center/cover no-repeat;
             z-index: -1;
             animation: openingBook 4s ease-out forwards;
         }
 
-        /* Capa de luz para eliminar el fondo negro */
+        /* Capa de luz para eliminar el fondo negro y dar brillo */
         .portal-libro::after {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(255, 255, 255, 0.3); 
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
             z-index: 0;
         }
 
         @keyframes openingBook {
             0% { transform: scale(1.1); filter: brightness(0.5) blur(10px); }
-            100% { transform: scale(1); filter: brightness(1) blur(0px); }
+            100% { transform: scale(1); filter: brightness(1.1) blur(0px); }
         }
 
         .fairy-tale-hero {
@@ -53,48 +53,53 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            cursor: pointer;
         }
 
         .letras-magicas {
             font-family: 'Pinyon Script', cursive;
-            font-size: 5rem;
+            font-size: 5.5rem;
             color: var(--dorado);
-            /* Efecto cristal rosado */
-            text-shadow: 0 0 10px rgba(255,183,197,0.5);
-            -webkit-text-stroke: 1px var(--rosa);
+            /* Efecto cristal con filete rosado */
+            text-shadow: 0 0 15px rgba(255,183,197,0.6);
+            -webkit-text-stroke: 1.2px var(--rosa);
             opacity: 0;
-            animation: fadeIn 3s ease-out 1s forwards;
+            animation: fadeIn 3s ease-out 1.5s forwards;
         }
 
         .sub-leyenda {
             font-family: 'Cinzel', serif;
-            letter-spacing: 5px;
-            color: #222;
+            letter-spacing: 6px;
+            color: #1a1a1a;
+            font-weight: bold;
             opacity: 0;
-            animation: fadeIn 2s ease-out 3s forwards;
+            animation: fadeIn 2s ease-out 3.5s forwards;
         }
 
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* Botón de WhatsApp tipo sello */
+        /* Sello de WhatsApp */
         .wsp-sello {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 60px; height: 60px;
+            position: fixed; bottom: 35px; right: 35px;
+            width: 65px; height: 65px;
             background: radial-gradient(circle, var(--dorado) 0%, var(--rosa) 100%);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: black;
+            font-size: 32px; color: black;
             text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 2px solid white;
         }
     </style>
 </head>
 <body>
     <div class="portal-libro"></div>
-    <section class="fairy-tale-hero">
+    
+    <section class="fairy-tale-hero" onclick="alert('Iniciando Capítulo I...')">
         <h1 class="letras-magicas">Hoy cumples 15 años...</h1>
         <p class="sub-leyenda">ENSOÑACIÓN & FANTASÍA</p>
     </section>
+
     <a href="https://wa.me/51930046681" class="wsp-sello" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
