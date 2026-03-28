@@ -13,6 +13,7 @@
             --dorado-brillante: #f8e4a1;
             --dorado-mate: #c5a059;
             --sombra-naranja: rgba(204, 88, 3, 0.8);
+            --oscuro: #0a0a0a;
         }
 
         body, html {
@@ -23,15 +24,14 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* --- EFECTO DE ENTRADA DEL ESCENARIO --- */
+        /* --- ESCENARIO VISUAL --- */
         .escenario-quinceanos {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('./libro-magico.jpg') center/cover no-repeat;
             z-index: 1;
             filter: brightness(1.1) contrast(1.05);
-            /* Animación de fundido inicial */
-            animation: fadeInScreen 3.5s ease-out forwards;
+            animation: fadeInScreen 3s ease-out forwards;
         }
 
         .escenario-quinceanos::after {
@@ -42,7 +42,7 @@
             z-index: 2;
         }
 
-        /* --- INTERFAZ CON MOVIMIENTO --- */
+        /* --- TEXTOS PRINCIPALES --- */
         .interfaz-usuario {
             position: relative;
             z-index: 10;
@@ -67,10 +67,10 @@
             color: var(--dorado-brillante);
             margin: 0;
             text-shadow: 3px 3px 15px var(--sombra-naranja);
-            /* Animación de emergencia */
             opacity: 0;
-            transform: translateY(-40px);
-            animation: emerge 2.5s ease-out 0.8s forwards;
+            transform: translateY(-20px);
+            animation: emerge 2s ease-out 0.5s forwards;
+            padding-left: 0;
         }
 
         .linea-perfeccion {
@@ -79,15 +79,13 @@
             letter-spacing: 6px;
             font-size: clamp(0.8rem, 2vw, 1.2rem);
             margin-top: 5px;
-            /* Alineación con comillas */
-            margin-left: 2.3vw; 
-            text-transform: uppercase;
-            /* Animación de aparición suave */
             opacity: 0;
-            animation: fadeIn 2.5s ease-out 2.2s forwards;
+            margin-left: 1.5vw; 
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-out 2s forwards;
         }
 
-        /* --- BOTONES CON APARICIÓN GRADUAL --- */
+        /* --- BOTONES DE NAVEGACIÓN --- */
         .menu-navegacion {
             display: flex;
             gap: 30px;
@@ -107,38 +105,29 @@
             letter-spacing: 3px;
             font-size: 0.9rem;
             text-transform: uppercase;
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
             backdrop-filter: blur(5px);
-            /* Animación de entrada */
             opacity: 0;
-            animation: fadeIn 2s ease-out 3.2s forwards;
+            animation: fadeIn 2s ease-out 3s forwards;
         }
 
         .boton-quince:hover {
             background: var(--dorado-mate);
             color: black;
-            box-shadow: 0 0 30px var(--dorado-brillante);
-            transform: translateY(-8px);
+            box-shadow: 0 0 20px var(--dorado-brillante);
+            transform: translateY(-5px);
         }
 
-        /* --- DEFINICIÓN DE ANIMACIONES --- */
-        @keyframes fadeInScreen { 
-            from { opacity: 0; filter: brightness(0); } 
-            to { opacity: 1; filter: brightness(1.1); } 
-        }
-        @keyframes emerge { 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        @keyframes fadeIn { 
-            to { opacity: 1; } 
-        }
+        /* --- ANIMACIONES --- */
+        @keyframes fadeInScreen { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes emerge { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        /* Responsive */
         @media (max-width: 600px) {
             .cabecera { text-align: center; width: 100%; }
             .linea-perfeccion { margin-left: 0; text-align: center; }
             .menu-navegacion { flex-direction: column; align-items: center; gap: 15px; }
-            .boton-quince { width: 85%; text-align: center; }
+            .boton-quince { width: 80%; text-align: center; }
         }
     </style>
 </head>
@@ -161,7 +150,7 @@
 
     </main>
 
-    <a href="https://wa.me/51930046681" style="position: fixed; bottom: 30px; right: 30px; z-index: 100; color: #f8e4a1; font-size: 45px; text-decoration: none; opacity: 0; animation: fadeIn 2s ease-out 4s forwards;">
+    <a href="https://wa.me/51930046681" style="position: fixed; bottom: 30px; right: 30px; z-index: 100; color: #f8e4a1; font-size: 40px; text-decoration: none;">
         <i class="fab fa-whatsapp"></i>
     </a>
 
