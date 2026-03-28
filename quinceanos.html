@@ -7,61 +7,53 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@200;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
-            --dorado-magico: #f8e4a1; /* Dorado claro para el cristal */
-            --rosa-cuarzo: #ffb7c5;   /* Rosa cuarzo para el filete moderno */
+            --dorado-magico: #f8e4a1; 
+            --rosa-cuarzo: #ffb7c5;   
             --brillo: #ffffff;
             --oscuro: #0a0a0a;
-            --marfil: #fdfcfb;
             --font-serif: 'Cinzel', serif;
             --font-magica: 'Pinyon Script', cursive; 
-            --font-narrative: 'Playfair Display', serif;
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--oscuro);
-            color: var(--marfil);
+            color: white;
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden;
             height: 100%;
         }
 
-        /* --- PORTAL DEL LIBRO MÁGICO (FONDO ANIMADO Y LUMINOSO) --- */
+        /* --- PORTAL DEL LIBRO (CORREGIDO A RAMA MAIN) --- */
         .portal-libro {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            /* Usamos tu imagen del libro como fondo */
-            background: url('libro-magico.jpg') center/cover no-repeat;
+            /* Se corrigió 'principal' por 'main' en la URL */
+            background: url('https://raw.githubusercontent.com/Marcoivanch/marcoivanch.github.io/main/libro-magico.jpg') center/cover no-repeat;
             z-index: -1;
-            /* Efecto de 'apertura' del libro y aclarado cinematográfico al cargar */
             animation: openingBook 4s ease-out forwards;
         }
 
-        /* Capa de luz multicolor y luminosidad sobre el libro */
         .portal-libro::after {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* degradado multicolor sutil (magia) */
             background: linear-gradient(135deg, rgba(125, 60, 155, 0.1) 0%, rgba(197, 160, 89, 0.15) 50%, rgba(255, 183, 197, 0.15) 100%);
-            /* Capa de luminosidad para eliminar el luto de la intro */
-            background-color: rgba(255, 255, 255, 0.4); 
+            background-color: rgba(255, 255, 255, 0.35); 
             z-index: 0;
         }
 
         @keyframes openingBook {
-            0% { transform: scale(1.1); filter: brightness(0.6) blur(5px); }
+            0% { transform: scale(1.1); filter: brightness(0.5) blur(8px); }
             100% { transform: scale(1); filter: brightness(1) blur(0px); }
         }
 
-        /* --- HERO: DONDE SALEN LAS LETRAS --- */
         .fairy-tale-hero {
             height: 100vh;
             display: flex;
@@ -69,145 +61,68 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-            position: relative;
             z-index: 10;
+            cursor: pointer; /* Indica que se puede tocar */
         }
 
-        /* --- EFECTO CSS DE LETRAS DORADAS CON FILETE ROSADO (MODERNO) --- */
         .letras-magicas {
             font-family: var(--font-magica);
             font-size: 6rem;
             margin: 0;
-            position: relative;
-            
-            /* Efecto base: Cristal Dorado (High Gloss) */
             color: var(--dorado-magico);
             background: linear-gradient(to bottom, var(--brillo) 0%, var(--dorado-magico) 50%, #b8860b 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            
-            /* El Filete sutil rosa cuarzo (drop-shadow y stroke) */
-            -webkit-text-stroke: 1.5px rgba(255, 183, 197, 0.6); 
-            filter: drop-shadow(0px 3px 0px rgba(0,0,0,0.3)) drop-shadow(0 0 15px rgba(248, 228, 161, 0.5));
-            
-            /* Animación de salida cinematográfica y destellos */
+            -webkit-text-stroke: 1.2px rgba(255, 183, 197, 0.7); 
+            filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.3));
             opacity: 0;
-            transform: translateY(100px) scale(0.5);
-            animation: magicEmerge 3s ease-out 1.5s forwards, magicGlow 4s infinite 4.5s;
-        }
-
-        /* Brillo destellante rosado cuarzo sobre las letras */
-        .letras-magicas::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            font-family: var(--font-magica);
-            -webkit-text-fill-color: var(--rosa-cuarzo); /* Brillo rosa cuarzo */
-            opacity: 0;
-            filter: blur(2px);
-            animation: magicDestello 6s ease-in-out infinite 5s;
+            transform: translateY(50px);
+            animation: magicEmerge 3s ease-out 1s forwards;
         }
 
         @keyframes magicEmerge {
-            0% { opacity: 0; transform: translateY(100px) scale(0.5) rotate(-10deg); filter: blur(10px); }
-            100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); filter: blur(0px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes magicGlow {
-            0%, 100% { filter: drop-shadow(0px 3px 0px rgba(0,0,0,0.3)) drop-shadow(0 0 15px rgba(248, 228, 161, 0.5)); }
-            50% { filter: drop-shadow(0px 3px 0px rgba(0,0,0,0.3)) drop-shadow(0 0 30px rgba(248, 228, 161, 0.8)); }
-        }
-
-        @keyframes magicDestello {
-            0%, 15%, 100% { opacity: 0; transform: scale(1); }
-            7.5% { opacity: 1; transform: scale(1.05); }
-        }
-
-        /* Subleyenda sutil y clara */
         .sub-leyenda {
             font-family: var(--font-serif);
-            letter-spacing: 6px;
-            font-size: 0.95rem;
-            margin-top: -10px; /* Ajuste para la script */
+            letter-spacing: 8px;
+            font-size: 0.9rem;
+            color: #333;
+            margin-top: 10px;
             opacity: 0;
-            animation: fadeInSub 2s ease-in 4s forwards;
-            color: #333; /* Texto oscuro sobre el libro claro */
-            font-weight: 400;
+            animation: fadeIn 2s ease-in 3s forwards;
         }
 
-        @keyframes fadeInSub {
-            to { opacity: 0.8; }
-        }
+        @keyframes fadeIn { to { opacity: 0.8; } }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            font-family: var(--font-serif);
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            color: #444;
-            animation: bounce 2s infinite;
-            opacity: 0.6;
-            font-weight: bold;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* WHATSAPP ESTILO SELLO REAL (COHERENTE CON FANTASÍA) */
-        .wsp-sello-real {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 70px;
-            height: 70px;
-            /* Radial gradient rosa y dorado sutil */
-            background: radial-gradient(circle, #f8e4a1 0%, #ffb7c5 100%); 
-            color: #000;
+        /* WHATSAPP SELLO */
+        .wsp-sello {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 65px; height: 65px;
+            background: radial-gradient(circle, #f8e4a1 0%, #ffb7c5 100%);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 15px rgba(255,255,255,0.4);
-            text-decoration: none;
-            z-index: 2000;
-            transition: 0.3s;
-            border: 2px solid #ff9eac;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; color: #000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            text-decoration: none; z-index: 100;
+            border: 2px solid white;
         }
 
-        .wsp-sello-real:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 30px rgba(255, 183, 197, 0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .letras-magicas { font-size: 3.8rem; }
-            .wsp-sello-real { width: 60px; height: 60px; bottom: 20px; right: 20px; font-size: 28px; }
-        }
+        @media (max-width: 768px) { .letras-magicas { font-size: 3.5rem; } }
     </style>
 </head>
 <body>
 
     <div class="portal-libro"></div>
 
-    <section class="fairy-tale-hero">
-        <h1 class="letras-magicas" data-text="Hoy cumples 15 años...">Hoy cumples 15 años...</h1>
+    <section class="fairy-tale-hero" onclick="alert('Aquí activaremos la siguiente fase de la sorpresa')">
+        <h1 class="letras-magicas">Hoy cumples 15 años...</h1>
         <p class="sub-leyenda">ENSOÑACIÓN & FANTASÍA</p>
-        
-        <div class="scroll-indicator">DESCUBRA LA MAGIA</div>
     </section>
 
-    <a href="https://wa.me/51930046681?text=Deseo%20reservar%20una%20asesoría%20para%20los%20quinceaños%20mágicos" 
-       class="wsp-sello-real" 
-       target="_blank">
+    <a href="https://wa.me/51930046681" class="wsp-sello" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
