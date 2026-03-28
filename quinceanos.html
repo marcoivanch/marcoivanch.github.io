@@ -12,100 +12,119 @@
         :root {
             --dorado: #f8e4a1; 
             --rosa: #ffb7c5;   
-            --oscuro: #0a0a0a;
+            --font-magica: 'Pinyon Script', cursive;
+            --font-serif: 'Cinzel', serif;
         }
 
         body, html {
             margin: 0; padding: 0;
-            background-color: var(--oscuro);
+            background-color: black; /* El luto inicial */
             height: 100%; width: 100%;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* --- FONDO DEL LIBRO MÁGICO --- */
-        .portal-libro {
-            position: fixed;
-            top: 0; left: 0;
+        /* --- ESCENARIO DE LA FANTASÍA (ESTO APARECE SUAVEMENTE) --- */
+        .escenario-quinceanos {
+            position: relative;
             width: 100%; height: 100%;
-            background: url('./libro-magico.jpg') center/cover no-repeat;
-            z-index: -1;
-            filter: brightness(1.1);
-            animation: openingBook 4s ease-out forwards;
+            opacity: 0; /* Empieza invisible */
+            animation: aparicionSuave 3s ease-out 0.5s forwards; /* Aparece todo suavemente */
         }
 
-        /* Capa de luz para eliminar el fondo negro y dar brillo cinematográfico */
-        .portal-libro::after {
+        /* LA FOTO DEL LIBRO (SUJETO REAL SUPERPUESTO) */
+        .foto-libro {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Ruta Relativa Directa a tu archivo JPG */
+            background-image: url('./libro-magico.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: 1; /* Detrás de los textos */
+            filter: brightness(1.2) contrast(1.1); /* Brillo para que destaque */
+        }
+
+        /* Capa de luz para blindar el brillo cinematográfico */
+        .foto-libro::after {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.5) 100%);
-            z-index: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
         }
 
-        @keyframes openingBook {
-            0% { transform: scale(1.1); filter: brightness(0.5) blur(10px); }
-            100% { transform: scale(1); filter: brightness(1.1) blur(0px); }
-        }
-
-        /* --- TEXTOS MAGICOS --- */
-        .fairy-tale-hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* --- LETRAS SUPERPUESTAS --- */
+        .contenedor-textos {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; /* En primer plano */
             text-align: center;
+            width: 90%;
         }
 
         .letras-magicas {
-            font-family: 'Pinyon Script', cursive;
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-family: var(--font-magica);
+            font-size: clamp(3rem, 12vw, 7rem);
             color: var(--dorado);
             margin: 0;
-            text-shadow: 0 0 20px rgba(255,183,197,0.5);
+            text-shadow: 0 0 20px rgba(255,183,197,0.7);
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
             opacity: 0;
-            animation: fadeInText 3s ease-out 1.5s forwards;
+            transform: translateY(20px);
+            animation: emerge 1.5s ease-out 1.5s forwards; /* Aparecen después */
         }
 
         .sub-leyenda {
-            font-family: 'Cinzel', serif;
+            font-family: var(--font-serif);
             letter-spacing: 8px;
             font-size: clamp(0.7rem, 2vw, 1.2rem);
-            color: #fff;
+            color: white;
             margin-top: 15px;
             opacity: 0;
-            animation: fadeInText 2s ease-out 3.5s forwards;
+            animation: fadeIn 2s ease-out 3s forwards; /* Aparece al final */
         }
 
-        @keyframes fadeInText {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- BOTÓN DE WHATSAPP --- */
+        /* --- WHATSAPP SELLO --- */
         .wsp-sello {
             position: fixed; bottom: 30px; right: 30px;
             width: 60px; height: 60px;
             background: radial-gradient(circle, var(--dorado) 0%, var(--rosa) 100%);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: black;
-            text-decoration: none;
+            font-size: 30px; color: black; text-decoration: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            border: 2px solid white;
-            z-index: 100;
+            border: 2px solid white; z-index: 100;
         }
+
+        /* --- ANIMACIONES --- */
+        @keyframes aparicionSuave {
+            to { opacity: 1; }
+        }
+
+        @keyframes emerge {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="portal-libro"></div>
+    <div class="escenario-quinceanos">
+        
+        <div class="foto-libro"></div>
+        
+        <div class="contenedor-textos">
+            <h1 class="letras-magicas">Hoy cumples 15 años...</h1>
+            <p class="sub-leyenda">Ensoñación & Fantasía</p>
+        </div>
 
-    <section class="fairy-tale-hero">
-        <h1 class="letras-magicas">"Hoy cumples 15 años..."</h1>
-        <p class="sub-leyenda">ENSOÑACIÓN & FANTASÍA</p>
-    </section>
+    </div>
 
     <a href="https://wa.me/51930046681" class="wsp-sello" target="_blank">
         <i class="fab fa-whatsapp"></i>
