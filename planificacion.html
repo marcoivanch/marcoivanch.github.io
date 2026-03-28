@@ -2,121 +2,145 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Planificación | Quinceaños</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control Profesional</title>
     <style>
         :root {
-            --dorado: #f8e4a1;
-            --dorado-mate: #c5a059;
+            --bg-color: #0d1117;
+            --accent-color: #58a6ff;
+            --text-main: #c9d1d9;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
         }
-        body, html {
-            margin: 0; padding: 0;
-            background-color: black;
-            height: 100%; width: 100%;
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-        }
-        .bg-limosina {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('./15 limonina.png') center/cover no-repeat;
-            z-index: 1;
-            filter: brightness(0.5);
-        }
-        .capa-gradiente {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, black 45%, rgba(0,0,0,0.8) 75%, transparent 100%);
-            z-index: 2;
-        }
-        .contenido {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            padding: 0 5% 0 8%;
-            max-width: 650px;
-            box-sizing: border-box;
-        }
-        .titulo-emocional {
-            font-family: 'Pinyon Script', cursive;
-            font-size: clamp(2.8rem, 7vw, 5rem);
-            color: var(--dorado);
-            margin-bottom: 25px;
-            line-height: 1.1;
-            flex-shrink: 0;
         }
 
-        /* --- CONTENEDOR DE TEXTO PURIFICADO --- */
-        .contenedor-scroll {
-            max-height: 55vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch; /* Obligatorio para fluidez en móvil */
-            padding-right: 15px;
-            /* DESACTIVAR CUALQUIER BARRA O ICONO */
-            scrollbar-width: none; 
-            -ms-overflow-style: none;
-        }
-        .contenedor-scroll::-webkit-scrollbar {
-            display: none !important;
-            width: 0 !important;
+        .console-container {
+            width: 100%;
+            max-width: 900px;
+            border: 1px solid var(--border-color);
+            background: var(--panel-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        .narrativa {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            line-height: 2;
-            color: #f0f0f0;
+        .terminal-header {
+            background: #21262d;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .oro { color: var(--dorado); font-weight: bold; }
 
-        .btn-volver {
-            margin-top: 30px;
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #238636;
+            border-radius: 50%;
             display: inline-block;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            color: var(--dorado);
-            border: 1px solid var(--dorado-mate);
-            padding: 15px 35px;
-            transition: 0.4s;
-            width: fit-content;
-            background: rgba(0,0,0,0.7);
-            letter-spacing: 2px;
-            flex-shrink: 0;
-        }
-        .btn-volver:hover {
-            background: var(--dorado-mate);
-            color: black;
+            margin-right: 5px;
         }
 
-        @media (max-width: 600px) {
-            .contenido { padding: 40px 25px; }
-            .capa-gradiente { background: rgba(0,0,0,0.85); }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .module-card {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+
+        .module-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        h2, h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .data-line {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .btn-action {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .btn-action:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
     </style>
 </head>
 <body>
-    <div class="bg-limosina"></div>
-    <div class="capa-gradiente"></div>
-    
-    <main class="contenido">
-        <h1 class="titulo-emocional">"Y por fin todas tus amigas te verán..."</h1>
-        
-        <div class="contenedor-scroll">
-            <div class="narrativa">
-                <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>... cada detalle debe ser perfecto.</p>
-                <p><span class="oro">Marco Iván</span> sabrá la hora de presentación; anunciará tu llegada en limosina elegante, o el carruaje fantástico, o en tu automóvil privado de gala.</p>
-                <p>Si de repente tu estilo es tomarte fotografías y maquillarte en el salón, entonces coordinará tu ingreso para anunciarte con expectativa.</p>
-                <p>Tu maestro se encargará de que el escenario esté listo y el protocolo en orden. Tú solo debes atender tu <span class="oro">glamour</span>, tu brillo y dedicarte a disfrutar con los tuyos.</p>
-                <p>Estar lista para lucir cuando seas anunciada, en ese momento el tiempo se detendrá y aparecerá la esperada <span class="oro">Princesa</span>.</p>
-            </div>
+
+<div class="console-container">
+    <div class="terminal-header">
+        <span><span class="status-dot"></span> SISTEMA DE GESTIÓN PROFESIONAL V3.0</span>
+        <span>ID: 2026-SYS</span>
+    </div>
+
+    <div class="content-grid">
+        <div class="module-card">
+            <h3>Estado del Servicio</h3>
+            <div class="data-line">TIPO: Protocolo y Gestión</div>
+            <div class="data-line">ZONA: Lima Metropolitana</div>
+            <div class="data-line">ESTADO: Disponible</div>
+            <a href="#" class="btn-action">AGENDAR CONSULTA</a>
         </div>
 
-        <a href="quinceanos.html" class="btn-volver">VOLVER AL INICIO</a>
-    </main>
+        <div class="module-card">
+            <h3>Especialidad Técnica</h3>
+            <div class="data-line">NORMATIVA: RNT / IVS</div>
+            <div class="data-line">OBJETO: Patrimonio y Arte</div>
+            <div class="data-line">RIGOR: Máximo nivel</div>
+            <a href="#" class="btn-action">VER PORTAFOLIO</a>
+        </div>
+
+        <div class="module-card">
+            <h3>Comunicación Directa</h3>
+            <div class="data-line">ASUNTO: Consultoría</div>
+            <div class="data-line">CANAL: Encriptado / Directo</div>
+            <div class="data-line">TIEMPO: < 24 hrs</div>
+            <a href="#" class="btn-action">ENVIAR MENSAJE</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
