@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificación | El Gran Momento</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --dorado-brillante: #f8e4a1;
+            --dorado-mate: #c5a059;
+            --sombra-naranja: rgba(204, 88, 3, 0.8);
+            --oscuro-cristal: rgba(10, 10, 10, 0.7);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: black;
+            height: 100%; width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- FONDO CINEMATOGRÁFICO CON LA LIMOSINA --- */
+        .fondo-planificacion {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('./15 limonina.png') center/cover no-repeat;
+            z-index: 1;
+            filter: brightness(0.8) contrast(1.1);
+        }
+
+        .capa-elegancia {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 30%, transparent);
+            z-index: 2;
+        }
+
+        /* --- CONTENIDO NARRATIVO --- */
+        .contenido-cuento {
+            position: relative;
+            z-index: 10;
+            padding: 80px 5%;
+            max-width: 700px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .titulo-emocional {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--dorado-brillante);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 15px var(--sombra-naranja);
+            line-height: 1.1;
+        }
+
+        .prose-cuento {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            line-height: 1.8;
+            letter-spacing: 2px;
+            color: #eee;
+            margin-bottom: 40px;
+        }
+
+        .texto-destacado {
+            color: var(--dorado-brillante);
+            font-weight: 700;
+        }
+
+        /* --- BOTONES DE ACCIÓN --- */
+        .nav-interna {
+            display: flex;
+            gap: 20px;
+        }
+
+        .boton-regresar {
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            color: white;
+            border: 1px solid white;
+            padding: 12px 30px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .boton-regresar:hover {
+            background: white;
+            color: black;
+        }
+
+        /* --- WHATSAPP --- */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            color: var(--dorado-brillante);
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .contenido-cuento { text-align: center; padding: 40px 20px; align-items: center; }
+            .capa-elegancia { background: rgba(0,0,0,0.6); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fondo-planificacion"></div>
+    <div class="capa-elegancia"></div>
+
+    <main class="contenido-cuento">
+        <h1 class="titulo-emocional">"Y por fin todos tus amigos y amigas te verán..."</h1>
+        
+        <div class="prose-cuento">
+            <p>Serás presentada ante el mundo y bailarás con tu maravilloso vestido... pero para que ese sueño sea real, cada detalle debe ser perfecto.</p>
+            
+            <p>Tu <span class="texto-destacado">Maestro de Ceremonias</span> debe saber con precisión a qué hora llegarás; si lo harás en una limosina elegante, un carruaje fantástico o un auto privado de gala.</p>
+            
+            <p>Él se encargará de que el escenario esté listo y el protocolo en orden. Tú solo debes preocuparte por tu <span class="texto-destacado">glamour</span>, por tu brillo y por disfrutar con los tuyos.</p>
+            
+            <p>Tú solo debes brillar... para que cuando él te anuncie, el tiempo se detenga y por fin aparezca la <span class="texto-destacado">Princesa</span>.</p>
+        </div>
+
+        <div class="nav-interna">
+            <a href="quinceanos.html" class="boton-regresar"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+        </div>
+    </main>
+
+    <a href="https://wa.me/51930046681" class="wa-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
