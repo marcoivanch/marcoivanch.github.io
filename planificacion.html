@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Planificación | Quinceaños</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
@@ -14,9 +14,10 @@
             margin: 0; padding: 0;
             background-color: black;
             height: 100%; width: 100%;
-            overflow: hidden;
+            overflow: hidden; /* Mantiene la pantalla fija */
             font-family: 'Montserrat', sans-serif;
             color: white;
+            -webkit-font-smoothing: antialiased;
         }
         .bg-limosina {
             position: fixed;
@@ -28,7 +29,7 @@
         .capa-gradiente {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.85) 45%, transparent);
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 45%, transparent);
             z-index: 2;
         }
         .contenido {
@@ -38,57 +39,58 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-left: 8%;
+            padding: 0 5% 0 8%;
             max-width: 650px;
             box-sizing: border-box;
         }
         .titulo-emocional {
             font-family: 'Pinyon Script', cursive;
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.8rem, 7vw, 5rem);
             color: var(--dorado);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             line-height: 1.1;
             flex-shrink: 0;
         }
 
-        /* --- CONTENEDOR CON BOUQUET COMO SCROLL --- */
-        .contenedor-scroll {
-            max-height: 50vh;
-            overflow-y: auto;
-            padding-right: 25px; /* Más espacio para el bouquet */
-            scrollbar-width: thin;
-            scrollbar-color: var(--dorado-mate) transparent;
+        /* --- CONTENEDOR DE TEXTO CON SCROLL TÁCTIL --- */
+        .area-lectura {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            max-height: 55vh;
         }
 
-        /* Estilo para Chrome/Safari: LA MAGIA DEL BOUQUET */
-        .contenedor-scroll::-webkit-scrollbar {
-            width: 30px; /* Ancho suficiente para el bouquet */
+        .contenedor-scroll {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Habilita scroll suave en iPhone/Android */
+            padding-right: 35px;
+            scrollbar-width: none; /* Oculta barra fea en Firefox */
         }
-        .contenedor-scroll::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05); /* Carril casi invisible */
-            border-radius: 10px;
-        }
-        .contenedor-scroll::-webkit-scrollbar-thumb {
-            /* Aquí usamos un icono de bouquet dorado */
-            background-image: url('https://img.icons8.com/ios-filled/50/f8e4a1/bouquet.png'); 
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            background-color: transparent;
-            min-height: 50px;
+
+        .contenedor-scroll::-webkit-scrollbar { display: none; } /* Oculta barra en Chrome/Safari */
+
+        /* EL BOUQUET: Como indicador visual de movimiento */
+        .indicador-bouquet {
+            position: sticky;
+            top: 0;
+            width: 40px;
+            height: auto;
+            margin-left: -25px;
+            filter: drop-shadow(0 0 10px var(--dorado));
+            animation: bounce 2s infinite ease-in-out;
         }
 
         .narrativa {
             font-family: 'Cinzel', serif;
-            font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+            font-size: clamp(0.95rem, 1.8vw, 1.15rem);
             line-height: 1.8;
             letter-spacing: 1px;
-            color: #e0e0e0;
+            color: #e3e3e3;
         }
         .oro { color: var(--dorado); font-weight: bold; }
 
         .btn-volver {
-            margin-top: 30px;
+            margin-top: 25px;
             display: inline-block;
             text-decoration: none;
             font-family: 'Cinzel', serif;
@@ -98,16 +100,18 @@
             transition: 0.4s;
             width: fit-content;
             flex-shrink: 0;
+            background: rgba(0,0,0,0.5);
         }
-        .btn-volver:hover {
-            background: var(--dorado-mate);
-            color: black;
-            box-shadow: 0 0 15px var(--dorado);
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
         }
 
         @media (max-width: 600px) {
-            .contenido { padding: 40px 20px; width: 90%; }
-            .contenedor-scroll { max-height: 55vh; }
+            .contenido { padding: 40px 15px 40px 25px; }
+            .capa-gradiente { background: rgba(0,0,0,0.7); }
+            .area-lectura { max-height: 60vh; }
         }
     </style>
 </head>
@@ -118,16 +122,21 @@
     <main class="contenido">
         <h1 class="titulo-emocional">"Y por fin todas tus amigas te verán..."</h1>
         
-        <div class="contenedor-scroll">
-            <div class="narrativa">
-                <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>... cada detalle debe ser perfecto.</p>
-                
-                <p><span class="oro">Tu Maestro de Ceremonias, Marco Iván,</span> sabrá la hora de presentación; anunciará tu llegada en limosina elegante, o el carruaje fantástico, o en tu automóvil privado de gala. Si de repente tu estilo es tomarte fotografías y maquillarte en el salón entonces coordinará tu ingreso para anunciarte con expectativa.</p>
-                
-                <p>Tu maestro se encargará de que el escenario esté listo y el protocolo en orden. Tú solo debes atender tu <span class="oro">glamour</span>, tu brillo y dedicarte a disfrutar con los tuyos.</p>
-                
-                <p>Estar lista para lucir cuando seas anunciada, en ese momento el tiempo se detendrá y ya no serás tú sino la esperada <span class="oro">Princesa</span>.</p>
+        <div class="area-lectura">
+            <div class="contenedor-scroll">
+                <div class="narrativa">
+                    <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>... cada detalle debe ser perfecto.</p>
+                    
+                    <p><span class="oro">Tu Maestro de Ceremonias, Marco Iván,</span> sabrá la hora de presentación; anunciará tu llegada en limosina elegante, o el carruaje fantástico, o en tu automóvil privado de gala.</p>
+                    
+                    <p>Si de repente tu estilo es tomarte fotografías y maquillarte en el salón, entonces coordinará tu ingreso para anunciarte con expectativa.</p>
+                    
+                    <p>Tu maestro se encargará de que el escenario esté listo y el protocolo en orden. Tú solo debes atender tu <span class="oro">glamour</span>, tu brillo y dedicarte a disfrutar con los tuyos.</p>
+                    
+                    <p>Estar lista para lucir cuando seas anunciada, en ese momento el tiempo se detendrá y ya no serás tú sino la esperada <span class="oro">Princesa</span>.</p>
+                </div>
             </div>
+            <img src="https://img.icons8.com/ios-filled/100/f8e4a1/bouquet.png" class="indicador-bouquet" alt="Scroll">
         </div>
 
         <a href="quinceanos.html" class="btn-volver">Volver al inicio</a>
