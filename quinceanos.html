@@ -13,7 +13,6 @@
             --dorado-brillante: #f8e4a1;
             --dorado-mate: #c5a059;
             --sombra-naranja: rgba(204, 88, 3, 0.8);
-            --oscuro: #0a0a0a;
         }
 
         body, html {
@@ -24,136 +23,162 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* --- ESCENARIO VISUAL --- */
-        .escenario-quinceanos {
+        /* --- SECCIÓN 1: PORTADA (EL LIBRO) --- */
+        #portada {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('./libro-magico.jpg') center/cover no-repeat;
-            z-index: 1;
-            filter: brightness(1.1) contrast(1.05);
-            animation: fadeInScreen 3s ease-out forwards;
+            z-index: 20;
+            transition: opacity 1s ease, visibility 1s;
         }
 
-        .escenario-quinceanos::after {
-            content: "";
+        .escenario-quinceanos {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5));
-            z-index: 2;
+            background: url('./libro-magico.jpg') center/cover no-repeat;
+            filter: brightness(1.1) contrast(1.05);
         }
 
-        /* --- TEXTOS PRINCIPALES --- */
-        .interfaz-usuario {
-            position: relative;
+        /* --- SECCIÓN 2: PLANIFICACIÓN (LA LIMOSINA) --- */
+        #planificacion {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .fondo-limosina {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('./15 limonina.png') center/cover no-repeat;
+            filter: brightness(0.7);
+        }
+
+        .capa-oscura {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.85) 30%, transparent);
+            z-index: 11;
+        }
+
+        /* --- ESTILOS COMUNES --- */
+        .interfaz {
+            position: relative;
+            z-index: 30;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            padding: 60px 20px;
+            padding: 60px 5%;
             box-sizing: border-box;
         }
 
-        .cabecera {
-            text-align: left; /* Alineamos el contenedor a la izquierda */
-            width: 85%; /* Ajustamos el ancho para dar el aire necesario */
-            max-width: 1200px;
-        }
-
-        .titulo-principal {
+        .titulo-script {
             font-family: 'Pinyon Script', cursive;
-            font-size: clamp(3.5rem, 10vw, 6.5rem);
+            font-size: clamp(3rem, 8vw, 6rem);
             color: var(--dorado-brillante);
-            margin: 0;
             text-shadow: 3px 3px 15px var(--sombra-naranja);
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: emerge 2s ease-out 0.5s forwards;
-            padding-left: 0;
+            margin: 0;
         }
 
-        .linea-perfeccion {
+        .texto-narrativo {
             font-family: 'Cinzel', serif;
             color: white;
-            letter-spacing: 6px;
-            font-size: clamp(0.8rem, 2vw, 1.2rem);
-            margin-top: 5px;
-            opacity: 0;
-            /* AJUSTE SOLICITADO: Margen para alinear con las primeras comillas */
-            margin-left: 1.5vw; 
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-out 2s forwards;
+            line-height: 1.8;
+            max-width: 700px;
+            letter-spacing: 2px;
+            font-size: clamp(1rem, 2vw, 1.3rem);
         }
 
-        /* --- BOTONES DE NAVEGACIÓN --- */
-        .menu-navegacion {
-            display: flex;
-            gap: 30px;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+        .dorado { color: var(--dorado-brillante); font-weight: bold; }
+
+        /* --- BOTONES --- */
+        .menu-botones {
+            display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
         }
 
-        .boton-quince {
+        .btn-oro {
+            cursor: pointer;
             text-decoration: none;
             font-family: 'Cinzel', serif;
             color: var(--dorado-brillante);
             border: 1px solid var(--dorado-mate);
             background: rgba(0, 0, 0, 0.6);
-            padding: 15px 35px;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
+            padding: 15px 30px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.4s ease;
+            transition: 0.4s;
             backdrop-filter: blur(5px);
-            opacity: 0;
-            animation: fadeIn 2s ease-out 3s forwards;
         }
 
-        .boton-quince:hover {
+        .btn-oro:hover {
             background: var(--dorado-mate);
             color: black;
             box-shadow: 0 0 20px var(--dorado-brillante);
-            transform: translateY(-5px);
         }
 
-        /* --- ANIMACIONES --- */
-        @keyframes fadeInScreen { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes emerge { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { to { opacity: 1; } }
+        /* --- CLASES ACTIVAS --- */
+        .mostrar { opacity: 1 !important; visibility: visible !important; }
+        .ocultar { opacity: 0 !important; visibility: hidden !important; }
 
         @media (max-width: 600px) {
-            .cabecera { text-align: center; width: 100%; }
-            .linea-perfeccion { margin-left: 0; text-align: center; }
-            .menu-navegacion { flex-direction: column; align-items: center; gap: 15px; }
-            .boton-quince { width: 80%; text-align: center; }
+            .interfaz { text-align: center; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="escenario-quinceanos"></div>
-
-    <main class="interfaz-usuario">
-        
-        <div class="cabecera">
-            <h1 class="titulo-principal">"Ya cumples tus Quince Años..."</h1>
-            <p class="linea-perfeccion">Todo debe salir perfecto</p>
+    <section id="portada" class="mostrar">
+        <div class="escenario-quinceanos"></div>
+        <div class="interfaz">
+            <div style="text-align: left; width: 85%;">
+                <h1 class="titulo-script">"Ya cumples tus Quince Años..."</h1>
+                <p style="font-family: 'Cinzel'; color: white; letter-spacing: 6px; margin-left: 2vw; text-transform: uppercase;">Todo debe salir perfecto</p>
+            </div>
+            <nav class="menu-botones">
+                <div class="btn-oro" onclick="abrirPlanificacion()">Planificación</div>
+                <div class="btn-oro">Opciones</div>
+                <div class="btn-oro">Protocolo</div>
+            </nav>
         </div>
+    </section>
 
-        <nav class="menu-navegacion">
-            <a href="planificacion.html" class="boton-quince">Planificación</a>
-            <a href="opciones.html" class="boton-quince">Opciones</a>
-            <a href="protocolo.html" class="boton-quince">Protocolo</a>
-        </nav>
-
-    </main>
+    <section id="planificacion">
+        <div class="fondo-limosina"></div>
+        <div class="capa-oscura"></div>
+        <div class="interfaz">
+            <div>
+                <h1 class="titulo-script">"Y por fin todos te verán..."</h1>
+                <div class="texto-narrativo">
+                    <p>Serás presentada ante el mundo y bailarás con tu maravilloso vestido...</p>
+                    <p>Tu <span class="dorado">Maestro de Ceremonias</span> debe saber con precisión a qué hora llegarás; si lo harás en una limosina elegante o un carruaje fantástico.</p>
+                    <p>Él se encargará de que todo esté listo. Tú solo debes brillar para que cuando él te anuncie... aparezca la <span class="dorado">Princesa</span>.</p>
+                </div>
+            </div>
+            <div class="menu-botones">
+                <div class="btn-oro" onclick="volverPortada()"><i class="fas fa-arrow-left"></i> Volver</div>
+            </div>
+        </div>
+    </section>
 
     <a href="https://wa.me/51930046681" style="position: fixed; bottom: 30px; right: 30px; z-index: 100; color: #f8e4a1; font-size: 40px; text-decoration: none;">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script>
+        function abrirPlanificacion() {
+            document.getElementById('portada').classList.add('ocultar');
+            document.getElementById('portada').classList.remove('mostrar');
+            document.getElementById('planificacion').classList.add('mostrar');
+        }
+
+        function volverPortada() {
+            document.getElementById('planificacion').classList.remove('mostrar');
+            document.getElementById('portada').classList.add('mostrar');
+            document.getElementById('portada').classList.remove('ocultar');
+        }
+    </script>
 
 </body>
 </html>
