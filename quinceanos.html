@@ -7,17 +7,18 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@200;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
-            --dorado: #c5a059;
-            --oscuro: #0a0a0a; /* Un negro más profundo para la fantasía */
+            --dorado-magico: #f8e4a1; /* Un dorado más claro para el cristal */
+            --brillo: #ffffff;
+            --oscuro: #0a0a0a;
             --marfil: #fdfcfb;
-            --pergamino: rgba(253, 252, 251, 0.03); /* Textura sutil de papel antiguo */
             --font-serif: 'Cinzel', serif;
-            --font-cursive: 'Great Vibes', cursive;
+            /* Esta es la fuente tipo 'Fairytale' que me pediste */
+            --font-magica: 'Pinyon Script', cursive; 
             --font-narrative: 'Playfair Display', serif;
         }
 
@@ -28,16 +29,36 @@
             color: var(--marfil);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            /* Efecto de entrada cinematográfico */
-            animation: fadeInPage 3s ease-in-out forwards;
+            height: 100%;
         }
 
-        @keyframes fadeInPage {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* --- PORTAL DEL LIBRO MÁGICO (FONDO) --- */
+        .portal-libro {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* Usamos tu imagen del libro y castillo */
+            background: url('libro-magico.jpg') center/cover no-repeat;
+            z-index: -1;
+            /* Efecto de 'apertura' del libro al cargar */
+            animation: openingBook 4s ease-out forwards;
         }
 
-        /* --- HERO: EL INICIO DEL CUENTO --- */
+        /* Capa de degradado multicolor sutil sobre el libro (magia) */
+        .portal-libro::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(125, 60, 155, 0.1) 0%, rgba(197, 160, 89, 0.15) 50%, rgba(60, 155, 125, 0.1) 100%);
+            z-index: 0;
+        }
+
+        @keyframes openingBook {
+            0% { transform: scale(1.1); filter: brightness(0.5) blur(5px); }
+            100% { transform: scale(1); filter: brightness(1) blur(0px); }
+        }
+
+        /* --- HERO: DONDE SALEN LAS LETRAS --- */
         .fairy-tale-hero {
             height: 100vh;
             display: flex;
@@ -45,43 +66,75 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Fondo con imagen temática sutil */
-            background: linear-gradient(rgba(10,10,10,0.85), rgba(10,10,10,0.95)), 
-                        url('quinceanos-bg.jpg') center/cover no-repeat fixed;
             padding: 0 20px;
             position: relative;
+            z-index: 10;
         }
 
-        .cuento-titulo {
-            font-family: var(--font-cursive);
-            font-size: 5.5rem;
-            color: var(--dorado);
+        /* --- EFECTO CSS DE LETRAS DE CRISTAL MÁGICO (INSPIRADO EN TU IMAGEN 3) --- */
+        .letras-magicas {
+            font-family: var(--font-magica);
+            font-size: 6rem;
             margin: 0;
+            position: relative;
+            
+            /* Efecto base: Cristal Dorado Biselado */
+            color: var(--dorado-magico);
+            background: linear-gradient(to bottom, var(--brillo) 0%, var(--dorado-magico) 50%, #b8860b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Brillo de cristal y sombra profunda (bisel) */
+            filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(248, 228, 161, 0.6));
+            
+            /* Animación de salida y brillo */
             opacity: 0;
-            transform: translateY(30px);
-            animation: revealText 2.5s ease-out 1s forwards;
-            text-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
+            transform: translateY(100px) scale(0.5);
+            animation: magicEmerge 3s ease-out 1.5s forwards, magicGlow 4s infinite 4.5s;
         }
 
-        @keyframes revealText {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Brillo destellante sobre las letras */
+        .letras-magicas::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            font-family: var(--font-magica);
+            -webkit-text-fill-color: var(--brillo);
+            opacity: 0;
+            animation: magicDestello 5s ease-in-out infinite 5s;
         }
 
+        @keyframes magicEmerge {
+            0% { opacity: 0; transform: translateY(100px) scale(0.5) rotate(-10deg); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); filter: blur(0px); }
+        }
+
+        @keyframes magicGlow {
+            0%, 100% { filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.5)) drop-shadow(0 0 20px rgba(248, 228, 161, 0.6)); }
+            50% { filter: drop-shadow(0px 4px 0px rgba(0,0,0,0.5)) drop-shadow(0 0 40px rgba(248, 228, 161, 0.9)); }
+        }
+
+        @keyframes magicDestello {
+            0%, 10%, 100% { opacity: 0; }
+            5% { opacity: 0.8; }
+        }
+
+        /* Subleyenda sutil */
         .sub-leyenda {
             font-family: var(--font-serif);
             letter-spacing: 6px;
-            font-size: 1rem;
-            margin-top: 25px;
+            font-size: 0.9rem;
+            margin-top: -10px; /* Ajuste para la script */
             opacity: 0;
-            animation: fadeInSub 2s ease-in 3.5s forwards;
-            color: #aaa;
+            animation: fadeInSub 2s ease-in 4s forwards;
+            color: #ccc;
+            text-shadow: 0 0 10px rgba(0,0,0,1);
         }
 
         @keyframes fadeInSub {
-            to { opacity: 0.8; }
+            to { opacity: 0.7; }
         }
 
         .scroll-indicator {
@@ -90,9 +143,10 @@
             font-family: var(--font-serif);
             font-size: 0.75rem;
             letter-spacing: 4px;
-            color: var(--dorado);
+            color: var(--dorado-magico);
             animation: bounce 2s infinite;
-            opacity: 0.6;
+            opacity: 0.5;
+            text-shadow: 0 0 5px rgba(0,0,0,1);
         }
 
         @keyframes bounce {
@@ -101,162 +155,85 @@
             60% {transform: translateY(-5px);}
         }
 
-        /* --- ESTRUCTURA NARRATIVA (CAPÍTULOS) --- */
+        /* --- RESTO DE LA PÁGINA (Sigue la misma lógica subordinada) --- */
         .divisor-gala {
-            width: 200px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--dorado), transparent);
-            margin: 60px auto;
-            opacity: 0.4;
+            width: 200px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--dorado-magico), transparent);
+            margin: 60px auto; opacity: 0.4;
         }
 
         .capitulo-narrativo {
             max-width: 850px;
             margin: 0 auto 100px;
             padding: 60px 40px;
-            line-height: 2.2;
-            text-align: center;
-            font-size: 1.15rem;
-            color: #ddd;
-            font-weight: 200;
+            line-height: 2.2; text-align: center;
+            font-size: 1.15rem; color: #ddd; font-weight: 200;
             font-family: var(--font-narrative);
-            background: var(--pergamino);
-            border: 1px solid rgba(197, 160, 89, 0.1);
-            position: relative;
+            background: rgba(10,10,10,0.8); /* Fondo oscuro tras el texto para legibilidad */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(248, 228, 161, 0.15);
         }
 
-        /* Letra capital para el inicio del cuento */
         .capitulo-narrativo p::first-letter {
             font-family: var(--font-serif);
-            font-size: 4rem;
-            color: var(--dorado);
-            float: left;
-            margin-right: 18px;
-            line-height: 0.9;
-            font-weight: 700;
+            font-size: 4rem; color: var(--dorado-magico);
+            float: left; margin-right: 18px; line-height: 0.9;
             text-shadow: 2px 2px 15px rgba(0,0,0,1);
         }
 
         .capitulo-titulo {
             font-family: var(--font-serif);
-            color: var(--dorado);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: 400;
+            color: var(--dorado-magico);
+            letter-spacing: 5px; text-transform: uppercase;
+            font-size: 1.5rem; margin-bottom: 30px;
         }
 
-        /* --- FANTASÍA TEMÁTICA (ALICIA) --- */
-        .tematica-alicia {
-            height: 80vh;
-            background: linear-gradient(rgba(10,10,10,0.9), rgba(10,10,10,0.8)), 
-                        url('alicia-wonderland.jpg') center/cover no-repeat fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 120px 0;
-            border-top: 1px solid rgba(197, 160, 89, 0.2);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-        }
-
-        .quote-alicia {
-            font-family: var(--font-cursive);
-            font-size: 3.5rem;
-            color: var(--marfil);
-            max-width: 700px;
-            text-align: center;
-            line-height: 1.3;
-            text-shadow: 0 0 25px rgba(255,255,255,0.3);
-        }
-
-        /* --- NAVEGACIÓN SUBORDINADA (EL FIN DEL CUENTO) --- */
-        .fin-del-cuento {
-            text-align: center;
-            padding: 120px 20px;
-            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
-        }
-
-        .fin-del-cuento h3 {
-            font-family: var(--font-serif);
-            color: var(--dorado);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-size: 1.3rem;
-            margin-bottom: 50px;
-        }
-
-        .menu-fantasía {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu-fantasía a {
-            color: var(--marfil);
-            text-decoration: none;
-            font-family: var(--font-narrative);
-            font-style: italic;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            transition: 0.4s;
-            opacity: 0.6;
-        }
-
-        .menu-fantasía a:hover {
-            color: var(--dorado);
-            opacity: 1;
-            letter-spacing: 2px;
-        }
-
-        /* --- WHATSAPP ESTILO SELLO REAL --- */
+        /* WHATSAPP ESTILO SELLO MÁGICO */
         .wsp-sello-real {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 70px;
-            height: 70px;
-            background: radial-gradient(circle, #d4af37 0%, #b8860b 100%); /* Dorado metálico */
-            color: var(--marfil);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; bottom: 40px; right: 40px;
+            width: 70px; height: 70px;
+            background: radial-gradient(circle, #f8e4a1 0%, #b8860b 100%);
+            color: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             font-size: 32px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(255,255,255,0.3);
-            text-decoration: none;
-            z-index: 2000;
-            transition: 0.3s;
+            text-decoration: none; z-index: 2000; transition: 0.3s;
             border: 2px solid #a87b00;
         }
 
-        .wsp-sello-real:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.4);
-        }
+        .wsp-sello-real:hover { transform: scale(1.1) rotate(10deg); box-shadow: 0 0 30px rgba(248, 228, 161, 0.5); }
 
-        .wsp-sello-real i {
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+        /* Footer sutil */
+        .fin-del-cuento {
+            text-align: center; padding: 100px 20px;
+            background: rgba(0,0,0,0.9);
         }
+        .menu-fantasía {
+            display: flex; justify-content: center; gap: 40px;
+            list-style: none; padding: 0; margin: 0;
+        }
+        .menu-fantasía a {
+            color: var(--marfil); text-decoration: none;
+            font-family: var(--font-narrative); font-style: italic;
+            opacity: 0.6; transition: 0.3s;
+        }
+        .menu-fantasía a:hover { color: var(--dorado-magico); opacity: 1; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .cuento-titulo { font-size: 3.2rem; }
+            .letras-magicas { font-size: 3.5rem; }
             .capitulo-narrativo { padding: 40px 20px; font-size: 1rem; }
-            .tematica-alicia { height: 60vh; margin: 80px 0; }
-            .quote-alicia { font-size: 2.2rem; max-width: 90%; }
-            .menu-fantasía { flex-direction: column; gap: 25px; }
             .wsp-sello-real { width: 60px; height: 60px; bottom: 20px; right: 20px; font-size: 28px; }
+            .menu-fantasía { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="portal-libro"></div>
+
     <section class="fairy-tale-hero">
-        <h1 class="cuento-titulo">"Hoy cumples 15 años..."</h1>
+        <h1 class="letras-magicas" data-text="Hoy cumples 15 años...">Hoy cumples 15 años...</h1>
         <p class="sub-leyenda">ENSOÑACIÓN & FANTASÍA</p>
         
         <div class="scroll-indicator">DESCUBRA LA MAGIA</div>
@@ -267,7 +244,7 @@
     <section class="capitulo-narrativo">
         <h2 class="capitulo-titulo">I. El Ritual del Espejo</h2>
         <p>
-            Detrás del cristal no solo hay un reflejo, hay una promesa. La transición de la niñez a la juventud se detiene frente al espejo, donde la quinceañera descubre que la magia no reside en el vestido, sino en la mujer que comienza a despertar. Un momento de alta narrativa donde el tiempo se congela para los padres y el asombro nace entre los invitados.
+            Detrás del cristal no solo hay un reflejo, hay una promesa. La transición de la niñez a la juventud se detiene frente al espejo, donde la quinceañera descubre que la magia no reside en el vestido, sino en la mujer que comienza a despertar. Un momento de alta narrativa donde el tiempo se encela para los padres y el asombro nace entre los invitados.
         </p>
     </section>
 
@@ -276,31 +253,19 @@
     <section class="capitulo-narrativo">
         <h2 class="capitulo-titulo">II. Cadetes y Corte de Honor</h2>
         <p>
-            La disciplina del protocolo se funde con la elegancia del vals. Cada paso está fríamente calculado para que la simetría sea perfecta. Bajo mi dirección, la pasarela de amigos y el acompañamiento de los cadetes dejan de ser un simple desfile para convertirse en la escolta real de una protagonista que hoy reclama su lugar en el mundo.
-        </p>
-    </section>
-
-    <section class="tematica-alicia">
-        <p class="quote-alicia">"¿Sabes cuál es el problema? Imaginar que las cosas son imposibles."</p>
-    </section>
-
-    <section class="capitulo-narrativo">
-        <h2 class="capitulo-titulo">III. Coreografías de Ensoñación</h2>
-        <p>
-            La pista de baile se transforma en un escenario de cuentos de hadas. No son solo pasos, es la expresión corporal de un sueño. Desde el primer vals emotivo con el padre hasta las coreografías modernas y temáticas de moda (Alicia, Cenicienta), cada movimiento cuenta una historia que yo narro con la precisión académica y la emoción que su familia merece.
+            La disciplina del protocolo se funde con la elegancia del vals. Bajo mi dirección académica y protocolar, la pasarela y el acompañamiento de los cadetes dejan de ser un simple desfile para convertirse en la escolta real de una protagonista que hoy reclama su lugar en el mundo. La simetría y el rigor enmarcan el inicio de su historia.
         </p>
     </section>
 
     <footer class="fin-del-cuento">
-        <h3>El Comienzo de su Historia</h3>
         <nav>
             <ul class="menu-fantasía">
-                <li><a href="index.html">Regresar al Inicio</a></li>
-                <li><a href="servicios.html">Volver a Servicios Premium</a></li>
-                <li><a href="contacto.html">Asegurar mi Fecha Mágica</a></li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios Premium</a></li>
+                <li><a href="contacto.html">Asegurar mi Fecha</a></li>
             </ul>
         </nav>
-        <p style="opacity: 0.3; font-size: 0.8rem; margin-top: 60px; font-family: var(--font-narrative); italic;">© 2026 Marco Iván Cabrera H. | La Excelencia Protocolar.</p>
+        <p style="opacity: 0.3; font-size: 0.8rem; margin-top: 50px; font-family: var(--font-narrative); font-style: italic;">© 2026 Marco Iván Cabrera H. | La Excelencia Protocolar.</p>
     </footer>
 
     <a href="https://wa.me/51930046681?text=Deseo%20reservar%20una%20asesoría%20para%20los%20quinceaños%20mágicos" 
