@@ -3,54 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quinceaños | Ensoñación & Fantasía - Marco Iván Cabrera</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Quinceaños | Ensoñación & Fantasía</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
-            --dorado-magico: #f8e4a1; 
-            --rosa-cuarzo: #ffb7c5;   
-            --brillo: #ffffff;
+            --dorado: #f8e4a1; 
+            --rosa: #ffb7c5;   
             --oscuro: #0a0a0a;
-            --font-serif: 'Cinzel', serif;
-            --font-magica: 'Pinyon Script', cursive; 
         }
 
         body, html {
             margin: 0; padding: 0;
             background-color: var(--oscuro);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
             height: 100%;
+            overflow: hidden;
         }
 
-        /* --- PORTAL DEL LIBRO (CORREGIDO A RAMA MAIN) --- */
+        /* --- ESTA ES LA RUTA RELATIVA QUE NO FALLA --- */
         .portal-libro {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            /* Se corrigió 'principal' por 'main' en la URL */
-            background: url('https://raw.githubusercontent.com/Marcoivanch/marcoivanch.github.io/main/libro-magico.jpg') center/cover no-repeat;
+            /* Solo el nombre del archivo, así GitHub lo encuentra sí o sí */
+            background: url('libro-magico.jpg') center/cover no-repeat;
             z-index: -1;
             animation: openingBook 4s ease-out forwards;
         }
 
+        /* Capa de luz para eliminar el fondo negro */
         .portal-libro::after {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(125, 60, 155, 0.1) 0%, rgba(197, 160, 89, 0.15) 50%, rgba(255, 183, 197, 0.15) 100%);
-            background-color: rgba(255, 255, 255, 0.35); 
+            background-color: rgba(255, 255, 255, 0.3); 
             z-index: 0;
         }
 
         @keyframes openingBook {
-            0% { transform: scale(1.1); filter: brightness(0.5) blur(8px); }
+            0% { transform: scale(1.1); filter: brightness(0.5) blur(10px); }
             100% { transform: scale(1); filter: brightness(1) blur(0px); }
         }
 
@@ -61,70 +53,50 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            z-index: 10;
-            cursor: pointer; /* Indica que se puede tocar */
         }
 
         .letras-magicas {
-            font-family: var(--font-magica);
-            font-size: 6rem;
-            margin: 0;
-            color: var(--dorado-magico);
-            background: linear-gradient(to bottom, var(--brillo) 0%, var(--dorado-magico) 50%, #b8860b 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -webkit-text-stroke: 1.2px rgba(255, 183, 197, 0.7); 
-            filter: drop-shadow(0px 3px 2px rgba(0,0,0,0.3));
+            font-family: 'Pinyon Script', cursive;
+            font-size: 5rem;
+            color: var(--dorado);
+            /* Efecto cristal rosado */
+            text-shadow: 0 0 10px rgba(255,183,197,0.5);
+            -webkit-text-stroke: 1px var(--rosa);
             opacity: 0;
-            transform: translateY(50px);
-            animation: magicEmerge 3s ease-out 1s forwards;
-        }
-
-        @keyframes magicEmerge {
-            to { opacity: 1; transform: translateY(0); }
+            animation: fadeIn 3s ease-out 1s forwards;
         }
 
         .sub-leyenda {
-            font-family: var(--font-serif);
-            letter-spacing: 8px;
-            font-size: 0.9rem;
-            color: #333;
-            margin-top: 10px;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 5px;
+            color: #222;
             opacity: 0;
-            animation: fadeIn 2s ease-in 3s forwards;
+            animation: fadeIn 2s ease-out 3s forwards;
         }
 
-        @keyframes fadeIn { to { opacity: 0.8; } }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        /* WHATSAPP SELLO */
+        /* Botón de WhatsApp tipo sello */
         .wsp-sello {
             position: fixed; bottom: 30px; right: 30px;
-            width: 65px; height: 65px;
-            background: radial-gradient(circle, #f8e4a1 0%, #ffb7c5 100%);
+            width: 60px; height: 60px;
+            background: radial-gradient(circle, var(--dorado) 0%, var(--rosa) 100%);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: #000;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            text-decoration: none; z-index: 100;
-            border: 2px solid white;
+            font-size: 30px; color: black;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-
-        @media (max-width: 768px) { .letras-magicas { font-size: 3.5rem; } }
     </style>
 </head>
 <body>
-
     <div class="portal-libro"></div>
-
-    <section class="fairy-tale-hero" onclick="alert('Aquí activaremos la siguiente fase de la sorpresa')">
+    <section class="fairy-tale-hero">
         <h1 class="letras-magicas">Hoy cumples 15 años...</h1>
         <p class="sub-leyenda">ENSOÑACIÓN & FANTASÍA</p>
     </section>
-
     <a href="https://wa.me/51930046681" class="wsp-sello" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
 </body>
 </html>
