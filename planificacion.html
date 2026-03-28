@@ -11,6 +11,8 @@
             --text-main: #c9d1d9;
             --panel-bg: #161b22;
             --border-color: #30363d;
+            /* Color para el difuminado (marrón muy oscuro, no negro) */
+            --fade-color: #1a0f0a; 
         }
 
         body {
@@ -27,14 +29,22 @@
             width: 100%;
             max-width: 900px;
             border: 1px solid var(--border-color);
-            background: var(--panel-bg);
+            /* EFECTO DE FOTO APLICADO AQUÍ */
+            background: 
+                linear-gradient(to left, rgba(26, 15, 10, 0) 0%, var(--fade-color) 80%), 
+                url('tu-imagen-del-vestido.jpg'); 
+            background-size: cover;
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-color: var(--fade-color);
+            
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-radius: 8px;
             overflow: hidden;
         }
 
         .terminal-header {
-            background: #21262d;
+            background: rgba(33, 38, 45, 0.9); /* Un poco de transparencia para el estilo */
             padding: 10px 15px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
@@ -60,9 +70,11 @@
 
         .module-card {
             border: 1px solid var(--border-color);
+            background: rgba(22, 27, 34, 0.8); /* Fondo semi-transparente para ver el difuminado */
             padding: 15px;
             border-radius: 6px;
             transition: transform 0.2s ease;
+            backdrop-filter: blur(4px); /* Suaviza el fondo bajo las tarjetas */
         }
 
         .module-card:hover {
