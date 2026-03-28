@@ -14,10 +14,9 @@
             margin: 0; padding: 0;
             background-color: black;
             height: 100%; width: 100%;
-            overflow: hidden; /* Mantiene la pantalla fija */
+            overflow: hidden;
             font-family: 'Montserrat', sans-serif;
             color: white;
-            -webkit-font-smoothing: antialiased;
         }
         .bg-limosina {
             position: fixed;
@@ -52,33 +51,23 @@
             flex-shrink: 0;
         }
 
-        /* --- CONTENEDOR DE TEXTO CON SCROLL TÁCTIL --- */
+        /* --- CONTENEDOR DE TEXTO --- */
         .area-lectura {
             position: relative;
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
             max-height: 55vh;
         }
 
         .contenedor-scroll {
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch; /* Habilita scroll suave en iPhone/Android */
-            padding-right: 35px;
-            scrollbar-width: none; /* Oculta barra fea en Firefox */
+            -webkit-overflow-scrolling: touch; /* Scroll suave en móviles */
+            padding-right: 20px;
         }
 
-        .contenedor-scroll::-webkit-scrollbar { display: none; } /* Oculta barra en Chrome/Safari */
-
-        /* EL BOUQUET: Como indicador visual de movimiento */
-        .indicador-bouquet {
-            position: sticky;
-            top: 0;
-            width: 40px;
-            height: auto;
-            margin-left: -25px;
-            filter: drop-shadow(0 0 10px var(--dorado));
-            animation: bounce 2s infinite ease-in-out;
-        }
+        /* Ocultar barra de scroll para mantener la limpieza visual */
+        .contenedor-scroll::-webkit-scrollbar { display: none; }
+        .contenedor-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
         .narrativa {
             font-family: 'Cinzel', serif;
@@ -88,6 +77,15 @@
             color: #e3e3e3;
         }
         .oro { color: var(--dorado); font-weight: bold; }
+
+        /* INDICADOR VISUAL ELEGANTE (SVG integrado, no falla) */
+        .indicador-guia {
+            margin-top: 10px;
+            text-align: center;
+            width: 30px;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
+        }
 
         .btn-volver {
             margin-top: 25px;
@@ -105,12 +103,11 @@
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
+            50% { transform: translateY(8px); }
         }
 
         @media (max-width: 600px) {
-            .contenido { padding: 40px 15px 40px 25px; }
-            .capa-gradiente { background: rgba(0,0,0,0.7); }
+            .contenido { padding: 40px 20px; }
             .area-lectura { max-height: 60vh; }
         }
     </style>
@@ -126,20 +123,21 @@
             <div class="contenedor-scroll">
                 <div class="narrativa">
                     <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>... cada detalle debe ser perfecto.</p>
-                    
                     <p><span class="oro">Tu Maestro de Ceremonias, Marco Iván,</span> sabrá la hora de presentación; anunciará tu llegada en limosina elegante, o el carruaje fantástico, o en tu automóvil privado de gala.</p>
-                    
                     <p>Si de repente tu estilo es tomarte fotografías y maquillarte en el salón, entonces coordinará tu ingreso para anunciarte con expectativa.</p>
-                    
                     <p>Tu maestro se encargará de que el escenario esté listo y el protocolo en orden. Tú solo debes atender tu <span class="oro">glamour</span>, tu brillo y dedicarte a disfrutar con los tuyos.</p>
-                    
-                    <p>Estar lista para lucir cuando seas anunciada, en ese momento el tiempo se detendrá y aparecerá la esperada <span class="oro">Princesa</span>.</p>
+                    <p>Estar lista para lucir cuando seas anunciada, en ese momento el tiempo se detendrá y ya no serás tú sino la esperada <span class="oro">Princesa</span>.</p>
                 </div>
             </div>
-            <img src="https://img.icons8.com/ios-filled/100/f8e4a1/bouquet.png" class="indicador-bouquet" alt="Scroll">
+            
+            <div class="indicador-guia">
+                <svg width="30" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10L12 15L17 10" stroke="#f8e4a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
         </div>
 
-        <a href="quinceanos.html" class="btn-volver">Volver al inicio</a>
+        <a href="quinceanos.html" class="btn-volver">VOLVER AL INICIO</a>
     </main>
 </body>
 </html>
