@@ -3,132 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quinceaños | Ensoñación & Fantasía</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pinyon+Script&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <title>Invitación Quince Años - Todo Perfecto</title>
     <style>
-        :root {
-            --dorado: #f8e4a1; 
-            --rosa: #ffb7c5;   
-            --font-magica: 'Pinyon Script', cursive;
-            --font-serif: 'Cinzel', serif;
-        }
-
+        /* Estilos base para ocupar toda la pantalla */
         body, html {
-            margin: 0; padding: 0;
-            background-color: black; /* El luto inicial */
-            height: 100%; width: 100%;
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-            display: flex; justify-content: center; align-items: center;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Evita barras de desplazamiento */
+            font-family: 'Times New Roman', Times, serif; /* Fuente elegante por defecto */
         }
 
-        /* --- ESCENARIO DE LA FANTASÍA (ESTO APARECE SUAVEMENTE) --- */
-        .escenario-quinceanos {
+        /* Contenedor principal con la imagen de fondo elegante (sin círculos) */
+        .main-container {
             position: relative;
-            width: 100%; height: 100%;
-            opacity: 0; /* Empieza invisible */
-            animation: aparicionSuave 3s ease-out 0.5s forwards; /* Aparece todo suavemente */
-        }
-
-        /* LA FOTO DEL LIBRO (SUJETO REAL SUPERPUESTO) */
-        .foto-libro {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* Ruta Relativa Directa a tu archivo JPG */
-            background-image: url('./libro-magico.jpg'); 
+            width: 100%;
+            height: 100%;
+            /* REEMPLAZA ESTA IMAGEN CON TU FONDO ELEGANTE SIN CÍRCULOS */
+            background-image: url('fondo-quince-elegante.jpg'); 
             background-size: cover;
             background-position: center;
-            z-index: 1; /* Detrás de los textos */
-            filter: brightness(1.2) contrast(1.1); /* Brillo para que destaque */
+            background-repeat: no-repeat;
         }
 
-        /* Capa de luz para blindar el brillo cinematográfico */
-        .foto-libro::after {
-            content: "";
+        /* --- Estilos para los Textos Principales --- */
+        
+        .encabezado-textos {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 2;
-        }
-
-        /* --- LETRAS SUPERPUESTAS --- */
-        .contenedor-textos {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10; /* En primer plano */
+            top: 15%; /* Posición similar a la original */
+            width: 100%;
             text-align: center;
-            width: 90%;
+            color: #f8e1a1; /* Dorado lujoso */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra para legibilidad */
         }
 
-        .letras-magicas {
-            font-family: var(--font-magica);
-            font-size: clamp(3rem, 12vw, 7rem);
-            color: var(--dorado);
+        .titulo-script {
+            font-family: 'Cursive', 'Pinyon Script', cursive; /* Fuente manuscrita elegante */
+            font-size: 3.5vw; /* Tamaño adaptable a la pantalla */
             margin: 0;
-            text-shadow: 0 0 20px rgba(255,183,197,0.7);
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: emerge 1.5s ease-out 1.5s forwards; /* Aparecen después */
         }
 
-        .sub-leyenda {
-            font-family: var(--font-serif);
-            letter-spacing: 8px;
-            font-size: clamp(0.7rem, 2vw, 1.2rem);
-            color: white;
-            margin-top: 15px;
-            opacity: 0;
-            animation: fadeIn 2s ease-out 3s forwards; /* Aparece al final */
+        .subtitulo-serif {
+            font-family: 'Playfair Display', serif; /* Fuente serif sofisticada */
+            font-size: 1.8vw;
+            margin-top: 10px;
+            letter-spacing: 2px;
         }
 
-        /* --- WHATSAPP SELLO --- */
-        .wsp-sello {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 60px; height: 60px;
-            background: radial-gradient(circle, var(--dorado) 0%, var(--rosa) 100%);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: black; text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-            border: 2px solid white; z-index: 100;
+        /* --- Estilos para los Enlaces Inferiores (Sustitutos de los círculos) --- */
+
+        .menu-enlaces-container {
+            position: absolute;
+            bottom: 12%; /* Justo encima del libro abierto */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 5vw; /* Espacio entre los enlaces */
         }
 
-        /* --- ANIMACIONES --- */
-        @keyframes aparicionSuave {
-            to { opacity: 1; }
+        .enlace-item {
+            text-decoration: none; /* Quitar subrayado */
+            color: #fff; /* Color base blanco */
+            text-align: center;
+            cursor: pointer; /* Cambiar cursor a mano al pasar */
+            transition: transform 0.3s ease, color 0.3s ease; /* Animación suave */
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.4); /* Fondo negro sutil para destacar */
+            border-radius: 8px; /* Bordes suaves */
+            backdrop-filter: blur(2px); /* Efecto de cristal esmerilado */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Sombra elegante */
         }
 
-        @keyframes emerge {
-            to { opacity: 1; transform: translateY(0); }
+        /* Efecto al pasar el mouse (para computadoras) y al tocar (para móviles) */
+        .enlace-item:hover, .enlace-item:active {
+            transform: scale(1.1); /* Agranda un poco */
+            color: #f8e1a1; /* Cambia a dorado */
+            box-shadow: 0 6px 12px rgba(248, 225, 161, 0.5); /* Brillo dorado */
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        .texto-enlace {
+            font-family: 'Montserrat', sans-serif; /* Fuente moderna y limpia */
+            text-transform: uppercase; /* Todo en mayúsculas */
+            letter-spacing: 3px;
+            font-size: 1.2vw;
+            font-weight: 700;
         }
 
+        /* Símbolo decorativo sutil debajo del texto */
+        .decoracion-enlace {
+            display: block;
+            font-size: 1.5vw;
+            margin-top: -5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .enlace-item:hover .decoracion-enlace {
+            color: #f8e1a1;
+        }
+
+        /* --- Media Queries para Adaptabilidad en Móviles --- */
+        @media (max-width: 768px) {
+            .titulo-script { font-size: 8vw; }
+            .subtitulo-serif { font-size: 4vw; }
+            .menu-enlaces-container {
+                bottom: 8%;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            .enlace-item { width: 60%; }
+            .texto-enlace { font-size: 4vw; }
+            .decoracion-enlace { font-size: 5vw; }
+        }
     </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Pinyon+Script&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="escenario-quinceanos">
+    <div class="main-container">
         
-        <div class="foto-libro"></div>
-        
-        <div class="contenedor-textos">
-            <h1 class="letras-magicas">Hoy cumples 15 años...</h1>
-            <p class="sub-leyenda">Ensoñación & Fantasía</p>
+        <div class="encabezado-textos">
+            <h1 class="titulo-script">Ya cumples tus Quince Años...</h1>
+            <p class="subtitulo-serif">Todo debe salir perfecto...</p>
+        </div>
+
+        <div class="menu-enlaces-container">
+            
+            <a href="planificacion.html" class="enlace-item">
+                <span class="texto-enlace">Planificación</span>
+                <span class="decoracion-enlace">✧</span> </a>
+
+            <a href="opciones.html" class="enlace-item">
+                <span class="texto-enlace">Opciones</span>
+                <span class="decoracion-enlace">✧</span>
+            </a>
+
+            <a href="protocolo.html" class="enlace-item">
+                <span class="texto-enlace">Protocolo</span>
+                <span class="decoracion-enlace">✧</span>
+            </a>
+
         </div>
 
     </div>
-
-    <a href="https://wa.me/51930046681" class="wsp-sello" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
 </body>
 </html>
