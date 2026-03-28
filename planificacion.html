@@ -3,119 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control Profesional</title>
+    <title>Gala de Quinceañera</title>
     <style>
         :root {
             --bg-color: #0d1117;
-            --accent-color: #58a6ff;
-            --text-main: #c9d1d9;
-            --panel-bg: #161b22;
-            --border-color: #30363d;
-            /* Color para el difuminado (marrón muy oscuro, no negro) */
-            --fade-color: #1a0f0a; 
+            --accent-gold: #e1c18d; /* Dorado para los títulos */
+            --text-main: #f4eade;
+            --panel-bg: rgba(26, 15, 10, 0.7); /* Marrón muy oscuro con transparencia */
+            --border-color: #e1c18d;
+            --fade-color: #1a0f0a; /* El marrón oscuro de fondo */
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', serif;
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
         }
 
         .console-container {
             width: 100%;
             max-width: 900px;
             border: 1px solid var(--border-color);
-            /* EFECTO DE FOTO APLICADO AQUÍ */
+            
+            /* EFECTO DE LA FOTO DEL VESTIDO */
             background: 
-                linear-gradient(to left, rgba(26, 15, 10, 0) 0%, var(--fade-color) 80%), 
+                linear-gradient(to left, rgba(26, 15, 10, 0) 0%, var(--fade-color) 75%), 
                 url('tu-imagen-del-vestido.jpg'); 
             background-size: cover;
             background-position: right center;
             background-repeat: no-repeat;
             background-color: var(--fade-color);
             
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             border-radius: 8px;
             overflow: hidden;
         }
 
         .terminal-header {
-            background: rgba(33, 38, 45, 0.9); /* Un poco de transparencia para el estilo */
-            padding: 10px 15px;
+            background: rgba(30, 20, 15, 0.9);
+            padding: 15px;
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .status-dot {
-            height: 10px;
-            width: 10px;
-            background-color: #238636;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
         }
 
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 25px;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            padding: 40px;
+            max-width: 550px; /* Para que el texto no tape toda la foto a la derecha */
         }
 
         .module-card {
-            border: 1px solid var(--border-color);
-            background: rgba(22, 27, 34, 0.8); /* Fondo semi-transparente para ver el difuminado */
-            padding: 15px;
-            border-radius: 6px;
-            transition: transform 0.2s ease;
-            backdrop-filter: blur(4px); /* Suaviza el fondo bajo las tarjetas */
+            background: rgba(26, 15, 10, 0.6);
+            padding: 20px;
+            border-left: 3px solid var(--accent-gold);
+            backdrop-filter: blur(5px);
         }
 
-        .module-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        h2, h3 {
-            color: var(--accent-color);
+        h3 {
+            color: var(--accent-gold);
             margin-top: 0;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
         }
 
-        .data-line {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            border-left: 2px solid var(--accent-color);
-            padding-left: 10px;
+        p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight {
+            color: var(--accent-gold);
+            font-weight: bold;
         }
 
         .btn-action {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
+            display: inline-block;
+            padding: 12px 30px;
+            margin-top: 20px;
             background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            cursor: pointer;
-            text-align: center;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.8rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-action:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
+            background: var(--accent-gold);
+            color: var(--fade-color);
         }
     </style>
 </head>
@@ -123,33 +113,22 @@
 
 <div class="console-container">
     <div class="terminal-header">
-        <span><span class="status-dot"></span> SISTEMA DE GESTIÓN PROFESIONAL V3.0</span>
-        <span>ID: 2026-SYS</span>
+        “Y POR FIN TODAS TUS AMIGAS TE VERÁN...”
     </div>
 
     <div class="content-grid">
         <div class="module-card">
-            <h3>Estado del Servicio</h3>
-            <div class="data-line">TIPO: Protocolo y Gestión</div>
-            <div class="data-line">ZONA: Lima Metropolitana</div>
-            <div class="data-line">ESTADO: Disponible</div>
-            <a href="#" class="btn-action">AGENDAR CONSULTA</a>
+            <p>SERÁS PRESENTADA ANTE EL MUNDO Y BAILARÁS <span class="highlight">ESTRENANDO TU MARAVILLOSO VESTIDO...</span> CADA DETALLE DEBE SER PERFECTO.</p>
         </div>
 
         <div class="module-card">
-            <h3>Especialidad Técnica</h3>
-            <div class="data-line">NORMATIVA: RNT / IVS</div>
-            <div class="data-line">OBJETO: Patrimonio y Arte</div>
-            <div class="data-line">RIGOR: Máximo nivel</div>
-            <a href="#" class="btn-action">VER PORTAFOLIO</a>
+            <p><span class="highlight">MARCO IVÁN</span> SABRÁ LA HORA DE PRESENTACIÓN; ANUNCIARÁ TU LLEGADA EN LIMOSINA ELEGANTE, O EL CARRUAJE FANTÁSTICO, O EN TU AUTOMÓVIL PRIVADO DE GALA.</p>
         </div>
 
         <div class="module-card">
-            <h3>Comunicación Directa</h3>
-            <div class="data-line">ASUNTO: Consultoría</div>
-            <div class="data-line">CANAL: Encriptado / Directo</div>
-            <div class="data-line">TIEMPO: < 24 hrs</div>
-            <a href="#" class="btn-action">ENVIAR MENSAJE</a>
+            <p>SI DE REPENTE TU ESTILO ES TOMARTE FOTOGRAFÍAS Y MAQUILLARTE EN EL SALÓN, ENTONCES COORDINARÁ TU INGRESO PARA ANUNCIARTE CON EXPECTATIVA.</p>
+            
+            <a href="#" class="btn-action">VOLVER AL INICIO</a>
         </div>
     </div>
 </div>
