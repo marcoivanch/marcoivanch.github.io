@@ -9,6 +9,7 @@
         :root {
             --dorado: #f8e4a1;
             --dorado-mate: #c5a059;
+            --negro-trans: rgba(0, 0, 0, 0.85);
         }
         body, html {
             margin: 0; padding: 0;
@@ -23,12 +24,12 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('./15 limonina.png') center/cover no-repeat;
             z-index: 1;
-            filter: brightness(0.6);
+            filter: brightness(0.5);
         }
         .capa-gradiente {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.9) 45%, transparent);
+            background: linear-gradient(to right, black 30%, var(--negro-trans) 50%, transparent 100%);
             z-index: 2;
         }
         .contenido {
@@ -41,6 +42,11 @@
             padding: 0 5% 0 8%;
             max-width: 650px;
             box-sizing: border-box;
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .titulo-emocional {
             font-family: 'Pinyon Script', cursive;
@@ -49,66 +55,65 @@
             margin-bottom: 15px;
             line-height: 1.1;
             flex-shrink: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
-
-        /* --- CONTENEDOR DE TEXTO --- */
         .area-lectura {
             position: relative;
             display: flex;
             flex-direction: column;
-            max-height: 55vh;
+            max-height: 50vh;
         }
-
         .contenedor-scroll {
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch; /* Scroll suave en móviles */
-            padding-right: 20px;
+            -webkit-overflow-scrolling: touch;
+            padding-right: 25px;
+            scrollbar-width: none;
         }
-
-        /* Ocultar barra de scroll para mantener la limpieza visual */
         .contenedor-scroll::-webkit-scrollbar { display: none; }
-        .contenedor-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
         .narrativa {
             font-family: 'Cinzel', serif;
-            font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-            line-height: 1.8;
-            letter-spacing: 1px;
-            color: #e3e3e3;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            line-height: 1.9;
+            letter-spacing: 0.5px;
+            color: #f0f0f0;
         }
-        .oro { color: var(--dorado); font-weight: bold; }
+        .oro { color: var(--dorado); font-weight: bold; text-transform: uppercase; font-size: 0.9em; }
 
-        /* INDICADOR VISUAL ELEGANTE (SVG integrado, no falla) */
         .indicador-guia {
-            margin-top: 10px;
-            text-align: center;
+            margin: 15px auto 0;
             width: 30px;
             animation: bounce 2s infinite;
-            opacity: 0.8;
+            transition: opacity 0.5s;
         }
-
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.3; }
+            50% { transform: translateY(10px); opacity: 0.8; }
+        }
         .btn-volver {
-            margin-top: 25px;
+            margin-top: 30px;
             display: inline-block;
             text-decoration: none;
             font-family: 'Cinzel', serif;
             color: var(--dorado);
             border: 1px solid var(--dorado-mate);
-            padding: 12px 30px;
-            transition: 0.4s;
+            padding: 15px 35px;
+            transition: all 0.4s ease;
             width: fit-content;
-            flex-shrink: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+            font-size: 0.8rem;
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(8px); }
+        .btn-volver:hover {
+            background: var(--dorado-mate);
+            color: black;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
         }
-
         @media (max-width: 600px) {
-            .contenido { padding: 40px 20px; }
-            .area-lectura { max-height: 60vh; }
+            .capa-gradiente { background: rgba(0,0,0,0.75); }
+            .contenido { padding: 40px 20px; text-align: center; align-items: center; }
+            .contenedor-scroll { padding-right: 0; }
+            .area-lectura { max-height: 55vh; }
         }
     </style>
 </head>
@@ -120,18 +125,17 @@
         <h1 class="titulo-emocional">"Y por fin todas tus amigas te verán..."</h1>
         
         <div class="area-lectura">
-            <div class="contenedor-scroll">
+            <div class="contenedor-scroll" id="scrollContainer">
                 <div class="narrativa">
                     <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>... cada detalle debe ser perfecto.</p>
-                    <p><span class="oro">Tu Maestro de Ceremonias, Marco Iván,</span> sabrá la hora de presentación; anunciará tu llegada en limosina elegante, o el carruaje fantástico, o en tu automóvil privado de gala.</p>
+                    <p><span class="oro">Marco Iván</span>, sabrá la hora de presentación; anunciará tu llegada en limosina elegante, o el carruaje fantástico, o en tu automóvil privado de gala.</p>
                     <p>Si de repente tu estilo es tomarte fotografías y maquillarte en el salón, entonces coordinará tu ingreso para anunciarte con expectativa.</p>
                     <p>Tu maestro se encargará de que el escenario esté listo y el protocolo en orden. Tú solo debes atender tu <span class="oro">glamour</span>, tu brillo y dedicarte a disfrutar con los tuyos.</p>
                     <p>Estar lista para lucir cuando seas anunciada, en ese momento el tiempo se detendrá y aparecerá la esperada <span class="oro">Princesa</span>.</p>
                 </div>
             </div>
-            
-            <div class="indicador-guia">
-                <svg width="30" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="indicador-guia" id="guia">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10L12 15L17 10" stroke="#f8e4a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
@@ -139,5 +143,22 @@
 
         <a href="quinceanos.html" class="btn-volver">VOLVER AL INICIO</a>
     </main>
+
+    <script>
+        // Desvanece la flecha cuando el usuario llega al final del scroll
+        const scrollContainer = document.getElementById('scrollContainer');
+        const guia = document.getElementById('guia');
+
+        scrollContainer.addEventListener('scroll', () => {
+            const scrollPos = scrollContainer.scrollTop + scrollContainer.clientHeight;
+            const scrollMax = scrollContainer.scrollHeight;
+            
+            if (scrollPos >= scrollMax - 10) {
+                guia.style.opacity = '0';
+            } else {
+                guia.style.opacity = '0.8';
+            }
+        });
+    </script>
 </body>
 </html>
