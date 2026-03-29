@@ -19,13 +19,59 @@
             font-family: 'Montserrat', sans-serif;
             color: white;
         }
+
+        /* --- MENÚ HAMBURGUESA --- */
+        .menu-hamburguesa {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid var(--dorado-mate);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .linea {
+            width: 25px;
+            height: 2px;
+            background-color: var(--dorado);
+            transition: 0.4s;
+        }
+        .nav-overlay {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 100%; height: 100%;
+            background: rgba(10, 7, 5, 0.98);
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s ease-in-out;
+        }
+        .nav-overlay.active { right: 0; }
+        .nav-overlay a {
+            font-family: 'Cinzel', serif;
+            color: var(--dorado);
+            text-decoration: none;
+            font-size: 1.8rem;
+            margin: 20px 0;
+            letter-spacing: 4px;
+            transition: 0.3s;
+        }
+        .nav-overlay a:hover { color: white; }
+
+        /* --- FONDOS Y CAPAS --- */
         .bg-limosina {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: url('./15 limonina.png') center/cover no-repeat;
             z-index: 1;
-            /* Efectos suaves por defecto (para escritorio) */
-            filter: brightness(0.7) contrast(1.1); 
+            filter: brightness(0.75) contrast(1.1); 
         }
         .capa-gradiente {
             position: absolute;
@@ -33,10 +79,12 @@
             background: linear-gradient(to right, 
                 var(--fondo-oscuro) 0%, 
                 var(--fondo-oscuro) 35%, 
-                rgba(10, 7, 5, 0.4) 70%, 
+                rgba(10, 7, 5, 0.4) 75%, 
                 transparent 100%);
             z-index: 2;
         }
+
+        /* --- CONTENIDO --- */
         .contenido {
             position: relative;
             z-index: 10;
@@ -45,113 +93,89 @@
             flex-direction: column;
             justify-content: center;
             padding: 0 5% 0 8%;
-            max-width: 650px;
+            max-width: 700px;
             box-sizing: border-box;
         }
         .titulo-emocional {
             font-family: 'Pinyon Script', cursive;
-            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-size: clamp(3rem, 8vw, 5.5rem);
             color: var(--dorado);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             line-height: 1.1;
-            flex-shrink: 0;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
         }
-
         .contenedor-scroll {
-            max-height: 55vh;
+            max-height: 50vh;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-right: 15px;
             scrollbar-width: none; 
-            -ms-overflow-style: none;
+            padding-right: 10px;
         }
-        .contenedor-scroll::-webkit-scrollbar {
-            display: none !important;
-        }
-
-        .narrativa {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            line-height: 2;
-            color: #f0f0f0;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+        .contenedor-scroll::-webkit-scrollbar { display: none; }
+        .narrativa { 
+            font-family: 'Cinzel', serif; 
+            line-height: 1.8; 
+            color: #f0f0f0; 
+            font-size: 1.1rem;
         }
         .oro { color: var(--dorado); font-weight: bold; }
 
-        .btn-volver {
-            margin-top: 30px;
-            display: inline-block;
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            color: var(--dorado);
-            border: 1px solid var(--dorado-mate);
-            padding: 15px 35px;
-            transition: 0.4s;
-            width: fit-content;
-            background: rgba(10, 7, 5, 0.8);
-            letter-spacing: 2px;
-            flex-shrink: 0;
-        }
-        .btn-volver:hover {
-            background: var(--dorado-mate);
-            color: black;
-        }
-
-        /* --- CAMBIO FINAL Y DEFINITIVO PARA MÓVIL (SIN EFECTOS) --- */
+        /* --- RESPONSIVE MÓVIL --- */
         @media (max-width: 600px) {
-            .bg-limosina {
-                background-position: center center !important; /* Centrada */
-                filter: none !important; /* SIN BRILLO BAJO, SIN CONTRASTE, ORIGINAL */
-                opacity: 1 !important; /* TOTALMENTE VISIBLE */
+            .bg-limosina { 
+                background-position: center center !important; 
+                filter: none !important; 
             }
-            .capa-gradiente {
-                display: none !important; /* ELIMINAMOS EL GRADIENTE NEGRO POR COMPLETO */
-            }
+            .capa-gradiente { display: none !important; }
             .contenido {
-                padding: 15px;
-                justify-content: flex-end; /* El texto se va abajo para no estorbar la foto */
-                padding-bottom: 40px;
-                /* Añadimos un fondo negro suave detrás del texto para que se lea sobre la foto */
-                background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+                padding: 20px;
+                justify-content: flex-end;
+                padding-bottom: 50px;
+                max-width: 100%;
+                background: linear-gradient(to top, 
+                    rgba(0,0,0,0.95) 0%, 
+                    rgba(0,0,0,0.5) 50%, 
+                    transparent 100%);
             }
-            .titulo-emocional {
-                font-size: 2.5rem;
-                margin-bottom: 10px;
-                text-align: center;
-                text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
-            }
-            .contenedor-scroll {
-                max-height: 35vh;
-                text-align: center;
-                padding-right: 0;
-            }
-            .btn-volver {
-                align-self: center;
-                padding: 12px 25px;
-                background: rgba(0,0,0,0.9);
-            }
+            .titulo-emocional { font-size: 2.8rem; text-align: center; }
+            .contenedor-scroll { max-height: 40vh; text-align: center; }
+            .nav-overlay a { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
+
+    <div class="menu-hamburguesa" onclick="toggleMenu()" aria-label="Abrir Menú">
+        <div class="linea"></div>
+        <div class="linea"></div>
+        <div class="linea"></div>
+    </div>
+
+    <nav class="nav-overlay" id="menuNav">
+        <a href="index.html" onclick="toggleMenu()">INICIO</a>
+        <a href="servicios.html" onclick="toggleMenu()">SERVICIOS</a>
+        <a href="disponibilidad.html" onclick="toggleMenu()">DISPONIBILIDAD</a>
+        <a href="contacto.html" onclick="toggleMenu()">CONTACTO</a>
+    </nav>
+
     <div class="bg-limosina"></div>
     <div class="capa-gradiente"></div>
     
     <main class="contenido">
-        <h1 class="titulo-emocional">"Y por fin todas tus amigas y amigos te verán..."</h1>
-        
+        <h1 class="titulo-emocional">"Y por fin todas tus amigas te verán..."</h1>
         <div class="contenedor-scroll">
             <div class="narrativa">
-                <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>...</p>
-                <p><span class="oro">Tu Maestro de Ceremonias, Marco Iván</span> anunciará tu llegada en limosina, carruaje o automóvil elegante.</p>
-                <p>Si en cambio tu estilo será maquillarte en el salón para fotos previas, él coordinará tu ingreso con total expectativa.</p>
-                <p>Tú solo disfruta del <span class="oro">glamour</span> y brilla mientras el protocolo corre por nuestra cuenta.</p>
-                <p>Prepárate para lucir como la <span class="oro">princesa</span> que eres.</p>
+                <p>Serás presentada ante el mundo y bailarás <span class="oro">estrenando tu maravilloso vestido</span>... cada detalle debe ser perfecto.</p>
+                <p><span class="oro">Marco Iván</span> anunciará tu llegada en limosina elegante, carruaje fantástico o tu automóvil privado de gala.</p>
+                <p>Si prefieres fotos y maquillaje en el salón, él coordinará tu ingreso para anunciarte con total expectativa.</p>
+                <p>El protocolo está en orden. Tú solo debes brillar y disfrutar con los tuyos como la <span class="oro">Princesa</span> que eres.</p>
             </div>
         </div>
-
-        <a href="quinceanos.html" class="btn-volver">VOLVER AL INICIO</a>
     </main>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("menuNav").classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
