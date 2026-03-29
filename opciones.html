@@ -51,9 +51,9 @@
             transform-origin: left center;
         }
 
-        .menu-hamburgesa.open .linea:nth-child(1) { transform: rotate(45deg); background-color: var(--dorado); }
-        .menu-hamburgesa.open .linea:nth-child(2) { opacity: 0; }
-        .menu-hamburgesa.open .linea:nth-child(3) { transform: rotate(-45deg); background-color: var(--dorado); }
+        .menu-hamburguesa.open .linea:nth-child(1) { transform: rotate(45deg); background-color: var(--dorado); }
+        .menu-hamburguesa.open .linea:nth-child(2) { opacity: 0; }
+        .menu-hamburguesa.open .linea:nth-child(3) { transform: rotate(-45deg); background-color: var(--dorado); }
 
         .nav-panel {
             position: fixed;
@@ -100,7 +100,7 @@
             padding-right: 8%;
         }
 
-        /* --- TEXTO FLOTANTE --- */
+        /* --- TEXTO FLOTANTE GENERAL (BLANCO) --- */
         .texto {
             max-width: 600px;
             font-size: 1.3rem;
@@ -110,6 +110,18 @@
             transform: translateY(20px);
             animation: fadeIn 1.8s ease forwards;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+
+        /* --- TEXTO DORADO SOLO PARA SECCIÓN 3 --- */
+        .texto-dorado {
+            max-width: 600px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--dorado);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.8s ease forwards;
+            text-shadow: 3px 3px 18px rgba(0,0,0,0.9);
         }
 
         @keyframes fadeIn {
@@ -181,63 +193,63 @@
         <a href="contacto.html" onclick="toggleMenu()">Contacto</a>
     </nav>
 
-    <!-- SECCIÓN 1 — CADETES (FOTO REAL) -->
-    <section class="seccion" style="background-image:url('Quinceañera glamour .png');">
+    <!-- SECCIÓN 1 — CADETES -->
+    <section class="seccion" style="background-image:url('Quinceañera glamour.png');">
         <p class="texto">
             Los cadetes te esperan en silencio, formando un camino de honor donde cada paso anuncia que esta noche, tú eres la protagonista de un cuento que recién comienza.
         </p>
     </section>
 
-    <!-- SECCIÓN 2 — VELITAS (FOTO REAL) -->
+    <!-- SECCIÓN 2 — VELITAS -->
     <section class="seccion" style="background-image:url('Quinceañera velitas.png');">
         <p class="texto">
             Tus amigas avanzan con velas y rosas, iluminando tu ingreso como si el salón entero respirara contigo. Y mientras caminas, tu playlist se convierte en la banda sonora de un momento irrepetible.
         </p>
     </section>
 
-    <!-- SECCIÓN 3 — CAMBIO DE CALZADO (FOTO REAL) -->
+    <!-- SECCIÓN 3 — CAMBIO DE CALZADO (TEXTO DORADO) -->
     <section class="seccion" style="background-image:url('Zapatos altos.png');">
-        <p class="texto">
-        Calzarás los zapatos altos y sentirás la transformación soñada; dejas una etapa linda de ser niña para entrar a la adolescencia. Recibirás invitaciones a bailes y fiestas, pero el estreno de tus zapatos nuevos, el primer baile, será con tu papá o mamá.
+        <p class="texto-dorado">
+            Calzarás los zapatos altos y sentirás la transformación soñada; dejas una etapa linda de ser niña para entrar a la adolescencia. Recibirás invitaciones a bailes y fiestas, pero el estreno de tus zapatos nuevos, el primer baile, será con tu papá o mamá.
         </p>
     </section>
 
-    <!-- SECCIÓN 4 — CAMBIO DE CALZADO (PROVISIONAL) -->
-    <section class="seccion" style="background-image:url('20250712_215344.jpg');">
+    <!-- SECCIÓN 4 — PASARELA (PROVISIONAL) -->
+    <section class="seccion" style="background-image:url('20250816_223754.jpg');">
         <p class="texto">
-            El cambio de calzado será ese instante íntimo donde, entre miradas y sonrisas, dejas atrás la niña que fuiste para convertirte en la joven que el mundo está a punto de conocer.
+            Si prefieres un ingreso más juvenil, tus amigos formarán una pasarela viva, celebrando tu llegada con energía, risas y esa complicidad que solo se vive una vez.
         </p>
     </section>
 
-    <!-- SECCIÓN 5 — FANTASÍA DEL ESPEJO (PROVISIONAL) -->
+    <!-- SECCIÓN 5 — FANTASÍA DEL ESPEJO -->
     <section class="seccion" style="background-image:url('20250828_201616.jpg');">
         <p class="texto">
             La fantasía del espejo —tendencia absoluta del 2026— te permitirá verte como nunca antes: rodeada de luces, reflejos y magia, como si el tiempo se detuviera solo para admirarte.
         </p>
     </section>
 
-    <!-- SECCIÓN 6 — BAILE CON PAPÁ (PROVISIONAL) -->
+    <!-- SECCIÓN 6 — BAILE CON PAPÁ -->
     <section class="seccion" style="background-image:url('Animando.jpg');">
         <p class="texto">
             El baile con papá será ese abrazo que no necesita palabras, ese instante donde él te mira y entiende que creciste… pero que siempre serás su niña.
         </p>
     </section>
 
-    <!-- SECCIÓN 7 — BAILE CON MAMÁ (PROVISIONAL) -->
+    <!-- SECCIÓN 7 — BAILE CON MAMÁ -->
     <section class="seccion" style="background-image:url('Maestro 0 Foto inicial.png');">
         <p class="texto">
             Y con mamá, el baile se convierte en un susurro de complicidad, en una caricia al alma, en un momento que quedará guardado para siempre en ambas.
         </p>
     </section>
 
-    <!-- SECCIÓN 8 — CINTA Y ARITO (PROVISIONAL) -->
+    <!-- SECCIÓN 8 — CINTA Y ARITO -->
     <section class="seccion" style="background-image:url('Maestro C1.png');">
         <p class="texto">
             Tus amigas, reunidas alrededor de la cinta, esperan ese pequeño instante de suerte donde una de ellas se llevará el arito que simboliza tu cariño.
         </p>
     </section>
 
-    <!-- SECCIÓN 9 — BOUQUET Y COREOGRAFÍAS (PROVISIONAL) -->
+    <!-- SECCIÓN 9 — BOUQUET Y COREOGRAFÍAS -->
     <section class="seccion" style="background-image:url('Maestro C2.png');">
         <p class="texto">
             Y cuando llegue el momento del bouquet o de la coreografía especial, el salón entero vibrará contigo, celebrando tu estilo, tu energía y tu forma única de vivir esta noche irrepetible.
