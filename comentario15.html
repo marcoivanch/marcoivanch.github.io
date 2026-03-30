@@ -10,7 +10,6 @@
     <style>
         :root {
             --dorado: #f8e4a1;
-            --dorado-mate: #c5a059;
             --vino-tinto: #660000;
         }
 
@@ -21,70 +20,63 @@
             background-size: cover;
             color: white;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* --- VITRINA DE COMENTARIOS --- */
+        /* --- VITRINA TOTALMENTE TRANSPARENTE --- */
         .vitrina-container {
-            padding: 140px 20px 100px 20px;
-            max-width: 850px;
+            padding: 150px 20px 100px 20px;
+            max-width: 800px;
             margin: auto;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 40px;
         }
 
         .tarjeta-comentario {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(248, 228, 161, 0.2);
-            border-left: 5px solid var(--dorado);
+            background: rgba(0, 0, 0, 0.2); /* Fondo casi invisible */
+            border-left: 3px solid var(--dorado);
             display: flex;
             align-items: center;
-            padding: 25px;
-            gap: 25px;
-            backdrop-filter: blur(8px);
-            border-radius: 0 15px 15px 0;
-            animation: slideUp 0.8s ease;
+            padding: 15px;
+            gap: 20px;
+            backdrop-filter: blur(2px); /* Desenfoque mínimo para no tapar tu cara */
+            animation: fadeIn 1s ease;
         }
 
         .foto-cliente {
-            width: 110px;
-            height: 110px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--dorado-mate);
+            border: 1px solid var(--dorado);
             flex-shrink: 0;
         }
 
-        .info-comentario { flex-grow: 1; }
-        .nombre-15 { font-family: 'Cinzel', serif; color: var(--dorado); font-size: 1.1rem; margin-bottom: 10px; display: block; }
-        .texto-comentario { font-style: italic; font-size: 1rem; line-height: 1.6; color: #f0f0f0; margin: 0; }
+        .info-comentario { flex-grow: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .nombre-15 { font-family: 'Cinzel', serif; color: var(--dorado); font-size: 1rem; }
+        .texto-comentario { font-style: italic; font-size: 0.95rem; line-height: 1.4; color: #fff; }
 
-        /* --- BOTÓN PARA ESCRIBIR --- */
+        /* --- BOTÓN ESCRIBIR --- */
         .btn-abrir-form {
             position: fixed;
-            top: 30px;
-            right: 80px; /* Espacio para el menú hamburguesa */
+            top: 25px;
+            right: 85px;
             background: var(--vino-tinto);
             color: white;
             border: 1px solid var(--dorado);
-            padding: 12px 25px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            padding: 10px 20px;
+            font-family: 'Cinzel';
             cursor: pointer;
-            z-index: 100;
-            transition: 0.3s;
+            z-index: 1000;
         }
-        .btn-abrir-form:hover { background: var(--dorado); color: black; }
 
-        /* --- MODAL DEL FORMULARIO --- */
+        /* --- MODAL --- */
         .modal-form {
-            display: none; 
+            display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
         }
@@ -92,49 +84,26 @@
         .modal-content {
             background: #000;
             border: 1px solid var(--dorado);
-            padding: 40px;
+            padding: 30px;
             width: 90%;
-            max-width: 450px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(248, 228, 161, 0.2);
+            max-width: 400px;
         }
 
-        .cerrar-modal {
-            position: absolute;
-            top: 15px; right: 20px;
-            color: var(--dorado);
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        label { display: block; color: var(--dorado-mate); font-size: 0.75rem; margin-bottom: 5px; text-transform: uppercase; }
         input, textarea {
-            width: 100%; margin-bottom: 20px; padding: 12px;
-            background: rgba(255,255,255,0.05); border: 1px solid #333; color: white; box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            width: 100%; margin-bottom: 15px; padding: 10px;
+            background: #111; border: 1px solid #333; color: white; box-sizing: border-box;
         }
-        input:focus, textarea:focus { border-color: var(--dorado); outline: none; }
 
         .btn-enviar {
-            width: 100%; padding: 15px; background: var(--vino-tinto); color: white; 
-            border: 1px solid var(--dorado); cursor: pointer; font-family: 'Cinzel'; letter-spacing: 2px;
+            width: 100%; padding: 15px; background: var(--vino-tinto); color: white;
+            border: 1px solid var(--dorado); cursor: pointer; font-family: 'Cinzel';
         }
 
-        /* --- MENÚ HAMBURGUESA --- */
-        .menu-hamburguesa { position: fixed; top: 25px; right: 25px; z-index: 1100; cursor: pointer; background: rgba(0,0,0,0.6); padding: 10px; border: 1px solid var(--dorado-mate); display: flex; flex-direction: column; gap: 6px; }
-        .linea { width: 25px; height: 2px; background: var(--dorado); transition: 0.3s; }
-        
-        .nav-panel { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: rgba(0,0,0,0.95); z-index: 1050; display: flex; flex-direction: column; justify-content: center; padding-left: 30px; transition: 0.5s; border-left: 1px solid var(--dorado); }
-        .nav-panel.active { right: 0; }
-        .nav-panel a { font-family: 'Cinzel'; color: var(--dorado); text-decoration: none; font-size: 1.1rem; margin: 15px 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) {
-            .tarjeta-comentario { flex-direction: column; text-align: center; padding: 30px 20px; }
-            .btn-abrir-form { top: auto; bottom: 80px; right: 20px; left: 20px; width: auto; text-align: center; }
-            .vitrina-container { padding-top: 80px; }
-        }
+        /* Menú Hamburguesa */
+        .menu-hamburguesa { position: fixed; top: 25px; right: 25px; z-index: 1500; cursor: pointer; background: rgba(0,0,0,0.5); padding: 8px; border: 1px solid var(--dorado); }
+        .linea { width: 22px; height: 2px; background: var(--dorado); margin: 4px 0; }
     </style>
 </head>
 <body>
@@ -146,44 +115,26 @@
     <div class="menu-hamburguesa" onclick="toggleMenu()">
         <div class="linea"></div><div class="linea"></div><div class="linea"></div>
     </div>
-    <nav class="nav-panel" id="menuNav">
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="opciones.html">Opciones</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
 
     <div class="vitrina-container">
-        
-        <div class="tarjeta-comentario">
-            <img src="quinceanera_ejemplo.jpg" class="foto-cliente" alt="Foto">
-            <div class="info-comentario">
-                <span class="nombre-15">Quinceañera: María Fernanda</span>
-                <p class="texto-comentario">"Una noche inolvidable. Marco captó la esencia de lo que queríamos y la ceremonia fue sumamente emocionante para toda la familia."</p>
-            </div>
         </div>
-
-    </div>
 
     <div id="modalComentario" class="modal-form">
         <div class="modal-content">
-            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
-            <h2 style="font-family: 'Cinzel'; color: var(--dorado); margin-top: 0;">Tu Comentario</h2>
-            
-            <form action="mailto:tu-correo@ejemplo.com" method="POST" enctype="multipart/form-data">
-                <label>Nombre de la Quinceañera</label>
-                <input type="text" name="quinceanera" placeholder="Ej: Luciana" required>
-
-                <label>Tu Teléfono (Obligatorio)</label>
-                <input type="text" name="telefono" placeholder="WhatsApp para validar" required>
-
-                <label>Tu Comentario</label>
-                <textarea name="mensaje" rows="4" placeholder="¿Cómo la pasaron?" required></textarea>
-
-                <label>Sube una foto del evento</label>
+            <h2 style="font-family: 'Cinzel'; color: var(--dorado); margin-top:0;">Tu Comentario</h2>
+            <form action="mailto:tu-correo@tuservicio.com" method="POST" enctype="multipart/form-data">
+                
+                <input type="text" name="quinceanera" placeholder="Nombre de la Quinceañera (Obligatorio)" required>
+                
+                <input type="text" name="telefono" placeholder="Tu Celular (Obligatorio)" required>
+                
+                <textarea name="mensaje" rows="4" placeholder="Escribe aquí tu comentario (Obligatorio)" required></textarea>
+                
+                <label style="font-size: 0.7rem; color: var(--dorado);">Foto (Opcional):</label>
                 <input type="file" name="foto" accept="image/*">
 
-                <button type="submit" class="btn-enviar">ENVIAR AHORA</button>
+                <button type="submit" class="btn-enviar">PUBLICAR COMENTARIO</button>
+                <p onclick="cerrarModal()" style="cursor:pointer; text-align:center; font-size:0.8rem; color: #888;">Cancelar</p>
             </form>
         </div>
     </div>
@@ -191,8 +142,7 @@
     <script>
         function abrirModal() { document.getElementById("modalComentario").style.display = "flex"; }
         function cerrarModal() { document.getElementById("modalComentario").style.display = "none"; }
-        function toggleMenu() { document.getElementById("menuNav").classList.toggle("active"); }
-        window.onclick = function(e) { if(e.target == document.getElementById("modalComentario")) cerrarModal(); }
+        function toggleMenu() { /* Aquí va tu lógica de menú */ }
     </script>
 
 </body>
