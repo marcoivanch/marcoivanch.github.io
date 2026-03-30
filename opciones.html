@@ -112,50 +112,50 @@
             background-attachment: fixed;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            padding-left: 8%;
-            padding-right: 8%;
+            justify-content: center; /* Centrado para mejor lectura móvil */
+            padding: 0 10%;
+            box-sizing: border-box;
         }
 
-        /* --- LOGOTIPO COMO MARCA DE AGUA (VISIBLE) --- */
-        .marca-logo {
+        /* --- NUEVO LOGOTIPO MARCA DE AGUA CENTRAL --- */
+        .marca-logo-central {
             position: absolute;
-            bottom: 20px;
-            right: 25px;
-            width: 140px;
-            opacity: 0.55; /* AUMENTADO PARA QUE LO VEAS */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px; /* Tamaño sutil al centro */
+            max-width: 70%;
+            opacity: 0.15; /* Muy sutil para no matar la imagen */
             pointer-events: none;
+            z-index: 1;
         }
 
-        /* --- TEXTO GENERAL (BLANCO) --- */
+        /* --- TEXTO NÍTIDO --- */
+        .texto, .texto-negro-dorado {
+            position: relative;
+            z-index: 2; /* Por encima de la marca de agua */
+            max-width: 800px;
+            font-size: 1.4rem; /* Un poco más grande para nitidez */
+            font-weight: 400;
+            line-height: 1.8;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.8s ease forwards;
+        }
+
         .texto {
-            max-width: 600px;
-            font-size: 1.3rem;
-            line-height: 1.8;
             color: white;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1.8s ease forwards;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.9), 0px 0px 5px rgba(0,0,0,0.5);
         }
 
-        /* --- TEXTO NEGRO CON SOMBRA DORADA --- */
         .texto-negro-dorado {
-            max-width: 600px;
-            font-size: 1.3rem;
-            line-height: 1.8;
             color: var(--negro);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1.8s ease forwards;
-            text-shadow: 3px 3px 15px rgba(197,160,89,0.9);
+            text-shadow: 2px 2px 10px rgba(197,160,89,0.8);
         }
 
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* --- COPYRIGHT --- */
@@ -172,6 +172,8 @@
             text-transform: uppercase;
             text-shadow: 3px 3px 12px rgba(0,0,0,1);
             pointer-events: none;
+            text-align: center;
+            width: 100%;
         }
 
         /* --- BOTÓN REGRESAR --- */
@@ -185,7 +187,7 @@
             text-decoration: none;
             padding: 12px 30px;
             border: 1px solid var(--dorado-mate);
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.6);
             font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -216,32 +218,44 @@
             z-index: 200;
             transition: 0.3s;
         }
-        .wsp-float:hover { transform: scale(1.1); background-color: #800000; }
+        .wsp-float:hover { transform: scale(1.1); }
 
-        /* --- RESPONSIVE PARA MÓVIL --- */
+        /* --- AJUSTES ESPECÍFICOS PARA MÓVIL --- */
         @media (max-width: 768px) {
-            .texto,
-            .texto-negro-dorado {
-                font-size: 1.1rem;
+            .seccion {
+                padding: 0 5%; /* Evita que el texto toque los bordes */
+                background-attachment: scroll; /* Mejora fluidez en móvil */
+            }
+
+            .texto, .texto-negro-dorado {
+                font-size: 1.15rem;
                 line-height: 1.6;
-                max-width: 90%;
-                padding-right: 5%;
-                padding-left: 5%;
+                width: 90%;
             }
 
             .autor-header {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 left: 15px;
                 top: 15px;
             }
 
-            .marca-logo {
-                width: 110px;
-                opacity: 0.65;
+            .marca-agua {
+                font-size: 0.6rem; /* Más pequeña para no estorbar */
+                bottom: 8px;
             }
 
-            .marca-agua {
-                font-size: 0.75rem;
+            .btn-regresar {
+                bottom: 60px; /* Sube para no tapar el copyright */
+                left: 20px;
+                padding: 10px 20px;
+                font-size: 0.7rem;
+            }
+
+            .wsp-float {
+                bottom: 60px; /* Sube para estar alineado con el botón regresar */
+                right: 20px;
+                width: 50px;
+                height: 50px;
             }
         }
 
@@ -249,13 +263,11 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO DE AUTOR -->
     <div class="autor-header">
         Marco Iván Cabrera<br>
         Maestro de Ceremonias
     </div>
 
-    <!-- MENÚ -->
     <div class="menu-hamburguesa" onclick="toggleMenu()" id="hamburguesa">
         <div class="linea"></div>
         <div class="linea"></div>
@@ -269,79 +281,68 @@
         <a href="contacto.html" onclick="toggleMenu()">Contacto</a>
     </nav>
 
-    <!-- SECCIÓN 1 — CADETES -->
     <section class="seccion" style="background-image:url('Quinceañera glamour .png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             Los cadetes te esperan alineados formando el Cruce de Espadas para rendirte gala como la protagonista de la fiesta.
         </p>
     </section>
 
-    <!-- SECCIÓN 2 — VELITAS -->
     <section class="seccion" style="background-image:url('Quinceañera velitas.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             Tus amigos sostienen velas y rosas, destacando tu ingreso como el principal del salón. Mientras caminas, tu playlist acompaña cada paso.
         </p>
     </section>
 
-    <!-- SECCIÓN 3 — CAMBIO DE CALZADO -->
     <section class="seccion" style="background-image:url('Zapatos altos.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto-negro-dorado">
             Calzarás los zapatos altos y sentirás la transformación soñada; dejas una etapa linda de niñez para entrar a la adolescencia. Te espera tu primer baile elegante.
         </p>
     </section>
 
-    <!-- SECCIÓN 4 — FANTASÍA DEL ESPEJO -->
     <section class="seccion" style="background-image:url('Quinceañera espejo.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             La fantasía del espejo —2026— dramatizará musicalmente tus vivencias de niña a joven.
         </p>
     </section>
 
-    <!-- SECCIÓN 5 — BAILE CON PAPÁ -->
     <section class="seccion" style="background-image:url('Baile quinceañera papá.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             El baile con papá será ese abrazo que no necesita palabras, ese instante donde él te mira y entiende que creciste… pero que siempre serás su niña.
         </p>
     </section>
 
-    <!-- SECCIÓN 6 — BAILE CON MAMÁ -->
     <section class="seccion" style="background-image:url('Baile quinceañera mamá.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             Y con mamá, el baile se convierte en un susurro de complicidad, en una caricia al alma, en un momento que quedará guardado para siempre en ambas.
         </p>
     </section>
 
-    <!-- SECCIÓN 7 — CINTA Y ARITO -->
     <section class="seccion" style="background-image:url('Ritual de cintas.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             Tus amigas, reunidas alrededor de la cinta, esperan ese pequeño instante de suerte donde una de ellas se llevará el arito que simboliza tu cariño.
         </p>
     </section>
 
-    <!-- SECCIÓN 8 — BOUQUET Y COREOGRAFÍAS -->
     <section class="seccion" style="background-image:url('Lanzamiento de bouqu.png');">
-        <img src="Logotipo MICH dorado.png" class="marca-logo">
+        <img src="Logotipo MICH dorado.png" class="marca-logo-central">
         <p class="texto">
             Y cuando llegue el momento del bouquet o de la coreografía especial, el salón entero vibrará contigo, celebrando tu estilo, tu energía y tu forma única de vivir esta noche irrepetible.
         </p>
     </section>
 
-    <!-- BOTÓN REGRESAR -->
     <a href="quinceanos.html" class="btn-regresar">Regresar</a>
 
-    <!-- WHATSAPP -->
     <a href="https://wa.me/51930046681" class="wsp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- COPYRIGHT -->
     <div class="marca-agua">
         marcoivancabrera © Derechos Reservados 2026
     </div>
