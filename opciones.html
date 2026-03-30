@@ -13,6 +13,7 @@
             --dorado: #f8e4a1;
             --dorado-mate: #c5a059;
             --vino-tinto: #660000;
+            --negro: #000000;
         }
 
         body, html {
@@ -23,6 +24,22 @@
             overflow-x: hidden;
             background-color: black;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- ENCABEZADO DE AUTOR --- */
+        .autor-header {
+            position: fixed;
+            top: 20px;
+            left: 25px;
+            z-index: 300;
+            color: var(--dorado-mate);
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            line-height: 1.3;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            pointer-events: none;
         }
 
         /* --- MENÚ HAMBURGUESA --- */
@@ -100,7 +117,7 @@
             padding-right: 8%;
         }
 
-        /* --- TEXTO FLOTANTE GENERAL (BLANCO) --- */
+        /* --- TEXTO GENERAL (BLANCO) --- */
         .texto {
             max-width: 600px;
             font-size: 1.3rem;
@@ -112,16 +129,16 @@
             text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
         }
 
-        /* --- TEXTO DORADO SOLO PARA SECCIÓN 3 --- */
-        .texto-dorado {
+        /* --- TEXTO NEGRO CON SOMBRA DORADA --- */
+        .texto-negro-dorado {
             max-width: 600px;
             font-size: 1.3rem;
             line-height: 1.8;
-            color: var(--dorado);
+            color: var(--negro);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 1.8s ease forwards;
-            text-shadow: 3px 3px 18px rgba(0,0,0,0.9);
+            text-shadow: 3px 3px 15px rgba(197,160,89,0.9);
         }
 
         @keyframes fadeIn {
@@ -129,6 +146,21 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* --- MARCA DE AGUA --- */
+        .marca-agua {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 300;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            pointer-events: none;
         }
 
         /* --- BOTÓN REGRESAR --- */
@@ -175,9 +207,37 @@
         }
         .wsp-float:hover { transform: scale(1.1); background-color: #800000; }
 
+        /* --- RESPONSIVE PARA MÓVIL --- */
+        @media (max-width: 768px) {
+            .texto,
+            .texto-negro-dorado {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                max-width: 90%;
+                padding-right: 5%;
+                padding-left: 5%;
+            }
+
+            .autor-header {
+                font-size: 0.75rem;
+                left: 15px;
+                top: 15px;
+            }
+
+            .marca-agua {
+                font-size: 0.6rem;
+            }
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- ENCABEZADO DE AUTOR -->
+    <div class="autor-header">
+        Marco Iván Cabrera<br>
+        Maestro de Ceremonias
+    </div>
 
     <!-- MENÚ -->
     <div class="menu-hamburguesa" onclick="toggleMenu()" id="hamburguesa">
@@ -203,13 +263,13 @@
     <!-- SECCIÓN 2 — VELITAS -->
     <section class="seccion" style="background-image:url('Quinceañera velitas.png');">
         <p class="texto">
-            Tus amigos sostiene velas y rosas, destacando tu ingreso como el principal del salón. Mientras caminas, tu "playlist" tiene tus canciones escogidas.
+            Tus amigos sostienen velas y rosas, destacando tu ingreso como el principal del salón. Mientras caminas, tu playlist acompaña cada paso.
         </p>
     </section>
 
-    <!-- SECCIÓN 3 — CAMBIO DE CALZADO (TEXTO DORADO) -->
+    <!-- SECCIÓN 3 — CAMBIO DE CALZADO (NEGRO + SOMBRA DORADA) -->
     <section class="seccion" style="background-image:url('Zapatos altos.png');">
-        <p class="texto-dorado">
+        <p class="texto-negro-dorado">
             Calzarás los zapatos altos y sentirás la transformación soñada; dejas una etapa linda de niñez para entrar a la adolescencia. Te espera tu primer baile elegante.
         </p>
     </section>
@@ -220,7 +280,7 @@
             La fantasía del espejo —2026— dramatizará musicalmente tus vivencias de niña a joven.
         </p>
     </section>
-  
+
     <!-- SECCIÓN 5 — BAILE CON PAPÁ -->
     <section class="seccion" style="background-image:url('Baile quinceañera papá.png');">
         <p class="texto">
@@ -256,6 +316,11 @@
     <a href="https://wa.me/51930046681" class="wsp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- MARCA DE AGUA -->
+    <div class="marca-agua">
+        marcoivancabrera © Derechos Reservados 2026
+    </div>
 
     <script>
         function toggleMenu() {
