@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muro de Recuerdos | QuinceAños</title>
+    <title>Muro de Recuerdos | Marco Cabrera</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -16,45 +16,53 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
+            /* Asegúrate de que la imagen 'quince 2.jpg' esté en la misma carpeta */
             background: url('quince 2.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             min-height: 100vh;
         }
 
-        /* --- VITRINA TOTALMENTE TRANSPARENTE --- */
+        /* --- VITRINA CON TRANSPARENCIA (Para que no tape tu cara) --- */
         .vitrina-container {
             padding: 150px 20px 100px 20px;
             max-width: 800px;
             margin: auto;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 30px;
         }
 
         .tarjeta-comentario {
-            background: rgba(0, 0, 0, 0.2); /* Fondo casi invisible */
-            border-left: 3px solid var(--dorado);
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            gap: 20px;
-            backdrop-filter: blur(2px); /* Desenfoque mínimo para no tapar tu cara */
+            background: rgba(0, 0, 0, 0.25); /* Fondo muy suave y transparente */
+            border-left: 4px solid var(--dorado);
+            padding: 20px;
+            backdrop-filter: blur(4px); /* Desenfoque ligero muy elegante */
             animation: fadeIn 1s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .foto-cliente {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid var(--dorado);
-            flex-shrink: 0;
+        .info-comentario { 
+            flex-grow: 1; 
         }
 
-        .info-comentario { flex-grow: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .nombre-15 { font-family: 'Cinzel', serif; color: var(--dorado); font-size: 1rem; }
-        .texto-comentario { font-style: italic; font-size: 0.95rem; line-height: 1.4; color: #fff; }
+        .nombre-15 { 
+            font-family: 'Cinzel', serif; 
+            color: var(--dorado); 
+            font-size: 1.1rem; 
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .texto-comentario { 
+            font-style: italic; 
+            font-size: 1rem; 
+            line-height: 1.6; 
+            color: #ffffff;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
 
         /* --- BOTÓN ESCRIBIR --- */
         .btn-abrir-form {
@@ -64,18 +72,21 @@
             background: var(--vino-tinto);
             color: white;
             border: 1px solid var(--dorado);
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-family: 'Cinzel';
             cursor: pointer;
             z-index: 1000;
+            transition: 0.3s;
         }
+
+        .btn-abrir-form:hover { background: #880000; transform: scale(1.05); }
 
         /* --- MODAL --- */
         .modal-form {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -84,22 +95,29 @@
         .modal-content {
             background: #000;
             border: 1px solid var(--dorado);
-            padding: 30px;
+            padding: 35px;
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
+            box-sizing: border-box;
         }
 
+        h2 { font-family: 'Cinzel'; color: var(--dorado); margin-top: 0; text-align: center; }
+
         input, textarea {
-            width: 100%; margin-bottom: 15px; padding: 10px;
-            background: #111; border: 1px solid #333; color: white; box-sizing: border-box;
+            width: 100%; margin-bottom: 20px; padding: 12px;
+            background: #111; border: 1px solid #444; color: white; 
+            box-sizing: border-box; font-family: 'Montserrat';
         }
 
         .btn-enviar {
             width: 100%; padding: 15px; background: var(--vino-tinto); color: white;
             border: 1px solid var(--dorado); cursor: pointer; font-family: 'Cinzel';
+            font-size: 1rem; font-weight: bold;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .btn-enviar:disabled { background: #333; color: #777; cursor: not-allowed; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Menú Hamburguesa */
         .menu-hamburguesa { position: fixed; top: 25px; right: 25px; z-index: 1500; cursor: pointer; background: rgba(0,0,0,0.5); padding: 8px; border: 1px solid var(--dorado); }
@@ -112,37 +130,103 @@
         <i class="fas fa-edit"></i> ESCRIBIR MI COMENTARIO
     </button>
 
-    <div class="menu-hamburguesa" onclick="toggleMenu()">
+    <div class="menu-hamburguesa">
         <div class="linea"></div><div class="linea"></div><div class="linea"></div>
     </div>
 
-    <div class="vitrina-container">
-        </div>
+    <div id="muro-comentarios" class="vitrina-container">
+        <p style="text-align:center; color:var(--dorado);">Cargando recuerdos inolvidables...</p>
+    </div>
 
     <div id="modalComentario" class="modal-form">
         <div class="modal-content">
-            <h2 style="font-family: 'Cinzel'; color: var(--dorado); margin-top:0;">Tu Comentario</h2>
-            <form action="mailto:tu-correo@tuservicio.com" method="POST" enctype="multipart/form-data">
-                
-                <input type="text" name="quinceanera" placeholder="Nombre de la Quinceañera (Obligatorio)" required>
-                
-                <input type="text" name="telefono" placeholder="Tu Celular (Obligatorio)" required>
-                
-                <textarea name="mensaje" rows="4" placeholder="Escribe aquí tu comentario (Obligatorio)" required></textarea>
-                
-                <label style="font-size: 0.7rem; color: var(--dorado);">Foto (Opcional):</label>
-                <input type="file" name="foto" accept="image/*">
-
-                <button type="submit" class="btn-enviar">PUBLICAR COMENTARIO</button>
-                <p onclick="cerrarModal()" style="cursor:pointer; text-align:center; font-size:0.8rem; color: #888;">Cancelar</p>
-            </form>
+            <h2>Cuéntanos tu Experiencia</h2>
+            
+            <input type="text" id="nombreInput" placeholder="Nombre de la Quinceañera (Obligatorio)" required>
+            <input type="text" id="telInput" placeholder="Tu Celular (Obligatorio)" required>
+            <textarea id="msgInput" rows="5" placeholder="Escribe aquí tu comentario (Obligatorio)" required></textarea>
+            
+            <button id="btnPublicar" onclick="enviarDatos()" class="btn-enviar">PUBLICAR COMENTARIO</button>
+            
+            <p onclick="cerrarModal()" style="cursor:pointer; text-align:center; font-size:0.8rem; color: #888; margin-top:20px;">
+                <i class="fas fa-times"></i> Cancelar y Volver
+            </p>
         </div>
     </div>
 
     <script>
+        // TU URL DE GOOGLE APPS SCRIPT
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwk55j8m-jTLEug1QZVOU3wKSSc6P4RAmdzuugyyO4jHUBY3ifwVGjIFe8K1n567ec9BQ/exec";
+
         function abrirModal() { document.getElementById("modalComentario").style.display = "flex"; }
         function cerrarModal() { document.getElementById("modalComentario").style.display = "none"; }
-        function toggleMenu() { /* Aquí va tu lógica de menú */ }
+
+        // Función para LEER los comentarios del Excel al cargar la página
+        async function cargarComentarios() {
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+                const muro = document.getElementById("muro-comentarios");
+                muro.innerHTML = "";
+
+                if(data.length === 0) {
+                    muro.innerHTML = "<p style='text-align:center;'>Aún no hay comentarios. ¡Sé la primera en escribir!</p>";
+                    return;
+                }
+
+                // Los mostramos del más reciente al más antiguo
+                data.reverse().forEach(fila => {
+                    muro.innerHTML += `
+                        <div class="tarjeta-comentario">
+                            <div class="info-comentario">
+                                <span class="nombre-15">Quinceañera: ${fila[1]}</span>
+                                <p class="texto-comentario">"${fila[3]}"</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error("Error cargando comentarios:", error);
+            }
+        }
+
+        // Función para ENVIAR el nuevo comentario al Excel
+        async function enviarDatos() {
+            const nombre = document.getElementById("nombreInput").value;
+            const tel = document.getElementById("telInput").value;
+            const msg = document.getElementById("msgInput").value;
+            const btn = document.getElementById("btnPublicar");
+
+            if(!nombre || !tel || !msg) {
+                alert("Por favor, completa todos los campos obligatorios.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Publicando...";
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        quinceanera: nombre,
+                        telefono: tel,
+                        mensaje: msg
+                    })
+                });
+                
+                // Limpiar y recargar
+                cerrarModal();
+                location.reload(); 
+            } catch (error) {
+                alert("Hubo un error al publicar. Inténtalo de nuevo.");
+                btn.disabled = false;
+                btn.innerText = "PUBLICAR COMENTARIO";
+            }
+        }
+
+        // Iniciar carga al abrir la página
+        cargarComentarios();
     </script>
 
 </body>
