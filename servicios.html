@@ -1,34 +1,236 @@
-<div class="card">
-    <h2>Quinceaños (Ensoñación & Fantasía)</h2>
-    <p>Elegancia y modernidad para el debut social, coordinación completa en la presentación de la quinceañera y protocolos actuales y de moda 2026.</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Maestro de Ceremonias en Lima | Servicios Exclusivos - Marco Iván Cabrera Hernández</title>
+    <meta name="description" content="Maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos. Protocolo profesional, conducción elegante y coordinación integral.">
+    <link rel="canonical" href="https://maestrodeceremonias.org.pe/servicios.html" />
 
-    <ul>
-        <li>Pasarela de amigas & amigos</li>
-        <li>Protocolo con cadetes o personalizados</li>
-        <li>Ceremonia del Espejo | Cambio de calzado</li>
-        <li>Guion emotivo de alta narrativa</li>
-        <li>Conducción de Brindis de Honor</li>
-        <li>Bailes de Gala con Familiares</li>
-        <li>Elección o anuncio de Chambelán</li>
+    <!-- SEO estructurado -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Marco Iván Cabrera Hernández",
+      "description": "Maestro de ceremonias en Lima especializado en eventos de alto nivel.",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Lima, Perú"
+      },
+      "url": "https://maestrodeceremonias.org.pe"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root { 
+            --dorado: #c5a059; 
+            --oscuro: #0f0f0f; 
+            --blanco: #fdfcfb; 
+            --whatsapp: #25d366;
+            --font-serif: 'Cinzel', serif; 
+            --font-sans: 'Montserrat', sans-serif; 
+        }
+
+        body, html { 
+            margin: 0; padding: 0; min-height: 100%; 
+            background-color: var(--oscuro); 
+            font-family: var(--font-sans); 
+            color: var(--blanco); 
+            overflow-x: hidden; 
+        }
+
+        header { 
+            position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 5%; box-sizing: border-box; z-index: 1000; background: rgba(15, 15, 15, 0.95); 
+            backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); 
+        }
+
+        .logo { font-family: var(--font-serif); font-size: 1rem; letter-spacing: 2px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
+
+        .nav-menu { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+        .nav-menu a { color: var(--blanco); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: 0.3s; }
+        .nav-menu a:hover { color: var(--dorado); }
+
+        .hamburger { display: none; cursor: pointer; background: none; border: none; color: var(--dorado); font-size: 1.5rem; }
+
+        .main-container { padding: 140px 20px 60px; display: flex; flex-direction: column; align-items: center; }
+
+        .title-section { text-align: center; max-width: 900px; margin-bottom: 50px; }
+        .title-section h1 { 
+            font-family: var(--font-serif); font-size: 2.2rem; color: var(--dorado); 
+            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 15px;
+        }
+        .title-section p { font-size: 1rem; color: #aaa; letter-spacing: 2px; text-transform: uppercase; font-weight: 200; }
+
+        .seo-text {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .photo-frame {
+            width: 100%; max-width: 850px; border: 1px solid var(--dorado); padding: 15px;
+            background: #050505; margin-bottom: 60px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .photo-frame img { width: 100%; height: auto; display: block; filter: grayscale(20%); transition: 0.5s; }
+        .photo-frame:hover img { filter: grayscale(0%); }
+
+        .grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; width: 100%; }
+
+        .card { background: linear-gradient(145deg, #151515, #0a0a0a); border: 1px solid rgba(197, 160, 89, 0.15); padding: 45px; transition: 0.4s; position: relative; overflow: hidden; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--dorado); transform: scaleX(0); transition: 0.4s; transform-origin: left; }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover { border-color: var(--dorado); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        
+        .card h2 { font-family: var(--font-serif); color: var(--dorado); font-size: 1.4rem; margin-bottom: 20px; letter-spacing: 1px; }
+        .card p { font-size: 0.95rem; line-height: 1.8; color: #bbb; margin-bottom: 25px; font-weight: 300; }
+        .card ul { list-style: none; padding: 0; font-size: 0.85rem; letter-spacing: 1px; }
+        .card li { margin: 12px 0; color: var(--blanco); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .card li::before { content: "✧"; color: var(--dorado); margin-right: 10px; }
+
+        .cta-disponibilidad {
+            text-align: center; margin: 80px auto 60px; padding: 40px; 
+            background: rgba(197, 160, 89, 0.05); border: 1px dashed rgba(197, 160, 89, 0.3); 
+            max-width: 800px;
+        }
+
+        .btn-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background-color: var(--whatsapp);
+            color: white; width: 65px; height: 65px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 25px; }
+            .nav-menu { 
+                display: none; position: absolute; top: 100%; left: 0; width: 100%; 
+                background: rgba(15, 15, 15, 0.98); flex-direction: column; padding: 30px; 
+                text-align: center; border-bottom: 1px solid var(--dorado);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { margin: 15px 0; }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">Marco Iván Cabrera</a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html" style="color:var(--dorado)">Servicios</a></li>
+        <li><a href="disponibilidad.html">Disponibilidad</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
     </ul>
+</header>
 
-    <!-- BOTÓN DE INGRESO -->
-    <a href="quinceanos.html"
-       style="
-           display:inline-block;
-           margin-top:25px;
-           padding:14px 28px;
-           background:var(--dorado);
-           color:#000;
-           font-family:var(--font-serif);
-           text-decoration:none;
-           letter-spacing:2px;
-           font-size:0.85rem;
-           border:1px solid var(--dorado);
-           transition:0.3s;
-       "
-       onmouseover="this.style.background='#000'; this.style.color='var(--dorado)'"
-       onmouseout="this.style.background='var(--dorado)'; this.style.color='#000'">
-       INGRESO DE QUINCEAÑERAS
-    </a>
+<div class="main-container">
+
+    <div class="title-section">
+        <h1>Protocolos de Alta Gama</h1>
+        <p>Elegancia • Rigor • Distinción</p>
+    </div>
+
+    <div class="seo-text">
+        Maestro de ceremonias en Lima para bodas, quinceaños y eventos corporativos. 
+        Servicio profesional de conducción y protocolo para eventos de alto nivel.
+    </div>
+
+    <div class="photo-frame">
+        <img src="quince 2.jpg" alt="Maestro de ceremonias en Lima en evento de quinceaños">
+    </div>
+
+    <div class="grid-servicios">
+
+        <div class="card">
+            <h2>Quinceaños (Ensoñación & Fantasía)</h2>
+            <p>Elegancia y modernidad para el debut social, coordinación completa en la presentación de la quinceañera y protocolos actuales y de moda 2026.</p>
+            <ul>
+                <li>Pasarela de amigas & amigos</li>
+                <li>Protocolo con cadetes o personalizados</li>
+                <li>Ceremonia del Espejo | Cambio de calzado</li>
+                <li>Guion emotivo de alta narrativa</li>
+                <li>Conducción de Brindis de Honor</li>
+                <li>Bailes de Gala con Familiares</li>
+                <li>Elección o anuncio de Chambelán</li>                
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Gala para Recepción de Matrimonios</h2>
+            <p>Programa altamente personalizado. Bienvenida a invitados y Gestión de los tiempos. Guion elegante y entretenido ajustado al gusto de los novios.</p>
+            <ul>
+                <li>Recepción Protocolar de Invitados</li>
+                <li>Adaptación a Ceremonia Civil/Simbólica</li>
+                <li>Coordinación de Momentos Estelares</li>
+                <li>Anuncio del Baile de Amor</li>
+                <li>Brindis & Bouquet de la Novia</li>
+                <li>Baile de Matrimonio y Show del Novio</li>
+                <li>Coordinación con Wedding Planner</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Eventos Corporativos e Institucionales</h2>
+            <p>Representación impecable para su marca. Sobriedad y manejo de autoridades bajo los más estrictos estándares de cortesía internacional.</p>
+            <ul>
+                <li>Lanzamientos y Aniversarios</li>
+                <li>Ceremonias Institucionales</li>
+                <li>Manejo de Precedencias y Vocativos</li>
+                <li>Cenas y Galas de Negocios</li>
+                <li>Concursos y Celebraciones</li>
+                <li>Protocolos Académicos</li>
+                <li>Graduaciones: Universitarias</li>
+                <li>Militares y Escolares</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="cta-disponibilidad">
+        <h3>La excelencia requiere planificación</h3>
+        <p>
+            Busque su fecha en el calendario de 
+            <a href="disponibilidad.html">Disponibilidad</a> 
+            y separe su horario con anticipación para asegurar la exclusividad de su evento.
+        </p>
+    </div>
+
+    <div class="photo-frame">
+        <img src="Animando.jpg" alt="Maestro de ceremonias conduciendo evento en Lima">
+    </div>
+
 </div>
+
+<a href="https://wa.me/51930046681?text=Deseo%20reservar%20una%20asesoría%20para%20mi%20evento" 
+   class="btn-whatsapp" 
+   target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('navMenu');
+    menu.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
