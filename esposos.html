@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Matrimonios – Mural de Esposos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background: url("img/fondo-esposos.jpg") center center no-repeat fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Capa suave para no competir con las fotos */
+    .back-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-wrapper {
+      position: relative;
+      min-height: 100vh;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 10px;
+    }
+
+    /* Dejamos aire en la parte central superior para no tapar los aros y rosas */
+    .gallery-wrapper {
+      width: 100%;
+      max-width: 1100px;
+      height: 620px;
+      position: relative;
+      margin-top: 140px; /* Ajustable según veas los aros en pantalla */
+    }
+
+    .gallery-photo {
+      position: absolute;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      opacity: 0;
+      transform: translateY(-80px) scale(1);
+      animation: fall-in 0.9s ease-out forwards;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      filter: grayscale(0.1);
+    }
+
+    .gallery-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.25s ease;
+    }
+
+    .gallery-photo:hover {
+      transform: translateY(0) scale(1.06);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+      filter: grayscale(0);
+    }
+
+    .gallery-photo:hover img {
+      filter: none;
+    }
+
+    @keyframes fall-in {
+      0% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Posiciones “desordenadas” controladas */
+    .gallery-photo:nth-child(1) {
+      width: 230px;
+      height: 170px;
+      top: 0;
+      left: 4%;
+      transform: translateY(-80px) rotate(-2deg);
+      animation-delay: 0.1s;
+      filter: grayscale(100%); /* blanco y negro */
+    }
+
+    .gallery-photo:nth-child(2) {
+      width: 260px;
+      height: 190px;
+      top: 40px;
+      left: 32%;
+      transform: translateY(-80px) rotate(1.5deg);
+      animation-delay: 0.2s;
+      filter: sepia(60%);
+    }
+
+    .gallery-photo:nth-child(3) {
+      width: 210px;
+      height: 210px;
+      top: 10px;
+      right: 6%;
+      transform: translateY(-80px) rotate(-1deg);
+      animation-delay: 0.3s;
+    }
+
+    .gallery-photo:nth-child(4) {
+      width: 260px;
+      height: 200px;
+      top: 210px;
+      left: 12%;
+      transform: translateY(-80px) rotate(2deg);
+      animation-delay: 0.4s;
+      filter: blur(1px); /* ligeramente difuminada */
+    }
+
+    .gallery-photo:nth-child(5) {
+      width: 230px;
+      height: 230px;
+      top: 220px;
+      left: 42%;
+      transform: translateY(-80px) rotate(-1.5deg);
+      animation-delay: 0.5s;
+    }
+
+    .gallery-photo:nth-child(6) {
+      width: 260px;
+      height: 190px;
+      top: 210px;
+      right: 10%;
+      transform: translateY(-80px) rotate(1deg);
+      animation-delay: 0.6s;
+      filter: sepia(40%);
+    }
+
+    .gallery-photo:nth-child(7) {
+      width: 220px;
+      height: 180px;
+      bottom: 40px;
+      left: 6%;
+      transform: translateY(-80px) rotate(-2deg);
+      animation-delay: 0.7s;
+    }
+
+    .gallery-photo:nth-child(8) {
+      width: 260px;
+      height: 210px;
+      bottom: 10px;
+      left: 34%;
+      transform: translateY(-80px) rotate(1deg);
+      animation-delay: 0.8s;
+      filter: grayscale(70%);
+    }
+
+    .gallery-photo:nth-child(9) {
+      width: 230px;
+      height: 190px;
+      bottom: 30px;
+      right: 8%;
+      transform: translateY(-80px) rotate(-1deg);
+      animation-delay: 0.9s;
+    }
+
+    /* Hover corrige las difuminadas para que se vean nítidas */
+    .gallery-photo:nth-child(4):hover,
+    .gallery-photo:nth-child(4):hover img {
+      filter: none;
+    }
+
+    /* Lightbox sencillo para ver la foto grande */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .lightbox-content {
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lightbox-img {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: cover;
+      display: block;
+    }
+
+    .lightbox-info {
+      padding: 15px 20px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .lightbox-info h2 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .lightbox-buttons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox-buttons button {
+      background: #b08a3c;
+      border: none;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .lightbox-buttons button:hover {
+      background: #d1a84b;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      font-size: 26px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-wrapper {
+        height: 520px;
+        margin-top: 120px;
+      }
+      .gallery-photo {
+        box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .gallery-wrapper {
+        height: 520px;
+        margin-top: 110px;
+      }
+      .gallery-photo {
+        transform: translateY(-80px) scale(0.9);
+      }
+      .gallery-photo:hover {
+        transform: translateY(0) scale(1.02);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back-overlay"></div>
+
+  <div class="page-wrapper">
+    <div class="gallery-wrapper">
+      <!-- Fotos de muestra: luego reemplazas src por tus fotos definitivas -->
+      <div class="gallery-photo" data-title="Boda 1" data-desc="Ceremonia íntima, entrada de los esposos.">
+        <img src="img/matrimonio1.jpg" alt="Boda 1">
+      </div>
+      <div class="gallery-photo" data-title="Boda 2" data-desc="Intercambio de anillos, momento central.">
+        <img src="img/matrimonio2.jpg" alt="Boda 2">
+      </div>
+      <div class="gallery-photo" data-title="Boda 3" data-desc="Retrato editorial de los esposos.">
+        <img src="img/matrimonio3.jpg" alt="Boda 3">
+      </div>
+      <div class="gallery-photo" data-title="Boda 4" data-desc="Detalle de manos, promesa y alianza.">
+        <img src="img/matrimonio4.jpg" alt="Boda 4">
+      </div>
+      <div class="gallery-photo" data-title="Boda 5" data-desc="Salida triunfal, pétalos y aplausos.">
+        <img src="img/matrimonio5.jpg" alt="Boda 5">
+      </div>
+      <div class="gallery-photo" data-title="Boda 6" data-desc="Primer baile como esposos.">
+        <img src="img/matrimonio6.jpg" alt="Boda 6">
+      </div>
+      <div class="gallery-photo" data-title="Boda 7" data-desc="Brindis y celebración con la familia.">
+        <img src="img/matrimonio7.jpg" alt="Boda 7">
+      </div>
+      <div class="gallery-photo" data-title="Boda 8" data-desc="Retrato artístico con bouquet.">
+        <img src="img/matrimonio8.jpg" alt="Boda 8">
+      </div>
+      <div class="gallery-photo" data-title="Boda 9" data-desc="Momento final, despedida de gala.">
+        <img src="img/matrimonio9.jpg" alt="Boda 9">
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" id="lightboxClose">&times;</div>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-info">
+        <h2 id="lightboxTitle">Título de la boda</h2>
+        <p id="lightboxDesc">Descripción breve del momento.</p>
+        <div class="lightbox-buttons">
+          <button type="button">Volver al mural</button>
+          <button type="button">Consultar disponibilidad</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const photos = document.querySelectorAll(".gallery-photo");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxDesc = document.getElementById("lightboxDesc");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    photos.forEach(photo => {
+      photo.addEventListener("click", () => {
+        const img = photo.querySelector("img");
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxTitle.textContent = photo.getAttribute("data-title") || "Boda";
+        lightboxDesc.textContent = photo.getAttribute("data-desc") || "";
+        lightbox.style.display = "flex";
+      });
+    });
+
+    lightboxClose.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
