@@ -1,392 +1,452 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Matrimonios – Mural de Esposos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esposos – Maestro de Ceremonias</title>
 
-    body {
-      font-family: "Georgia", "Times New Roman", serif;
-      background: url("Fondo nupcial .png") center center no-repeat fixed;
-      background-size: cover;
-      min-height: 100vh;
-      color: #fff;
-      overflow-x: hidden;
-    }
+<style>
 
-    .back-overlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
-      pointer-events: none;
-      z-index: 1;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", serif;
+  background: url("img/Fondo nupcial .png") no-repeat center top;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff;
+}
 
-    .page-wrapper {
-      position: relative;
-      min-height: 100vh;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 10px;
-    }
+/* ----------------------------- */
+/* ENCABEZADO INSTITUCIONAL      */
+/* ----------------------------- */
 
-    .gallery-wrapper {
-      width: 100%;
-      max-width: 1100px;
-      height: 620px;
-      position: relative;
-      margin-top: 140px;
-    }
+.header {
+  width: 100%;
+  padding: 25px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .gallery-photo {
-      position: absolute;
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-      opacity: 0;
-      transform: translateY(-80px) scale(1);
-      animation: fall-in 0.9s ease-out forwards;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-      filter: grayscale(0.1);
-    }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
 
-    .gallery-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: filter 0.25s ease;
-    }
+.header-left img {
+  height: 70px;
+}
 
-    .gallery-photo:hover {
-      transform: translateY(0) scale(1.06);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
-      filter: grayscale(0);
-    }
+.header-title {
+  color: #d4af37;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
 
-    .gallery-photo:hover img {
-      filter: none;
-    }
+.header-title span {
+  display: block;
+  font-size: 1rem;
+  margin-top: 4px;
+}
 
-    @keyframes fall-in {
-      0% {
-        opacity: 0;
-        transform: translateY(-80px) scale(0.96);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+/* ----------------------------- */
+/* MENÚ CONTEXTUAL               */
+/* ----------------------------- */
 
-    /* ----------------------------- */
-    /*     FOTOS 1, 2 y 3 ARRIBA     */
-    /* ----------------------------- */
+.nav {
+  display: flex;
+  gap: 25px;
+}
 
-    /* FOTO 1 — grande, izquierda */
-    .gallery-photo:nth-child(1) {
-      width: 320px;
-      height: 230px;
-      top: 0;
-      left: 3%;
-      transform: translateY(-80px) rotate(-2deg);
-      animation-delay: 0.1s;
-      filter: grayscale(100%);
-    }
+.nav a {
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  padding: 6px 10px;
+}
 
-    /* FOTO 2 — tamaño medio, cerca de la 3 */
-    .gallery-photo:nth-child(2) {
-      width: 240px;
-      height: 180px;
-      top: 20px;
-      left: 48%;
-      transform: translateY(-80px) rotate(1.5deg);
-      animation-delay: 0.2s;
-      filter: sepia(60%);
-    }
+.nav a:hover {
+  color: #fff;
+}
 
-    /* FOTO 3 — más pequeña, pegada a la 2 */
-    .gallery-photo:nth-child(3) {
-      width: 200px;
-      height: 200px;
-      top: 0;
-      left: 68%;
-      transform: translateY(-80px) rotate(-1deg);
-      animation-delay: 0.3s;
-    }
+/* ----------------------------- */
+/* MENÚ HAMBURGUESA              */
+/* ----------------------------- */
 
-    /* ----------------------------- */
-    /*     FOTOS 4, 5, 6 (CENTRO)    */
-    /* ----------------------------- */
+.hamburger {
+  display: none;
+  font-size: 32px;
+  color: #d4af37;
+  cursor: pointer;
+}
 
-    .gallery-photo:nth-child(4) {
-      width: 260px;
-      height: 200px;
-      top: 210px;
-      left: 12%;
-      transform: translateY(-80px) rotate(2deg);
-      animation-delay: 0.4s;
-      filter: blur(1px);
-    }
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -60%;
+  width: 60%;
+  height: 100%;
+  background: #000;
+  padding: 40px 30px;
+  transition: 0.4s ease;
+  z-index: 999;
+}
 
-    .gallery-photo:nth-child(5) {
-      width: 230px;
-      height: 230px;
-      top: 220px;
-      left: 42%;
-      transform: translateY(-80px) rotate(-1.5deg);
-      animation-delay: 0.5s;
-    }
+.side-menu.open {
+  right: 0;
+}
 
-    .gallery-photo:nth-child(6) {
-      width: 260px;
-      height: 190px;
-      top: 210px;
-      right: 10%;
-      transform: translateY(-80px) rotate(1deg);
-      animation-delay: 0.6s;
-      filter: sepia(40%);
-    }
+.side-menu a {
+  display: block;
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
 
-    /* ----------------------------- */
-    /*     FOTOS 7, 8, 9 (ABAJO)     */
-    /* ----------------------------- */
+.close-menu {
+  font-size: 32px;
+  color: #d4af37;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 30px;
+}
 
-    .gallery-photo:nth-child(7) {
-      width: 220px;
-      height: 180px;
-      bottom: 40px;
-      left: 6%;
-      transform: translateY(-80px) rotate(-2deg);
-      animation-delay: 0.7s;
-    }
+/* ----------------------------- */
+/* RESPONSIVE                    */
+/* ----------------------------- */
 
-    .gallery-photo:nth-child(8) {
-      width: 260px;
-      height: 210px;
-      bottom: 10px;
-      left: 34%;
-      transform: translateY(-80px) rotate(1deg);
-      animation-delay: 0.8s;
-      filter: grayscale(70%);
-    }
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .hamburger { display: block; }
+  .side-menu { width: 75%; right: -75%; }
+}
 
-    .gallery-photo:nth-child(9) {
-      width: 230px;
-      height: 190px;
-      bottom: 30px;
-      right: 8%;
-      transform: translateY(-80px) rotate(-1deg);
-      animation-delay: 0.9s;
-    }
+/* ----------------------------- */
+/* MURAL DE FOTOS                */
+/* ----------------------------- */
 
-    .gallery-photo:nth-child(4):hover,
-    .gallery-photo:nth-child(4):hover img {
-      filter: none;
-    }
+.gallery-wrapper {
+  position: relative;
+  width: 100%;
+  height: 760px;
+  margin-top: 40px;
+}
 
-    /* ----------------------------- */
-    /*           LIGHTBOX            */
-    /* ----------------------------- */
+.gallery-photo {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
 
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
+.gallery-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .lightbox-content {
-      max-width: 900px;
-      width: 90%;
-      max-height: 90vh;
-      background: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-      display: flex;
-      flex-direction: column;
-    }
+/* FOTO 1 — reemplazada por Esposos llegando.png */
+.gallery-photo:nth-child(1) {
+  width: 260px;
+  height: 200px;
+  top: 0;
+  left: 22%;
+  transform: translateY(-80px) rotate(-2deg);
+  filter: grayscale(100%);
+}
 
-    .lightbox-img {
-      width: 100%;
-      max-height: 70vh;
-      object-fit: cover;
-      display: block;
-    }
+.gallery-photo:nth-child(1):hover {
+  filter: none;
+  transform: translateY(0) rotate(-2deg);
+}
 
-    .lightbox-info {
-      padding: 15px 20px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
+/* FOTO 2 */
+.gallery-photo:nth-child(2) {
+  width: 240px;
+  height: 180px;
+  top: 20px;
+  left: 48%;
+  transform: translateY(-80px) rotate(1.5deg);
+  filter: sepia(60%);
+}
 
-    .lightbox-info h2 {
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      letter-spacing: 0.04em;
-    }
+/* FOTO 3 */
+.gallery-photo:nth-child(3) {
+  width: 200px;
+  height: 200px;
+  top: 0;
+  left: 68%;
+  transform: translateY(-80px) rotate(-1deg);
+}
 
-    .lightbox-buttons {
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+/* FOTO 4 */
+.gallery-photo:nth-child(4) {
+  width: 260px;
+  height: 200px;
+  top: 210px;
+  left: 12%;
+  transform: translateY(-80px) rotate(2deg);
+  filter: blur(1px);
+}
 
-    .lightbox-buttons button {
-      background: #b08a3c;
-      border: none;
-      color: #fff;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
+/* FOTO 5 */
+.gallery-photo:nth-child(5) {
+  width: 230px;
+  height: 230px;
+  top: 220px;
+  left: 42%;
+  transform: translateY(-80px) rotate(-1.5deg);
+}
 
-    .lightbox-buttons button:hover {
-      background: #d1a84b;
-    }
+/* FOTO 6 */
+.gallery-photo:nth-child(6) {
+  width: 260px;
+  height: 190px;
+  top: 210px;
+  right: 10%;
+  transform: translateY(-80px) rotate(1deg);
+  filter: sepia(40%);
+}
 
-    .lightbox-close {
-      position: absolute;
-      top: 18px;
-      right: 24px;
-      font-size: 26px;
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
+/* FOTO 7 */
+.gallery-photo:nth-child(7) {
+  width: 220px;
+  height: 180px;
+  bottom: 40px;
+  left: 6%;
+  transform: translateY(-80px) rotate(-2deg);
+}
 
-    @media (max-width: 900px) {
-      .gallery-wrapper {
-        height: 520px;
-        margin-top: 120px;
-      }
-      .gallery-photo {
-        box-shadow: 0 8px 18px rgba(0,0,0,0.4);
-      }
-    }
+/* FOTO 8 */
+.gallery-photo:nth-child(8) {
+  width: 260px;
+  height: 210px;
+  bottom: 10px;
+  left: 34%;
+  transform: translateY(-80px) rotate(1deg);
+  filter: grayscale(70%);
+}
 
-    @media (max-width: 700px) {
-      .gallery-wrapper {
-        height: 520px;
-        margin-top: 110px;
-      }
-      .gallery-photo {
-        transform: translateY(-80px) scale(0.9);
-      }
-      .gallery-photo:hover {
-        transform: translateY(0) scale(1.02);
-      }
-    }
-  </style>
+/* FOTO 9 */
+.gallery-photo:nth-child(9) {
+  width: 230px;
+  height: 190px;
+  bottom: 30px;
+  right: 8%;
+  transform: translateY(-80px) rotate(-1deg);
+}
+
+/* ----------------------------- */
+/* LIGHTBOX                      */
+/* ----------------------------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox-content {
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  background: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.lightbox-info {
+  padding: 15px 20px;
+}
+
+.lightbox-info h2 {
+  color: #d4af37;
+  margin-bottom: 6px;
+}
+
+.lightbox-buttons button {
+  background: #b08a3c;
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ----------------------------- */
+/* PIE INSTITUCIONAL             */
+/* ----------------------------- */
+
+.footer {
+  margin-top: 80px;
+  padding: 40px 0;
+  text-align: center;
+  color: #d4af37;
+  font-size: 0.9rem;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="back-overlay"></div>
+<!-- ENCABEZADO -->
+<div class="header">
 
-  <div class="page-wrapper">
-    <div class="gallery-wrapper">
-
-      <div class="gallery-photo" data-title="Boda 1" data-desc="Ceremonia íntima, entrada de los esposos.">
-        <img src="img/matrimonio1.jpg" alt="Boda 1">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 2" data-desc="Intercambio de anillos, momento central.">
-        <img src="img/matrimonio2.jpg" alt="Boda 2">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 3" data-desc="Retrato editorial de los esposos.">
-        <img src="img/matrimonio3.jpg" alt="Boda 3">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 4" data-desc="Detalle de manos, promesa y alianza.">
-        <img src="img/matrimonio4.jpg" alt="Boda 4">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 5" data-desc="Salida triunfal, pétalos y aplausos.">
-        <img src="img/matrimonio5.jpg" alt="Boda 5">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 6" data-desc="Primer baile como esposos.">
-        <img src="img/matrimonio6.jpg" alt="Boda 6">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 7" data-desc="Brindis y celebración con la familia.">
-        <img src="img/matrimonio7.jpg" alt="Boda 7">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 8" data-desc="Retrato artístico con bouquet.">
-        <img src="img/matrimonio8.jpg" alt="Boda 8">
-      </div>
-
-      <div class="gallery-photo" data-title="Boda 9" data-desc="Momento final, despedida de gala.">
-        <img src="img/matrimonio9.jpg" alt="Boda 9">
-      </div>
-
+  <div class="header-left">
+    <img src="img/Logotipo MICH dorado.png" alt="Logo MICH">
+    <div class="header-title">
+      MARCO IVÁN CABRERA
+      <span>MAESTRO DE CEREMONIAS</span>
     </div>
   </div>
 
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-close" id="lightboxClose">&times;</div>
-    <div class="lightbox-content">
-      <img src="" alt="" class="lightbox-img" id="lightboxImg">
-      <div class="lightbox-info">
-        <h2 id="lightboxTitle">Título de la boda</h2>
-        <p id="lightboxDesc">Descripción breve del momento.</p>
-        <div class="lightbox-buttons">
-          <button type="button">Volver al mural</button>
-          <button type="button">Consultar disponibilidad</button>
-        </div>
+  <div class="nav">
+    <a href="index.html">Inicio</a>
+    <a href="opciones.html">Opciones</a>
+    <a href="disponibilidad.html">Disponibilidad</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <div class="hamburger" id="hamburger">&#9776;</div>
+
+</div>
+
+<!-- MENÚ LATERAL -->
+<div class="side-menu" id="sideMenu">
+  <div class="close-menu" id="closeMenu">&times;</div>
+  <a href="index.html">Inicio</a>
+  <a href="opciones.html">Opciones</a>
+  <a href="disponibilidad.html">Disponibilidad</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- MURAL -->
+<div class="gallery-wrapper">
+
+  <div class="gallery-photo" data-title="Llegada de los esposos" data-desc="El primer anuncio del Maestro de Ceremonias será la llegada de los recién casados.">
+    <img src="img/Esposos llegando.png" alt="Llegada de los esposos">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 2" data-desc="Intercambio de anillos, momento central.">
+    <img src="img/matrimonio2.jpg" alt="Boda 2">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 3" data-desc="Retrato editorial de los esposos.">
+    <img src="img/matrimonio3.jpg" alt="Boda 3">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 4" data-desc="Detalle de manos, promesa y alianza.">
+    <img src="img/matrimonio4.jpg" alt="Boda 4">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 5" data-desc="Salida triunfal, pétalos y aplausos.">
+    <img src="img/matrimonio5.jpg" alt="Boda 5">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 6" data-desc="Primer baile como esposos.">
+    <img src="img/matrimonio6.jpg" alt="Boda 6">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 7" data-desc="Brindis y celebración con la familia.">
+    <img src="img/matrimonio7.jpg" alt="Boda 7">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 8" data-desc="Retrato artístico con bouquet.">
+    <img src="img/matrimonio8.jpg" alt="Boda 8">
+  </div>
+
+  <div class="gallery-photo" data-title="Boda 9" data-desc="Momento final, despedida de gala.">
+    <img src="img/matrimonio9.jpg" alt="Boda 9">
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" id="lightboxClose">&times;</div>
+  <div class="lightbox-content">
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <div class="lightbox-info">
+      <h2 id="lightboxTitle"></h2>
+      <p id="lightboxDesc"></p>
+      <div class="lightbox-buttons">
+        <button type="button" id="backToMural">Volver al mural</button>
+        <button type="button">Consultar disponibilidad</button>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    const photos = document.querySelectorAll(".gallery-photo");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
-    const lightboxTitle = document.getElementById("lightboxTitle");
-    const lightboxDesc = document.getElementById("lightboxDesc");
-    const lightboxClose = document.getElementById("lightboxClose");
+<!-- PIE -->
+<div class="footer">
+  Marco Iván Cabrera © Derechos Reservados 2026
+</div>
 
-    photos.forEach(photo => {
-      photo.addEventListener("click", () => {
-        const img = photo.querySelector("img");
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightboxTitle.textContent = photo.getAttribute("data-title") || "Boda";
-        lightboxDesc.textContent = photo.getAttribute("data-desc") || "";
-        lightbox.style.display = "flex";
-      });
-    });
+<script>
 
-    lightboxClose.addEventListener("click", () => {
-      lightbox.style.display = "none";
-    });
+const hamburger = document.getElementById("hamburger");
+const sideMenu = document.getElementById("sideMenu");
+const closeMenu = document.getElementById("closeMenu");
 
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = "none";
-      }
-    });
-  </script>
+hamburger.onclick = () => sideMenu.classList.add("open");
+closeMenu.onclick = () => sideMenu.classList.remove("open");
+
+const photos = document.querySelectorAll(".gallery-photo");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxTitle = document.getElementById("lightboxTitle");
+const lightboxDesc = document.getElementById("lightboxDesc");
+const lightboxClose = document.getElementById("lightboxClose");
+const backToMural = document.getElementById("backToMural");
+
+photos.forEach(photo => {
+  photo.addEventListener("click", () => {
+    const img = photo.querySelector("img");
+    lightboxImg.src = img.src;
+    lightboxTitle.textContent = photo.getAttribute("data-title");
+    lightboxDesc.textContent = photo.getAttribute("data-desc");
+    lightbox.style.display = "flex";
+  });
+});
+
+lightboxClose.onclick = () => lightbox.style.display = "none";
+backToMural.onclick = () => lightbox.style.display = "none";
+
+lightbox.onclick = (e) => {
+  if (e.target === lightbox) lightbox.style.display = "none";
+};
+
+</script>
 
 </body>
 </html>
