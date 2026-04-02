@@ -133,7 +133,7 @@ body {
   position: absolute;
   width: 420px; /* tamaño doble */
   height: 320px;
-  left: 18%; /* NO centrada */
+  left: 18%; /* posición NO centrada */
   top: -120px; /* para que caiga */
   border-radius: 14px;
   overflow: hidden;
@@ -210,6 +210,25 @@ body {
   font-size: 1rem;
 }
 
+/* Botón REGRESAR */
+.btn-regresar {
+  margin-top: 14px;
+  background: #d4af37;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-regresar:hover {
+  background: #b8922f;
+  transform: scale(1.05);
+}
+
+/* Botón X */
 .overlay-cerrar {
   position: absolute;
   top: 18px;
@@ -273,11 +292,15 @@ body {
 <!-- OVERLAY -->
 <div class="overlay" id="overlay">
   <div class="overlay-cerrar" id="cerrarOverlay">&times;</div>
+
   <div class="overlay-content">
     <img src="Esposos llegando.png" alt="Llegada de los esposos" class="overlay-img">
+
     <div class="overlay-texto">
       <h2>Llegada de los esposos</h2>
       <p>El primer anuncio del Maestro de Ceremonias será la llegada de los recién casados.</p>
+
+      <button class="btn-regresar" id="btnRegresar">Regresar</button>
     </div>
   </div>
 </div>
@@ -300,9 +323,11 @@ closeMenu.onclick = () => sideMenu.classList.remove("open");
 const foto1 = document.getElementById("foto1");
 const overlay = document.getElementById("overlay");
 const cerrarOverlay = document.getElementById("cerrarOverlay");
+const btnRegresar = document.getElementById("btnRegresar");
 
 foto1.onclick = () => overlay.style.display = "flex";
 cerrarOverlay.onclick = () => overlay.style.display = "none";
+btnRegresar.onclick = () => overlay.style.display = "none";
 
 overlay.onclick = (e) => {
   if (e.target === overlay) overlay.style.display = "none";
