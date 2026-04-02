@@ -131,10 +131,10 @@ body {
 /* FOTO 1 – protagonista */
 .foto1 {
   position: absolute;
-  width: 420px; /* tamaño doble */
+  width: 420px;
   height: 320px;
-  left: 18%; /* posición NO centrada */
-  top: -120px; /* para que caiga */
+  left: 18%;
+  top: -120px;
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
@@ -151,7 +151,6 @@ body {
   object-fit: cover;
 }
 
-/* Animación de caída Foto 1 */
 @keyframes caer {
   0% { top: -180px; opacity: 0; }
   60% { top: 40px; opacity: 1; }
@@ -159,32 +158,28 @@ body {
   100% { top: 30px; }
 }
 
-/* Hover cinematográfico Foto 1 */
 .foto1:hover {
   filter: grayscale(0%);
   transform: rotate(-2deg) scale(1.05);
   box-shadow: 0 25px 55px rgba(0,0,0,0.6);
 }
 
-/* FOTO 2 – collage diagonal, bordes rotos */
+/* FOTO 2 – diagonal, a color, grande, sin recorte */
 .foto2 {
   position: absolute;
-  width: 360px;
-  height: 260px;
+  width: 460px; /* tamaño doble */
+  height: 330px;
   right: 10%;
-  top: 120px;
+  top: 140px;
   border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
-  filter: grayscale(100%);
-  transform: rotate(5deg);
+  transform: rotate(6deg);
   box-shadow: 0 16px 40px rgba(0,0,0,0.4);
   opacity: 0;
   animation: difuminar 1.2s ease forwards;
   animation-delay: 0s; /* empieza junto con Foto 1 */
-  transition: filter 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
-  /* romper geometría */
-  clip-path: polygon(5% 0, 95% 8%, 100% 90%, 8% 100%, 0 20%);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .foto2 img {
@@ -193,33 +188,30 @@ body {
   object-fit: cover;
 }
 
-/* Animación difuminada Foto 2 */
 @keyframes difuminar {
   0% {
     opacity: 0;
-    transform: translateY(40px) rotate(5deg);
-    filter: grayscale(100%) blur(10px);
+    transform: translateY(40px) rotate(6deg);
+    filter: blur(12px);
   }
   60% {
     opacity: 1;
-    transform: translateY(0) rotate(5deg);
-    filter: grayscale(100%) blur(4px);
+    transform: translateY(0) rotate(6deg);
+    filter: blur(4px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) rotate(5deg);
-    filter: grayscale(100%) blur(0);
+    transform: translateY(0) rotate(6deg);
+    filter: blur(0);
   }
 }
 
-/* Hover Foto 2 */
 .foto2:hover {
-  filter: grayscale(0%);
-  transform: rotate(5deg) scale(1.05);
+  transform: rotate(6deg) scale(1.05);
   box-shadow: 0 24px 55px rgba(0,0,0,0.6);
 }
 
-/* ------------------ OVERLAYS PANTALLA COMPLETA ------------------ */
+/* ------------------ OVERLAYS ------------------ */
 .overlay {
   position: fixed;
   inset: 0;
@@ -263,7 +255,6 @@ body {
   font-size: 1rem;
 }
 
-/* Botón REGRESAR */
 .btn-regresar {
   margin-top: 14px;
   background: #d4af37;
@@ -281,7 +272,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Botón X */
 .overlay-cerrar {
   position: absolute;
   top: 18px;
@@ -305,7 +295,6 @@ body {
 
 <body>
 
-<!-- ENCABEZADO -->
 <header class="header">
   <div class="header-left">
     <img src="Logotipo MICH dorado.png" alt="Logo MICH">
@@ -324,7 +313,6 @@ body {
   <div class="hamburger" id="hamburger">&#9776;</div>
 </header>
 
-<!-- MENÚ LATERAL -->
 <div class="side-menu" id="sideMenu">
   <div class="close-menu" id="closeMenu">&times;</div>
   <a href="index.html">Inicio</a>
@@ -332,27 +320,23 @@ body {
   <a href="disponibilidad.html">Disponibilidad</a>
 </div>
 
-<!-- MURAL -->
 <main class="mural">
 
-  <!-- FOTO 1 -->
   <div class="foto1" id="foto1">
     <img src="Esposos llegando.png" alt="Llegada de los esposos">
   </div>
 
-  <!-- FOTO 2 – Novios, damas y pajes -->
   <div class="foto2" id="foto2">
     <img src="Novios damas y pajes .png" alt="Novios, damas y pajes">
   </div>
 
 </main>
 
-<!-- OVERLAY FOTO 1 -->
 <div class="overlay" id="overlay1">
   <div class="overlay-cerrar" id="cerrarOverlay1">&times;</div>
 
   <div class="overlay-content">
-    <img src="Esposos llegando.png" alt="Llegada de los esposos" class="overlay-img">
+    <img src="Esposos llegando.png" class="overlay-img">
 
     <div class="overlay-texto">
       <h2>Llegada de los esposos</h2>
@@ -363,12 +347,11 @@ body {
   </div>
 </div>
 
-<!-- OVERLAY FOTO 2 -->
 <div class="overlay" id="overlay2">
   <div class="overlay-cerrar" id="cerrarOverlay2">&times;</div>
 
   <div class="overlay-content">
-    <img src="Novios damas y pajes .png" alt="Novios, damas y pajes" class="overlay-img">
+    <img src="Novios damas y pajes .png" class="overlay-img">
 
     <div class="overlay-texto">
       <h2>Novios, damas y pajes</h2>
@@ -383,13 +366,11 @@ body {
   </div>
 </div>
 
-<!-- PIE -->
 <footer class="footer">
   Marco Iván Cabrera © Derechos Reservados 2026
 </footer>
 
 <script>
-// Menú hamburguesa
 const hamburger = document.getElementById("hamburger");
 const sideMenu = document.getElementById("sideMenu");
 const closeMenu = document.getElementById("closeMenu");
@@ -397,7 +378,6 @@ const closeMenu = document.getElementById("closeMenu");
 hamburger.onclick = () => sideMenu.classList.add("open");
 closeMenu.onclick = () => sideMenu.classList.remove("open");
 
-// FOTO 1 → pantalla completa
 const foto1 = document.getElementById("foto1");
 const overlay1 = document.getElementById("overlay1");
 const cerrarOverlay1 = document.getElementById("cerrarOverlay1");
@@ -406,11 +386,8 @@ const btnRegresar1 = document.getElementById("btnRegresar1");
 foto1.onclick = () => overlay1.style.display = "flex";
 cerrarOverlay1.onclick = () => overlay1.style.display = "none";
 btnRegresar1.onclick = () => overlay1.style.display = "none";
-overlay1.onclick = (e) => {
-  if (e.target === overlay1) overlay1.style.display = "none";
-};
+overlay1.onclick = (e) => { if (e.target === overlay1) overlay1.style.display = "none"; };
 
-// FOTO 2 → pantalla completa
 const foto2 = document.getElementById("foto2");
 const overlay2 = document.getElementById("overlay2");
 const cerrarOverlay2 = document.getElementById("cerrarOverlay2");
@@ -419,9 +396,7 @@ const btnRegresar2 = document.getElementById("btnRegresar2");
 foto2.onclick = () => overlay2.style.display = "flex";
 cerrarOverlay2.onclick = () => overlay2.style.display = "none";
 btnRegresar2.onclick = () => overlay2.style.display = "none";
-overlay2.onclick = (e) => {
-  if (e.target === overlay2) overlay2.style.display = "none";
-};
+overlay2.onclick = (e) => { if (e.target === overlay2) overlay2.style.display = "none"; };
 </script>
 
 </body>
