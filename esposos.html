@@ -18,13 +18,13 @@ body {
   background: url("Fondo nupcial .png") no-repeat center top;
   background-size: cover;
   background-attachment: fixed;
-  color: #fff;
+  color: #3a2b1a;
 }
 
 /* ------------------ ENCABEZADO ------------------ */
 .header {
   width: 100%;
-  padding: 20px 40px;
+  padding: 22px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,8 +41,8 @@ body {
 }
 
 .header-title {
-  color: #d4af37;
-  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  color: #3a2b1a;
+  text-shadow: 0 0 6px rgba(255,255,255,0.6);
   font-size: 1.7rem;
   line-height: 1.2;
 }
@@ -60,22 +60,23 @@ body {
 }
 
 .nav a {
-  color: #d4af37;
+  color: #3a2b1a;
   text-decoration: none;
   font-size: 1rem;
   letter-spacing: 0.05em;
   padding: 4px 8px;
+  font-weight: bold;
 }
 
 .nav a:hover {
-  color: #ffffff;
+  opacity: 0.7;
 }
 
 /* ------------------ MENÚ HAMBURGUESA ------------------ */
 .hamburger {
   display: none;
   font-size: 30px;
-  color: #d4af37;
+  color: #3a2b1a;
   cursor: pointer;
 }
 
@@ -85,7 +86,7 @@ body {
   right: -70%;
   width: 70%;
   height: 100%;
-  background: #000;
+  background: rgba(255,255,255,0.95);
   padding: 30px 24px;
   transition: right 0.4s ease;
   z-index: 999;
@@ -97,15 +98,16 @@ body {
 
 .side-menu a {
   display: block;
-  color: #d4af37;
+  color: #3a2b1a;
   text-decoration: none;
   font-size: 1.1rem;
   margin-bottom: 18px;
+  font-weight: bold;
 }
 
 .close-menu {
   font-size: 30px;
-  color: #d4af37;
+  color: #3a2b1a;
   text-align: right;
   cursor: pointer;
   margin-bottom: 24px;
@@ -117,28 +119,29 @@ body {
   .hamburger { display: block; }
 }
 
-/* ------------------ ZONA MURAL ------------------ */
+/* ------------------ MURAL ------------------ */
 .mural {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 60px auto 80px auto;
-  min-height: 500px;
+  min-height: 600px;
 }
 
-/* FOTO 1 – pieza principal */
+/* FOTO 1 – protagonista */
 .foto1 {
   position: absolute;
-  width: 260px;
-  height: 200px;
-  left: 50%;
-  top: 40px;
-  transform: translateX(-50%);
-  border-radius: 12px;
+  width: 420px; /* tamaño doble */
+  height: 320px;
+  left: 18%; /* NO centrada */
+  top: -120px; /* para que caiga */
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
   filter: grayscale(100%);
+  transform: rotate(-2deg);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+  animation: caer 1.2s ease forwards;
   transition: filter 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
 }
 
@@ -148,15 +151,23 @@ body {
   object-fit: cover;
 }
 
-/* Hover: color + sensación de acercamiento */
-.foto1:hover {
-  filter: grayscale(0%);
-  transform: translateX(-50%) translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+/* Animación de caída */
+@keyframes caer {
+  0% { top: -180px; opacity: 0; }
+  60% { top: 40px; opacity: 1; }
+  80% { top: 20px; }
+  100% { top: 30px; }
 }
 
-/* ------------------ OVERLAY PANTALLA COMPLETA FOTO 1 ------------------ */
-.overlay-foto1 {
+/* Hover cinematográfico */
+.foto1:hover {
+  filter: grayscale(0%);
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.6);
+}
+
+/* ------------------ OVERLAY PANTALLA COMPLETA ------------------ */
+.overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.88);
@@ -166,7 +177,7 @@ body {
   z-index: 1000;
 }
 
-.overlay-foto1-content {
+.overlay-content {
   max-width: 1100px;
   width: 92%;
   max-height: 90vh;
@@ -178,27 +189,28 @@ body {
   flex-direction: column;
 }
 
-.overlay-foto1-img {
+.overlay-img {
   width: 100%;
   max-height: 70vh;
   object-fit: cover;
 }
 
-.overlay-foto1-texto {
+.overlay-texto {
   padding: 18px 22px 20px 22px;
+  color: #fff;
 }
 
-.overlay-foto1-texto h2 {
+.overlay-texto h2 {
   color: #d4af37;
   margin-bottom: 6px;
   font-size: 1.3rem;
 }
 
-.overlay-foto1-texto p {
+.overlay-texto p {
   font-size: 1rem;
 }
 
-.overlay-foto1-cerrar {
+.overlay-cerrar {
   position: absolute;
   top: 18px;
   right: 26px;
@@ -207,46 +219,14 @@ body {
   cursor: pointer;
 }
 
-/* ------------------ PLACEHOLDERS OTRAS FOTOS (solo movimiento) ------------------ */
-.foto-placeholder {
-  position: absolute;
-  width: 180px;
-  height: 140px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  animation: subirSuave 1.4s ease forwards;
-  opacity: 0;
-}
-
-/* posiciones aproximadas solo para ver movimiento */
-.foto2 { top: 260px; left: 12%; animation-delay: 0.1s; }
-.foto3 { top: 220px; left: 38%; animation-delay: 0.2s; }
-.foto4 { top: 260px; right: 12%; animation-delay: 0.3s; }
-.foto5 { top: 430px; left: 20%; animation-delay: 0.4s; }
-.foto6 { top: 430px; right: 20%; animation-delay: 0.5s; }
-
-/* Animación de entrada */
-@keyframes subirSuave {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 /* ------------------ PIE ------------------ */
 .footer {
   margin-top: 40px;
   padding: 30px 0;
   text-align: center;
-  color: #d4af37;
+  color: #3a2b1a;
   font-size: 0.9rem;
-  text-shadow: 0 0 6px rgba(0,0,0,0.7);
+  text-shadow: 0 0 6px rgba(255,255,255,0.6);
 }
 </style>
 </head>
@@ -280,29 +260,22 @@ body {
   <a href="disponibilidad.html">Disponibilidad</a>
 </div>
 
-<!-- MURAL (solo nos importa Foto 1 por ahora) -->
+<!-- MURAL -->
 <main class="mural">
 
-  <!-- FOTO 1: B/N → color + overlay pantalla completa -->
+  <!-- FOTO 1 -->
   <div class="foto1" id="foto1">
     <img src="Esposos llegando.png" alt="Llegada de los esposos">
   </div>
 
-  <!-- Placeholders solo para ver movimiento (sin imágenes aún) -->
-  <div class="foto-placeholder foto2"></div>
-  <div class="foto-placeholder foto3"></div>
-  <div class="foto-placeholder foto4"></div>
-  <div class="foto-placeholder foto5"></div>
-  <div class="foto-placeholder foto6"></div>
-
 </main>
 
-<!-- OVERLAY PANTALLA COMPLETA FOTO 1 -->
-<div class="overlay-foto1" id="overlayFoto1">
-  <div class="overlay-foto1-cerrar" id="cerrarOverlay">&times;</div>
-  <div class="overlay-foto1-content">
-    <img src="Esposos llegando.png" alt="Llegada de los esposos" class="overlay-foto1-img">
-    <div class="overlay-foto1-texto">
+<!-- OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="overlay-cerrar" id="cerrarOverlay">&times;</div>
+  <div class="overlay-content">
+    <img src="Esposos llegando.png" alt="Llegada de los esposos" class="overlay-img">
+    <div class="overlay-texto">
       <h2>Llegada de los esposos</h2>
       <p>El primer anuncio del Maestro de Ceremonias será la llegada de los recién casados.</p>
     </div>
@@ -320,38 +293,20 @@ const hamburger = document.getElementById("hamburger");
 const sideMenu = document.getElementById("sideMenu");
 const closeMenu = document.getElementById("closeMenu");
 
-if (hamburger) {
-  hamburger.onclick = () => sideMenu.classList.add("open");
-}
-if (closeMenu) {
-  closeMenu.onclick = () => sideMenu.classList.remove("open");
-}
+hamburger.onclick = () => sideMenu.classList.add("open");
+closeMenu.onclick = () => sideMenu.classList.remove("open");
 
-// Foto 1: abrir overlay a pantalla completa
+// Foto 1 → pantalla completa
 const foto1 = document.getElementById("foto1");
-const overlayFoto1 = document.getElementById("overlayFoto1");
+const overlay = document.getElementById("overlay");
 const cerrarOverlay = document.getElementById("cerrarOverlay");
 
-if (foto1 && overlayFoto1) {
-  foto1.addEventListener("click", () => {
-    overlayFoto1.style.display = "flex";
-  });
-}
+foto1.onclick = () => overlay.style.display = "flex";
+cerrarOverlay.onclick = () => overlay.style.display = "none";
 
-if (cerrarOverlay && overlayFoto1) {
-  cerrarOverlay.addEventListener("click", () => {
-    overlayFoto1.style.display = "none";
-  });
-}
-
-// Cerrar overlay al hacer clic fuera del contenido
-if (overlayFoto1) {
-  overlayFoto1.addEventListener("click", (e) => {
-    if (e.target === overlayFoto1) {
-      overlayFoto1.style.display = "none";
-    }
-  });
-}
+overlay.onclick = (e) => {
+  if (e.target === overlay) overlay.style.display = "none";
+};
 </script>
 
 </body>
