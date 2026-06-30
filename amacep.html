@@ -21,7 +21,6 @@
             color: var(--negro);
         }
 
-        /* Barra dorada superior */
         .barra-superior {
             background-color: var(--dorado);
             height: 6px;
@@ -51,13 +50,6 @@
             height: 80px;
         }
 
-        .titulo h1 {
-            margin: 0;
-            font-size: 1.6rem;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-        }
-
         nav {
             margin-top: 1rem;
         }
@@ -83,7 +75,6 @@
             color: var(--azul);
         }
 
-        /* Hero institucional */
         .hero {
             background: linear-gradient(to right, var(--azul), #12324A);
             color: var(--blanco);
@@ -101,7 +92,6 @@
             margin-top: 1rem;
         }
 
-        /* Secciones */
         section {
             padding: 2.5rem 0;
         }
@@ -112,11 +102,6 @@
             border-radius: 10px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.08);
             margin-bottom: 2rem;
-        }
-
-        .bloque h3 {
-            margin-top: 0;
-            color: var(--azul);
         }
 
         .grid-2 {
@@ -135,13 +120,7 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Barra de redes sociales institucional */
+        /* Redes sociales a color */
         .social-bar {
             position: fixed;
             left: 20px;
@@ -162,13 +141,18 @@
             justify-content: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.25);
             transition: 0.2s;
+            overflow: hidden;
+        }
+
+        .social-icon img {
+            width: 36px;
+            height: 36px;
         }
 
         .social-icon:hover {
             transform: scale(1.10);
         }
 
-        /* Móvil: convertir en botones flotantes */
         @media (max-width: 768px) {
             .social-bar {
                 flex-direction: row;
@@ -185,46 +169,50 @@
                 width: 48px;
                 height: 48px;
             }
+
+            .social-icon img {
+                width: 30px;
+                height: 30px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<!-- Barra superior dorada -->
 <div class="barra-superior"></div>
 
-<!-- Barra institucional de redes sociales -->
+<!-- Redes sociales con logos a color -->
 <div class="social-bar">
 
     <!-- Facebook -->
     <a href="https://facebook.com" target="_blank" class="social-icon">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" width="30" height="30">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png">
     </a>
 
     <!-- Instagram -->
     <a href="https://instagram.com" target="_blank" class="social-icon">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" width="30" height="30">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
     </a>
 
     <!-- Twitter/X -->
     <a href="https://twitter.com" target="_blank" class="social-icon">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" width="30" height="30">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/X_logo_2023.svg">
     </a>
 
     <!-- TikTok -->
     <a href="https://tiktok.com" target="_blank" class="social-icon">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" width="30" height="30">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg">
     </a>
 
     <!-- Pinterest -->
     <a href="https://pinterest.com" target="_blank" class="social-icon">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pinterest.svg" width="30" height="30">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png">
     </a>
 
     <!-- YouTube -->
     <a href="https://youtube.com" target="_blank" class="social-icon">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" width="30" height="30">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
     </a>
 
 </div>
@@ -253,37 +241,27 @@
     </div>
 </header>
 
-<!-- HERO -->
 <div class="hero" id="inicio">
     <div class="contenedor">
         <h2>Institución representativa de los Maestros de Ceremonias del Perú</h2>
         <p>
             Esta es la página institucional modelo para revisión y aprobación del diseño por parte de los asociados.
-            Representa la estética, jerarquía y presencia que una institución nacional debe proyectar.
         </p>
     </div>
 </div>
 
 <main class="contenedor">
 
-    <!-- NOSOTROS -->
     <section id="nosotros">
         <div class="bloque">
             <h3>Nosotros</h3>
             <div class="grid-2">
                 <div>
                     <h4>Misión</h4>
-                    <p>
-                        Representar y fortalecer la labor de los maestros de ceremonias del Perú,
-                        promoviendo estándares profesionales, éticos y de calidad en la conducción
-                        de actos protocolares, sociales y culturales.
-                    </p>
+                    <p>Representar y fortalecer la labor de los maestros de ceremonias del Perú.</p>
 
                     <h4>Visión</h4>
-                    <p>
-                        Ser reconocidos como la institución referente en la formación, acreditación
-                        y defensa profesional de los maestros de ceremonias a nivel nacional.
-                    </p>
+                    <p>Ser reconocidos como la institución referente en la formación y acreditación profesional.</p>
                 </div>
 
                 <div>
@@ -299,63 +277,45 @@
         </div>
     </section>
 
-    <!-- ESTATUTO -->
     <section id="estatuto">
         <div class="bloque">
             <h3>Estatuto institucional</h3>
-            <p>
-                Aquí se alojará el Estatuto oficial de la AMACEP, documento rector de la organización.
-            </p>
+            <p>Documento rector de la organización.</p>
         </div>
     </section>
 
-    <!-- DOCUMENTOS -->
     <section id="documentos">
         <div class="bloque">
             <h3>Documentos de gestión</h3>
-            <p>
-                Reglamentos, manuales, políticas institucionales y demás instrumentos normativos.
-            </p>
+            <p>Reglamentos, manuales y políticas institucionales.</p>
         </div>
     </section>
 
-    <!-- REUNIONES -->
     <section id="reuniones">
         <div class="bloque">
             <h3>Reuniones y acuerdos</h3>
-            <p>
-                Actas, acuerdos adoptados, convocatorias y cronogramas institucionales.
-            </p>
+            <p>Actas, acuerdos y convocatorias institucionales.</p>
         </div>
     </section>
 
-    <!-- ASOCIADOS -->
     <section id="asociados">
         <div class="bloque">
             <h3>Relación de asociados</h3>
-            <p>
-                Padrón institucional con datos profesionales y fotografías de cada socio.
-            </p>
+            <p>Padrón institucional con datos profesionales.</p>
         </div>
     </section>
 
-    <!-- GALERÍA -->
     <section id="galeria">
         <div class="bloque">
             <h3>Galería institucional</h3>
-            <p>
-                Fotografías de actividades, ceremonias y eventos representativos.
-            </p>
+            <p>Fotografías de actividades y ceremonias.</p>
         </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto">
         <div class="bloque">
             <h3>Contacto institucional</h3>
-            <p>
-                Información de contacto, correo institucional y canales oficiales.
-            </p>
+            <p>Correo institucional y canales oficiales.</p>
         </div>
     </section>
 
