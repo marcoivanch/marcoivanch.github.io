@@ -4,469 +4,284 @@
     <meta charset="UTF-8">
     <title>AMACEP | Asociación de Maestros de Ceremonias del Perú</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Página institucional modelo de la Asociación de Maestros de Ceremonias del Perú (AMACEP).">
+
     <style>
         :root {
-            --color-primario: #0b3c68;   /* azul institucional */
-            --color-secundario: #c9a86a; /* dorado sobrio */
-            --color-fondo: #f5f6fa;
-            --color-texto: #222222;
-            --color-borde: #d0d4dd;
-        }
-
-        * {
-            box-sizing: border-box;
+            --azul: #0A1A2A;
+            --dorado: #C9A86A;
+            --gris: #F2F4F7;
+            --negro: #111111;
+            --blanco: #FFFFFF;
         }
 
         body {
             margin: 0;
-            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-            background-color: var(--color-fondo);
-            color: var(--color-texto);
+            font-family: "Segoe UI", sans-serif;
+            background-color: var(--gris);
+            color: var(--negro);
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        /* Barra dorada superior */
+        .barra-superior {
+            background-color: var(--dorado);
+            height: 6px;
+            width: 100%;
         }
 
         header {
-            background: #ffffff;
-            border-bottom: 1px solid var(--color-borde);
-            padding: 0.75rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1rem 0;
+            border-bottom: 4px solid var(--dorado);
         }
 
         .contenedor {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.25rem;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 1.5rem;
         }
 
-        .encabezado-superior {
+        .header-flex {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .logo-amacep {
-            height: 70px;
-            width: auto;
+        .logo {
+            height: 80px;
         }
 
-        .titulo-institucional {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .titulo-institucional h1 {
+        .titulo h1 {
             margin: 0;
-            font-size: 1.4rem;
-            letter-spacing: 0.04em;
+            font-size: 1.6rem;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
-            color: var(--color-primario);
-        }
-
-        .titulo-institucional span {
-            font-size: 0.85rem;
-            color: #555;
         }
 
         nav {
-            margin-top: 0.75rem;
+            margin-top: 1rem;
         }
 
-        .menu {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        nav ul {
             list-style: none;
             padding: 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--blanco);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background-color: var(--dorado);
+            color: var(--azul);
+        }
+
+        /* Hero institucional */
+        .hero {
+            background: linear-gradient(to right, var(--azul), #12324A);
+            color: var(--blanco);
+            padding: 3rem 0;
+        }
+
+        .hero h2 {
             margin: 0;
+            font-size: 2rem;
         }
 
-        .menu li {
-            margin: 0;
+        .hero p {
+            max-width: 700px;
+            line-height: 1.6;
+            margin-top: 1rem;
         }
 
-        .menu a,
-        .menu span {
-            display: inline-block;
-            padding: 0.45rem 0.9rem;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .menu a.activo {
-            background-color: var(--color-primario);
-            color: #ffffff;
-        }
-
-        .menu a:hover {
-            border-color: var(--color-primario);
-        }
-
-        .menu span.deshabilitado {
-            background-color: #e3e6ee;
-            color: #777;
-            cursor: default;
-        }
-
-        .badge-proximamente {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-left: 0.35rem;
-            color: var(--color-secundario);
-        }
-
-        main {
-            padding: 2rem 0 3rem;
+        /* Secciones */
+        section {
+            padding: 2.5rem 0;
         }
 
         .bloque {
-            background-color: #ffffff;
-            border-radius: 12px;
-            border: 1px solid var(--color-borde);
-            padding: 1.75rem;
-            margin-bottom: 1.5rem;
+            background-color: var(--blanco);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
         }
 
-        .bloque-titulo {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 1rem;
-        }
-
-        .bloque-titulo h2 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: var(--color-primario);
-        }
-
-        .bloque-titulo small {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .hero-texto h2 {
+        .bloque h3 {
             margin-top: 0;
-            font-size: 1.4rem;
-            color: var(--color-primario);
+            color: var(--azul);
         }
 
-        .hero-texto p {
-            margin: 0.4rem 0;
-            line-height: 1.5;
-        }
-
-        .hero-datos {
-            border-left: 3px solid var(--color-secundario);
-            padding-left: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .hero-datos dl {
-            margin: 0;
-        }
-
-        .hero-datos dt {
-            font-weight: 600;
-            margin-top: 0.4rem;
-        }
-
-        .hero-datos dd {
-            margin: 0;
-            color: #555;
-        }
-
-        .lista-documentos {
-            list-style: none;
-            padding: 0;
-            margin: 0.5rem 0 0;
-        }
-
-        .lista-documentos li {
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed #e0e3ea;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .lista-documentos li:last-child {
-            border-bottom: none;
-        }
-
-        .etiqueta {
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            border: 1px solid var(--color-borde);
-            color: #666;
-        }
-
-        .etiqueta-secundaria {
-            border-color: var(--color-secundario);
-            color: var(--color-secundario);
-        }
-
-        .grid-dos {
+        .grid-2 {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 1.25rem;
-        }
-
-        .nota-proximamente {
-            font-size: 0.85rem;
-            color: #777;
-            margin-top: 0.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
         footer {
-            border-top: 1px solid var(--color-borde);
-            background-color: #ffffff;
-            padding: 1rem 0;
-            font-size: 0.8rem;
-            color: #666;
-        }
-
-        .footer-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            border-top: 4px solid var(--dorado);
+            text-align: center;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            .encabezado-superior {
-                flex-direction: row;
-                align-items: center;
-            }
-
-            .hero {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .grid-dos {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .logo-amacep {
-                height: 55px;
+            .grid-2 {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
+
+<div class="barra-superior"></div>
 
 <header>
     <div class="contenedor">
-        <div class="encabezado-superior">
-            <!-- Logotipo institucional AMACEP -->
-            <img src="AMACEP.png" alt="Logotipo AMACEP" class="logo-amacep">
-
-            <div class="titulo-institucional">
+        <div class="header-flex">
+            <img src="AMACEP.png" class="logo" alt="Logotipo AMACEP">
+            <div class="titulo">
                 <h1>Asociación de Maestros de Ceremonias del Perú</h1>
-                <span>AMACEP · Página institucional modelo</span>
             </div>
         </div>
 
-        <!-- Navegación institucional (algunas pestañas aún no habilitadas) -->
-        <nav aria-label="Navegación principal AMACEP">
-            <ul class="menu">
-                <li><a href="#inicio" class="activo">Inicio</a></li>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
-                <li><span class="deshabilitado">Estatuto <span class="badge-proximamente">Próximamente</span></span></li>
-                <li><span class="deshabilitado">Documentos de gestión <span class="badge-proximamente">Próximamente</span></span></li>
-                <li><span class="deshabilitado">Reuniones y acuerdos <span class="badge-proximamente">Próximamente</span></span></li>
-                <li><span class="deshabilitado">Relación de asociados <span class="badge-proximamente">Próximamente</span></span></li>
-                <li><span class="deshabilitado">Galería de socios <span class="badge-proximamente">Próximamente</span></span></li>
-                <li><span class="deshabilitado">Contacto institucional <span class="badge-proximamente">Próximamente</span></span></li>
+                <li><a href="#estatuto">Estatuto</a></li>
+                <li><a href="#documentos">Documentos de gestión</a></li>
+                <li><a href="#reuniones">Reuniones y acuerdos</a></li>
+                <li><a href="#asociados">Asociados</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
+<!-- HERO -->
+<div class="hero" id="inicio">
+    <div class="contenedor">
+        <h2>Institución representativa de los Maestros de Ceremonias del Perú</h2>
+        <p>
+            Esta es la página institucional modelo para revisión y aprobación del diseño por parte de los asociados.
+            Representa la estética, jerarquía y presencia que una institución nacional debe proyectar.
+        </p>
+    </div>
+</div>
+
 <main class="contenedor">
 
-    <!-- INICIO / PORTADA -->
-    <section id="inicio" class="bloque">
-        <div class="bloque-titulo">
-            <h2>Presentación institucional</h2>
-            <small>Modelo de portada · AMACEP</small>
-        </div>
-
-        <div class="hero">
-            <div class="hero-texto">
-                <h2>Asociación de Maestros de Ceremonias del Perú</h2>
-                <p>
-                    La AMACEP se proyecta como la entidad de referencia para la representación,
-                    articulación y fortalecimiento profesional de los maestros de ceremonias en el Perú.
-                </p>
-                <p>
-                    Esta página es un <strong>modelo institucional</strong> para revisión y aprobación del diseño
-                    por parte de los asociados, antes de su implementación definitiva.
-                </p>
-                <p class="nota-proximamente">
-                    Las secciones de estatuto, documentos de gestión, acuerdos y relación de asociados
-                    se habilitarán progresivamente, manteniendo esta estructura de navegación.
-                </p>
-            </div>
-
-            <aside class="hero-datos">
-                <dl>
-                    <dt>Nombre institucional</dt>
-                    <dd>Asociación de Maestros de Ceremonias del Perú (AMACEP)</dd>
-
-                    <dt>Ámbito</dt>
-                    <dd>Profesional · Representación de maestros de ceremonias</dd>
-
-                    <dt>Carácter de esta página</dt>
-                    <dd>Prototipo institucional · Pestaña modelo para revisión</dd>
-                </dl>
-            </aside>
-        </div>
-    </section>
-
     <!-- NOSOTROS -->
-    <section id="nosotros" class="bloque">
-        <div class="bloque-titulo">
-            <h2>Nosotros</h2>
-            <small>Identidad, misión y visión</small>
-        </div>
+    <section id="nosotros">
+        <div class="bloque">
+            <h3>Nosotros</h3>
+            <div class="grid-2">
+                <div>
+                    <h4>Misión</h4>
+                    <p>
+                        Representar y fortalecer la labor de los maestros de ceremonias del Perú,
+                        promoviendo estándares profesionales, éticos y de calidad en la conducción
+                        de actos protocolares, sociales y culturales.
+                    </p>
 
-        <div class="grid-dos">
-            <div>
-                <h3 style="margin-top:0;">Misión</h3>
-                <p>
-                    Representar y fortalecer la labor de los maestros de ceremonias del Perú,
-                    promoviendo estándares profesionales, éticos y de calidad en el ejercicio
-                    de la conducción de actos protocolares, sociales y culturales.
-                </p>
+                    <h4>Visión</h4>
+                    <p>
+                        Ser reconocidos como la institución referente en la formación, acreditación
+                        y defensa profesional de los maestros de ceremonias a nivel nacional.
+                    </p>
+                </div>
 
-                <h3>Visión</h3>
-                <p>
-                    Ser reconocidos como la institución referente en la formación, acreditación
-                    y defensa profesional de los maestros de ceremonias, consolidando una comunidad
-                    articulada y prestigiosa a nivel nacional.
-                </p>
-            </div>
-
-            <div>
-                <h3 style="margin-top:0;">Valores institucionales</h3>
-                <ul>
-                    <li>Respeto y ética profesional</li>
-                    <li>Excelencia en la conducción de ceremonias</li>
-                    <li>Compromiso con la formación continua</li>
-                    <li>Representatividad y trabajo colegiado</li>
-                </ul>
-
-                <p class="nota-proximamente">
-                    En la versión definitiva, este bloque podrá incluir:
-                    reseña histórica, acta de constitución, órganos de gobierno y
-                    enlaces directos a documentos fundacionales.
-                </p>
+                <div>
+                    <h4>Valores institucionales</h4>
+                    <ul>
+                        <li>Respeto y ética profesional</li>
+                        <li>Excelencia en la conducción de ceremonias</li>
+                        <li>Compromiso con la formación continua</li>
+                        <li>Representatividad y trabajo colegiado</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- DOCUMENTOS DE GESTIÓN (MODELO) -->
-    <section class="bloque">
-        <div class="bloque-titulo">
-            <h2>Documentos de gestión (modelo de sección)</h2>
-            <small>La pestaña se habilitará posteriormente</small>
+    <!-- ESTATUTO -->
+    <section id="estatuto">
+        <div class="bloque">
+            <h3>Estatuto institucional</h3>
+            <p>
+                Aquí se alojará el Estatuto oficial de la AMACEP, documento rector de la organización.
+            </p>
         </div>
-
-        <p>
-            Esta sección está diseñada para alojar los principales documentos de gestión
-            de la AMACEP: estatuto, reglamentos internos, manuales de procedimiento,
-            políticas institucionales y otros instrumentos normativos.
-        </p>
-
-        <ul class="lista-documentos">
-            <li>
-                <span>Estatuto de la AMACEP</span>
-                <span class="etiqueta etiqueta-secundaria">Documento principal · Próximamente</span>
-            </li>
-            <li>
-                <span>Reglamento interno de asociados</span>
-                <span class="etiqueta">Borrador en revisión</span>
-            </li>
-            <li>
-                <span>Manual de procedimientos para eventos institucionales</span>
-                <span class="etiqueta">Pendiente de carga</span>
-            </li>
-        </ul>
-
-        <p class="nota-proximamente">
-            En la implementación final, cada documento se presentará con enlace de descarga,
-            fecha de aprobación y órgano responsable.
-        </p>
     </section>
 
-    <!-- REUNIONES, ACUERDOS Y ASOCIADOS (MODELO) -->
-    <section class="bloque">
-        <div class="bloque-titulo">
-            <h2>Reuniones, acuerdos y relación de asociados</h2>
-            <small>Diseño de navegación futura</small>
+    <!-- DOCUMENTOS -->
+    <section id="documentos">
+        <div class="bloque">
+            <h3>Documentos de gestión</h3>
+            <p>
+                Reglamentos, manuales, políticas institucionales y demás instrumentos normativos.
+            </p>
         </div>
+    </section>
 
-        <div class="grid-dos">
-            <div>
-                <h3 style="margin-top:0;">Reuniones y acuerdos</h3>
-                <p>
-                    La pestaña correspondiente permitirá consultar actas de reuniones,
-                    acuerdos adoptados, convocatorias y cronogramas de sesiones.
-                </p>
-                <p class="nota-proximamente">
-                    Se prevé un listado cronológico con filtros por año y tipo de reunión,
-                    manteniendo un formato institucional sobrio.
-                </p>
-            </div>
+    <!-- REUNIONES -->
+    <section id="reuniones">
+        <div class="bloque">
+            <h3>Reuniones y acuerdos</h3>
+            <p>
+                Actas, acuerdos adoptados, convocatorias y cronogramas institucionales.
+            </p>
+        </div>
+    </section>
 
-            <div>
-                <h3 style="margin-top:0;">Relación de asociados y fotografías</h3>
-                <p>
-                    La sección de asociados contendrá el padrón institucional, con nombre,
-                    ciudad, especialidad y fotografía profesional de cada socio.
-                </p>
-                <p class="nota-proximamente">
-                    El diseño contempla fichas individuales de cada maestro de ceremonias,
-                    vinculadas a una galería institucional.
-                </p>
-            </div>
+    <!-- ASOCIADOS -->
+    <section id="asociados">
+        <div class="bloque">
+            <h3>Relación de asociados</h3>
+            <p>
+                Padrón institucional con datos profesionales y fotografías de cada socio.
+            </p>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria">
+        <div class="bloque">
+            <h3>Galería institucional</h3>
+            <p>
+                Fotografías de actividades, ceremonias y eventos representativos.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <div class="bloque">
+            <h3>Contacto institucional</h3>
+            <p>
+                Información de contacto, correo institucional y canales oficiales.
+            </p>
         </div>
     </section>
 
 </main>
 
 <footer>
-    <div class="contenedor footer-flex">
-        <div>
-            © AMACEP · Asociación de Maestros de Ceremonias del Perú · Página institucional modelo
-        </div>
-        <div>
-            Diseño de referencia para aprobación colegiada · No corresponde aún a la versión oficial publicada.
-        </div>
-    </div>
+    © AMACEP · Página institucional modelo · Diseño preliminar para revisión colegiada
 </footer>
 
 </body>
 </html>
-
