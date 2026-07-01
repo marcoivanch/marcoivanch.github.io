@@ -2,177 +2,138 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>AMACEP | Asociación de Maestros de Ceremonias del Perú</title>
+    <title>AMACEP | Inicio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
         :root {
             --azul: #0A1A2A;
             --dorado: #C9A86A;
-            --gris: #F2F4F7;
             --negro: #111111;
             --blanco: #FFFFFF;
+            --gris: #F5F6F8;
         }
 
         body {
             margin: 0;
             font-family: "Segoe UI", sans-serif;
-            background-color: var(--gris);
+            background-color: var(--blanco);
             color: var(--negro);
         }
 
-        .barra-superior {
-            background-color: var(--dorado);
-            height: 6px;
-            width: 100%;
-        }
-
-        header {
-            background-color: var(--azul);
-            color: var(--blanco);
-            padding: 1rem 0;
-            border-bottom: 4px solid var(--dorado);
-        }
-
-        .contenedor {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 1.5rem;
-        }
-
-        .header-flex {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo {
-            height: 80px;
-        }
-
-        nav {
-            margin-top: 1rem;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: var(--blanco);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            transition: 0.2s;
-        }
-
-        nav a:hover {
-            background-color: var(--dorado);
-            color: var(--azul);
-        }
-
+        /* Hero editorial */
         .hero {
-            background: linear-gradient(to right, var(--azul), #12324A);
-            color: var(--blanco);
-            padding: 3rem 0;
-        }
-
-        .hero h2 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .hero p {
-            max-width: 700px;
-            line-height: 1.6;
-            margin-top: 1rem;
-        }
-
-        section {
-            padding: 2.5rem 0;
-        }
-
-        .bloque {
-            background-color: var(--blanco);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        footer {
-            background-color: var(--azul);
-            color: var(--blanco);
-            padding: 1.5rem 0;
-            margin-top: 2rem;
-            border-top: 4px solid var(--dorado);
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        /* Redes sociales a color */
-        .social-bar {
-            position: fixed;
-            left: 20px;
-            top: 40%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
         }
 
-        .social-icon {
-            width: 58px;
-            height: 58px;
-            background-color: var(--blanco);
+        .hero img.logo {
+            width: 240px;
+            max-width: 70%;
+            margin-bottom: 1.5rem;
+        }
+
+        .sigla {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--azul);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .nombre-completo {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            margin-top: 0.6rem;
+            color: var(--negro);
+            text-transform: uppercase;
+        }
+
+        .fundada {
+            margin-top: 2rem;
+            font-size: 1.05rem;
+            color: var(--azul);
+            font-weight: 600;
+        }
+
+        .sunarp {
+            margin-top: 0.3rem;
+            font-size: 1rem;
+            color: var(--dorado);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        /* Redes sociales rectangulares */
+        .redes {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .redes img {
+            height: 42px;
+            width: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            transition: 0.2s;
+        }
+
+        .redes img:hover {
+            transform: scale(1.07);
+        }
+
+        /* Botón flotante de WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            background-color: #25D366;
+            width: 62px;
+            height: 62px;
             border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            z-index: 9999;
             transition: 0.2s;
-            overflow: hidden;
         }
 
-        .social-icon img {
-            width: 36px;
-            height: 36px;
-        }
-
-        .social-icon:hover {
+        .whatsapp-btn:hover {
             transform: scale(1.10);
         }
 
+        .whatsapp-btn img {
+            width: 34px;
+            height: 34px;
+        }
+
+        /* Móvil */
         @media (max-width: 768px) {
-            .social-bar {
-                flex-direction: row;
-                left: 15px;
-                bottom: 20px;
-                top: auto;
-                background: rgba(255,255,255,0.95);
-                padding: 10px 14px;
-                border-radius: 50px;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            .hero img.logo {
+                width: 180px;
             }
 
-            .social-icon {
-                width: 48px;
-                height: 48px;
+            .sigla {
+                font-size: 2.5rem;
             }
 
-            .social-icon img {
-                width: 30px;
-                height: 30px;
+            .nombre-completo {
+                font-size: 1.1rem;
+            }
+
+            .redes img {
+                height: 36px;
             }
         }
     </style>
@@ -180,150 +141,56 @@
 
 <body>
 
-<div class="barra-superior"></div>
+<div class="hero">
 
-<!-- Redes sociales con logos a color -->
-<div class="social-bar">
+    <!-- Logotipo AMACEP -->
+    <img src="AMACEP.png" class="logo" alt="Logotipo AMACEP">
 
-    <!-- Facebook -->
-    <a href="https://facebook.com" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png">
-    </a>
+    <!-- Sigla -->
+    <h1 class="sigla">AMACEP</h1>
 
-    <!-- Instagram -->
-    <a href="https://instagram.com" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-    </a>
+    <!-- Nombre completo -->
+    <div class="nombre-completo">
+        ASOCIACIÓN DE MAESTROS DE CEREMONIAS DEL PERÚ
+    </div>
 
-    <!-- Twitter/X -->
-    <a href="https://twitter.com" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/X_logo_2023.svg">
-    </a>
+    <!-- Datos institucionales -->
+    <div class="fundada">Fundada el 26 de marzo de 2025</div>
+    <div class="sunarp">SUNARP N° PARTIDA: 11077767</div>
 
-    <!-- TikTok -->
-    <a href="https://tiktok.com" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg">
-    </a>
+    <!-- Redes sociales rectangulares -->
+    <div class="redes">
+        <a href="https://facebook.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png">
+        </a>
 
-    <!-- Pinterest -->
-    <a href="https://pinterest.com" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png">
-    </a>
+        <a href="https://instagram.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+        </a>
 
-    <!-- YouTube -->
-    <a href="https://youtube.com" target="_blank" class="social-icon">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
-    </a>
+        <a href="https://twitter.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/X_logo_2023.svg">
+        </a>
+
+        <a href="https://tiktok.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg">
+        </a>
+
+        <a href="https://pinterest.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png">
+        </a>
+
+        <a href="https://youtube.com" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
+        </a>
+    </div>
 
 </div>
 
-<header>
-    <div class="contenedor">
-        <div class="header-flex">
-            <img src="AMACEP.png" class="logo" alt="Logotipo AMACEP">
-            <div class="titulo">
-                <h1>Asociación de Maestros de Ceremonias del Perú</h1>
-            </div>
-        </div>
-
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="amacepnosotros.html">Nosotros</a></li>
-                <li><a href="#estatuto">Estatuto</a></li>
-                <li><a href="#documentos">Documentos de gestión</a></li>
-                <li><a href="#reuniones">Reuniones y acuerdos</a></li>
-                <li><a href="#asociados">Asociados</a></li>
-                <li><a href="#galeria">Galería</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<div class="hero" id="inicio">
-    <div class="contenedor">
-        <h2>Institución representativa de los Maestros de Ceremonias del Perú</h2>
-        <p>
-            Esta es la página institucional modelo para revisión y aprobación del diseño por parte de los asociados.
-        </p>
-    </div>
-</div>
-
-<main class="contenedor">
-
-    <section id="nosotros">
-        <div class="bloque">
-            <h3>Nosotros</h3>
-            <div class="grid-2">
-                <div>
-                    <h4>Misión</h4>
-                    <p>Representar y fortalecer la labor de los maestros de ceremonias del Perú.</p>
-
-                    <h4>Visión</h4>
-                    <p>Ser reconocidos como la institución referente en la formación y acreditación profesional.</p>
-                </div>
-
-                <div>
-                    <h4>Valores institucionales</h4>
-                    <ul>
-                        <li>Respeto y ética profesional</li>
-                        <li>Excelencia en la conducción de ceremonias</li>
-                        <li>Compromiso con la formación continua</li>
-                        <li>Representatividad y trabajo colegiado</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="estatuto">
-        <div class="bloque">
-            <h3>Estatuto institucional</h3>
-            <p>Documento rector de la organización.</p>
-        </div>
-    </section>
-
-    <section id="documentos">
-        <div class="bloque">
-            <h3>Documentos de gestión</h3>
-            <p>Reglamentos, manuales y políticas institucionales.</p>
-        </div>
-    </section>
-
-    <section id="reuniones">
-        <div class="bloque">
-            <h3>Reuniones y acuerdos</h3>
-            <p>Actas, acuerdos y convocatorias institucionales.</p>
-        </div>
-    </section>
-
-    <section id="asociados">
-        <div class="bloque">
-            <h3>Relación de asociados</h3>
-            <p>Padrón institucional con datos profesionales.</p>
-        </div>
-    </section>
-
-    <section id="galeria">
-        <div class="bloque">
-            <h3>Galería institucional</h3>
-            <p>Fotografías de actividades y ceremonias.</p>
-        </div>
-    </section>
-
-    <section id="contacto">
-        <div class="bloque">
-            <h3>Contacto institucional</h3>
-            <p>Correo institucional y canales oficiales.</p>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    © AMACEP · Página institucional modelo · Diseño preliminar para revisión colegiada
-</footer>
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/930046681" class="whatsapp-btn" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 
 </body>
 </html>
