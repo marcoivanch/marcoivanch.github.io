@@ -142,6 +142,20 @@
             transform: scale(1.07);
         }
 
+        /* Aviso institucional */
+        .aviso {
+            max-width: 900px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .aviso img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
         /* WhatsApp */
         .whatsapp-btn {
             position: fixed;
@@ -176,6 +190,24 @@
             border-top: 4px solid var(--dorado);
             text-align: center;
             font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero img.logo {
+                width: 180px;
+            }
+
+            .sigla {
+                font-size: 2.5rem;
+            }
+
+            .nombre-completo {
+                font-size: 1.1rem;
+            }
+
+            .redes img {
+                height: 36px;
+            }
         }
     </style>
 </head>
@@ -247,6 +279,11 @@
         </a>
     </div>
 
+</div>
+
+<!-- AVISO INSTITUCIONAL -->
+<div class="aviso">
+    <img src="amacep/Aviso.png" alt="Aviso institucional AMACEP">
 </div>
 
 <footer>
