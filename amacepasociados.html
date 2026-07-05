@@ -1,1 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>AMACEP | Consejo Directivo 2025–2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --azul: #0A1A2A;
+            --dorado: #C9A86A;
+            --gris: #F2F4F7;
+            --negro: #111111;
+            --blanco: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: var(--gris);
+            color: var(--negro);
+        }
+
+        .barra-superior {
+            background-color: var(--dorado);
+            height: 6px;
+            width: 100%;
+        }
+
+        header {
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1rem 0;
+            border-bottom: 4px solid var(--dorado);
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 80px;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--blanco);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: var(--dorado);
+            color: var(--azul);
+        }
+
+        /* Redes laterales */
+        .social-bar {
+            position: fixed;
+            left: 20px;
+            top: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            z-index: 9999;
+        }
+
+        .social-icon {
+            width: 58px;
+            height: 58px;
+            background-color: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            transition: 0.2s;
+            overflow: hidden;
+        }
+
+        .social-icon img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.10);
+        }
+
+        /* Tarjetas */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            text-align: center;
+            border-left: 6px solid var(--dorado);
+        }
+
+        .card img {
+            width: 140px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+        }
+
+        .cargo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--azul);
+            margin-bottom: 0.3rem;
+        }
+
+        .nombre {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .dni {
+            font-size: 0.95rem;
+            color: var(--negro);
+            margin-bottom: 1rem;
+        }
+
+        .desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
+        }
+
+        footer {
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            border-top: 4px solid var(--dorado);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="barra-superior"></div>
+
+<!-- Redes sociales -->
+<div class="social-bar">
+    <a href="https://facebook.com" target="_blank" class="social-icon"><img src="amacep/icono-facebbok.png"></a>
+    <a href="https://instagram.com" target="_blank" class="social-icon"><img src="amacep/icono-instagram.png"></a>
+    <a href="https://twitter.com" target="_blank" class="social-icon"><img src="amacep/icono-X.png"></a>
+    <a href="https://tiktok.com" target="_blank" class="social-icon"><img src="amacep/icono-tiktok.png"></a>
+    <a href="https://pinterest.com" target="_blank" class="social-icon"><img src="amacep/icono-pinterest.png"></a>
+    <a href="https://youtube.com" target="_blank" class="social-icon"><img src="amacep/icono-youtube.png"></a>
+</div>
+
+<header>
+    <div class="contenedor">
+        <div class="header-flex">
+            <img src="AMACEP.png" class="logo" alt="Logotipo AMACEP">
+            <div class="titulo">
+                <h1>Consejo Directivo 2025–2026</h1>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="amacep.html">Inicio</a></li>
+                <li><a href="amacepnosotros.html">Nosotros</a></li>
+                <li><a href="amacepasociados.html">Asociados</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="contenedor">
+
+    <h2 style="text-align:center; color:var(--azul); margin-top:2rem;">
+        Primer Consejo Directivo (vigencia 26/03/2025 – 26/03/2027)
+    </h2>
+
+    <div class="grid">
+
+        <!-- PRESIDENTE -->
+        <div class="card">
+            <img src="amacep/asociados/Maestro Marco Iván.jpg" alt="Marco Iván Cabrera Hernández">
+            <div class="cargo">Presidente</div>
+            <div class="nombre">Marco Iván Cabrera Hernández</div>
+            <div class="dni">DNI 09435755</div>
+
+            <div class="desc">Licenciado en arte, Magíster en Gestión Pública, Perito de arte registrado.</div>
+            <div class="desc">Maestro de Ceremonias con 26 años de experiencia profesional.</div>
+            <div class="desc">Experto en eventos familiares e institucionales de calidad premium.</div>
+            <div class="desc">Celular: 930046681</div>
+            <div class="desc">Web: https://maestrodeceremonias.org.pe/</div>
+        </div>
+
+        <!-- VICEPRESIDENTE -->
+        <div class="card">
+            <div class="cargo">Vicepresidente</div>
+            <div class="nombre">Juber Armando Vela Navarro</div>
+            <div class="dni">DNI 23010934</div>
+            <div class="desc">Integrante del Consejo Directivo 2025–2026.</div>
+            <div class="desc">Participación activa en la constitución de AMACEP.</div>
+            <div class="desc">Compromiso institucional y gremial.</div>
+        </div>
+
+        <!-- SECRETARIO -->
+        <div class="card">
+            <div class="cargo">Secretario</div>
+            <div class="nombre">Christian Omar Cornejo Alva</div>
+            <div class="dni">DNI 40515119</div>
+            <div class="desc">Integrante del Consejo Directivo 2025–2026.</div>
+            <div class="desc">Responsable de documentación y actas institucionales.</div>
+            <div class="desc">Compromiso con la formalidad y transparencia.</div>
+        </div>
+
+        <!-- TESORERO -->
+        <div class="card">
+            <div class="cargo">Tesorero</div>
+            <div class="nombre">Humberto Eugenio Rengifo García</div>
+            <div class="dni">DNI 40953800</div>
+            <div class="desc">Integrante del Consejo Directivo 2025–2026.</div>
+            <div class="desc">Responsable de la administración económica.</div>
+            <div class="desc">Compromiso con la gestión responsable.</div>
+        </div>
+
+        <!-- FISCAL -->
+        <div class="card">
+            <div class="cargo">Fiscal</div>
+            <div class="nombre">Julio Cesar Vargas Ayala</div>
+            <div class="dni">DNI 09563663</div>
+            <div class="desc">Integrante del Consejo Directivo 2025–2026.</div>
+            <div class="desc">Responsable de la vigilancia institucional.</div>
+            <div class="desc">Compromiso con la ética y transparencia.</div>
+        </div>
+
+        <!-- VOCAL -->
+        <div class="card">
+            <div class="cargo">Vocal</div>
+            <div class="nombre">Luis Ángel Zavala Quijano</div>
+            <div class="dni">DNI 10113340</div>
+            <div class="desc">Integrante del Consejo Directivo 2025–2026.</div>
+            <div class="desc">Participación activa en actividades institucionales.</div>
+            <div class="desc">Compromiso con el desarrollo gremial.</div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    © AMACEP · Consejo Directivo 2025–2026
+</footer>
+
+</body>
+</html>
 
