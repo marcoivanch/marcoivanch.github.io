@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>AMACEP | Álbum 01 - Juramentación de Socios Fundadores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --azul: #0A1A2A;
+            --dorado: #C9A86A;
+            --negro: #111111;
+            --blanco: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: var(--azul);
+            color: var(--blanco);
+        }
+
+        .barra-superior {
+            background-color: var(--dorado);
+            height: 6px;
+            width: 100%;
+        }
+
+        header {
+            background-color: var(--azul);
+            padding: 1rem 0;
+            border-bottom: 4px solid var(--dorado);
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-header {
+            height: 70px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--blanco);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: var(--dorado);
+            color: var(--azul);
+        }
+
+        nav a.activo {
+            background-color: var(--dorado);
+            color: var(--azul);
+        }
+
+        /* CONTENIDO ÁLBUM */
+        .album-header {
+            max-width: 1200px;
+            margin: 2.5rem auto 1.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .album-header h2 {
+            font-size: 2rem;
+            color: var(--dorado);
+            margin-bottom: 0.5rem;
+        }
+
+        .album-header .fecha {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 1rem;
+        }
+
+        .album-header .descripcion {
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .galeria-fotos {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .grid-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .foto-card {
+            background-color: var(--negro);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+        }
+
+        .foto-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .foto-info {
+            padding: 0.9rem 1rem 1.1rem 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .foto-titulo {
+            font-weight: 600;
+            color: var(--dorado);
+            margin-bottom: 0.4rem;
+        }
+
+        /* BLOQUE VIDEO PRÓXIMAMENTE */
+        .video-proximo {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 1.8rem;
+            border-radius: 10px;
+            border: 2px solid var(--dorado);
+            background-color: rgba(10,26,42,0.85);
+            text-align: center;
+        }
+
+        .video-proximo h3 {
+            margin: 0 0 0.8rem 0;
+            font-size: 1.4rem;
+            color: var(--dorado);
+        }
+
+        .video-proximo p {
+            margin: 0.3rem 0;
+            font-size: 0.98rem;
+        }
+
+        footer {
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            border-top: 4px solid var(--dorado);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .album-header h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="barra-superior"></div>
+
+<header>
+    <div class="contenedor">
+        <div class="header-flex">
+            <img src="AMACEP.png" class="logo-header" alt="Logotipo AMACEP">
+            <h1 style="margin:0; font-size:1.4rem;">Asociación de Maestros de Ceremonias del Perú</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="amacep.html">Inicio</a></li>
+                <li><a href="amacepnosotros.html">Nosotros</a></li>
+                <li><a href="amacepestatuto.html">Estatuto</a></li>
+                <li><a href="amacepdocumentos.html">Documentos de gestión</a></li>
+                <li><a href="amacepreuniones.html">Reuniones y acuerdos</a></li>
+                <li><a href="amacepasociados.html">Asociados</a></li>
+                <li><a href="galeria.html" class="activo">Galería</a></li>
+                <li><a href="amacepcontacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="album-header">
+    <h2>Álbum 01 · Juramentación de Socios Fundadores y Primer Consejo Directivo</h2>
+    <div class="fecha">Jueves 23 de julio de 2026 · 6:00 p.m. · Salón R1A del Rancho de Pol</div>
+    <div class="descripcion">
+        Primer acto ceremonial oficial de AMACEP, dedicado a la juramentación de los socios fundadores y del Primer Consejo Directivo (periodo marzo 2025 – marzo 2026).  
+        La ceremonia incluyó la imposición de distintivos a cargo de los familiares y se desarrolló en un ambiente de alta gama, con nutrida concurrencia.
+    </div>
+</section>
+
+<section class="galeria-fotos">
+    <div class="grid-fotos">
+
+        <!-- Foto 1: Piscina exterior, nombre del Rancho de Pol -->
+        <div class="foto-card">
+            <img src="amacep/galeria/album01/album1.001.jpg" alt="Piscina exterior Rancho de Pol">
+            <div class="foto-info">
+                <div class="foto-titulo">Ambiente exterior · Piscina y nombre del Rancho de Pol</div>
+                Elegante vista de la piscina exterior con la denominación del Rancho de Pol, destacando el nivel del local elegido para la ceremonia de juramentación.
+            </div>
+        </div>
+
+        <!-- Foto 2: Ambiente interior, sillas y mesa principal -->
+        <div class="foto-card">
+            <img src="amacep/galeria/album01/album1.002.jpg" alt="Ambiente interior ceremonia AMACEP">
+            <div class="foto-info">
+                <div class="foto-titulo">Ambiente interior · Sillas y mesa principal</div>
+                Vista general del salón preparado para la ceremonia, con la disposición de sillas y la mesa principal, subrayando el carácter formal y protocolar del acto.
+            </div>
+        </div>
+
+        <!-- Foto 3: Mesa de bocaditos -->
+        <div class="foto-card">
+            <img src="amacep/galeria/album01/album1.003.jpg" alt="Mesa de bocaditos ceremonia AMACEP">
+            <div class="foto-info">
+                <div class="foto-titulo">Mesa de bocaditos · Detalle de servicio</div>
+                Toma desde la mesa de bocaditos, mostrando el cuidado en la presentación y el servicio ofrecido a los asistentes durante la ceremonia.
+            </div>
+        </div>
+
+        <!-- Foto 4: Cinco maestros de ceremonias juramentados -->
+        <div class="foto-card">
+            <img src="amacep/galeria/album01/album1.004.jpg" alt="Maestros de ceremonias juramentados AMACEP">
+            <div class="foto-info">
+                <div class="foto-titulo">Juramentación de maestros de ceremonias</div>
+                Imagen de cinco maestros de ceremonias juramentados en el acto, con la salvedad de la ausencia del vicepresidente, quien se encontraba en provincia.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="video-proximo">
+    <h3>Pronto: Video oficial de la ceremonia</h3>
+    <p>Sección reservada para la publicación del registro audiovisual completo de la juramentación de socios fundadores y del Primer Consejo Directivo.</p>
+    <p>El video será incorporado en esta misma página una vez concluida su edición institucional.</p>
+</section>
+
+<footer>
+    © AMACEP · Página institucional — correo: amacep2025@gmail.com
+</footer>
+
+</body>
+</html>
