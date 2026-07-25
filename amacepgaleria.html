@@ -2,199 +2,213 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Galería AMACEP | Álbumes Institucionales</title>
-    <meta name="description" content="Galería institucional de AMACEP. Álbumes ceremoniales y actos oficiales.">
-    <link rel="canonical" href="https://maestrodeceremonias.org.pe/galeria.html" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <title>AMACEP | Galería Institucional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
         :root {
-            --dorado: #c5a059;
-            --oscuro: #0f0f0f;
-            --blanco-marfil: #fdfcfb;
-            --font-serif: 'Cinzel', serif;
-            --font-sans: 'Montserrat', sans-serif;
+            --azul: #0A1A2A;
+            --dorado: #C9A86A;
+            --negro: #111111;
+            --blanco: #FFFFFF;
         }
 
-        body { margin: 0; padding: 0; background-color: var(--oscuro); color: var(--blanco-marfil); font-family: var(--font-sans); overflow-x: hidden; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: var(--azul);
+            color: var(--blanco);
+        }
+
+        .barra-superior {
+            background-color: var(--dorado);
+            height: 6px;
+            width: 100%;
+        }
 
         header {
-            position: fixed; top: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 80px; box-sizing: border-box; z-index: 1000;
-            background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            background-color: var(--azul);
+            padding: 1rem 0;
+            border-bottom: 4px solid var(--dorado);
         }
 
-        .logo { font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 3px; color: var(--dorado); text-transform: uppercase; text-decoration: none; }
-        .nav-menu { display: flex; gap: 40px; }
-        .nav-menu a { color: var(--blanco-marfil); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-menu a.active { color: var(--dorado); }
-
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
-        .hamburger span { width: 30px; height: 2px; background-color: var(--dorado); transition: 0.4s; }
-
-        /* HERO */
-        .hero-galeria {
-            height: 55vh;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)),
-                        url('AMACEP-banner.jpg') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center;
-            padding: 0 10%; box-sizing: border-box;
-            text-align: center;
+        .contenedor {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 1.5rem;
         }
 
-        .hero-galeria h1 {
-            font-family: var(--font-serif);
-            font-size: 3rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--dorado);
+        .header-flex {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-header {
+            height: 70px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--blanco);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        nav a:hover, nav a.activo {
+            background-color: var(--dorado);
+            color: var(--azul);
         }
 
         /* TARJETAS DE ÁLBUMES */
-        .album-container {
-            padding: 120px 10% 80px 10%;
+        .albumes {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .album-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2rem;
         }
 
         .album-card {
-            background: #111;
-            border: 1px solid rgba(197,160,89,0.3);
-            box-shadow: 0px 0px 25px rgba(0,0,0,0.4);
-            padding-bottom: 30px;
-            transition: 0.4s;
+            background-color: var(--negro);
+            border: 2px solid var(--dorado);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: 0.25s;
         }
 
         .album-card:hover {
             transform: scale(1.02);
-            border-color: var(--dorado);
         }
 
         .album-card img {
             width: 100%;
-            height: 260px;
+            height: 240px;
             object-fit: cover;
-            border-bottom: 1px solid rgba(197,160,89,0.3);
         }
 
-        .album-content {
-            padding: 25px;
+        .album-info {
+            padding: 1.2rem;
         }
 
-        .album-title {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
+        .album-titulo {
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--dorado);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
 
-        .album-date {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-bottom: 15px;
-        }
-
-        .album-desc {
+        .album-fecha {
             font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.9;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .album-descripcion {
+            font-size: 0.95rem;
+            line-height: 1.5rem;
         }
 
         .album-btn {
             display: inline-block;
-            margin-top: 25px;
-            padding: 12px 35px;
-            border: 1px solid var(--dorado);
+            margin-top: 1.2rem;
+            padding: 0.6rem 1.4rem;
+            border: 2px solid var(--dorado);
             color: var(--dorado);
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-family: var(--font-serif);
-            transition: 0.3s;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: 0.2s;
         }
 
         .album-btn:hover {
-            background: var(--dorado);
-            color: #000;
+            background-color: var(--dorado);
+            color: var(--azul);
         }
 
-        footer { padding: 80px 10%; text-align: center; border-top: 1px solid #222; }
-
-        @media (max-width: 768px) {
-            header { padding: 20px; }
-            .hamburger { display: flex; }
-            .nav-menu {
-                position: fixed; left: -100%; top: 70px; flex-direction: column; background: rgba(15, 15, 15, 0.95);
-                width: 100%; text-align: center; transition: 0.3s; padding: 40px 0; gap: 30px; border-bottom: 1px solid var(--dorado);
-            }
-            .nav-menu.active { left: 0; }
-
-            .hero-galeria h1 { font-size: 2rem; }
+        footer {
+            background-color: var(--azul);
+            color: var(--blanco);
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            border-top: 4px solid var(--dorado);
+            text-align: center;
+            font-size: 0.9rem;
         }
     </style>
 </head>
+
 <body>
 
+<div class="barra-superior"></div>
+
 <header>
-    <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
-    <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
+    <div class="contenedor">
+        <div class="header-flex">
+            <img src="AMACEP.png" class="logo-header" alt="Logotipo AMACEP">
+            <h1 style="margin:0; font-size:1.4rem;">Asociación de Maestros de Ceremonias del Perú</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="amacep.html">Inicio</a></li>
+                <li><a href="amacepnosotros.html">Nosotros</a></li>
+                <li><a href="amacepestatuto.html">Estatuto</a></li>
+                <li><a href="amacepdocumentos.html">Documentos de gestión</a></li>
+                <li><a href="amacepreuniones.html">Reuniones y acuerdos</a></li>
+                <li><a href="amacepasociados.html">Asociados</a></li>
+                <li><a href="galeria.html" class="activo">Galería</a></li>
+                <li><a href="amacepcontacto.html">Contacto</a></li>
+            </ul>
+        </nav>
     </div>
-    <nav class="nav-menu" id="navMenu">
-        <a href="servicios.html">Servicios</a>
-        <a href="disponibilidad.html">Disponibilidad</a>
-        <a href="galeria.html" class="active">Galería</a>
-        <a href="contacto.html">Reservas Online</a>
-    </nav>
 </header>
 
-<section class="hero-galeria">
-    <h1>GALERÍA AMACEP</h1>
-</section>
+<section class="albumes">
 
-<section class="album-container">
+    <h2 style="text-align:center; font-size:2rem; margin-bottom:2rem; color:var(--dorado);">
+        Galería Institucional AMACEP
+    </h2>
 
-    <!-- ÁLBUM 01 -->
-    <div class="album-card">
-        <img src="amacep/galeria/album01/tarjeta001.jpg" alt="Juramentación de Socios Fundadores AMACEP">
-        <div class="album-content">
-            <h2 class="album-title">Juramentación de Socios Fundadores y Primer Consejo Directivo</h2>
-            <p class="album-date">Jueves 23 de julio de 2026 — 6:00 p.m.</p>
-            <p class="album-desc">
-                Primer acto ceremonial oficial de AMACEP, dedicado a la juramentación de los socios fundadores y a la toma de juramento del Primer Consejo Directivo, periodo marzo 2025 – marzo 2026.  
-                La ceremonia incluyó la imposición de distintivos a cargo de los familiares.  
-                El acto se realizó en el Salón R1A del Rancho de Pol, contando con nutrida concurrencia.
-            </p>
-            <a href="album01.html" class="album-btn">Ingresar al álbum</a>
+    <div class="album-grid">
+
+        <!-- ÁLBUM 01 -->
+        <div class="album-card">
+            <img src="amacep/galeria/album01/tarjeta001.jpg" alt="Juramentación AMACEP">
+            <div class="album-info">
+                <div class="album-titulo">Juramentación de Socios Fundadores y Primer Consejo Directivo</div>
+                <div class="album-fecha">Jueves 23 de julio de 2026 — 6:00 p.m.</div>
+                <div class="album-descripcion">
+                    Primer acto ceremonial oficial de AMACEP, dedicado a la juramentación de los socios fundadores y del Primer Consejo Directivo (periodo marzo 2025 – marzo 2026).  
+                    Incluyó la imposición de distintivos a cargo de los familiares.  
+                    Realizado en el Salón R1A del Rancho de Pol, con nutrida concurrencia.
+                </div>
+                <a href="album01.html" class="album-btn">Ingresar al álbum</a>
+            </div>
         </div>
+
     </div>
 
 </section>
 
 <footer>
-    <a href="https://maestrodeceremonias.org.pe/amacep" target="_blank">
-        <img src="AMACEP.png" alt="AMACEP" style="height: 100px; margin-bottom: 20px;">
-    </a>
-    <p style="letter-spacing: 3px; color: var(--dorado); text-transform: uppercase;">Presidente AMACEP 2025-2027</p>
-    <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 20px;">© 2026 Marco Iván Cabrera Hernández.</p>
+    © AMACEP · Página institucional — correo: amacep2025@gmail.com
 </footer>
-
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById('navMenu');
-        menu.classList.toggle('active');
-    }
-</script>
 
 </body>
 </html>
