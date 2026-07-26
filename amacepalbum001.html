@@ -99,7 +99,7 @@
             line-height: 1.6;
         }
 
-        /* GALERÍA PREMIUM */
+        /* GALERÍA PREMIUM PRINCIPAL */
         .galeria-fotos {
             max-width: 1200px;
             margin: 2rem auto;
@@ -224,6 +224,64 @@
             margin-top: 1rem;
             font-size: 0.95rem;
             opacity: 0.85;
+        }
+
+        /* GALERÍA COMPLETA DE MINIATURAS */
+        .galeria-completa {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .galeria-titulo {
+            font-size: 1.6rem;
+            color: var(--dorado);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .mini {
+            width: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .mini:hover {
+            transform: scale(1.05);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 26, 42, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 3px solid var(--dorado);
+            border-radius: 10px;
+        }
+
+        #lightbox.close-area {
+            cursor: pointer;
         }
 
         footer {
@@ -366,9 +424,87 @@
     </div>
 </section>
 
+<section class="galeria-completa">
+    <h2 class="galeria-titulo">GALERÍA COMPLETA DE IMÁGENES</h2>
+
+    <div class="mini-grid">
+        <img src="amacep/galeria/album01/mini.001.jpg" class="mini" data-img="amacep/galeria/album01/mini.001.jpg">
+        <img src="amacep/galeria/album01/mini.002.jpg" class="mini" data-img="amacep/galeria/album01/mini.002.jpg">
+        <img src="amacep/galeria/album01/mini.003.jpg" class="mini" data-img="amacep/galeria/album01/mini.003.jpg">
+        <img src="amacep/galeria/album01/mini.004.jpg" class="mini" data-img="amacep/galeria/album01/mini.004.jpg">
+        <img src="amacep/galeria/album01/mini.005.jpg" class="mini" data-img="amacep/galeria/album01/mini.005.jpg">
+        <img src="amacep/galeria/album01/mini.006.jpg" class="mini" data-img="amacep/galeria/album01/mini.006.jpg">
+        <img src="amacep/galeria/album01/mini.007.jpg" class="mini" data-img="amacep/galeria/album01/mini.007.jpg">
+        <img src="amacep/galeria/album01/mini.008.jpg" class="mini" data-img="amacep/galeria/album01/mini.008.jpg">
+        <img src="amacep/galeria/album01/mini.009.jpg" class="mini" data-img="amacep/galeria/album01/mini.009.jpg">
+        <img src="amacep/galeria/album01/mini.010.jpg" class="mini" data-img="amacep/galeria/album01/mini.010.jpg">
+
+        <img src="amacep/galeria/album01/mini.011.jpg" class="mini" data-img="amacep/galeria/album01/mini.011.jpg">
+        <img src="amacep/galeria/album01/mini.012.jpg" class="mini" data-img="amacep/galeria/album01/mini.012.jpg">
+        <img src="amacep/galeria/album01/mini.013.jpg" class="mini" data-img="amacep/galeria/album01/mini.013.jpg">
+        <img src="amacep/galeria/album01/mini.014.jpg" class="mini" data-img="amacep/galeria/album01/mini.014.jpg">
+        <img src="amacep/galeria/album01/mini.015.jpg" class="mini" data-img="amacep/galeria/album01/mini.015.jpg">
+        <img src="amacep/galeria/album01/mini.016.jpg" class="mini" data-img="amacep/galeria/album01/mini.016.jpg">
+        <img src="amacep/galeria/album01/mini.017.jpg" class="mini" data-img="amacep/galeria/album01/mini.017.jpg">
+        <img src="amacep/galeria/album01/mini.018.jpg" class="mini" data-img="amacep/galeria/album01/mini.018.jpg">
+        <img src="amacep/galeria/album01/mini.019.jpg" class="mini" data-img="amacep/galeria/album01/mini.019.jpg">
+        <img src="amacep/galeria/album01/mini.020.jpg" class="mini" data-img="amacep/galeria/album01/mini.020.jpg">
+
+        <img src="amacep/galeria/album01/mini.021.jpg" class="mini" data-img="amacep/galeria/album01/mini.021.jpg">
+        <img src="amacep/galeria/album01/mini.022.jpg" class="mini" data-img="amacep/galeria/album01/mini.022.jpg">
+        <img src="amacep/galeria/album01/mini.023.jpg" class="mini" data-img="amacep/galeria/album01/mini.023.jpg">
+        <img src="amacep/galeria/album01/mini.024.jpg" class="mini" data-img="amacep/galeria/album01/mini.024.jpg">
+        <img src="amacep/galeria/album01/mini.025.jpg" class="mini" data-img="amacep/galeria/album01/mini.025.jpg">
+        <img src="amacep/galeria/album01/mini.026.jpg" class="mini" data-img="amacep/galeria/album01/mini.026.jpg">
+        <img src="amacep/galeria/album01/mini.027.jpg" class="mini" data-img="amacep/galeria/album01/mini.027.jpg">
+        <img src="amacep/galeria/album01/mini.028.jpg" class="mini" data-img="amacep/galeria/album01/mini.028.jpg">
+        <img src="amacep/galeria/album01/mini.029.jpg" class="mini" data-img="amacep/galeria/album01/mini.029.jpg">
+        <img src="amacep/galeria/album01/mini.030.jpg" class="mini" data-img="amacep/galeria/album01/mini.030.jpg">
+
+        <img src="amacep/galeria/album01/mini.031.jpg" class="mini" data-img="amacep/galeria/album01/mini.031.jpg">
+        <img src="amacep/galeria/album01/mini.032.jpg" class="mini" data-img="amacep/galeria/album01/mini.032.jpg">
+        <img src="amacep/galeria/album01/mini.033.jpg" class="mini" data-img="amacep/galeria/album01/mini.033.jpg">
+        <img src="amacep/galeria/album01/mini.034.jpg" class="mini" data-img="amacep/galeria/album01/mini.034.jpg">
+        <img src="amacep/galeria/album01/mini.035.jpg" class="mini" data-img="amacep/galeria/album01/mini.035.jpg">
+        <img src="amacep/galeria/album01/mini.036.jpg" class="mini" data-img="amacep/galeria/album01/mini.036.jpg">
+        <img src="amacep/galeria/album01/mini.037.jpg" class="mini" data-img="amacep/galeria/album01/mini.037.jpg">
+        <img src="amacep/galeria/album01/mini.038.jpg" class="mini" data-img="amacep/galeria/album01/mini.038.jpg">
+        <img src="amacep/galeria/album01/mini.039.jpg" class="mini" data-img="amacep/galeria/album01/mini.039.jpg">
+        <img src="amacep/galeria/album01/mini.040.jpg" class="mini" data-img="amacep/galeria/album01/mini.040.jpg">
+
+        <img src="amacep/galeria/album01/mini.041.jpg" class="mini" data-img="amacep/galeria/album01/mini.041.jpg">
+        <img src="amacep/galeria/album01/mini.042.jpg" class="mini" data-img="amacep/galeria/album01/mini.042.jpg">
+        <img src="amacep/galeria/album01/mini.043.jpg" class="mini" data-img="amacep/galeria/album01/mini.043.jpg">
+        <img src="amacep/galeria/album01/mini.044.jpg" class="mini" data-img="amacep/galeria/album01/mini.044.jpg">
+        <img src="amacep/galeria/album01/mini.045.jpg" class="mini" data-img="amacep/galeria/album01/mini.045.jpg">
+        <img src="amacep/galeria/album01/mini.046.jpg" class="mini" data-img="amacep/galeria/album01/mini.046.jpg">
+        <img src="amacep/galeria/album01/mini.047.jpg" class="mini" data-img="amacep/galeria/album01/mini.047.jpg">
+        <img src="amacep/galeria/album01/mini.048.jpg" class="mini" data-img="amacep/galeria/album01/mini.048.jpg">
+        <img src="amacep/galeria/album01/mini.049.jpg" class="mini" data-img="amacep/galeria/album01/mini.049.jpg">
+        <img src="amacep/galeria/album01/mini.050.jpg" class="mini" data-img="amacep/galeria/album01/mini.050.jpg">
+    </div>
+</section>
+
+<div id="lightbox" class="close-area">
+    <img id="lightbox-img" src="">
+</div>
+
 <footer>
     © AMACEP · Página institucional — correo: amacep2025@gmail.com
 </footer>
+
+<script>
+document.querySelectorAll('.mini').forEach(img => {
+    img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.dataset.img;
+        document.getElementById('lightbox').style.display = 'flex';
+    });
+});
+
+document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+});
+</script>
 
 </body>
 </html>
