@@ -160,25 +160,70 @@
             font-size: 1.1rem;
         }
 
-        /* BLOQUE VIDEO PRÓXIMAMENTE */
+        /* VIDEO PREMIUM */
+        .video-proximo {
+            max-width: 900px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .video-titulo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dorado);
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .video-link {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+        }
+
         .video-imagen {
             width: 100%;
-            max-width: 900px;
             border: 2px solid var(--dorado);
             border-radius: 10px;
             box-shadow: 0 6px 18px rgba(0,0,0,0.35);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: block;
-            margin: 1.5rem auto 0 auto;
         }
-        
+
         .video-imagen:hover {
             transform: scale(1.03);
             box-shadow: 0 8px 22px rgba(0,0,0,0.45);
         }
-        
-        .video-link {
-            text-decoration: none;
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(10, 26, 42, 0.45);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .video-link:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            font-size: 4rem;
+            color: var(--dorado);
+            text-shadow: 0 0 12px rgba(0,0,0,0.6);
+        }
+
+        .video-nota {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.85;
         }
 
         footer {
@@ -242,7 +287,7 @@
             <img src="amacep/galeria/album01/album1.001.jpg" alt="Piscina exterior Rancho de Pol">
             <div class="overlay">
                 <div class="overlay-text">
-                    <h4>Ambiente exterior· Salón Rancho de Pol</h4>
+                    <h4>Ambiente exterior · Salón Rancho de Pol</h4>
                     Elegante vista de la piscina exterior destacando el nivel del local elegido para la ceremonia.
                 </div>
             </div>
@@ -253,7 +298,7 @@
             <img src="amacep/galeria/album01/album1.002.jpg" alt="Ambiente interior ceremonia AMACEP">
             <div class="overlay">
                 <div class="overlay-text">
-                    <h4>Ambiente interior· Escenas de previos al evento</h4>
+                    <h4>Ambiente interior · Escenas previas al evento</h4>
                     Vista general del salón preparado para la ceremonia, con la disposición protocolar y mesa principal.
                 </div>
             </div>
@@ -287,33 +332,38 @@
             <div class="overlay">
                 <div class="overlay-text">
                     <h4>Distintivo oficial de AMACEP</h4>
-                    Distintivo circular metálico oficial de los socios integrantes de la Asociación de Maestros de Ceremonias del Perú (AMACEP).
+                    Distintivo circular metálico oficial de los socios integrantes de la Asociación de Maestros de Ceremonias del Perú.
                 </div>
             </div>
         </div>
-
 
         <!-- Foto 6 -->
         <div class="foto-card">
-            <img src="amacep/galeria/album01/juraprotocolo.jpg" alt="Distintivo metálico oficial AMACEP">
+            <img src="amacep/galeria/album01/juraprotocolo.jpg" alt="Protocolo oficial AMACEP">
             <div class="overlay">
                 <div class="overlay-text">
                     <h4>Protocolo oficial</h4>
-                    Programa protocolar a seguir. Cada Maestro de Ceremonias de la Asociación hizo la parte señalada.
+                    Programa protocolar seguido durante la ceremonia.
                 </div>
             </div>
         </div>
-        
+
     </div>
 </section>
 
 <section class="video-proximo">
-    <h3>Video oficial de la ceremonia</h3>
-    <p>Haz clic en la imagen para ver el video completo en YouTube.</p>
+    <div class="video-titulo">VIDEO OFICIAL DE LA CEREMONIA</div>
 
     <a href="https://youtu.be/5yL-8ckXhp0" target="_blank" class="video-link">
         <img src="amacep/galeria/album01/portadavideo.jpg" alt="Video oficial AMACEP" class="video-imagen">
+        <div class="video-overlay">
+            <span class="play-icon">▶</span>
+        </div>
     </a>
+
+    <div class="video-nota">
+        Haz clic en la imagen para ver el registro completo en YouTube.
+    </div>
 </section>
 
 <footer>
