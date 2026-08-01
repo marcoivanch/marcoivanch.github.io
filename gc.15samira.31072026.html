@@ -5,31 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Álbum 15 Samira | Maestro de Ceremonias</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
     :root {
-        --rosado: #f8e6ec;
-        --champagne: #fdf7f2;
         --dorado: #c5a059;
-        --floral: rgba(255, 182, 193, 0.35);
+        --oscuro: #0f0f0f;
+        --gris: #1a1a1a;
         --font-serif: 'Cinzel', serif;
-        --font-elegante: 'Playfair Display', serif;
         --font-sans: 'Montserrat', sans-serif;
     }
 
     body {
         margin: 0;
-        background: linear-gradient(to bottom, var(--champagne), var(--rosado));
+        background-color: var(--oscuro);
+        color: var(--dorado);
         font-family: var(--font-sans);
-        color: #444;
     }
 
     /* HEADER */
     header {
         padding: 25px 40px;
-        background: rgba(255,255,255,0.7);
-        backdrop-filter: blur(10px);
+        background-color: var(--gris);
         border-bottom: 1px solid rgba(197,160,89,0.3);
         position: sticky;
         top: 0;
@@ -74,30 +71,25 @@
 
     .subtitulo {
         text-align: center;
-        font-family: var(--font-elegante);
-        font-size: 1rem;
+        font-size: 0.9rem;
         opacity: 0.7;
         margin-bottom: 40px;
     }
 
-    /* DIVISOR FLORAL */
+    /* DIVISOR */
     .divisor {
         width: 100%;
-        height: 40px;
-        background-image: url('https://maestrodeceremonias.org.pe/floral-divisor.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 180px;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--dorado), transparent);
         margin: 40px 0;
-        opacity: 0.7;
     }
 
     /* PROTOCOLO */
     .protocolo img {
         width: 100%;
-        border-radius: 10px;
+        border-radius: 6px;
         margin-bottom: 25px;
-        box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
     }
 
     /* GALERÍA */
@@ -109,10 +101,10 @@
 
     .galeria img {
         width: 100%;
-        border-radius: 10px;
+        border-radius: 6px;
         cursor: pointer;
         transition: 0.3s;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     }
 
     .galeria img:hover {
@@ -141,7 +133,7 @@
     .videos iframe {
         width: 100%;
         height: 300px;
-        border-radius: 10px;
+        border-radius: 6px;
         margin-bottom: 25px;
         border: 1px solid rgba(197,160,89,0.4);
     }
@@ -153,7 +145,6 @@
         opacity: 0.7;
         text-align: center;
         line-height: 1.5;
-        font-family: var(--font-elegante);
     }
 
     footer {
@@ -163,6 +154,20 @@
         font-family: var(--font-serif);
         letter-spacing: 3px;
         margin-top: 40px;
+        background-color: var(--gris);
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 3000;
+    }
+
+    .whatsapp img {
+        width: 60px;
+        height: 60px;
     }
 </style>
 
@@ -196,8 +201,8 @@ function cerrarLightbox() {
 
     <!-- PROTOCOLO -->
     <div class="protocolo">
-        <img src="marcoivanch.github.io/galeriaprivada/15samira31-07-2026/31-07-2615SamiraR1a.10.00pm_page-0001.jpg">
-        <img src="marcoivanch.github.io/galeriaprivada/15samira31-07-2026/31-07-2615SamiraR1a.10.00pm_page-0001.jpg">
+        <img src="https://marcovanch.github.io/galeriaprivada/15samira31-07-2026/31-07-2615SamiraR1a.10.00pm_page-0001.jpg">
+        <img src="https://marcovanch.github.io/galeriaprivada/15samira31-07-2026/31-07-2615SamiraR1a.10.00pm_page-0002.jpg">
     </div>
 
     <div class="divisor"></div>
@@ -238,6 +243,13 @@ function cerrarLightbox() {
     Presidente AMACEP 2025–2027<br>
     © 2026 Marco Iván Cabrera Hernández
 </footer>
+
+<!-- WHATSAPP -->
+<div class="whatsapp">
+    <a href="https://wa.me/51999999999" target="_blank">
+        <img src="https://maestrodeceremonias.org.pe/whatsapp.png">
+    </a>
+</div>
 
 </body>
 </html>
