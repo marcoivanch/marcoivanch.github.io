@@ -1,189 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Álbum 15 Samira | Maestro de Ceremonias</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Álbum 15 Samira | Maestro de Ceremonias</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --dorado: #c5a059;
-            --claro: #f7f4ef;
-            --blanco: #ffffff;
-            --gris-suave: #e9e5dd;
-            --font-serif: 'Cinzel', serif;
-            --font-sans: 'Montserrat', sans-serif;
-        }
+<style>
+    :root {
+        --rosado: #f8e6ec;
+        --champagne: #fdf7f2;
+        --dorado: #c5a059;
+        --floral: rgba(255, 182, 193, 0.35);
+        --font-serif: 'Cinzel', serif;
+        --font-elegante: 'Playfair Display', serif;
+        --font-sans: 'Montserrat', sans-serif;
+    }
 
-        body {
-            margin: 0;
-            background: linear-gradient(to bottom, var(--claro), var(--gris-suave));
-            color: #333;
-            font-family: var(--font-sans);
-        }
+    body {
+        margin: 0;
+        background: linear-gradient(to bottom, var(--champagne), var(--rosado));
+        font-family: var(--font-sans);
+        color: #444;
+    }
 
-        header {
-            padding: 25px 40px;
-            background: rgba(255,255,255,0.8);
-            border-bottom: 1px solid rgba(197,160,89,0.3);
-            backdrop-filter: blur(8px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    /* HEADER */
+    header {
+        padding: 25px 40px;
+        background: rgba(255,255,255,0.7);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(197,160,89,0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
 
-        .logo {
-            font-family: var(--font-serif);
-            color: var(--dorado);
-            text-decoration: none;
-            letter-spacing: 3px;
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
+    .logo {
+        font-family: var(--font-serif);
+        color: var(--dorado);
+        text-decoration: none;
+        letter-spacing: 3px;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
 
-        .volver {
-            display: inline-block;
-            margin-top: 20px;
-            margin-left: 40px;
-            color: var(--dorado);
-            text-decoration: none;
-            font-family: var(--font-serif);
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-        }
+    .volver {
+        display: inline-block;
+        margin-top: 20px;
+        margin-left: 40px;
+        color: var(--dorado);
+        text-decoration: none;
+        font-family: var(--font-serif);
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+    }
 
-        .contenedor {
-            padding: 40px 60px;
-            max-width: 1100px;
-            margin: auto;
-        }
+    /* CONTENEDOR */
+    .contenedor {
+        max-width: 1100px;
+        margin: auto;
+        padding: 40px 60px;
+    }
 
-        h1 {
-            font-family: var(--font-serif);
-            color: var(--dorado);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+    h1 {
+        font-family: var(--font-serif);
+        color: var(--dorado);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 
-        .subtitulo {
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 40px;
-        }
+    .subtitulo {
+        text-align: center;
+        font-family: var(--font-elegante);
+        font-size: 1rem;
+        opacity: 0.7;
+        margin-bottom: 40px;
+    }
 
-        .divisor {
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(to right, transparent, var(--dorado), transparent);
-            margin: 40px 0;
-        }
+    /* DIVISOR FLORAL */
+    .divisor {
+        width: 100%;
+        height: 40px;
+        background-image: url('https://maestrodeceremonias.org.pe/floral-divisor.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 180px;
+        margin: 40px 0;
+        opacity: 0.7;
+    }
 
-        .pdf {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    /* PROTOCOLO */
+    .protocolo img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
+    }
 
-        .pdf iframe {
-            width: 100%;
-            height: 500px;
-            border: 1px solid rgba(197,160,89,0.4);
-            border-radius: 6px;
-            background: var(--blanco);
-        }
+    /* GALERÍA */
+    .galeria {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
 
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-        }
+    .galeria img {
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    }
 
-        .galeria img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
-        }
+    .galeria img:hover {
+        transform: scale(1.05);
+    }
 
-        .galeria img:hover {
-            transform: scale(1.03);
-        }
+    /* LIGHTBOX */
+    .lightbox {
+        display: none;
+        position: fixed;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
 
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            justify-content: center;
-            align-items: center;
-        }
+    .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+    }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
+    /* VIDEOS */
+    .videos iframe {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(197,160,89,0.4);
+    }
 
-        .videos {
-            margin-top: 40px;
-        }
+    /* NOTA LEGAL */
+    .nota {
+        margin-top: 40px;
+        font-size: 0.8rem;
+        opacity: 0.7;
+        text-align: center;
+        line-height: 1.5;
+        font-family: var(--font-elegante);
+    }
 
-        .videos iframe {
-            width: 100%;
-            height: 300px;
-            margin-bottom: 25px;
-            border-radius: 6px;
-            border: 1px solid rgba(197,160,89,0.4);
-        }
+    footer {
+        text-align: center;
+        padding: 40px;
+        color: var(--dorado);
+        font-family: var(--font-serif);
+        letter-spacing: 3px;
+        margin-top: 40px;
+    }
+</style>
 
-        .nota {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            line-height: 1.5;
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--dorado);
-            font-family: var(--font-serif);
-            letter-spacing: 3px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .contenedor {
-                padding: 20px;
-            }
-
-            .pdf iframe {
-                height: 350px;
-            }
-        }
-    </style>
-
-    <script>
-        function abrirLightbox(src) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = src;
-            lb.style.display = 'flex';
-        }
-
-        function cerrarLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-    </script>
+<script>
+function abrirLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lb.style.display = 'flex';
+}
+function cerrarLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+</script>
 </head>
 
 <body>
@@ -201,22 +194,22 @@
 
     <div class="divisor"></div>
 
-    <!-- PROTOCOLO PDF -->
-    <div class="pdf">
-        <iframe src="marcoivanch.github.io/galeriaprivada/15samira31-07-2026/31-07-26 15 Samira R1a. 10.00 pm.pdf
-"></iframe>
+    <!-- PROTOCOLO -->
+    <div class="protocolo">
+        <img src="31-07-26 15 Samira R1a. 10.00 pm_page-0001.jpg">
+        <img src="31-07-26 15 Samira R1a. 10.00 pm_page-0002.jpg">
     </div>
 
     <div class="divisor"></div>
 
-    <!-- GALERÍA DE FOTOS -->
+    <!-- GALERÍA -->
     <h2 style="font-family: var(--font-serif); color: var(--dorado); text-transform: uppercase; letter-spacing: 2px;">Fotografías</h2>
 
     <div class="galeria">
-        <img src="foto1.15samira.jpg" onclick="abrirLightbox(this.src)">
-        <img src="foto2.15samira.jpg" onclick="abrirLightbox(this.src)">
-        <img src="foto3.15samira.jpg" onclick="abrirLightbox(this.src)">
-        <img src="foto4.15samira.jpg" onclick="abrirLightbox(this.src)">
+        <img src="samiramini.jpg" onclick="abrirLightbox(this.src)">
+        <img src="Baile quinceañera mamá.png" onclick="abrirLightbox(this.src)">
+        <img src="Baile quinceañera papá.png" onclick="abrirLightbox(this.src)">
+        <img src="Lanzamiento de bouquet.png" onclick="abrirLightbox(this.src)">
     </div>
 
     <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
@@ -234,8 +227,8 @@
     </div>
 
     <div class="nota">
-        Las imágenes mostradas no obedecen a un servicio contratado.  
-        No se retirará el nombre del celular ni se garantizan desenfoques.  
+        Las imágenes mostradas no obedecen a un servicio contratado.<br>
+        No se retirará el nombre del celular ni se garantizan desenfoques.<br>
         Son únicamente referencias visuales del evento conducido por el Maestro de Ceremonias Marco Cabrera, sin fines comerciales.
     </div>
 
