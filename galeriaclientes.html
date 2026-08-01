@@ -23,7 +23,7 @@
             font-family: var(--font-sans);
         }
 
-        /* HEADER INSTITUCIONAL */
+        /* HEADER */
         header {
             position: fixed;
             top: 0;
@@ -31,7 +31,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 80px;
+            padding: 20px 40px;
             background: rgba(15,15,15,0.9);
             border-bottom: 1px solid rgba(197,160,89,0.3);
             z-index: 1000;
@@ -42,45 +42,45 @@
             color: var(--dorado);
             text-decoration: none;
             letter-spacing: 3px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
         }
 
         nav a {
-            margin-left: 40px;
+            margin-left: 25px;
             color: var(--blanco);
             text-decoration: none;
             letter-spacing: 2px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
         }
 
         /* BOTÓN DE REGRESO */
         .volver {
             display: inline-block;
-            margin-top: 120px;
-            margin-left: 80px;
+            margin-top: 110px;
+            margin-left: 40px;
             color: var(--dorado);
             text-decoration: none;
             font-family: var(--font-serif);
             letter-spacing: 2px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* CONTENEDOR DE TARJETAS */
+        /* CONTENEDOR */
         .contenedor {
-            padding: 40px 80px;
+            padding: 20px 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        /* TARJETA PREMIUM */
+        /* TARJETA */
         .tarjeta {
             background-color: #1a1a1a;
             border: 1px solid rgba(197,160,89,0.4);
             border-radius: 6px;
-            padding-bottom: 20px;
+            overflow: hidden;
             transition: 0.3s;
         }
 
@@ -89,37 +89,28 @@
             border-color: var(--dorado);
         }
 
-        /* MINIATURA COMPLETA */
-        .miniatura {
-            width: 100%;
-            height: 260px;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
+        /* MINIATURA COMPLETA (MODELO DE TU OTRA WEB) */
         .miniatura img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .contenido {
-            padding: 25px;
+            padding: 20px;
         }
 
         .titulo {
             font-family: var(--font-serif);
             color: var(--dorado);
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
         }
 
         .descripcion {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.85;
             line-height: 1.5;
         }
@@ -127,24 +118,55 @@
         .btn-acceso {
             margin-top: 20px;
             display: inline-block;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: 1px solid var(--dorado);
             color: var(--dorado);
             text-decoration: none;
             font-family: var(--font-serif);
             letter-spacing: 2px;
             text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
-        /* FOOTER INSTITUCIONAL */
+        /* FOOTER */
         footer {
             text-align: center;
-            padding: 60px;
+            padding: 40px;
             border-top: 1px solid rgba(197,160,89,0.3);
             color: var(--dorado);
             font-family: var(--font-serif);
             letter-spacing: 3px;
             margin-top: 40px;
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .volver {
+                margin-left: 20px;
+                margin-top: 90px;
+            }
+
+            .contenedor {
+                padding: 20px;
+                grid-template-columns: 1fr;
+            }
+
+            .titulo {
+                font-size: 0.9rem;
+            }
+
+            .descripcion {
+                font-size: 0.8rem;
+            }
+
+            .btn-acceso {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -167,7 +189,7 @@
     <!-- TARJETA 15 SAMIRA -->
     <div class="tarjeta">
         <div class="miniatura">
-            <img src="marcoivanch.github.io/galeriaprivada/15samira31-07-2026/samiramini.jpg" alt="15 Samira">
+            <img src="https://marcovanch.github.io/galeriaprivada/15samira31-07-2026/samiramini.jpg" alt="15 Samira">
         </div>
 
         <div class="contenido">
