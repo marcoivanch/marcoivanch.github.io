@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Privada | Maestro de Ceremonias</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --dorado: #c5a059;
+            --oscuro: #0f0f0f;
+            --blanco: #fdfcfb;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--oscuro);
+            color: var(--blanco);
+            font-family: var(--font-sans);
+        }
+
+        header {
+            padding: 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(197,160,89,0.3);
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--dorado);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 60px;
+        }
+
+        .tarjeta {
+            background-color: #1a1a1a;
+            border: 1px solid rgba(197,160,89,0.4);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: scale(1.02);
+            border-color: var(--dorado);
+        }
+
+        .miniatura img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .contenido {
+            padding: 25px;
+        }
+
+        .titulo {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--dorado);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .descripcion {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0.85;
+        }
+
+        .btn-acceso {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 12px 25px;
+            border: 1px solid var(--dorado);
+            color: var(--dorado);
+            text-decoration: none;
+            font-family: var(--font-serif);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-acceso:hover {
+            background-color: var(--dorado);
+            color: var(--oscuro);
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Galería Privada</h1>
+</header>
+
+<section class="contenedor">
+
+    <!-- TARJETA 15 SAMIRA -->
+    <div class="tarjeta">
+        <div class="miniatura">
+            <img src="samira-miniatura.jpg" alt="15 Samira - Miniatura del evento">
+        </div>
+
+        <div class="contenido">
+            <div class="titulo">
+                15 Samira. Salón Rancho de Pol (31/07/26) 10:30 pm
+            </div>
+
+            <div class="descripcion">
+                Ceremonia con protocolo temático inspirado en El Salón de las Maravillas,
+                adaptación de “Alicia en el País de las Maravillas”.<br>
+                Participación especial de La Guardia Dorada en ingreso y cruce de espadas.<br>
+                Referencias visuales exclusivas de la ceremonia conducida por el Maestro de Ceremonias (AMACEP) Lic. Marco Cabrera.
+            </div>
+
+            <a class="btn-acceso">Acceso con QR</a>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>
