@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería Privada | Maestro de Ceremonias</title>
+    <title>Galería de Clientes | Maestro de Ceremonias</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
 
@@ -18,40 +18,63 @@
 
         body {
             margin: 0;
-            padding: 0;
             background-color: var(--oscuro);
             color: var(--blanco);
             font-family: var(--font-sans);
         }
 
+        /* HEADER */
         header {
-            padding: 40px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: rgba(15,15,15,0.9);
             border-bottom: 1px solid rgba(197,160,89,0.3);
         }
 
-        header h1 {
+        .logo {
             font-family: var(--font-serif);
-            font-size: 2rem;
-            letter-spacing: 3px;
             color: var(--dorado);
-            margin: 0;
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-size: 1rem;
             text-transform: uppercase;
         }
 
-        .contenedor {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            padding: 60px;
+        nav a {
+            margin-left: 30px;
+            color: var(--blanco);
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
+        /* BOTÓN DE REGRESO */
+        .volver {
+            display: inline-block;
+            margin: 30px 60px;
+            color: var(--dorado);
+            text-decoration: none;
+            font-family: var(--font-serif);
+            letter-spacing: 2px;
+        }
+
+        /* CONTENEDOR */
+        .contenedor {
+            padding: 40px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        /* TARJETA */
         .tarjeta {
             background-color: #1a1a1a;
             border: 1px solid rgba(197,160,89,0.4);
             border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+            padding-bottom: 20px;
             transition: 0.3s;
         }
 
@@ -60,10 +83,20 @@
             border-color: var(--dorado);
         }
 
-        .miniatura img {
+        /* MINIATURA COMPLETA */
+        .miniatura {
             width: 100%;
             height: 260px;
-            object-fit: cover;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .miniatura img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .contenido {
@@ -72,17 +105,17 @@
 
         .titulo {
             font-family: var(--font-serif);
-            font-size: 1.1rem;
             color: var(--dorado);
-            margin-bottom: 10px;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 10px;
         }
 
         .descripcion {
             font-size: 0.9rem;
-            line-height: 1.5;
             opacity: 0.85;
+            line-height: 1.5;
         }
 
         .btn-acceso {
@@ -95,12 +128,16 @@
             font-family: var(--font-serif);
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: 0.3s;
         }
 
-        .btn-acceso:hover {
-            background-color: var(--dorado);
-            color: var(--oscuro);
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 60px;
+            border-top: 1px solid rgba(197,160,89,0.3);
+            color: var(--dorado);
+            font-family: var(--font-serif);
+            letter-spacing: 3px;
         }
     </style>
 </head>
@@ -108,15 +145,22 @@
 <body>
 
 <header>
-    <h1>Galería Privada</h1>
+    <a href="index.html" class="logo">Marco Iván Cabrera Hernández</a>
+    <nav>
+        <a href="servicios.html">Servicios</a>
+        <a href="disponibilidad.html">Disponibilidad</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
 </header>
+
+<a href="index.html" class="volver">← Volver a Inicio</a>
 
 <section class="contenedor">
 
     <!-- TARJETA 15 SAMIRA -->
     <div class="tarjeta">
         <div class="miniatura">
-            <img src="marcoivanch.github.io/galeriaprivada/15samira31-07-2026/samiramini.jpg" alt="15 Samira - Miniatura del evento">
+            <img src="samira-miniatura.jpg" alt="15 Samira">
         </div>
 
         <div class="contenido">
@@ -136,6 +180,11 @@
     </div>
 
 </section>
+
+<footer>
+    Presidente AMACEP 2025–2027<br>
+    © 2026 Marco Iván Cabrera Hernández
+</footer>
 
 </body>
 </html>
